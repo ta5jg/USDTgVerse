@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgDEX - Decentralized Exchange</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .dex-interface {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .swap-panel, .liquidity-panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .panel-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .token-input {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .token-select {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .token-dropdown {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .amount-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            outline: none;
+        }
+
+        .amount-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .swap-arrow {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .swap-arrow:hover {
+            transform: rotate(180deg);
+        }
+
+        .action-button {
+            width: 100%;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .action-button:disabled {
+            background: rgba(255,255,255,0.2);
+            cursor: not-allowed;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+
+        .pools-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pools-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .pool-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .pool-pair {
+            font-weight: bold;
+        }
+
+        .pool-tvl {
+            color: #4CAF50;
+        }
+
+        .pool-apy {
+            background: rgba(76, 175, 80, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .dex-interface {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🔄 USDTgDEX</div>
+            <div class="nav-links">
+                <a href="/" onclick="goBack()">← Back</a>
+                <a href="/">🏠 Home</a>
+                <a href="../website/index.html">🌟 Website</a>
+                <a href="../explorer/usdtgscan.html">🔍 Explorer</a>
+                <a href="cex.html">🏪 CEX</a>
+                <a href="../audit/USDTgVerse_Security_Audit_Report_FIXED.html">🔒 Audit</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="dex-interface">
+            <!-- Swap Panel -->
+            <div class="swap-panel">
+                <div class="panel-title">💱 Token Swap</div>
+                
+                <div class="token-input">
+                    <div class="token-select">
+                        <span>From</span>
+                        <select class="token-dropdown" id="fromToken">
+                            <option value="USDTG">USDTg</option>
+                            <option value="USDT">USDT</option>
+                            <option value="USDC">USDC</option>
+                            <option value="ETH">Ethereum</option>
+                            <option value="TRX">TRON</option>
+                            <option value="SOL">Solana</option>
+                        </select>
+                    </div>
+                    <input type="number" class="amount-input" id="fromAmount" placeholder="0.0" step="0.000001">
+                    <div style="font-size: 0.8em; color: rgba(255,255,255,0.6); margin-top: 5px;">
+                        Balance: <span id="fromBalance">0.00</span>
+                    </div>
+                </div>
+
+                <div class="swap-arrow" onclick="swapTokens()">⇅</div>
+
+                <div class="token-input">
+                    <div class="token-select">
+                        <span>To</span>
+                        <select class="token-dropdown" id="toToken">
+                            <option value="USDT">USDT</option>
+                            <option value="USDTG">USDTg</option>
+                            <option value="USDC">USDC</option>
+                            <option value="ETH">Ethereum</option>
+                            <option value="TRX">TRON</option>
+                            <option value="SOL">Solana</option>
+                        </select>
+                    </div>
+                    <input type="number" class="amount-input" id="toAmount" placeholder="0.0" readonly>
+                    <div style="font-size: 0.8em; color: rgba(255,255,255,0.6); margin-top: 5px;">
+                        Balance: <span id="toBalance">0.00</span>
+                    </div>
+                </div>
+
+                <div style="margin: 15px 0; font-size: 0.9em; color: rgba(255,255,255,0.8);">
+                    <div>Rate: 1 <span id="rateFrom">USDTg</span> = <span id="rateValue">1.00</span> <span id="rateTo">ETH</span></div>
+                    <div>Price Impact: <span id="priceImpact" style="color: #4CAF50;">0.01%</span></div>
+                    <div>Fee: <span id="swapFee">0.3%</span></div>
+                </div>
+
+                <button class="action-button" onclick="executeSwap()">
+                    🔄 Swap Tokens
+                </button>
+            </div>
+
+            <!-- Liquidity Panel -->
+            <div class="liquidity-panel">
+                <div class="panel-title">💧 Add Liquidity</div>
+                
+                <div class="token-input">
+                    <div class="token-select">
+                        <span>Token A</span>
+                        <select class="token-dropdown" id="tokenA">
+                            <option value="USDTG">USDTg</option>
+                            <option value="USDT">USDT</option>
+                            <option value="USDC">USDC</option>
+                            <option value="ETH">Ethereum</option>
+                            <option value="TRX">TRON</option>
+                            <option value="SOL">Solana</option>
+                        </select>
+                    </div>
+                    <input type="number" class="amount-input" id="amountA" placeholder="0.0" step="0.000001">
+                </div>
+
+                <div style="text-align: center; margin: 10px 0; font-size: 1.2em;">+</div>
+
+                <div class="token-input">
+                    <div class="token-select">
+                        <span>Token B</span>
+                        <select class="token-dropdown" id="tokenB">
+                            <option value="USDT">USDT</option>
+                            <option value="USDTG">USDTg</option>
+                            <option value="USDC">USDC</option>
+                            <option value="ETH">Ethereum</option>
+                            <option value="TRX">TRON</option>
+                            <option value="SOL">Solana</option>
+                        </select>
+                    </div>
+                    <input type="number" class="amount-input" id="amountB" placeholder="0.0" step="0.000001">
+                </div>
+
+                <div style="margin: 15px 0; font-size: 0.9em; color: rgba(255,255,255,0.8);">
+                    <div>Pool Share: <span id="poolShare">0.00%</span></div>
+                    <div>LP Tokens: <span id="lpTokens">0.00</span></div>
+                </div>
+
+                <button class="action-button" onclick="addLiquidity()">
+                    💧 Add Liquidity
+                </button>
+            </div>
+        </div>
+
+        <!-- DEX Statistics -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-value">$2.4B</div>
+                <div class="stat-label">Total Value Locked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$156M</div>
+                <div class="stat-label">24h Volume</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">1,247</div>
+                <div class="stat-label">Active Pools</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">89,432</div>
+                <div class="stat-label">Total Users</div>
+            </div>
+        </div>
+
+        <!-- Top Pools -->
+        <div class="pools-section">
+            <div class="pools-title">🏊‍♂️ Top Liquidity Pools</div>
+            
+            <div class="pool-item">
+                <div class="pool-pair">USDTg/USDT</div>
+                <div class="pool-tvl">$678M TVL</div>
+                <div class="pool-apy">12.8% APY</div>
+            </div>
+            
+            <div class="pool-item">
+                <div class="pool-pair">USDTg/USDC</div>
+                <div class="pool-tvl">$543M TVL</div>
+                <div class="pool-apy">11.4% APY</div>
+            </div>
+            
+            <div class="pool-item">
+                <div class="pool-pair">USDTg/ETH</div>
+                <div class="pool-tvl">$456M TVL</div>
+                <div class="pool-apy">24.5% APY</div>
+            </div>
+            
+            <div class="pool-item">
+                <div class="pool-pair">USDT/USDC</div>
+                <div class="pool-tvl">$321M TVL</div>
+                <div class="pool-apy">8.9% APY</div>
+            </div>
+            
+            <div class="pool-item">
+                <div class="pool-pair">USDTg/TRX</div>
+                <div class="pool-tvl">$234M TVL</div>
+                <div class="pool-apy">18.2% APY</div>
+            </div>
+            
+            <div class="pool-item">
+                <div class="pool-pair">USDTg/SOL</div>
+                <div class="pool-tvl">$189M TVL</div>
+                <div class="pool-apy">32.1% APY</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation function
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        // Swap functionality
+        function swapTokens() {
+            const fromToken = document.getElementById('fromToken');
+            const toToken = document.getElementById('toToken');
+            
+            const tempValue = fromToken.value;
+            fromToken.value = toToken.value;
+            toToken.value = tempValue;
+            
+            updateSwapRate();
+        }
+
+        function updateSwapRate() {
+            const fromToken = document.getElementById('fromToken').value;
+            const toToken = document.getElementById('toToken').value;
+            const fromAmount = parseFloat(document.getElementById('fromAmount').value) || 0;
+            
+            document.getElementById('rateFrom').textContent = fromToken;
+            document.getElementById('rateTo').textContent = toToken;
+            
+            // Simulate exchange rate
+            let rate = 1.0;
+            if (fromToken === 'USDTG' && toToken === 'USDT') rate = 1.0001;
+            else if (fromToken === 'USDT' && toToken === 'USDTG') rate = 0.9999;
+            else if (fromToken === 'USDTG' && toToken === 'USDC') rate = 1.0002;
+            else if (fromToken === 'USDC' && toToken === 'USDTG') rate = 0.9998;
+            else if (fromToken === 'USDT' && toToken === 'USDC') rate = 1.0001;
+            else if (fromToken === 'USDC' && toToken === 'USDT') rate = 0.9999;
+            else if (fromToken === 'USDTG' && toToken === 'ETH') rate = 0.0004;
+            else if (fromToken === 'ETH' && toToken === 'USDTG') rate = 2500;
+            else if (fromToken === 'USDTG' && toToken === 'TRX') rate = 10.5;
+            else if (fromToken === 'TRX' && toToken === 'USDTG') rate = 0.095;
+            else if (fromToken === 'USDTG' && toToken === 'SOL') rate = 0.0067;
+            else if (fromToken === 'SOL' && toToken === 'USDTG') rate = 149;
+            
+            document.getElementById('rateValue').textContent = rate.toFixed(6);
+            
+            if (fromAmount > 0) {
+                const toAmount = fromAmount * rate;
+                document.getElementById('toAmount').value = toAmount.toFixed(6);
+            }
+        }
+
+        function executeSwap() {
+            const fromToken = document.getElementById('fromToken').value;
+            const toToken = document.getElementById('toToken').value;
+            const fromAmount = document.getElementById('fromAmount').value;
+            const toAmount = document.getElementById('toAmount').value;
+            
+            if (!fromAmount || parseFloat(fromAmount) <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            // Simulate swap execution
+            alert(`🔄 Swapping ${fromAmount} ${fromToken} for ${toAmount} ${toToken}\n\n✅ Transaction submitted to USDTgVerse blockchain!`);
+            
+            // Reset form
+            document.getElementById('fromAmount').value = '';
+            document.getElementById('toAmount').value = '';
+        }
+
+        function addLiquidity() {
+            const tokenA = document.getElementById('tokenA').value;
+            const tokenB = document.getElementById('tokenB').value;
+            const amountA = document.getElementById('amountA').value;
+            const amountB = document.getElementById('amountB').value;
+            
+            if (!amountA || !amountB || parseFloat(amountA) <= 0 || parseFloat(amountB) <= 0) {
+                alert('Please enter valid amounts for both tokens');
+                return;
+            }
+            
+            // Simulate liquidity addition
+            alert(`💧 Adding liquidity:\n${amountA} ${tokenA} + ${amountB} ${tokenB}\n\n✅ LP tokens will be minted to your wallet!`);
+            
+            // Reset form
+            document.getElementById('amountA').value = '';
+            document.getElementById('amountB').value = '';
+        }
+
+        // Event listeners
+        document.getElementById('fromToken').addEventListener('change', updateSwapRate);
+        document.getElementById('toToken').addEventListener('change', updateSwapRate);
+        document.getElementById('fromAmount').addEventListener('input', updateSwapRate);
+
+        // Initialize
+        updateSwapRate();
+        
+        // Simulate real-time data updates
+        setInterval(() => {
+            // Update balances (simulated)
+            document.getElementById('fromBalance').textContent = (Math.random() * 1000).toFixed(2);
+            document.getElementById('toBalance').textContent = (Math.random() * 1000).toFixed(2);
+            
+            // Update price impact
+            const impact = (Math.random() * 0.5).toFixed(3);
+            document.getElementById('priceImpact').textContent = impact + '%';
+            document.getElementById('priceImpact').style.color = impact > 0.1 ? '#ff6b6b' : '#4CAF50';
+        }, 5000);
+        
+        console.log('🔄 USDTgDEX initialized');
+        console.log('💱 Automated Market Maker ready');
+        console.log('🌉 Multi-chain swaps available');
+    </script>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgCEX - Centralized Exchange</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .trading-interface {
+            display: grid;
+            grid-template-columns: 300px 1fr 350px;
+            gap: 20px;
+            height: 80vh;
+        }
+
+        .market-panel, .chart-panel, .trading-panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .panel-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #e74c3c;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+
+        /* Market Panel */
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 5px;
+        }
+
+        .market-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .market-item.active {
+            background: rgba(231, 76, 60, 0.2);
+            border-left: 3px solid #e74c3c;
+        }
+
+        .market-pair {
+            font-weight: bold;
+        }
+
+        .market-price {
+            font-size: 0.9em;
+        }
+
+        .price-up {
+            color: #2ecc71;
+        }
+
+        .price-down {
+            color: #e74c3c;
+        }
+
+        /* Chart Panel */
+        .chart-container {
+            height: 400px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .chart-placeholder {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.1em;
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .chart-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chart-btn.active {
+            background: #e74c3c;
+        }
+
+        /* Order Book */
+        .order-book {
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .order-book-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .order-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 5px 0;
+            font-size: 0.85em;
+        }
+
+        .ask-row {
+            color: #e74c3c;
+        }
+
+        .bid-row {
+            color: #2ecc71;
+        }
+
+        .spread-row {
+            background: rgba(255,255,255,0.1);
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Trading Panel */
+        .trading-tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .order-form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            font-size: 1em;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+
+        .order-type-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .order-type-btn {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-type-btn.active {
+            background: #e74c3c;
+        }
+
+        .buy-button {
+            width: 100%;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .sell-button {
+            width: 100%;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .buy-button:hover, .sell-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Open Orders */
+        .orders-section {
+            margin-top: 20px;
+        }
+
+        .orders-table {
+            width: 100%;
+            font-size: 0.85em;
+        }
+
+        .orders-table th {
+            color: rgba(255,255,255,0.7);
+            padding: 10px 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .orders-table td {
+            padding: 8px 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cancel-btn {
+            background: #e74c3c;
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        @media (max-width: 1200px) {
+            .trading-interface {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🏪 USDTgCEX</div>
+            <div class="nav-links">
+                <a href="/" onclick="goBack()">← Back</a>
+                <a href="/">🏠 Home</a>
+                <a href="../website/index.html">🌟 Website</a>
+                <a href="../explorer/usdtgscan.html">🔍 Explorer</a>
+                <a href="dex.html">🔄 DEX</a>
+                <a href="../audit/USDTgVerse_Security_Audit_Report_FIXED.html">🔒 Audit</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="trading-interface">
+            <!-- Market Panel -->
+            <div class="market-panel">
+                <div class="panel-title">📊 Markets</div>
+                
+                <div class="market-item active" onclick="selectMarket('USDTG/USD')">
+                    <div>
+                        <div class="market-pair">USDTg/USD</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $2.4M</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-up">$1.0001</div>
+                        <div style="font-size: 0.8em; color: #2ecc71;">+0.01%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item" onclick="selectMarket('USDTG/ETH')">
+                    <div>
+                        <div class="market-pair">USDTg/ETH</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $1.8M</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-down">0.0004</div>
+                        <div style="font-size: 0.8em; color: #e74c3c;">-0.05%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item" onclick="selectMarket('USDTG/USDT')">
+                    <div>
+                        <div class="market-pair">USDTg/USDT</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $12.4M</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-up">1.0001</div>
+                        <div style="font-size: 0.8em; color: #2ecc71;">+0.01%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item" onclick="selectMarket('USDTG/USDC')">
+                    <div>
+                        <div class="market-pair">USDTg/USDC</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $8.9M</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-up">1.0002</div>
+                        <div style="font-size: 0.8em; color: #2ecc71;">+0.02%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item" onclick="selectMarket('USDT/USDC')">
+                    <div>
+                        <div class="market-pair">USDT/USDC</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $34.2M</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-up">1.0001</div>
+                        <div style="font-size: 0.8em; color: #2ecc71;">+0.01%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item" onclick="selectMarket('USDTG/TRX')">
+                    <div>
+                        <div class="market-pair">USDTg/TRX</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $956K</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-up">10.52</div>
+                        <div style="font-size: 0.8em; color: #2ecc71;">+0.12%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item" onclick="selectMarket('ETH/USD')">
+                    <div>
+                        <div class="market-pair">ETH/USD</div>
+                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $45M</div>
+                    </div>
+                    <div>
+                        <div class="market-price price-up">$2,485</div>
+                        <div style="font-size: 0.8em; color: #2ecc71;">+2.34%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart & Order Book Panel -->
+            <div class="chart-panel">
+                <div class="panel-title">📈 USDTg/USD - $1.0001 (+0.01%)</div>
+                
+                <div class="chart-controls">
+                    <button class="chart-btn active">1m</button>
+                    <button class="chart-btn">5m</button>
+                    <button class="chart-btn">15m</button>
+                    <button class="chart-btn">1h</button>
+                    <button class="chart-btn">4h</button>
+                    <button class="chart-btn">1d</button>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-placeholder">📊 Real-time Trading Chart<br><small>TradingView integration ready</small></div>
+                </div>
+                
+                <div class="panel-title">📖 Order Book</div>
+                <div class="order-book">
+                    <div class="order-book-header">
+                        <div>Price (USD)</div>
+                        <div>Amount (USDTg)</div>
+                        <div>Total</div>
+                    </div>
+                    
+                    <!-- Asks (Sell Orders) -->
+                    <div class="order-row ask-row">
+                        <div>1.0005</div>
+                        <div>25,000</div>
+                        <div>25,012.5</div>
+                    </div>
+                    <div class="order-row ask-row">
+                        <div>1.0004</div>
+                        <div>50,000</div>
+                        <div>50,020</div>
+                    </div>
+                    <div class="order-row ask-row">
+                        <div>1.0003</div>
+                        <div>75,000</div>
+                        <div>75,022.5</div>
+                    </div>
+                    <div class="order-row ask-row">
+                        <div>1.0002</div>
+                        <div>100,000</div>
+                        <div>100,020</div>
+                    </div>
+                    
+                    <div class="spread-row">
+                        Spread: $0.0001 (0.01%)
+                    </div>
+                    
+                    <!-- Bids (Buy Orders) -->
+                    <div class="order-row bid-row">
+                        <div>1.0001</div>
+                        <div>80,000</div>
+                        <div>80,008</div>
+                    </div>
+                    <div class="order-row bid-row">
+                        <div>1.0000</div>
+                        <div>120,000</div>
+                        <div>120,000</div>
+                    </div>
+                    <div class="order-row bid-row">
+                        <div>0.9999</div>
+                        <div>90,000</div>
+                        <div>89,991</div>
+                    </div>
+                    <div class="order-row bid-row">
+                        <div>0.9998</div>
+                        <div>60,000</div>
+                        <div>59,988</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Panel -->
+            <div class="trading-panel">
+                <div class="panel-title">💰 Trade USDTg/USD</div>
+                
+                <div class="trading-tabs">
+                    <button class="tab-btn active" onclick="switchTab('buy')">Buy USDTg</button>
+                    <button class="tab-btn" onclick="switchTab('sell')">Sell USDTg</button>
+                </div>
+                
+                <div class="order-form">
+                    <div class="order-type-buttons">
+                        <button class="order-type-btn active" onclick="setOrderType('limit')">Limit</button>
+                        <button class="order-type-btn" onclick="setOrderType('market')">Market</button>
+                        <button class="order-type-btn" onclick="setOrderType('stop')">Stop</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Price (USD)</label>
+                        <input type="number" class="form-input" id="orderPrice" value="1.0001" step="0.0001">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Amount (USDTg)</label>
+                        <input type="number" class="form-input" id="orderAmount" placeholder="0.00" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Total (USD)</label>
+                        <input type="number" class="form-input" id="orderTotal" placeholder="0.00" readonly>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px; font-size: 0.9em; color: rgba(255,255,255,0.7);">
+                        Available: <span id="availableBalance">10,000.00 USD</span>
+                    </div>
+                    
+                    <button class="buy-button" id="buyButton" onclick="placeBuyOrder()">
+                        🛒 Buy USDTg
+                    </button>
+                    
+                    <button class="sell-button" id="sellButton" onclick="placeSellOrder()" style="display: none;">
+                        💸 Sell USDTg
+                    </button>
+                </div>
+                
+                <div class="orders-section">
+                    <div class="panel-title">📋 Open Orders</div>
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Pair</th>
+                                <th>Side</th>
+                                <th>Amount</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="openOrdersBody">
+                            <tr>
+                                <td>USDTg/USD</td>
+                                <td style="color: #2ecc71;">Buy</td>
+                                <td>1,000</td>
+                                <td>$0.9995</td>
+                                <td><button class="cancel-btn" onclick="cancelOrder('order1')">Cancel</button></td>
+                            </tr>
+                            <tr>
+                                <td>USDTg/USD</td>
+                                <td style="color: #e74c3c;">Sell</td>
+                                <td>500</td>
+                                <td>$1.0010</td>
+                                <td><button class="cancel-btn" onclick="cancelOrder('order2')">Cancel</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMarket = 'USDTG/USD';
+        let currentTab = 'buy';
+        let orderType = 'limit';
+
+        // Navigation function
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        function selectMarket(market) {
+            currentMarket = market;
+            
+            // Update active market
+            document.querySelectorAll('.market-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Update chart title
+            document.querySelector('.chart-panel .panel-title').textContent = `📈 ${market} - Trading Chart`;
+            document.querySelector('.trading-panel .panel-title').textContent = `💰 Trade ${market}`;
+            
+            console.log(`Selected market: ${market}`);
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Show/hide buy/sell buttons
+            if (tab === 'buy') {
+                document.getElementById('buyButton').style.display = 'block';
+                document.getElementById('sellButton').style.display = 'none';
+                document.getElementById('availableBalance').textContent = '10,000.00 USD';
+            } else {
+                document.getElementById('buyButton').style.display = 'none';
+                document.getElementById('sellButton').style.display = 'block';
+                document.getElementById('availableBalance').textContent = '5,000.00 USDTg';
+            }
+        }
+
+        function setOrderType(type) {
+            orderType = type;
+            
+            // Update order type buttons
+            document.querySelectorAll('.order-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Enable/disable price input for market orders
+            const priceInput = document.getElementById('orderPrice');
+            if (type === 'market') {
+                priceInput.disabled = true;
+                priceInput.value = 'Market';
+            } else {
+                priceInput.disabled = false;
+                priceInput.value = '1.0001';
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const price = parseFloat(document.getElementById('orderPrice').value) || 0;
+            const amount = parseFloat(document.getElementById('orderAmount').value) || 0;
+            const total = price * amount;
+            
+            document.getElementById('orderTotal').value = total.toFixed(4);
+        }
+
+        function placeBuyOrder() {
+            const price = document.getElementById('orderPrice').value;
+            const amount = document.getElementById('orderAmount').value;
+            const total = document.getElementById('orderTotal').value;
+            
+            if (!amount || parseFloat(amount) <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            alert(`🛒 Buy Order Placed!\n\nMarket: ${currentMarket}\nType: ${orderType.toUpperCase()}\nAmount: ${amount} USDTg\nPrice: ${price}\nTotal: ${total} USD\n\n✅ Order submitted to matching engine!`);
+            
+            // Reset form
+            document.getElementById('orderAmount').value = '';
+            document.getElementById('orderTotal').value = '';
+        }
+
+        function placeSellOrder() {
+            const price = document.getElementById('orderPrice').value;
+            const amount = document.getElementById('orderAmount').value;
+            const total = document.getElementById('orderTotal').value;
+            
+            if (!amount || parseFloat(amount) <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            alert(`💸 Sell Order Placed!\n\nMarket: ${currentMarket}\nType: ${orderType.toUpperCase()}\nAmount: ${amount} USDTg\nPrice: ${price}\nTotal: ${total} USD\n\n✅ Order submitted to matching engine!`);
+            
+            // Reset form
+            document.getElementById('orderAmount').value = '';
+            document.getElementById('orderTotal').value = '';
+        }
+
+        function cancelOrder(orderId) {
+            if (confirm('Are you sure you want to cancel this order?')) {
+                alert(`❌ Order ${orderId} cancelled successfully!`);
+                
+                // Remove order from table (simulation)
+                const row = event.currentTarget.closest('tr');
+                row.remove();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('orderAmount').addEventListener('input', updateTotal);
+        document.getElementById('orderPrice').addEventListener('input', updateTotal);
+
+        // Simulate real-time price updates
+        setInterval(() => {
+            // Update market prices (simulated)
+            const priceElements = document.querySelectorAll('.market-price');
+            priceElements.forEach(element => {
+                const currentPrice = parseFloat(element.textContent.replace('$', ''));
+                const change = (Math.random() - 0.5) * 0.001;
+                const newPrice = Math.max(0, currentPrice + change);
+                
+                element.textContent = element.textContent.includes('$') ? 
+                    `$${newPrice.toFixed(4)}` : newPrice.toFixed(6);
+                
+                // Update color based on change
+                element.className = change >= 0 ? 'market-price price-up' : 'market-price price-down';
+            });
+            
+            // Update order book (simulated)
+            const orderRows = document.querySelectorAll('.order-row');
+            orderRows.forEach(row => {
+                const cells = row.children;
+                if (cells.length >= 2) {
+                    const amount = parseInt(cells[1].textContent);
+                    const newAmount = Math.max(1000, amount + Math.floor((Math.random() - 0.5) * 5000));
+                    cells[1].textContent = newAmount.toLocaleString();
+                    
+                    const price = parseFloat(cells[0].textContent);
+                    cells[2].textContent = (price * newAmount).toLocaleString();
+                }
+            });
+        }, 2000);
+        
+        console.log('🏪 USDTgCEX initialized');
+        console.log('⚡ High-frequency trading engine active');
+        console.log('📊 Real-time order book streaming');
+    </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!-- USDTgVerse Universal Navigation Component -->
+<style>
+    .usdtgverse-navbar {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        padding: 15px 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    .navbar-brand:hover {
+        opacity: 0.8;
+    }
+    
+    .navbar-menu {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .navbar-item {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 25px;
+        transition: all 0.3s;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .navbar-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+    
+    .navbar-item.active {
+        background: white;
+        color: #2a5298;
+        font-weight: bold;
+    }
+    
+    .navbar-controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .back-button {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 8px 15px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: all 0.3s;
+        backdrop-filter: blur(10px);
+    }
+    
+    .back-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+    }
+    
+    .network-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        backdrop-filter: blur(10px);
+    }
+    
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #28a745;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+    
+    .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-menu {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .navbar-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu-toggle {
+            display: block;
+        }
+        
+        .navbar-container {
+            flex-direction: column;
+        }
+        
+        .navbar-controls {
+            order: -1;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+</style>
+
+<nav class="usdtgverse-navbar">
+    <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+            🌌 USDTgVerse
+        </a>
+        
+        <div class="navbar-controls">
+            <button class="back-button" onclick="goBack()" id="backButton">
+                ← Back
+            </button>
+            
+            <div class="network-status">
+                <div class="status-dot"></div>
+                <span>Mainnet Live</span>
+            </div>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                ☰
+            </button>
+        </div>
+        
+        <div class="navbar-menu" id="navbarMenu">
+            <a href="/" class="navbar-item" data-page="home">🏠 Home</a>
+            <a href="/website/" class="navbar-item" data-page="website">🌟 Website</a>
+            <a href="/explorer/" class="navbar-item" data-page="explorer">🔍 Explorer</a>
+            <a href="/dapps/usdtg-transfer/" class="navbar-item" data-page="dapp">💳 dApp</a>
+            <a href="/audit/" class="navbar-item" data-page="audit">🔒 Audit</a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Navigation functionality
+    function goBack() {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = '/';
+        }
+    }
+    
+    function toggleMobileMenu() {
+        const menu = document.getElementById('navbarMenu');
+        menu.classList.toggle('active');
+    }
+    
+    // Set active menu item based on current page
+    function setActiveMenuItem() {
+        const currentPath = window.location.pathname;
+        const menuItems = document.querySelectorAll('.navbar-item');
+        
+        menuItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            
+            if (currentPath === href || 
+                (currentPath.includes('/website/') && href === '/website/') ||
+                (currentPath.includes('/explorer/') && href === '/explorer/') ||
+                (currentPath.includes('/dapps/') && href === '/dapps/usdtg-transfer/') ||
+                (currentPath.includes('/audit/') && href === '/audit/') ||
+                (currentPath === '/' && href === '/')) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    // Initialize navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        setActiveMenuItem();
+        
+        // Update back button visibility
+        const backButton = document.getElementById('backButton');
+        if (window.location.pathname === '/') {
+            backButton.style.display = 'none';
+        }
+        
+        console.log('🧭 USDTgVerse Navigation initialized');
+    });
+    
+    // Handle navigation clicks
+    document.querySelectorAll('.navbar-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            console.log('🔗 Navigating to:', this.href);
+        });
+    });
+</script>

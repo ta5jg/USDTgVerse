@@ -1,0 +1,147 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 341,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 346,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 472,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 478,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 484,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 490,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libusdtgwallet.dylib"
+			],
+			"targetId" : "usdtgwallet::@6890427a1f51a3e7e1df",
+			"targetIndex" : 3,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/usdtgwallet",
+			"paths" : 
+			[
+				{
+					"from" : "src/wallet",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"usdtgverse"
+			],
+			"targetId" : "usdtgverse::@6890427a1f51a3e7e1df",
+			"targetIndex" : 2,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"usdtg-keytool"
+			],
+			"targetId" : "usdtg-keytool::@6890427a1f51a3e7e1df",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"usdtg-genesis"
+			],
+			"targetId" : "usdtg-genesis::@6890427a1f51a3e7e1df",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "include/usdtgverse",
+			"paths" : 
+			[
+				{
+					"from" : "src",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/USDTgVerse",
+			"paths" : 
+			[
+				"cmake/USDTgVerseConfig.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

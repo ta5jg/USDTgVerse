@@ -1,0 +1,16 @@
+
+🌌 =============================================== 🌌
+    USDTgVerse Enterprise Blockchain Node
+    Pure C Backend - Maximum Performance
+🌌 =============================================== 🌌
+
+🌌 Initializing USDTgVerse Node...
+   Port: 26656
+   Validator ID: 1
+   Chain ID: usdtgverse-mainnet-1
+
+🔧 Initializing core components...
+   🌐 Setting up P2P network...
+🌐 Initializing P2P network...
+❌ Failed to bind to port 26656
+❌ Failed to initialize P2P network

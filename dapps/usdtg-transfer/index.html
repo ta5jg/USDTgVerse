@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTg Transfer dApp - USDTgVerse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .dapp-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .wallet-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .wallet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .wallet-address {
+            font-family: 'Courier New', monospace;
+            background: #2a5298;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.9em;
+        }
+        
+        .balance {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .balance-label {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .transfer-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2a5298;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            border-color: #667eea;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .transaction-history {
+            margin-top: 40px;
+        }
+        
+        .tx-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #28a745;
+        }
+        
+        .tx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .tx-hash {
+            font-family: 'Courier New', monospace;
+            color: #2a5298;
+            font-weight: bold;
+        }
+        
+        .tx-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .tx-details {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .tx-addresses {
+            color: #666;
+        }
+        
+        .tx-amount {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-connected {
+            background: #28a745;
+        }
+        
+        .status-pending {
+            background: #ffc107;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .dapp-container {
+                padding: 20px;
+            }
+            
+            .wallet-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <button onclick="goBack()" style="background: rgba(255,255,255,0.1); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9em;">← Back</button>
+                <a href="/" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em;">🏠 Home</a>
+                <a href="../../website/index.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em;">🌟 Website</a>
+                <a href="../../explorer/usdtgscan.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em;">🔍 Explorer</a>
+                <a href="../../audit/USDTgVerse_Security_Audit_Report_FIXED.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em;">🔒 Audit</a>
+            </div>
+            <h1>💳 USDTg Transfer dApp</h1>
+            <div class="subtitle">Instant USDTg transfers on USDTgVerse blockchain</div>
+        </div>
+        
+        <div class="dapp-container">
+            <!-- Wallet Connection Status -->
+            <div class="wallet-section">
+                <div class="wallet-header">
+                    <div>
+                        <h3>👛 Wallet Status</h3>
+                        <div style="margin-top: 5px;">
+                            <span class="status-indicator status-connected"></span>
+                            <span style="color: #28a745; font-weight: bold;">Connected</span>
+                        </div>
+                    </div>
+                    <div class="wallet-address" id="walletAddress">usdtg1a2b3c4d5e6f7g8h9i0...</div>
+                </div>
+                
+                <div class="balance" id="walletBalance">1,250.75</div>
+                <div class="balance-label">USDTg Available</div>
+            </div>
+            
+            <!-- Transfer Form -->
+            <div class="transfer-form">
+                <h3 style="margin-bottom: 25px; color: #2a5298;">💸 Send USDTg</h3>
+                
+                <div id="alertContainer"></div>
+                
+                <div class="form-group">
+                    <label class="form-label">📍 Recipient Address</label>
+                    <input type="text" class="form-input" id="recipientAddress" 
+                           placeholder="usdtg1..." 
+                           value="usdtg1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">💰 Amount (USDTg)</label>
+                    <input type="number" class="form-input" id="transferAmount" 
+                           placeholder="0.00" 
+                           step="0.01" 
+                           min="0.01"
+                           value="100.00">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">📝 Memo (Optional)</label>
+                    <input type="text" class="form-input" id="transferMemo" 
+                           placeholder="Payment description..."
+                           value="Test transfer from dApp">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">⛽ Transaction Fee</label>
+                    <div style="background: #e9ecef; padding: 15px; border-radius: 10px; color: #666;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Network Fee:</span>
+                            <span style="font-weight: bold;">0.001 USDTg</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span>Total Cost:</span>
+                            <span style="font-weight: bold; color: #2a5298;" id="totalCost">100.001 USDTg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="sendTransfer()" id="sendButton">
+                    🚀 Send USDTg
+                </button>
+            </div>
+            
+            <!-- Transaction History -->
+            <div class="transaction-history">
+                <h3 style="margin-bottom: 25px; color: #2a5298;">📋 Recent Transactions</h3>
+                
+                <div id="transactionList">
+                    <div class="tx-item">
+                        <div class="tx-header">
+                            <div class="tx-hash">0xa1b2c3d4e5f67890123456789...</div>
+                            <div class="tx-time">2 minutes ago</div>
+                        </div>
+                        <div class="tx-details">
+                            <div class="tx-addresses">
+                                <div>From: usdtg1abc123...</div>
+                                <div>To: usdtg1def456...</div>
+                            </div>
+                            <div class="tx-amount">-50.00 USDTg</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tx-item">
+                        <div class="tx-header">
+                            <div class="tx-hash">0xb2c3d4e5f6789012345678901...</div>
+                            <div class="tx-time">5 minutes ago</div>
+                        </div>
+                        <div class="tx-details">
+                            <div class="tx-addresses">
+                                <div>From: usdtg1ghi789...</div>
+                                <div>To: usdtg1a2b3c4...</div>
+                            </div>
+                            <div class="tx-amount">+200.50 USDTg</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tx-item">
+                        <div class="tx-header">
+                            <div class="tx-hash">0xc3d4e5f67890123456789012...</div>
+                            <div class="tx-time">8 minutes ago</div>
+                        </div>
+                        <div class="tx-details">
+                            <div class="tx-addresses">
+                                <div>From: usdtg1a2b3c4...</div>
+                                <div>To: usdtg1jkl012...</div>
+                            </div>
+                            <div class="tx-amount">-75.25 USDTg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // dApp functionality
+        let currentBalance = 1250.75;
+        let transactionCount = 0;
+        
+        function updateTotalCost() {
+            const amount = parseFloat(document.getElementById('transferAmount').value) || 0;
+            const fee = 0.001;
+            const total = amount + fee;
+            document.getElementById('totalCost').textContent = total.toFixed(3) + ' USDTg';
+        }
+        
+        function showAlert(message, type = 'success') {
+            const alertContainer = document.getElementById('alertContainer');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-error';
+            
+            alertContainer.innerHTML = `
+                <div class="alert ${alertClass}">
+                    ${message}
+                </div>
+            `;
+            
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 5000);
+        }
+        
+        function sendTransfer() {
+            const recipientAddress = document.getElementById('recipientAddress').value;
+            const amount = parseFloat(document.getElementById('transferAmount').value);
+            const memo = document.getElementById('transferMemo').value;
+            const fee = 0.001;
+            const totalCost = amount + fee;
+            
+            // Validation
+            if (!recipientAddress || !recipientAddress.startsWith('usdtg1')) {
+                showAlert('❌ Invalid recipient address. Must start with usdtg1', 'error');
+                return;
+            }
+            
+            if (!amount || amount <= 0) {
+                showAlert('❌ Invalid amount. Must be greater than 0', 'error');
+                return;
+            }
+            
+            if (totalCost > currentBalance) {
+                showAlert('❌ Insufficient balance. Need ' + totalCost.toFixed(3) + ' USDTg', 'error');
+                return;
+            }
+            
+            // Simulate transaction
+            const sendButton = document.getElementById('sendButton');
+            sendButton.disabled = true;
+            sendButton.textContent = '⏳ Processing...';
+            
+            setTimeout(() => {
+                // Update balance
+                currentBalance -= totalCost;
+                document.getElementById('walletBalance').textContent = currentBalance.toFixed(2);
+                
+                // Generate transaction hash
+                const txHash = '0x' + Math.random().toString(16).substr(2, 32);
+                
+                // Add to transaction history
+                addTransactionToHistory(txHash, recipientAddress, amount, memo);
+                
+                // Show success
+                showAlert(`✅ Transaction successful! Sent ${amount} USDTg to ${recipientAddress.substr(0, 12)}...`);
+                
+                // Reset form
+                document.getElementById('transferAmount').value = '';
+                document.getElementById('transferMemo').value = '';
+                updateTotalCost();
+                
+                // Re-enable button
+                sendButton.disabled = false;
+                sendButton.textContent = '🚀 Send USDTg';
+                
+                transactionCount++;
+                
+            }, 2000); // Simulate 2 second blockchain confirmation
+        }
+        
+        function addTransactionToHistory(txHash, recipient, amount, memo) {
+            const transactionList = document.getElementById('transactionList');
+            
+            const newTx = `
+                <div class="tx-item" style="background: #e8f5e8; border-left-color: #28a745;">
+                    <div class="tx-header">
+                        <div class="tx-hash">${txHash}</div>
+                        <div class="tx-time">Just now</div>
+                    </div>
+                    <div class="tx-details">
+                        <div class="tx-addresses">
+                            <div>To: ${recipient.substr(0, 15)}...</div>
+                            <div>Memo: ${memo || 'No memo'}</div>
+                        </div>
+                        <div class="tx-amount">-${amount.toFixed(2)} USDTg</div>
+                    </div>
+                </div>
+            `;
+            
+            transactionList.insertAdjacentHTML('afterbegin', newTx);
+            
+            // Keep only last 5 transactions
+            const txs = transactionList.children;
+            while (txs.length > 5) {
+                transactionList.removeChild(txs[txs.length - 1]);
+            }
+        }
+        
+        function simulateIncomingTransfer() {
+            if (Math.random() < 0.3) { // 30% chance
+                const amount = Math.random() * 500 + 50;
+                const fromAddr = 'usdtg1' + Math.random().toString(16).substr(2, 10);
+                const txHash = '0x' + Math.random().toString(16).substr(2, 32);
+                
+                // Update balance
+                currentBalance += amount;
+                document.getElementById('walletBalance').textContent = currentBalance.toFixed(2);
+                
+                // Add incoming transaction
+                const transactionList = document.getElementById('transactionList');
+                const newTx = `
+                    <div class="tx-item" style="background: #d1ecf1; border-left-color: #17a2b8;">
+                        <div class="tx-header">
+                            <div class="tx-hash">${txHash}</div>
+                            <div class="tx-time">Just received</div>
+                        </div>
+                        <div class="tx-details">
+                            <div class="tx-addresses">
+                                <div>From: ${fromAddr}...</div>
+                                <div>Memo: Incoming payment</div>
+                            </div>
+                            <div class="tx-amount" style="color: #17a2b8;">+${amount.toFixed(2)} USDTg</div>
+                        </div>
+                    </div>
+                `;
+                
+                transactionList.insertAdjacentHTML('afterbegin', newTx);
+                
+                // Show notification
+                showAlert(`💰 Received ${amount.toFixed(2)} USDTg from ${fromAddr.substr(0, 12)}...`);
+            }
+        }
+        
+        // Navigation function
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('transferAmount').addEventListener('input', updateTotalCost);
+        
+        // Initialize
+        updateTotalCost();
+        
+        // Simulate incoming transfers
+        setInterval(simulateIncomingTransfer, 10000); // Every 10 seconds
+        
+        // Console welcome
+        console.log('💳 USDTg Transfer dApp initialized');
+        console.log('🌌 Connected to USDTgVerse blockchain');
+        console.log('⚡ Real-time transaction processing active');
+    </script>
+</body>
+</html>

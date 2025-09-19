@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Bridges - Multi-Chain Universe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .bridge-interface {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .bridge-panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .panel-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .network-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .network-option {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .network-option:hover {
+            background: rgba(0,0,0,0.5);
+            transform: translateY(-2px);
+        }
+
+        .network-option.active {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.2);
+        }
+
+        .network-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .network-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .network-time {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .amount-input {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .amount-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .bridge-arrow {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .bridge-arrow:hover {
+            transform: scale(1.2);
+        }
+
+        .bridge-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        .action-button {
+            width: 100%;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .bridge-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+
+        .bridge-status {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .status-network {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-icon {
+            font-size: 2em;
+        }
+
+        .status-details h3 {
+            margin-bottom: 5px;
+        }
+
+        .status-details p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+
+        .status-metrics {
+            text-align: right;
+        }
+
+        .status-active {
+            background: rgba(76, 175, 80, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            color: #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .bridge-interface {
+                grid-template-columns: 1fr;
+            }
+            
+            .network-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">TG</div>
+                <div>USDTgVerse Bridges</div>
+            </div>
+            <div class="nav-links">
+                <a href="/" onclick="goBack()">← Back</a>
+                <a href="/">🏠 Home</a>
+                <a href="../../website/index.html">🌟 Website</a>
+                <a href="../../exchanges/web/dex.html">🔄 DEX</a>
+                <a href="../../exchanges/web/cex.html">🏪 CEX</a>
+                <a href="../../wallet/demo/wallet.html">💳 Wallet</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bridge-interface">
+            <!-- Bridge Transfer Panel -->
+            <div class="bridge-panel">
+                <div class="panel-title">🌉 Cross-Chain Bridge</div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">From Network</label>
+                    <div class="network-selector" id="fromNetworks">
+                        <div class="network-option active" onclick="selectFromNetwork('ethereum')">
+                            <div class="network-icon">🔵</div>
+                            <div class="network-name">Ethereum</div>
+                            <div class="network-time">15 min</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('bnb')">
+                            <div class="network-icon">🟡</div>
+                            <div class="network-name">BNB Chain</div>
+                            <div class="network-time">3 sec</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('polygon')">
+                            <div class="network-icon">🔶</div>
+                            <div class="network-name">Polygon</div>
+                            <div class="network-time">2 sec</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('arbitrum')">
+                            <div class="network-icon">🔵</div>
+                            <div class="network-name">Arbitrum</div>
+                            <div class="network-time">10 min</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('tron')">
+                            <div class="network-icon">🟢</div>
+                            <div class="network-name">TRON</div>
+                            <div class="network-time">3 min</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('solana')">
+                            <div class="network-icon">🟣</div>
+                            <div class="network-name">Solana</div>
+                            <div class="network-time">30 sec</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('avalanche')">
+                            <div class="network-icon">🔴</div>
+                            <div class="network-name">Avalanche</div>
+                            <div class="network-time">90 sec</div>
+                        </div>
+                        <div class="network-option" onclick="selectFromNetwork('optimism')">
+                            <div class="network-icon">🟠</div>
+                            <div class="network-name">Optimism</div>
+                            <div class="network-time">7 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="number" class="amount-input" id="bridgeAmount" placeholder="Enter amount (ETH)" step="0.000001">
+
+                <div class="bridge-arrow" onclick="swapNetworks()">🌉</div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">To Network</label>
+                    <div class="network-selector" id="toNetworks">
+                        <div class="network-option" onclick="selectToNetwork('usdtgverse')">
+                            <div class="network-icon">💎</div>
+                            <div class="network-name">USDTgVerse</div>
+                            <div class="network-time">Instant</div>
+                        </div>
+                        <div class="network-option" onclick="selectToNetwork('ethereum')">
+                            <div class="network-icon">🔵</div>
+                            <div class="network-name">Ethereum</div>
+                            <div class="network-time">15 min</div>
+                        </div>
+                        <div class="network-option" onclick="selectToNetwork('tron')">
+                            <div class="network-icon">🟢</div>
+                            <div class="network-name">TRON</div>
+                            <div class="network-time">3 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bridge-info">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Exchange Rate:</span>
+                        <span>1 ETH = <span id="exchangeRate">2,485.67</span> USDTg</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Estimated Time:</span>
+                        <span id="estimatedTime">15 minutes</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Bridge Fee:</span>
+                        <span id="bridgeFee">0.1%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>You'll Receive:</span>
+                        <span id="receiveAmount">0.00 USDTg</span>
+                    </div>
+                </div>
+
+                <button class="action-button" onclick="initiateBridge()">
+                    🌉 Start Bridge Transfer
+                </button>
+            </div>
+
+            <!-- Bridge Status Panel -->
+            <div class="bridge-panel">
+                <div class="panel-title">📊 Bridge Network Status</div>
+                
+                <div class="status-item">
+                    <div class="status-network">
+                        <div class="status-icon">🔵</div>
+                        <div class="status-details">
+                            <h3>Ethereum Bridge</h3>
+                            <p>$15.0M locked • 1,247 transfers</p>
+                        </div>
+                    </div>
+                    <div class="status-metrics">
+                        <div class="status-active">ACTIVE</div>
+                        <div style="font-size: 0.9em; margin-top: 5px;">99.8% success</div>
+                    </div>
+                </div>
+                
+                <div class="status-item">
+                    <div class="status-network">
+                        <div class="status-icon">🟢</div>
+                        <div class="status-details">
+                            <h3>TRON Bridge</h3>
+                            <p>$8.5M locked • 2,156 transfers</p>
+                        </div>
+                    </div>
+                    <div class="status-metrics">
+                        <div class="status-active">ACTIVE</div>
+                        <div style="font-size: 0.9em; margin-top: 5px;">99.9% success</div>
+                    </div>
+                </div>
+                
+                <div class="status-item">
+                    <div class="status-network">
+                        <div class="status-icon">🟣</div>
+                        <div class="status-details">
+                            <h3>Solana Bridge</h3>
+                            <p>$12.3M locked • 3,894 transfers</p>
+                        </div>
+                    </div>
+                    <div class="status-metrics">
+                        <div class="status-active">ACTIVE</div>
+                        <div style="font-size: 0.9em; margin-top: 5px;">100% success</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 15px; background: rgba(76, 175, 80, 0.2); border-radius: 10px;">
+                    <h3 style="margin-bottom: 10px; color: #4CAF50;">🌉 Multi-Chain Universe</h3>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.8);">
+                        Total Volume: <strong>$35.8M</strong><br>
+                        Total Transfers: <strong>7,297</strong><br>
+                        Average Success Rate: <strong>99.9%</strong><br>
+                        Fastest Bridge: <strong>Solana (30s)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bridge Statistics -->
+        <div class="bridge-stats">
+            <div class="stat-card">
+                <div class="stat-value">$116.2M</div>
+                <div class="stat-label">Total Bridge Volume</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">23,616</div>
+                <div class="stat-label">Cross-Chain Transfers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">99.8%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Bridge Networks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">1.1M</div>
+                <div class="stat-label">Daily Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3s</div>
+                <div class="stat-label">Fastest Bridge</div>
+            </div>
+        </div>
+
+        <!-- Recent Transfers -->
+        <div class="bridge-status">
+            <div class="panel-title">🔄 Recent Cross-Chain Transfers</div>
+            
+            <div class="status-item">
+                <div class="status-network">
+                    <div class="status-icon">🔵→💎</div>
+                    <div class="status-details">
+                        <h3>ETH → USDTg</h3>
+                        <p>0.5 ETH → 1,242.84 USDTg</p>
+                    </div>
+                </div>
+                <div class="status-metrics">
+                    <div style="color: #4CAF50;">✅ Confirmed</div>
+                    <div style="font-size: 0.9em; margin-top: 5px;">14.2 min</div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-network">
+                    <div class="status-icon">🟣→💎</div>
+                    <div class="status-details">
+                        <h3>SOL → USDTg</h3>
+                        <p>10 SOL → 1,492.50 USDTg</p>
+                    </div>
+                </div>
+                <div class="status-metrics">
+                    <div style="color: #4CAF50;">✅ Confirmed</div>
+                    <div style="font-size: 0.9em; margin-top: 5px;">28 sec</div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-network">
+                    <div class="status-icon">🟢→💎</div>
+                    <div class="status-details">
+                        <h3>TRX → USDTg</h3>
+                        <p>5,000 TRX → 475.00 USDTg</p>
+                    </div>
+                </div>
+                <div class="status-metrics">
+                    <div style="color: #FFC107;">⏳ Processing</div>
+                    <div style="font-size: 0.9em; margin-top: 5px;">2.1 min</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let fromNetwork = 'ethereum';
+        let toNetwork = 'usdtgverse';
+
+        // Navigation function
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        function selectFromNetwork(network) {
+            fromNetwork = network;
+            
+            // Update UI
+            document.querySelectorAll('#fromNetworks .network-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            updateBridgeInfo();
+        }
+
+        function selectToNetwork(network) {
+            toNetwork = network;
+            
+            // Update UI
+            document.querySelectorAll('#toNetworks .network-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            updateBridgeInfo();
+        }
+
+        function updateBridgeInfo() {
+            const amount = parseFloat(document.getElementById('bridgeAmount').value) || 0;
+            
+            // Update exchange rates and fees based on selected networks
+            let rate = 1.0;
+            let fee = 0.1;
+            let time = '15 minutes';
+            let asset = 'ETH';
+            
+            if (fromNetwork === 'ethereum') {
+                rate = 2485.67;
+                fee = 0.1;
+                time = '15 minutes';
+                asset = 'ETH';
+                document.getElementById('bridgeAmount').placeholder = 'Enter amount (ETH)';
+            } else if (fromNetwork === 'tron') {
+                rate = 0.095;
+                fee = 0.05;
+                time = '3 minutes';
+                asset = 'TRX';
+                document.getElementById('bridgeAmount').placeholder = 'Enter amount (TRX)';
+            } else if (fromNetwork === 'solana') {
+                rate = 149.25;
+                fee = 0.03;
+                time = '30 seconds';
+                asset = 'SOL';
+                document.getElementById('bridgeAmount').placeholder = 'Enter amount (SOL)';
+            }
+            
+            document.getElementById('exchangeRate').textContent = rate.toFixed(2);
+            document.getElementById('bridgeFee').textContent = fee + '%';
+            document.getElementById('estimatedTime').textContent = time;
+            
+            if (amount > 0) {
+                const receiveAmount = amount * rate * (1 - fee / 100);
+                document.getElementById('receiveAmount').textContent = receiveAmount.toFixed(6) + ' USDTg';
+            }
+        }
+
+        function swapNetworks() {
+            const temp = fromNetwork;
+            fromNetwork = toNetwork;
+            toNetwork = temp;
+            
+            // Update UI (simplified for demo)
+            updateBridgeInfo();
+        }
+
+        function initiateBridge() {
+            const amount = document.getElementById('bridgeAmount').value;
+            
+            if (!amount || parseFloat(amount) <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            const receiveAmount = document.getElementById('receiveAmount').textContent;
+            const estimatedTime = document.getElementById('estimatedTime').textContent;
+            const fee = document.getElementById('bridgeFee').textContent;
+            
+            alert(`🌉 Bridge Transfer Initiated!\n\nFrom: ${fromNetwork.toUpperCase()}\nTo: ${toNetwork.toUpperCase()}\nAmount: ${amount}\nReceive: ${receiveAmount}\nTime: ${estimatedTime}\nFee: ${fee}\n\n✅ Transfer submitted to bridge network!\n🔗 You'll receive a confirmation once processed.`);
+            
+            // Reset form
+            document.getElementById('bridgeAmount').value = '';
+            document.getElementById('receiveAmount').textContent = '0.00 USDTg';
+        }
+
+        // Initialize
+        updateBridgeInfo();
+        
+        // Simulate real-time bridge updates
+        setInterval(() => {
+            // Update bridge statistics (simulated)
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues[0].textContent = '$' + (35.8 + Math.random() * 0.5).toFixed(1) + 'M';
+            statValues[1].textContent = (7297 + Math.floor(Math.random() * 10)).toLocaleString();
+            
+            // Update recent transfers (simulated)
+            const processingItem = document.querySelector('[style="color: #FFC107;"]');
+            if (processingItem && Math.random() > 0.7) {
+                processingItem.textContent = '✅ Confirmed';
+                processingItem.style.color = '#4CAF50';
+                processingItem.nextElementSibling.textContent = '2.8 min';
+            }
+        }, 5000);
+        
+        console.log('🌉 USDTgVerse Bridges initialized');
+        console.log('🔵 Ethereum Bridge: 15-minute confirmations');
+        console.log('🟢 TRON Bridge: 3-minute confirmations');
+        console.log('🟣 Solana Bridge: 30-second confirmations');
+        console.log('💎 USDTgVerse: Instant settlement');
+    </script>
+</body>
+</html>

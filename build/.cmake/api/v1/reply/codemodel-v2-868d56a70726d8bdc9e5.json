@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-1840756a60ef63173435.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "USDTgVerse",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "usdtg-genesis::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-usdtg-genesis-Debug-3a4079d6e04b9c5665de.json",
+					"name" : "usdtg-genesis",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "usdtg-keytool::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-usdtg-keytool-Debug-560776f98a683d77a6a8.json",
+					"name" : "usdtg-keytool",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "usdtgverse::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-usdtgverse-Debug-304309e1213520becf88.json",
+					"name" : "usdtgverse",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "usdtgwallet::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-usdtgwallet-Debug-473246893a207c082481.json",
+					"name" : "usdtgwallet",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/irfangedik/USDTgVerse/build",
+		"source" : "/Users/irfangedik/USDTgVerse"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

@@ -1,0 +1,13 @@
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtgverse.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtg-keytool.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtg-genesis.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtgwallet.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/package.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/package_source.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/test.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/edit_cache.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/rebuild_cache.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/list_install_components.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/install.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/install/local.dir
+/Users/irfangedik/USDTgVerse/build/CMakeFiles/install/strip.dir
