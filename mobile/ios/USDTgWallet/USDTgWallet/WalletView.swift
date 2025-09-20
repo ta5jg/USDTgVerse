@@ -206,31 +206,20 @@ struct WalletView: View {
         // Load network-specific assets
         switch network {
         case "USDTgVerse":
-            if currentWalletName == "USDTgVerse Wallet" {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10000.0, price: 1.0),
-                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.1, price: 1.0),
-                    WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.0)
-                ]
-            } else {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10.0, price: 1.0)
-                ]
-            }
+            // Load real wallet balance or default to welcome bonus
+            let usdtgBalance = loadWalletBalance(for: currentWalletName, asset: "USDTg") ?? 10.0
+            currentWalletAssets = [
+                WalletAsset(symbol: "USDTg", name: "USDTgVerse Token", balance: usdtgBalance, price: 1.0),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0)
+            ]
             
         case "Ethereum":
-            if currentWalletName == "USDTgVerse Wallet" {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2337.85),
-                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 1000.0, price: 1.0),
-                    WalletAsset(symbol: "USDC", name: "USD Coin", balance: 500.0, price: 1.0)
-                ]
-            } else {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
-                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0)
-                ]
-            }
+            currentWalletAssets = [
+                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0)
+            ]
             
         case "BNB Chain":
             if currentWalletName == "USDTgVerse Wallet" {
@@ -1365,17 +1354,7 @@ struct NetworkSelectorSheet: View {
     }
 }
 
-// MARK: - Share Sheet for QR Codes
-struct ShareSheet: UIViewControllerRepresentable {
-    let activityItems: [Any]
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
+// MARK: - Share Sheet for QR Codes (Defined in ContentView.swift)
 
 #Preview {
     WalletView()

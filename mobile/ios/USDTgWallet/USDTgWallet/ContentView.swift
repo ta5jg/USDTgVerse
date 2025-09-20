@@ -50,7 +50,7 @@ struct ContentView: View {
         }
     }
     
-    private var walletSetupView: some View {
+    var walletSetupView: some View {
         VStack(spacing: 30) {
             // USDTgVerse Logo
             VStack(spacing: 16) {
@@ -112,7 +112,7 @@ struct ContentView: View {
         .padding()
     }
     
-    private var mainTabView: some View {
+    var mainTabView: some View {
         TabView(selection: $selectedTab) {
             // Wallet Tab
             WalletView()
@@ -157,7 +157,7 @@ struct ContentView: View {
         .accentColor(Color(red: 0.3, green: 0.7, blue: 0.3))
     }
     
-    private func setupTabBarAppearance() {
+    func setupTabBarAppearance() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.systemBackground
@@ -401,7 +401,7 @@ struct NewWalletSheet_Basic: View {
                         let walletAddresses = generateQuantumSafeAddresses(from: newSeedPhrase)
                         
                         // Add to wallet list (don't overwrite)
-                        var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? ["USDTgVerse Wallet"]
+                        var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? []
                         
                         if !savedWallets.contains(walletName) {
                             savedWallets.append(walletName)
@@ -578,7 +578,7 @@ struct ImportWalletSheet_Basic: View {
                                     let walletAddresses = generateRealWalletAddresses(from: seedPhrase, network: selectedNetwork)
                                     
                                     // Add to wallet list (don't overwrite)
-                                    var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? ["USDTgVerse Wallet"]
+                                    var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? []
                                     
                                     if !savedWallets.contains(walletName) {
                                         savedWallets.append(walletName)
