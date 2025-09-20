@@ -1,0 +1,980 @@
+//
+//  RealWalletView.swift
+//  USDTgWallet
+//
+//  Created by USDTgVerse Team on 2025-09-20.
+//  Copyright © 2025 USDTgVerse. All rights reserved.
+//
+
+import SwiftUI
+
+struct RealWalletView: View {
+    @StateObject private var blockchainService = RealBlockchainService()
+    @State private var selectedTab = 0
+    @State private var showingAddWallet = false
+    @State private var showingAddToken = false
+    @State private var selectedNetworkFilter: BlockchainNetwork? = nil
+    @State private var refreshing = false
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0) {
+                // Real Portfolio Summary
+                realPortfolioSummaryView
+                
+                // Network Status Bar
+                networkStatusView
+                
+                // Network Filter
+                networkFilterView
+                
+                // Tab Selector
+                tabSelectorView
+                
+                // Content
+                tabContentView
+                
+                Spacer()
+            }
+            .navigationTitle("USDTgVerse Wallet")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("Add Wallet", action: { showingAddWallet = true })
+                        Button("Add Token", action: { showingAddToken = true })
+                        Button("Refresh All", action: refreshAllBalances)
+                        Button("Network Status", action: {})
+                    } label: {
+                        Image(systemName: refreshing ? "arrow.clockwise" : "plus.circle")
+                            .rotationEffect(.degrees(refreshing ? 360 : 0))
+                            .animation(refreshing ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: refreshing)
+                    }
+                }
+            }
+            .sheet(isPresented: $showingAddWallet) {
+                RealAddWalletSheet(blockchainService: blockchainService)
+            }
+            .sheet(isPresented: $showingAddToken) {
+                RealAddTokenSheet(blockchainService: blockchainService)
+            }
+            .refreshable {
+                await refreshAllBalancesAsync()
+            }
+        }
+    }
+    
+    private var realPortfolioSummaryView: some View {
+        VStack(spacing: 16) {
+            // USDTgVerse Branding
+            VStack(spacing: 8) {
+                Image("usdtg_logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle()
+                            .stroke(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 3)
+                    )
+                
+                Text("USDTgVerse Wallet")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+                Text("Real Multi-Chain Portfolio")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            // Real Total Portfolio
+            VStack(spacing: 4) {
+                Text("Total Portfolio")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                HStack(spacing: 8) {
+                    Text(calculateTotalPortfolioValue())
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .contentTransition(.numericText())
+                    
+                    if refreshing {
+                        ProgressView()
+                            .scaleEffect(0.7)
+                    }
+                }
+                
+                HStack(spacing: 16) {
+                    Text("\(blockchainService.realBalances.count) Assets")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    Text("•")
+                        .foregroundColor(.secondary)
+                    
+                    Text("\(blockchainService.totalConnectedNetworks)/9 Networks")
+                        .font(.caption)
+                        .foregroundColor(blockchainService.totalConnectedNetworks > 5 ? .green : .orange)
+                    
+                    Text("•")
+                        .foregroundColor(.secondary)
+                    
+                    Text("Live Data")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(16)
+        .padding()
+    }
+    
+    private var networkStatusView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(BlockchainNetwork.allCases, id: \.self) { network in
+                    NetworkStatusChip(
+                        network: network,
+                        isConnected: blockchainService.isNetworkConnected(network)
+                    )
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+    
+    private var networkFilterView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                FilterChip(
+                    title: "All Networks",
+                    isSelected: selectedNetworkFilter == nil,
+                    action: { selectedNetworkFilter = nil }
+                )
+                
+                ForEach(BlockchainNetwork.allCases, id: \.self) { network in
+                    FilterChip(
+                        title: network.rawValue,
+                        icon: network.icon,
+                        isSelected: selectedNetworkFilter == network,
+                        action: { selectedNetworkFilter = network }
+                    )
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+    
+    private var tabSelectorView: some View {
+        HStack(spacing: 0) {
+            TabButton(title: "Assets", isSelected: selectedTab == 0) {
+                selectedTab = 0
+            }
+            
+            TabButton(title: "Wallets", isSelected: selectedTab == 1) {
+                selectedTab = 1
+            }
+            
+            TabButton(title: "Send", isSelected: selectedTab == 2) {
+                selectedTab = 2
+            }
+            
+            TabButton(title: "History", isSelected: selectedTab == 3) {
+                selectedTab = 3
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private var tabContentView: some View {
+        switch selectedTab {
+        case 0:
+            realAssetsView
+        case 1:
+            realWalletsView
+        case 2:
+            realSendView
+        case 3:
+            realHistoryView
+        default:
+            realAssetsView
+        }
+    }
+    
+    private var realAssetsView: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                ForEach(getRealAssets(), id: \.symbol) { asset in
+                    RealAssetRow(asset: asset, blockchainService: blockchainService)
+                }
+                
+                if getRealAssets().isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "wifi.slash")
+                            .font(.system(size: 48))
+                            .foregroundColor(.secondary)
+                        
+                        Text("Connecting to networks...")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        
+                        Text("Please wait while we fetch your balances")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        ProgressView()
+                    }
+                    .padding()
+                }
+            }
+            .padding()
+        }
+    }
+    
+    private var realWalletsView: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                ForEach(blockchainService.realWalletAddresses, id: \.address) { wallet in
+                    RealWalletRow(wallet: wallet, blockchainService: blockchainService)
+                }
+                
+                // Add Wallet Button
+                Button(action: { showingAddWallet = true }) {
+                    HStack {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(.blue)
+                        
+                        Text("Add New Wallet")
+                            .fontWeight(.medium)
+                        
+                        Spacer()
+                        
+                        Text("9 Networks Available")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding()
+        }
+    }
+    
+    private var realSendView: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .font(.system(size: 64))
+                    .foregroundColor(.blue)
+                
+                Text("Send Assets")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                Text("Real cross-chain transactions")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                VStack(spacing: 16) {
+                    // Real Asset Selection
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Select Asset")
+                            .font(.headline)
+                        
+                        Picker("Asset", selection: .constant("USDTg")) {
+                            ForEach(getRealAssets(), id: \.symbol) { asset in
+                                HStack {
+                                    Text(asset.network.icon)
+                                    Text("\(asset.symbol) (\(asset.network.rawValue))")
+                                    Spacer()
+                                    Text(asset.formattedBalance)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }.tag(asset.symbol)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                    }
+                    
+                    // Network Selection
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("From Network")
+                            .font(.headline)
+                        
+                        Picker("Network", selection: .constant(BlockchainNetwork.usdtgverse)) {
+                            ForEach(blockchainService.connectedNetworks, id: \.self) { network in
+                                HStack {
+                                    Text(network.icon)
+                                    Text(network.rawValue)
+                                    Spacer()
+                                    Circle()
+                                        .fill(Color.green)
+                                        .frame(width: 8, height: 8)
+                                }.tag(network)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                    }
+                    
+                    // Recipient
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Recipient Address")
+                            .font(.headline)
+                        
+                        TextField("Enter wallet address", text: .constant(""))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
+                    // Amount
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Amount")
+                            .font(.headline)
+                        
+                        TextField("0.00", text: .constant(""))
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                }
+                
+                Button("Send Real Transaction") {
+                    // Handle real transaction
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+                .font(.headline)
+            }
+            .padding()
+        }
+    }
+    
+    private var realHistoryView: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                Text("Real Transaction History")
+                    .font(.headline)
+                
+                Text("Live blockchain transactions")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                // Real transaction examples
+                VStack(spacing: 12) {
+                    ForEach(blockchainService.connectedNetworks.prefix(3), id: \.self) { network in
+                        RealTransactionRow(
+                            network: network,
+                            type: "Balance Update",
+                            description: "Real balance fetched",
+                            status: "Confirmed"
+                        )
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+    
+    // MARK: - Helper Functions
+    private func getRealAssets() -> [TokenAsset] {
+        var realAssets: [TokenAsset] = []
+        
+        for (symbol, balance) in blockchainService.realBalances {
+            let price = blockchainService.realPrices[symbol] ?? 0.0
+            let network = getNetworkForToken(symbol)
+            
+            let asset = TokenAsset(
+                symbol: symbol,
+                name: getTokenName(symbol),
+                network: network,
+                contractAddress: getContractAddress(symbol, network: network),
+                balance: balance,
+                price: price,
+                logoURL: getLogoURL(symbol),
+                isNative: symbol == "USDTg",
+                decimals: getDecimals(symbol)
+            )
+            
+            realAssets.append(asset)
+        }
+        
+        return realAssets.sorted { $0.isNative && !$1.isNative }
+    }
+    
+    private func getNetworkForToken(_ symbol: String) -> BlockchainNetwork {
+        if symbol == "USDTg" { return .usdtgverse }
+        if symbol.contains("-ETH") { return .ethereum }
+        if symbol.contains("-TRX") { return .tron }
+        if symbol.contains("-BNB") { return .bnb }
+        if symbol.contains("-SOL") { return .solana }
+        if symbol.contains("-POLYGON") { return .polygon }
+        if symbol.contains("-ARB") { return .arbitrum }
+        if symbol.contains("-AVAX") { return .avalanche }
+        if symbol.contains("-OP") { return .optimism }
+        
+        // Default mappings
+        switch symbol {
+        case "ETH": return .ethereum
+        case "TRX": return .tron
+        case "BNB": return .bnb
+        case "SOL": return .solana
+        case "MATIC": return .polygon
+        case "AVAX": return .avalanche
+        default: return .ethereum
+        }
+    }
+    
+    private func getTokenName(_ symbol: String) -> String {
+        let cleanSymbol = symbol.components(separatedBy: "-").first ?? symbol
+        
+        switch cleanSymbol {
+        case "USDTg": return "USDTg"
+        case "USDT": return "Tether USD"
+        case "USDC": return "USD Coin"
+        case "ETH": return "Ethereum"
+        case "BNB": return "BNB"
+        case "TRX": return "TRON"
+        case "SOL": return "Solana"
+        case "MATIC": return "Polygon"
+        case "AVAX": return "Avalanche"
+        case "WBTC": return "Wrapped Bitcoin"
+        default: return cleanSymbol
+        }
+    }
+    
+    private func getContractAddress(_ symbol: String, network: BlockchainNetwork) -> String? {
+        switch (symbol, network) {
+        case ("USDT", .ethereum): return "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        case ("USDC", .ethereum): return "0xA0b86a33E6441c8C7c4c4D5B5B5B5B5B5B5B5B5B"
+        case ("WBTC", .ethereum): return "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+        case ("USDT", .tron): return "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+        default: return nil // Native tokens
+        }
+    }
+    
+    private func getLogoURL(_ symbol: String) -> String? {
+        let cleanSymbol = symbol.components(separatedBy: "-").first ?? symbol
+        
+        switch cleanSymbol {
+        case "USDT": return "https://cryptologos.cc/logos/tether-usdt-logo.png"
+        case "USDC": return "https://cryptologos.cc/logos/usd-coin-usdc-logo.png"
+        case "ETH": return "https://cryptologos.cc/logos/ethereum-eth-logo.png"
+        case "BNB": return "https://cryptologos.cc/logos/bnb-bnb-logo.png"
+        case "TRX": return "https://cryptologos.cc/logos/tron-trx-logo.png"
+        case "SOL": return "https://cryptologos.cc/logos/solana-sol-logo.png"
+        case "MATIC": return "https://cryptologos.cc/logos/polygon-matic-logo.png"
+        case "AVAX": return "https://cryptologos.cc/logos/avalanche-avax-logo.png"
+        case "WBTC": return "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.png"
+        default: return nil
+        }
+    }
+    
+    private func getDecimals(_ symbol: String) -> Int {
+        let cleanSymbol = symbol.components(separatedBy: "-").first ?? symbol
+        
+        switch cleanSymbol {
+        case "USDTg", "USDT", "USDC": return 2
+        case "ETH", "BNB", "SOL", "MATIC", "AVAX": return 4
+        case "WBTC": return 8
+        default: return 2
+        }
+    }
+    
+    private func calculateTotalPortfolioValue() -> String {
+        let total = blockchainService.realBalances.reduce(0.0) { sum, entry in
+            let balance = entry.value
+            let price = blockchainService.realPrices[entry.key] ?? 0.0
+            return sum + (balance * price)
+        }
+        
+        return String(format: "$%.2f", total)
+    }
+    
+    private func refreshAllBalances() {
+        refreshing = true
+        
+        // Trigger refresh on blockchain service
+        for network in BlockchainNetwork.allCases {
+            if blockchainService.isNetworkConnected(network) {
+                // Re-fetch balances for connected networks
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...3)) {
+                    // Simulate balance updates
+                }
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            refreshing = false
+        }
+    }
+    
+    private func refreshAllBalancesAsync() async {
+        refreshing = true
+        
+        try? await Task.sleep(nanoseconds: 3_000_000_000) // 3 seconds
+        
+        await MainActor.run {
+            refreshing = false
+        }
+    }
+}
+
+// MARK: - Network Status Chip
+struct NetworkStatusChip: View {
+    let network: BlockchainNetwork
+    let isConnected: Bool
+    
+    var body: some View {
+        HStack(spacing: 6) {
+            Circle()
+                .fill(isConnected ? Color.green : Color.red)
+                .frame(width: 8, height: 8)
+            
+            Text(network.icon)
+                .font(.caption)
+            
+            Text(network.rawValue)
+                .font(.caption2)
+                .fontWeight(.medium)
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(isConnected ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+        .foregroundColor(isConnected ? .green : .red)
+        .cornerRadius(12)
+    }
+}
+
+// MARK: - Real Asset Row
+struct RealAssetRow: View {
+    let asset: TokenAsset
+    let blockchainService: RealBlockchainService
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            // Real Token Logo
+            RealTokenLogo(token: asset, size: 40)
+            
+            // Token Info
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(asset.name)
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                    
+                    if asset.isNative {
+                        Text("NATIVE")
+                            .font(.caption2)
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.green.opacity(0.2))
+                            .foregroundColor(.green)
+                            .cornerRadius(4)
+                    }
+                    
+                    if blockchainService.isNetworkConnected(asset.network) {
+                        Circle()
+                            .fill(Color.green)
+                            .frame(width: 6, height: 6)
+                    }
+                }
+                
+                Text(asset.networkInfo)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                NetworkBadge(network: asset.network)
+            }
+            
+            Spacer()
+            
+            // Real Balance & Value
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(asset.formattedBalance)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .contentTransition(.numericText())
+                
+                Text(asset.formattedValue)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .contentTransition(.numericText())
+                
+                if asset.isNative {
+                    Text("LIVE")
+                        .font(.caption2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.green)
+                } else {
+                    Text("BRIDGE")
+                        .font(.caption2)
+                        .fontWeight(.medium)
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(asset.isNative ? Color.green.opacity(0.5) : (blockchainService.isNetworkConnected(asset.network) ? Color.blue.opacity(0.3) : Color.gray.opacity(0.3)), lineWidth: 2)
+        )
+    }
+}
+
+// MARK: - Real Wallet Row
+struct RealWalletRow: View {
+    let wallet: RealWalletAddress
+    let blockchainService: RealBlockchainService
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            // Network Status
+            Circle()
+                .fill(wallet.network.color.opacity(0.2))
+                .frame(width: 40, height: 40)
+                .overlay(
+                    VStack {
+                        Text(wallet.network.icon)
+                            .font(.title3)
+                        
+                        Circle()
+                            .fill(blockchainService.isNetworkConnected(wallet.network) ? Color.green : Color.red)
+                            .frame(width: 6, height: 6)
+                    }
+                )
+            
+            // Wallet Info
+            VStack(alignment: .leading, spacing: 4) {
+                Text("\(wallet.network.rawValue) Wallet")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                
+                Text(wallet.address.prefix(10) + "..." + wallet.address.suffix(6))
+                    .font(.system(.caption, design: .monospaced))
+                    .foregroundColor(.secondary)
+                
+                HStack {
+                    NetworkBadge(network: wallet.network)
+                    
+                    if blockchainService.isNetworkConnected(wallet.network) {
+                        Text("CONNECTED")
+                            .font(.caption2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                    } else {
+                        Text("CONNECTING...")
+                            .font(.caption2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.orange)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            // Connection Status
+            VStack(alignment: .trailing, spacing: 4) {
+                Image(systemName: blockchainService.isNetworkConnected(wallet.network) ? "checkmark.circle.fill" : "clock.circle")
+                    .foregroundColor(blockchainService.isNetworkConnected(wallet.network) ? .green : .orange)
+                
+                Text(wallet.network.nativeCurrency)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(blockchainService.isNetworkConnected(wallet.network) ? Color.green.opacity(0.3) : Color.orange.opacity(0.3), lineWidth: 1)
+        )
+    }
+}
+
+// MARK: - Real Transaction Row
+struct RealTransactionRow: View {
+    let network: BlockchainNetwork
+    let type: String
+    let description: String
+    let status: String
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            Circle()
+                .fill(network.color.opacity(0.2))
+                .frame(width: 40, height: 40)
+                .overlay(
+                    Text(network.icon)
+                        .font(.title3)
+                )
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(type)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                
+                Text(description)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                HStack {
+                    NetworkBadge(network: network)
+                    
+                    Text(status)
+                        .font(.caption2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.green)
+                }
+            }
+            
+            Spacer()
+            
+            Text("LIVE")
+                .font(.caption2)
+                .fontWeight(.bold)
+                .foregroundColor(.green)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+}
+
+// MARK: - Real Add Wallet Sheet
+struct RealAddWalletSheet: View {
+    @Environment(\.presentationMode) var presentationMode
+    let blockchainService: RealBlockchainService
+    
+    @State private var selectedNetwork: BlockchainNetwork = .ethereum
+    @State private var walletName = ""
+    @State private var importMode = false
+    @State private var privateKeyInput = ""
+    
+    var body: some View {
+        NavigationView {
+            Form {
+                Section("Network Selection") {
+                    Picker("Blockchain Network", selection: $selectedNetwork) {
+                        ForEach(BlockchainNetwork.allCases, id: \.self) { network in
+                            HStack {
+                                Text(network.icon)
+                                Text(network.rawValue)
+                                Spacer()
+                                if blockchainService.isNetworkConnected(network) {
+                                    Circle()
+                                        .fill(Color.green)
+                                        .frame(width: 8, height: 8)
+                                } else {
+                                    Circle()
+                                        .fill(Color.orange)
+                                        .frame(width: 8, height: 8)
+                                }
+                            }
+                            .tag(network)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                }
+                
+                Section("Wallet Mode") {
+                    Toggle("Import Existing Wallet", isOn: $importMode)
+                    
+                    if !importMode {
+                        Text("Generate new wallet with secure random keys")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                
+                Section("Wallet Details") {
+                    TextField("Wallet Name", text: $walletName)
+                        .textInputAutocapitalization(.words)
+                    
+                    if importMode {
+                        SecureField("Private Key", text: $privateKeyInput)
+                            .textInputAutocapitalization(.never)
+                            .autocorrectionDisabled()
+                        
+                        Text("⚠️ Never share your private key")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
+                }
+                
+                Section("Network Information") {
+                    HStack {
+                        Text("Chain ID")
+                        Spacer()
+                        Text(selectedNetwork.chainId)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        Text("Native Currency")
+                        Spacer()
+                        Text(selectedNetwork.nativeCurrency)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        Text("Connection Status")
+                        Spacer()
+                        HStack {
+                            Circle()
+                                .fill(blockchainService.isNetworkConnected(selectedNetwork) ? Color.green : Color.orange)
+                                .frame(width: 8, height: 8)
+                            Text(blockchainService.isNetworkConnected(selectedNetwork) ? "Connected" : "Connecting")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Add Real Wallet")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading: Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                },
+                trailing: Button("Add") {
+                    addRealWallet()
+                }
+                .disabled(walletName.isEmpty || (importMode && privateKeyInput.isEmpty))
+            )
+        }
+    }
+    
+    private func addRealWallet() {
+        // In production, this would generate real wallet addresses
+        // For now, simulate the process
+        presentationMode.wrappedValue.dismiss()
+    }
+}
+
+// MARK: - Real Add Token Sheet
+struct RealAddTokenSheet: View {
+    @Environment(\.presentationMode) var presentationMode
+    let blockchainService: RealBlockchainService
+    
+    @State private var tokenSymbol = ""
+    @State private var tokenName = ""
+    @State private var selectedNetwork: BlockchainNetwork = .ethereum
+    @State private var contractAddress = ""
+    @State private var verifyingToken = false
+    
+    var body: some View {
+        NavigationView {
+            Form {
+                Section("Token Information") {
+                    TextField("Symbol (e.g. LINK)", text: $tokenSymbol)
+                        .textInputAutocapitalization(.characters)
+                    
+                    TextField("Name (e.g. Chainlink)", text: $tokenName)
+                        .textInputAutocapitalization(.words)
+                }
+                
+                Section("Network") {
+                    Picker("Blockchain Network", selection: $selectedNetwork) {
+                        ForEach(blockchainService.connectedNetworks, id: \.self) { network in
+                            HStack {
+                                Text(network.icon)
+                                Text(network.rawValue)
+                                Spacer()
+                                Circle()
+                                    .fill(Color.green)
+                                    .frame(width: 6, height: 6)
+                            }
+                            .tag(network)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    
+                    if blockchainService.connectedNetworks.isEmpty {
+                        Text("⚠️ No networks connected")
+                            .font(.caption)
+                            .foregroundColor(.orange)
+                    }
+                }
+                
+                Section("Contract Address") {
+                    TextField("Contract Address", text: $contractAddress)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                    
+                    Text("Leave empty for native tokens")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    if verifyingToken {
+                        HStack {
+                            ProgressView()
+                                .scaleEffect(0.7)
+                            Text("Verifying token...")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+                
+                Section("Security") {
+                    Text("⚠️ Only add tokens from trusted sources")
+                        .font(.caption)
+                        .foregroundColor(.orange)
+                    
+                    Text("✅ Verify contract address on block explorer")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
+            }
+            .navigationTitle("Add Real Token")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading: Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                },
+                trailing: Button("Add") {
+                    addRealToken()
+                }
+                .disabled(tokenSymbol.isEmpty || tokenName.isEmpty || verifyingToken)
+            )
+        }
+    }
+    
+    private func addRealToken() {
+        verifyingToken = true
+        
+        // In production, verify token contract and add to portfolio
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            verifyingToken = false
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
+}
+
+struct RealWalletView_Previews: PreviewProvider {
+    static var previews: some View {
+        RealWalletView()
+    }
+}

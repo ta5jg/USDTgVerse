@@ -20,10 +20,33 @@
             padding: 0;
         }
         
+        .quantum-announcement {
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            animation: glow 2s infinite alternate;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 0, 102, 0.8); }
+        }
+        
+        .quantum-link {
+            color: white !important;
+            text-decoration: none;
+        }
+        
         .main-container {
             text-align: center;
             max-width: 1200px;
-            margin: 100px auto 0;
+            margin: 150px auto 0;
             padding: 40px;
         }
         
@@ -98,6 +121,162 @@
         .app-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .quantum-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            animation: quantum-glow 3s infinite alternate;
+        }
+        
+        @keyframes quantum-glow {
+            0% { 
+                border-color: rgba(0, 255, 136, 0.3);
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            }
+            100% { 
+                border-color: rgba(0, 102, 255, 0.5);
+                box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+            }
+        }
+        
+        .quantum-icon {
+            font-size: 3em;
+            animation: quantum-spin 4s infinite linear;
+        }
+        
+        @keyframes quantum-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .quantum-link-btn {
+            background: linear-gradient(45deg, #00ff88, #0066ff) !important;
+            color: white !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: quantum-pulse 2s infinite;
+        }
+        
+        @keyframes quantum-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .quantum-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            margin: 40px 0;
+            padding: 40px;
+            animation: quantum-section-glow 4s infinite alternate;
+        }
+        
+        @keyframes quantum-section-glow {
+            0% { 
+                border-color: rgba(0, 255, 136, 0.3);
+                box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+            }
+            100% { 
+                border-color: rgba(0, 102, 255, 0.5);
+                box-shadow: 0 0 50px rgba(0, 102, 255, 0.3);
+            }
+        }
+        
+        .quantum-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .quantum-logo-large {
+            font-size: 8em;
+            animation: quantum-logo-pulse 3s infinite;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            min-width: 120px;
+        }
+        
+        @keyframes quantum-logo-pulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+            50% { 
+                transform: scale(1.1) rotate(180deg);
+                filter: hue-rotate(60deg);
+            }
+        }
+        
+        .quantum-info {
+            flex: 1;
+        }
+        
+        .quantum-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00ff88, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .quantum-slogan {
+            font-size: 1.3em;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .quantum-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        .quantum-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff88, #0066ff);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            animation: quantum-cta-glow 2s infinite alternate;
+        }
+        
+        @keyframes quantum-cta-glow {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+            100% { box-shadow: 0 0 40px rgba(0, 102, 255, 0.6); }
+        }
+        
+        .quantum-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .quantum-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .quantum-logo-large {
+                font-size: 5em;
+            }
+            
+            .quantum-title {
+                font-size: 2em;
+            }
         }
         
         .app-icon {
@@ -178,6 +357,11 @@
     </style>
 </head>
 <body>
+    <div class="quantum-announcement">
+        🚀 <strong>WORLD FIRST:</strong> USDTgVerse becomes quantum-safe blockchain! 
+        <a href="website/quantum-safe.html" class="quantum-link">⚛️ Learn More →</a>
+    </div>
+    
     <!-- Include Navigation -->
     <div id="navigation-placeholder"></div>
     <div class="main-container">
@@ -212,6 +396,25 @@
             </div>
         </div>
         
+        <!-- Quantum-Safe Security Section -->
+        <div class="quantum-section">
+            <div class="quantum-content">
+                <div class="quantum-logo-large">⚛️</div>
+                <div class="quantum-info">
+                    <h2 class="quantum-title">Quantum-Safe Revolution</h2>
+                    <p class="quantum-slogan">World's First Quantum-Resistant Blockchain</p>
+                    <p class="quantum-description">
+                        USDTgVerse pioneers post-quantum cryptography with CRYSTALS-Dilithium and CRYSTALS-Kyber algorithms, 
+                        providing 256-bit quantum security - equivalent to AES-1024 classical encryption. 
+                        Future-proof your digital assets for the next 50 years.
+                    </p>
+                    <a href="website/quantum-safe.html" class="quantum-cta">
+                        🚀 Explore Quantum Technology
+                    </a>
+                </div>
+            </div>
+        </div>
+        
         <div class="app-grid">
             <div class="app-card">
                 <div class="app-icon">🌟</div>
@@ -240,6 +443,7 @@
                 <div class="app-description">100% security score - enterprise audit report</div>
                 <a href="audit/USDTgVerse_Security_Audit_Report_FIXED.html" class="app-link">View Report</a>
             </div>
+            
             
             <div class="app-card">
                 <div class="app-icon">🔄</div>

@@ -1,0 +1,479 @@
+//
+//  UpdatedWalletView.swift
+//  USDTgWallet
+//
+//  Created by USDTgVerse Team on 2025-09-20.
+//  Copyright © 2025 USDTgVerse. All rights reserved.
+//
+
+import SwiftUI
+
+struct UpdatedWalletView: View {
+    @StateObject private var priceService = PriceService()
+    @State private var selectedTab = 0
+    @State private var refreshing = false
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0) {
+                // Portfolio Summary with Real Data
+                portfolioSummaryView
+                
+                // Tab Selector
+                tabSelectorView
+                
+                // Content based on selected tab
+                tabContentView
+                
+                Spacer()
+            }
+            .navigationTitle("My Wallet")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("Refresh Prices", action: refreshPrices)
+                        Button("Send", action: { selectedTab = 1 })
+                        Button("Receive", action: { selectedTab = 2 })
+                        Button("Settings", action: {})
+                    } label: {
+                        Image(systemName: refreshing ? "arrow.clockwise" : "ellipsis.circle")
+                            .rotationEffect(.degrees(refreshing ? 360 : 0))
+                            .animation(refreshing ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: refreshing)
+                    }
+                }
+            }
+            .refreshable {
+                await refreshPricesAsync()
+            }
+        }
+    }
+    
+    private var portfolioSummaryView: some View {
+        VStack(spacing: 16) {
+            // USDTgVerse Logo and Branding
+            VStack(spacing: 8) {
+                // Use our actual logo
+                Image("usdtg_logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle()
+                            .stroke(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
+                    )
+                
+                Text("USDTgVerse Wallet")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+            }
+            
+            // Total Portfolio Value with Real-Time Updates
+            VStack(spacing: 4) {
+                Text("Total Portfolio")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                HStack(spacing: 8) {
+                    Text(priceService.formattedTotalValue)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .contentTransition(.numericText())
+                    
+                    if priceService.isLoading {
+                        ProgressView()
+                            .scaleEffect(0.7)
+                    }
+                }
+                
+                Text("Last updated: \(formatTime(priceService.lastUpdated))")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(16)
+        .padding()
+    }
+    
+    private var tabSelectorView: some View {
+        HStack(spacing: 0) {
+            TabButton(title: "Assets", isSelected: selectedTab == 0) {
+                selectedTab = 0
+            }
+            
+            TabButton(title: "Send", isSelected: selectedTab == 1) {
+                selectedTab = 1
+            }
+            
+            TabButton(title: "Receive", isSelected: selectedTab == 2) {
+                selectedTab = 2
+            }
+            
+            TabButton(title: "History", isSelected: selectedTab == 3) {
+                selectedTab = 3
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private var tabContentView: some View {
+        switch selectedTab {
+        case 0:
+            realAssetsView
+        case 1:
+            sendView
+        case 2:
+            receiveView
+        case 3:
+            historyView
+        default:
+            realAssetsView
+        }
+    }
+    
+    private var realAssetsView: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                ForEach(priceService.assets) { asset in
+                    RealAssetRow(asset: asset)
+                        .transition(.slide)
+                }
+            }
+            .padding()
+        }
+        .animation(.easeInOut, value: priceService.assets)
+    }
+    
+    private var sendView: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .font(.system(size: 64))
+                    .foregroundColor(.blue)
+                
+                Text("Send Assets")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Select Asset")
+                            .font(.headline)
+                        
+                        Picker("Asset", selection: .constant("USDTg")) {
+                            ForEach(priceService.assets, id: \.symbol) { asset in
+                                HStack {
+                                    AssetLogo(asset: asset, size: 20)
+                                    Text("\(asset.symbol) - \(asset.name)")
+                                }.tag(asset.symbol)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Recipient Address")
+                            .font(.headline)
+                        
+                        TextField("Enter wallet address", text: .constant(""))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Amount")
+                            .font(.headline)
+                        
+                        TextField("0.00", text: .constant(""))
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                }
+                
+                Button("Send Transaction") {
+                    // Handle send action
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+                .font(.headline)
+            }
+            .padding()
+        }
+    }
+    
+    private var receiveView: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.down.circle.fill")
+                    .font(.system(size: 64))
+                    .foregroundColor(.green)
+                
+                Text("Receive Assets")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                VStack(spacing: 16) {
+                    Text("Your USDTgVerse Address")
+                        .font(.headline)
+                    
+                    // QR Code Placeholder
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemGray6))
+                        .frame(width: 200, height: 200)
+                        .overlay(
+                            VStack {
+                                Image("usdtg_logo")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                Text("QR Code")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        )
+                    
+                    // Address
+                    VStack(spacing: 8) {
+                        Text("0xUSDTgVerse1234...5678")
+                            .font(.system(.body, design: .monospaced))
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                        
+                        Button("Copy Address") {
+                            // Handle copy action
+                        }
+                        .foregroundColor(.blue)
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+    
+    private var historyView: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                let sampleTransactions = [
+                    WalletTransaction(type: "Sent", description: "To John Doe", amount: "-100 USDTg", date: "2025-09-18"),
+                    WalletTransaction(type: "Received", description: "From Jane Smith", amount: "+50 USDT", date: "2025-09-17"),
+                    WalletTransaction(type: "Swap", description: "ETH to USDTg", amount: "-0.5 ETH", date: "2025-09-16"),
+                    WalletTransaction(type: "Bridge", description: "From Ethereum", amount: "+1,000 USDTg", date: "2025-09-15")
+                ]
+                
+                ForEach(sampleTransactions.indices, id: \.self) { index in
+                    TransactionRow(transaction: sampleTransactions[index])
+                }
+            }
+            .padding()
+        }
+    }
+    
+    private func refreshPrices() {
+        refreshing = true
+        priceService.loadAssets()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            refreshing = false
+        }
+    }
+    
+    private func refreshPricesAsync() async {
+        refreshing = true
+        
+        try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5 seconds
+        
+        await MainActor.run {
+            priceService.loadAssets()
+            refreshing = false
+        }
+    }
+    
+    private func formatTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+}
+
+// MARK: - Real Asset Row with Logos and Live Prices
+struct RealAssetRow: View {
+    let asset: CryptoAsset
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            // Asset Logo
+            AssetLogo(asset: asset, size: 40)
+            
+            // Asset Info
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(asset.name)
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                    
+                    if asset.isNative {
+                        Text("NATIVE")
+                            .font(.caption2)
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.green.opacity(0.2))
+                            .foregroundColor(.green)
+                            .cornerRadius(4)
+                    }
+                }
+                
+                HStack {
+                    Text(asset.symbol)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    if asset.isNative {
+                        Text("• $1.00 FIXED")
+                            .font(.caption2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.green)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            // Balance and Value
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(asset.formattedBalance)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .contentTransition(.numericText())
+                
+                HStack(spacing: 4) {
+                    Text(asset.formattedValue)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .contentTransition(.numericText())
+                    
+                    if !asset.isNative {
+                        Text("@ \(asset.formattedPrice)")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(asset.isNative ? Color.green.opacity(0.3) : Color.clear, lineWidth: 1)
+        )
+    }
+}
+
+// MARK: - Tab Button (Reuse from original)
+struct TabButton: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.subheadline)
+                .fontWeight(isSelected ? .semibold : .regular)
+                .foregroundColor(isSelected ? .blue : .secondary)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(
+                    Rectangle()
+                        .fill(isSelected ? Color.blue.opacity(0.1) : Color.clear)
+                        .overlay(
+                            Rectangle()
+                                .fill(Color.blue)
+                                .frame(height: 2),
+                            alignment: .bottom
+                        )
+                        .opacity(isSelected ? 1 : 0)
+                )
+        }
+    }
+}
+
+// MARK: - Transaction Row (Reuse from original)
+struct TransactionRow: View {
+    let transaction: WalletTransaction
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            Circle()
+                .fill(transactionColor.opacity(0.2))
+                .frame(width: 40, height: 40)
+                .overlay(
+                    Image(systemName: transactionIcon)
+                        .foregroundColor(transactionColor)
+                )
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(transaction.type)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                
+                Text(transaction.description)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Text(transaction.date)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            Text(transaction.amount)
+                .font(.headline)
+                .fontWeight(.semibold)
+                .foregroundColor(transaction.amount.hasPrefix("-") ? .red : .green)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+    
+    private var transactionIcon: String {
+        switch transaction.type {
+        case "Sent": return "arrow.up"
+        case "Received": return "arrow.down"
+        case "Swap": return "arrow.left.arrow.right"
+        case "Bridge": return "arrow.left.arrow.right.square"
+        default: return "questionmark"
+        }
+    }
+    
+    private var transactionColor: Color {
+        switch transaction.type {
+        case "Sent": return .red
+        case "Received": return .green
+        case "Swap": return .blue
+        case "Bridge": return .purple
+        default: return .gray
+        }
+    }
+}
+
+struct UpdatedWalletView_Previews: PreviewProvider {
+    static var previews: some View {
+        UpdatedWalletView()
+    }
+}

@@ -7,6 +7,52 @@
 //
 
 import SwiftUI
+import CoreImage.CIFilterBuiltins
+
+// MARK: - Wallet Asset Model (Inline)
+struct WalletAsset: Identifiable, Codable {
+    let id = UUID()
+    let symbol: String
+    let name: String
+    let balance: Double
+    let price: Double
+    
+    var totalValue: Double {
+        return balance * price
+    }
+    
+    var formattedBalance: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        
+        if symbol == "BTC" {
+            formatter.minimumFractionDigits = 8
+            formatter.maximumFractionDigits = 8
+        } else if ["USDTg", "USDT", "USDC", "BUSD"].contains(symbol) {
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 2
+        } else {
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 8
+        }
+        
+        // Remove trailing zeros for amounts
+        if balance == floor(balance) && balance < 1000 {
+            formatter.maximumFractionDigits = 0
+        }
+        
+        return formatter.string(from: NSNumber(value: balance)) ?? "0"
+    }
+    
+    var formattedValue: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        formatter.currencyCode = "USD"
+        return formatter.string(from: NSNumber(value: totalValue)) ?? "$0.00"
+    }
+}
 
 struct WalletView: View {
     @EnvironmentObject var walletManager: WalletManager
@@ -14,34 +60,73 @@ struct WalletView: View {
     @State private var showingSendView = false
     @State private var showingReceiveView = false
     @State private var showingSwapView = false
+    @State private var showingWalletList = false
+    @State private var showingNetworkSelector = false
+    @State private var currentWalletName = "USDTgVerse Wallet"
+    @State private var currentNetwork = "USDTgVerse"
+    @State private var currentWalletAssets: [WalletAsset] = []
     
     var totalPortfolioValue: Double {
-        walletManager.assets.reduce(0) { $0 + $1.totalValue }
+        return currentWalletAssets.reduce(0) { $0 + $1.totalValue }
+    }
+    
+    // MARK: - Number Formatting
+    private func formatCurrency(_ amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        formatter.currencyCode = "USD"
+        return formatter.string(from: NSNumber(value: amount)) ?? "$0.00"
+    }
+    
+    private func formatBalance(_ amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 8
+        
+        // Remove trailing zeros for crypto amounts
+        if amount == floor(amount) && amount < 1000 {
+            formatter.maximumFractionDigits = 0
+        }
+        
+        return formatter.string(from: NSNumber(value: amount)) ?? "0"
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Header with USDTgVerse branding
-                    headerView
-                    
-                    // Portfolio Overview
-                    portfolioCard
-                    
-                    // Quick Actions
-                    quickActionsView
-                    
-                    // Assets List
-                    assetsListView
-                    
-                    // Recent Transactions
-                    recentTransactionsView
-                }
-                .padding()
+         NavigationView {
+             VStack(spacing: 0) {
+                 // Fixed Header (doesn't scroll)
+                 VStack(spacing: 20) {
+                     // Header with USDTgVerse branding
+                     headerView
+                     
+                     // Portfolio Overview
+                     portfolioCard
+                     
+                     // Quick Actions
+                     quickActionsView
+                 }
+                 .padding()
+                 .background(Color(.systemBackground))
+                 
+                 // Scrollable Content
+                 ScrollView {
+                     VStack(spacing: 20) {
+                         // Assets List
+                         assetsListView
+                         
+                         // Recent Transactions
+                         recentTransactionsView
+                     }
+                     .padding()
+                 }
+             }
+             .navigationBarHidden(true)
+            .onAppear {
+                loadCurrentWallet()
             }
-            .navigationTitle("USDTgWallet")
-            .navigationBarTitleDisplayMode(.large)
             .background(
                 LinearGradient(
                     gradient: Gradient(colors: [
@@ -53,45 +138,261 @@ struct WalletView: View {
                 )
             )
         }
-        .sheet(isPresented: $showingSendView) {
-            SendView()
+         .sheet(isPresented: $showingSendView) {
+             BasicSendView()
+         }
+         .sheet(isPresented: $showingReceiveView) {
+             BasicReceiveView()
+         }
+         .sheet(isPresented: $showingSwapView) {
+             BasicSwapView()
+         }
+         .sheet(isPresented: $showingWalletList) {
+             BasicWalletListSheet(
+                 currentWalletName: $currentWalletName,
+                 onWalletSelected: { walletName in
+                     currentWalletName = walletName
+                     UserDefaults.standard.set(walletName, forKey: "CurrentWallet")
+                     loadCurrentWallet()
+                 }
+             )
+         }
+         .sheet(isPresented: $showingNetworkSelector) {
+             NetworkSelectorSheet(
+                 currentNetwork: $currentNetwork,
+                 onNetworkSelected: { network in
+                     currentNetwork = network
+                     loadAssetsForNetwork(network)
+                 }
+             )
+         }
+    }
+    
+    // MARK: - Wallet Data Loading
+    private func loadCurrentWallet() {
+        // Load current wallet from UserDefaults
+        let currentWallet = UserDefaults.standard.string(forKey: "CurrentWallet") ?? "USDTgVerse Wallet"
+        currentWalletName = currentWallet
+        
+        // Load assets for current wallet
+        if currentWallet == "USDTgVerse Wallet" {
+            // Demo wallet assets
+            currentWalletAssets = [
+                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10000.0, price: 1.0),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.1, price: 1.0),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.0),
+                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2337.85),
+                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 245.5),
+                WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 145.75),
+                WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.091),
+                WalletAsset(symbol: "MATIC", name: "Polygon", balance: 8750.0, price: 0.89)
+            ]
+        } else {
+            // New/imported wallet assets (10 USDTg bonus)
+            currentWalletAssets = [
+                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10.0, price: 1.0),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0),
+                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
+                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5)
+            ]
         }
-        .sheet(isPresented: $showingReceiveView) {
-            ReceiveView()
-        }
-        .sheet(isPresented: $showingSwapView) {
-            SwapView()
+        
+        // Load assets for current network
+        loadAssetsForNetwork(currentNetwork)
+    }
+    
+    private func loadAssetsForNetwork(_ network: String) {
+        // Load network-specific assets
+        switch network {
+        case "USDTgVerse":
+            if currentWalletName == "USDTgVerse Wallet" {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10000.0, price: 1.0),
+                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.1, price: 1.0),
+                    WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.0)
+                ]
+            } else {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10.0, price: 1.0)
+                ]
+            }
+            
+        case "Ethereum":
+            if currentWalletName == "USDTgVerse Wallet" {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2337.85),
+                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 1000.0, price: 1.0),
+                    WalletAsset(symbol: "USDC", name: "USD Coin", balance: 500.0, price: 1.0)
+                ]
+            } else {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
+                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0)
+                ]
+            }
+            
+        case "BNB Chain":
+            if currentWalletName == "USDTgVerse Wallet" {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 245.5),
+                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 800.0, price: 1.0),
+                    WalletAsset(symbol: "BUSD", name: "Binance USD", balance: 300.0, price: 1.0)
+                ]
+            } else {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5),
+                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0)
+                ]
+            }
+            
+        case "TRON":
+            if currentWalletName == "USDTgVerse Wallet" {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.091),
+                    WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 600.0, price: 1.0)
+                ]
+            } else {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "TRX", name: "TRON", balance: 0.0, price: 0.091),
+                    WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 0.0, price: 1.0)
+                ]
+            }
+            
+        case "Solana":
+            if currentWalletName == "USDTgVerse Wallet" {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 145.75),
+                    WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 400.0, price: 1.0)
+                ]
+            } else {
+                currentWalletAssets = [
+                    WalletAsset(symbol: "SOL", name: "Solana", balance: 0.0, price: 145.75),
+                    WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 0.0, price: 1.0)
+                ]
+            }
+            
+        default:
+            // Default to USDTgVerse
+            loadCurrentWallet()
         }
     }
     
     private var headerView: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("USDTgVerse")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 0.3, green: 0.7, blue: 0.3))
-                
-                Text("Enterprise Blockchain")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+        VStack(spacing: 12) {
+            // Network Selector
+            Button(action: {
+                showingNetworkSelector = true
+            }) {
+                HStack(spacing: 8) {
+                    Circle()
+                        .fill(networkColor(for: currentNetwork))
+                        .frame(width: 20, height: 20)
+                        .overlay(
+                            Text(networkIcon(for: currentNetwork))
+                                .font(.caption2)
+                        )
+                    
+                    Text(currentNetwork)
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                    
+                    Image(systemName: "chevron.down")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(Color(.systemGray6))
+                .cornerRadius(20)
             }
             
-            Spacer()
-            
-            VStack(alignment: .trailing) {
-                Circle()
-                    .fill(networkManager.isConnected ? .green : .red)
-                    .frame(width: 12, height: 12)
+            // Dynamic Network Status
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(networkTitle(for: currentNetwork))
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(networkColor(for: currentNetwork))
+                    
+                    Text(networkSubtitle(for: currentNetwork))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
                 
-                Text("Block #\(networkManager.blockHeight)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                Spacer()
+                
+                VStack(alignment: .trailing) {
+                    Circle()
+                        .fill(networkManager.isConnected ? .green : .red)
+                        .frame(width: 12, height: 12)
+                    
+                    Text("Block #\(networkManager.blockHeight)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
         }
         .padding()
         .background(Color.secondary.opacity(0.1))
         .cornerRadius(12)
+    }
+    
+    private func networkColor(for network: String) -> Color {
+        switch network {
+        case "USDTgVerse": return Color(red: 0.3, green: 0.7, blue: 0.3)
+        case "Ethereum": return .purple
+        case "BNB Chain": return .yellow
+        case "TRON": return .red
+        case "Solana": return .purple
+        case "Polygon": return .purple
+        case "Arbitrum": return .blue
+        case "Avalanche": return .red
+        default: return .gray
+        }
+    }
+    
+    private func networkIcon(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "💰"
+        case "Ethereum": return "Ξ"
+        case "BNB Chain": return "◆"
+        case "TRON": return "♦"
+        case "Solana": return "◉"
+        case "Polygon": return "⬟"
+        case "Arbitrum": return "🔵"
+        case "Avalanche": return "▲"
+        default: return "🌐"
+        }
+    }
+    
+    private func networkTitle(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "USDTgVerse"
+        case "Ethereum": return "Ethereum"
+        case "BNB Chain": return "BNB Chain"
+        case "TRON": return "TRON"
+        case "Solana": return "Solana"
+        case "Polygon": return "Polygon"
+        case "Arbitrum": return "Arbitrum"
+        case "Avalanche": return "Avalanche"
+        default: return "Blockchain"
+        }
+    }
+    
+    private func networkSubtitle(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "Enterprise Blockchain"
+        case "Ethereum": return "Layer 1 • Decentralized Finance"
+        case "BNB Chain": return "Fast & Low Cost"
+        case "TRON": return "High Throughput Network"
+        case "Solana": return "Ultra-Fast Blockchain"
+        case "Polygon": return "Ethereum Layer 2"
+        case "Arbitrum": return "Ethereum Scaling Solution"
+        case "Avalanche": return "Fast Finality Network"
+        default: return "Blockchain Network"
+        }
     }
     
     private var portfolioCard: some View {
@@ -100,14 +401,29 @@ struct WalletView: View {
                 .font(.headline)
                 .foregroundColor(.secondary)
             
-            Text("$\(totalPortfolioValue, specifier: "%.2f")")
-                .font(.system(size: 36, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-            
-            HStack {
-                Text("USDTg: \(walletManager.usdtgBalance, specifier: "%.2f")")
-                    .font(.subheadline)
-                    .foregroundColor(Color(red: 0.3, green: 0.7, blue: 0.3))
+             Button(action: {
+                 showingWalletList = true
+             }) {
+                 HStack(spacing: 8) {
+                     Text(currentWalletName)
+                         .font(.headline)
+                         .fontWeight(.semibold)
+                         .foregroundColor(.white)
+                     
+                     Image(systemName: "chevron.down")
+                         .font(.caption)
+                         .foregroundColor(.secondary)
+                 }
+             }
+             
+             Text(formatCurrency(totalPortfolioValue))
+                 .font(.system(size: 36, weight: .bold, design: .rounded))
+                 .foregroundColor(.white)
+             
+             HStack {
+                 Text("USDTg: \(formatBalance(currentWalletName == "USDTgVerse Wallet" ? 10000.0 : 10.0))")
+                     .font(.subheadline)
+                     .foregroundColor(Color(red: 0.3, green: 0.7, blue: 0.3))
                 
                 Spacer()
                 
@@ -176,9 +492,9 @@ struct WalletView: View {
                 .font(.headline)
                 .padding(.horizontal)
             
-            ForEach(walletManager.assets) { asset in
-                AssetRowView(asset: asset)
-            }
+             ForEach(currentWalletAssets) { asset in
+                 RealAssetRowView(asset: asset)
+             }
         }
         .padding(.vertical)
         .background(Color.secondary.opacity(0.1))
@@ -201,13 +517,90 @@ struct WalletView: View {
             }
             .padding(.horizontal)
             
-            ForEach(walletManager.transactions.prefix(5)) { transaction in
-                TransactionRowView(transaction: transaction)
+            ForEach(getWalletTransactions(), id: \.id) { transaction in
+                HStack {
+                    Circle()
+                        .fill(transaction.type == "received" ? .green : transaction.type == "sent" ? .red : .blue)
+                        .frame(width: 40, height: 40)
+                        .overlay(
+                            Image(systemName: transaction.icon)
+                                .foregroundColor(.white)
+                                .font(.system(size: 16, weight: .bold))
+                        )
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(transaction.title)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                        
+                        Text(transaction.subtitle)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text(transaction.amount)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(transaction.type == "received" ? .green : transaction.type == "sent" ? .red : .blue)
+                        
+                        Text(transaction.time)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
             }
         }
         .padding(.vertical)
         .background(Color.secondary.opacity(0.1))
         .cornerRadius(12)
+    }
+    
+    private func getWalletTransactions() -> [WalletTransaction] {
+        if currentWalletName == "USDTgVerse Wallet" {
+            // Demo wallet transactions
+            return [
+                WalletTransaction(
+                    id: "1", type: "received", title: "Received USDTg", 
+                    subtitle: "From: usdtgGenesis", amount: "+1000.000000 USDTg", 
+                    time: "11:23 PM", icon: "arrow.down"
+                ),
+                WalletTransaction(
+                    id: "2", type: "sent", title: "Sent USDTg", 
+                    subtitle: "To: usdtgbridge", amount: "-250.000000 USDTg", 
+                    time: "10:23 PM", icon: "arrow.up"
+                ),
+                WalletTransaction(
+                    id: "3", type: "bridge", title: "Bridge Transfer", 
+                    subtitle: "From: Ethereum", amount: "+1.500000 ETH", 
+                    time: "9:23 PM", icon: "arrow.left.arrow.right"
+                )
+            ]
+        } else {
+            // New wallet transactions (AirDrop only)
+            return [
+                WalletTransaction(
+                    id: "1", type: "received", title: "Welcome AirDrop", 
+                    subtitle: "From: USDTgVerse", amount: "+10.00 USDTg", 
+                    time: "Now", icon: "gift"
+                )
+            ]
+        }
+    }
+    
+    struct WalletTransaction {
+        let id: String
+        let type: String
+        let title: String
+        let subtitle: String
+        let amount: String
+        let time: String
+        let icon: String
     }
 }
 
@@ -335,8 +728,658 @@ struct TransactionRowView: View {
     }
 }
 
+// MARK: - Basic Views (Placeholder)
+struct BasicSendView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 30) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.blue)
+                
+                Text("Send Assets")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Text("Send functionality coming soon!")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Send")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+struct BasicReceiveView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State private var currentNetwork = "USDTgVerse"
+    @State private var walletAddress = ""
+    @State private var qrCodeImage: UIImage?
+    @State private var showingShareSheet = false
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 30) {
+                // Header
+                VStack(spacing: 16) {
+                    Image(systemName: "arrow.down.circle.fill")
+                        .font(.system(size: 60))
+                        .foregroundColor(.green)
+                    
+                    Text("Receive Assets")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Text("Send assets to this address")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                // Network Selector
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Network")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                    
+                    Menu {
+                        Button("USDTgVerse") { selectNetwork("USDTgVerse") }
+                        Button("Ethereum") { selectNetwork("Ethereum") }
+                        Button("BNB Chain") { selectNetwork("BNB Chain") }
+                        Button("TRON") { selectNetwork("TRON") }
+                        Button("Solana") { selectNetwork("Solana") }
+                    } label: {
+                        HStack {
+                            Text(currentNetwork)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.down")
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                    }
+                }
+                
+                // QR Code Display
+                VStack(spacing: 16) {
+                    Text("Scan QR Code to Send")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                    
+                    if let qrImage = qrCodeImage {
+                        Image(uiImage: qrImage)
+                            .interpolation(.none)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color(.systemGray4), lineWidth: 1)
+                            )
+                    } else {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.systemGray5))
+                            .frame(width: 200, height: 200)
+                            .overlay(
+                                VStack {
+                                    ProgressView()
+                                    Text("Generating QR...")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            )
+                    }
+                    
+                    Button(action: {
+                        showingShareSheet = true
+                    }) {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("Share QR Code")
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                    }
+                    .disabled(qrCodeImage == nil)
+                }
+                
+                // Address Display
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Your \(currentNetwork) Address")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                    
+                    VStack(spacing: 12) {
+                        Text(walletAddress)
+                            .font(.system(.body, design: .monospaced))
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                            .textSelection(.enabled)
+                        
+                        Button(action: {
+                            UIPasteboard.general.string = walletAddress
+                        }) {
+                            HStack {
+                                Image(systemName: "doc.on.doc")
+                                Text("Copy Address")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                        }
+                    }
+                }
+                
+                Spacer()
+                
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+            }
+            .padding()
+            .navigationTitle("Receive")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                loadWalletAddress()
+            }
+        }
+        .sheet(isPresented: $showingShareSheet) {
+            ShareSheet(activityItems: [qrCodeImage].compactMap { $0 })
+        }
+    }
+    
+    private func selectNetwork(_ network: String) {
+        currentNetwork = network
+        loadWalletAddress()
+    }
+    
+    private func loadWalletAddress() {
+        let currentWallet = UserDefaults.standard.string(forKey: "CurrentWallet") ?? "USDTgVerse Wallet"
+        
+        if let addresses = UserDefaults.standard.dictionary(forKey: "Wallet_\(currentWallet)_Addresses") as? [String: String] {
+            walletAddress = addresses[currentNetwork] ?? "Address not available"
+        } else {
+            // Fallback for demo wallet
+            walletAddress = generateDemoAddress(for: currentNetwork)
+        }
+        
+        // Generate QR code for the address
+        generateAddressQRCode()
+    }
+    
+    private func generateAddressQRCode() {
+        // Generate QR Code using Core Image
+        let context = CIContext()
+        let filter = CIFilter.qrCodeGenerator()
+        
+        // Create QR data with address and network info
+        let qrData = """
+        {
+            "network": "\(currentNetwork)",
+            "address": "\(walletAddress)",
+            "type": "USDTgVerse_Address",
+            "quantum_safe": true
+        }
+        """
+        
+        filter.message = Data(qrData.utf8)
+        filter.correctionLevel = "H" // High error correction for mobile scanning
+        
+        if let outputImage = filter.outputImage {
+            // Scale up the QR code for better visibility
+            let transform = CGAffineTransform(scaleX: 10, y: 10)
+            let scaledImage = outputImage.transformed(by: transform)
+            
+            if let cgImage = context.createCGImage(scaledImage, from: scaledImage.extent) {
+                qrCodeImage = UIImage(cgImage: cgImage)
+            }
+        }
+    }
+    
+    private func generateDemoAddress(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "USDTg1Demo123456"
+        case "Ethereum": return "0x742d35Cc6634C0532925a3b8D2Cc7a1c4c1aA6d1"
+        case "BNB Chain": return "bnb1demo123456789"
+        case "TRON": return "TRDemo123456789"
+        case "Solana": return "SolDemo123456789"
+        default: return "Address not available"
+        }
+    }
+}
+
+struct BasicSwapView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 30) {
+                Image(systemName: "arrow.left.arrow.right.circle.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.purple)
+                
+                Text("Swap Assets")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Text("Swap functionality coming soon!")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.purple)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Swap")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+// MARK: - Real Asset Row View
+struct RealAssetRowView: View {
+    let asset: WalletAsset
+    
+    var body: some View {
+        HStack {
+            // Asset icon
+            Circle()
+                .fill(assetColor(for: asset.symbol))
+                .frame(width: 40, height: 40)
+                .overlay(
+                    Group {
+                        if asset.symbol == "USDTg" {
+                            Image("usdtg_logo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 32, height: 32)
+                                .clipShape(Circle())
+                        } else {
+                            Text(assetSymbol(for: asset.symbol))
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
+                    }
+                )
+            
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(asset.symbol)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    
+                    if asset.symbol == "USDTg" {
+                        Text("NATIVE")
+                            .font(.caption2)
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.green.opacity(0.2))
+                            .foregroundColor(.green)
+                            .cornerRadius(4)
+                    }
+                }
+                
+                Text(asset.name)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(asset.formattedBalance)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                
+                Text(asset.formattedValue)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+    }
+    
+    private func assetColor(for symbol: String) -> Color {
+        switch symbol {
+        case "USDTg": return Color(red: 0.3, green: 0.7, blue: 0.3)
+        case "USDT": return .green
+        case "USDC": return .blue
+        case "ETH": return .purple
+        case "BNB": return .yellow
+        case "SOL": return .purple
+        case "TRX": return .red
+        case "MATIC": return .purple
+        default: return .gray
+        }
+    }
+    
+    private func assetSymbol(for symbol: String) -> String {
+        switch symbol {
+        case "USDT": return "₮"
+        case "USDC": return "©"
+        case "ETH": return "Ξ"
+        case "BNB": return "◆"
+        case "SOL": return "◉"
+        case "TRX": return "♦"
+        case "MATIC": return "⬟"
+        default: return String(symbol.prefix(2))
+        }
+    }
+}
+
+// MARK: - Basic Wallet List Sheet (No external dependencies)
+struct BasicWalletListSheet: View {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var currentWalletName: String
+    let onWalletSelected: (String) -> Void
+    @State private var availableWallets: [String] = []
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                // Header
+                VStack(spacing: 12) {
+                    Image("usdtg_logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                    
+                    Text("Select Wallet")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Text("Switch between your wallets")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                // Wallet List
+                VStack(spacing: 12) {
+                    ForEach(availableWallets, id: \.self) { walletName in
+                        Button(action: {
+                            onWalletSelected(walletName)
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            HStack(spacing: 16) {
+                                Circle()
+                                    .fill(walletName == currentWalletName ? Color.green : Color.blue)
+                                    .frame(width: 40, height: 40)
+                                    .overlay(
+                                        Image(systemName: walletName == currentWalletName ? "checkmark" : "wallet.pass")
+                                            .foregroundColor(.white)
+                                            .font(.headline)
+                                    )
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    HStack {
+                                        Text(walletName)
+                                            .font(.headline)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.primary)
+                                        
+                                        if walletName == "USDTgVerse Wallet" {
+                                            Text("DEMO")
+                                                .font(.caption2)
+                                                .fontWeight(.bold)
+                                                .padding(.horizontal, 6)
+                                                .padding(.vertical, 2)
+                                                .background(Color.orange.opacity(0.2))
+                                                .foregroundColor(.orange)
+                                                .cornerRadius(4)
+                                        }
+                                    }
+                                    
+                                    Text("Balance: $\(walletName == "USDTgVerse Wallet" ? 48904.26 : 10.0, specifier: "%.2f")")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if walletName == currentWalletName {
+                                    Text("ACTIVE")
+                                        .font(.caption2)
+                                        .fontWeight(.bold)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color.green.opacity(0.2))
+                                        .foregroundColor(.green)
+                                        .cornerRadius(6)
+                                }
+                            }
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(walletName == currentWalletName ? Color.green : Color.clear, lineWidth: 2)
+                            )
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("My Wallets")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("Done") {
+                presentationMode.wrappedValue.dismiss()
+            })
+            .onAppear {
+                loadAvailableWallets()
+            }
+        }
+    }
+    
+    private func loadAvailableWallets() {
+        // Load wallet list from UserDefaults (persistent across operations)
+        availableWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? ["USDTgVerse Wallet"]
+    }
+}
+
+// MARK: - Network Selector Sheet
+struct NetworkSelectorSheet: View {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var currentNetwork: String
+    let onNetworkSelected: (String) -> Void
+    
+    private let networks = [
+        "USDTgVerse", "Ethereum", "BNB Chain", "TRON", 
+        "Solana", "Polygon", "Arbitrum", "Avalanche"
+    ]
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                // Header
+                VStack(spacing: 12) {
+                    Image("usdtg_logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                    
+                    Text("Select Network")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Text("Switch between blockchain networks")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                // Network List
+                VStack(spacing: 12) {
+                    ForEach(networks, id: \.self) { network in
+                        Button(action: {
+                            onNetworkSelected(network)
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            HStack(spacing: 16) {
+                                Circle()
+                                    .fill(networkColor(for: network))
+                                    .frame(width: 40, height: 40)
+                                    .overlay(
+                                        Text(networkIcon(for: network))
+                                            .font(.headline)
+                                    )
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    HStack {
+                                        Text(network)
+                                            .font(.headline)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.primary)
+                                        
+                                        if network == "USDTgVerse" {
+                                            Text("NATIVE")
+                                                .font(.caption2)
+                                                .fontWeight(.bold)
+                                                .padding(.horizontal, 6)
+                                                .padding(.vertical, 2)
+                                                .background(Color.green.opacity(0.2))
+                                                .foregroundColor(.green)
+                                                .cornerRadius(4)
+                                        }
+                                    }
+                                    
+                                    Text(networkDescription(for: network))
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if network == currentNetwork {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.green)
+                                        .font(.title2)
+                                }
+                            }
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(network == currentNetwork ? Color.green : Color.clear, lineWidth: 2)
+                            )
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Networks")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("Done") {
+                presentationMode.wrappedValue.dismiss()
+            })
+        }
+    }
+    
+    private func networkColor(for network: String) -> Color {
+        switch network {
+        case "USDTgVerse": return Color(red: 0.3, green: 0.7, blue: 0.3)
+        case "Ethereum": return .purple
+        case "BNB Chain": return .yellow
+        case "TRON": return .red
+        case "Solana": return .purple
+        case "Polygon": return .purple
+        case "Arbitrum": return .blue
+        case "Avalanche": return .red
+        default: return .gray
+        }
+    }
+    
+    private func networkIcon(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "💰"
+        case "Ethereum": return "Ξ"
+        case "BNB Chain": return "◆"
+        case "TRON": return "♦"
+        case "Solana": return "◉"
+        case "Polygon": return "⬟"
+        case "Arbitrum": return "🔵"
+        case "Avalanche": return "▲"
+        default: return "🌐"
+        }
+    }
+    
+    private func networkDescription(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "Native blockchain • USDTg stablecoin"
+        case "Ethereum": return "Layer 1 • ETH, USDT, USDC, DeFi"
+        case "BNB Chain": return "Fast & cheap • BNB, USDT, BUSD"
+        case "TRON": return "High throughput • TRX, USDT-TRC20"
+        case "Solana": return "Ultra-fast • SOL, USDT-SPL"
+        case "Polygon": return "Ethereum L2 • MATIC, USDT"
+        case "Arbitrum": return "Ethereum L2 • ETH, USDT, ARB"
+        case "Avalanche": return "Fast finality • AVAX, USDT"
+        default: return "Blockchain network"
+        }
+    }
+}
+
+// MARK: - Share Sheet for QR Codes
+struct ShareSheet: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
 #Preview {
-    ContentView()
+    WalletView()
         .environmentObject(WalletManager())
         .environmentObject(NetworkManager())
 }
+
