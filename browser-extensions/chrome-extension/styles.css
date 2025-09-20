@@ -1,0 +1,938 @@
+/**
+ * 🎨 USDTGWALLET CHROME EXTENSION STYLES
+ * =====================================
+ * 
+ * ⚛️ QUANTUM-SAFE DESIGN SYSTEM
+ * 🔐 Modern Web3 Wallet Interface
+ * 🌐 Cross-platform consistency
+ */
+
+/* 🌟 ROOT VARIABLES */
+:root {
+    --quantum-primary: #00D4AA;
+    --quantum-secondary: #0099FF;
+    --quantum-success: #00E676;
+    --quantum-error: #FF5252;
+    --quantum-warning: #FFC107;
+    --quantum-info: #2196F3;
+    
+    --bg-primary: #0A0A0B;
+    --bg-secondary: #1A1A1C;
+    --bg-tertiary: #2A2A2D;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-modal: rgba(0, 0, 0, 0.8);
+    
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-tertiary: rgba(255, 255, 255, 0.5);
+    
+    --border-primary: rgba(255, 255, 255, 0.1);
+    --border-secondary: rgba(255, 255, 255, 0.05);
+    
+    --shadow-primary: 0 4px 20px rgba(0, 212, 170, 0.15);
+    --shadow-secondary: 0 2px 10px rgba(0, 0, 0, 0.3);
+    
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 🎯 GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 380px;
+    min-height: 600px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* 🔐 WALLET CONTAINER */
+.wallet-container {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    background: linear-gradient(135deg, #0A0A0B 0%, #1A1A1C 50%, #0A0A0B 100%);
+}
+
+/* 🌟 HEADER */
+.wallet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantum-logo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--quantum-primary) 0%, var(--quantum-secondary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    animation: quantumPulse 2s ease-in-out infinite;
+}
+
+@keyframes quantumPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 212, 170, 0.3); }
+}
+
+.wallet-info h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.quantum-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: linear-gradient(90deg, var(--quantum-primary), var(--quantum-secondary));
+    border-radius: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.network-selector {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.network-selector:hover {
+    background: var(--bg-card);
+    transform: translateY(-1px);
+}
+
+.network-name {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.network-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.network-status.connected {
+    color: var(--quantum-success);
+}
+
+/* 📱 SETUP SCREEN */
+.setup-screen {
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.setup-content {
+    max-width: 300px;
+}
+
+.quantum-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: quantumFloat 3s ease-in-out infinite;
+}
+
+@keyframes quantumFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.setup-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--quantum-primary), var(--quantum-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.quantum-description {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.security-features {
+    margin-bottom: 30px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.feature-icon {
+    font-size: 16px;
+}
+
+.setup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 🔘 BUTTONS */
+.btn-primary, .btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--quantum-primary) 0%, var(--quantum-secondary) 100%);
+    color: white;
+    box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 212, 170, 0.25);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-card);
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    font-size: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* 💰 WALLET VIEW */
+.wallet-view {
+    padding: 20px;
+}
+
+/* 📊 PORTFOLIO CARD */
+.portfolio-card {
+    background: linear-gradient(135deg, var(--quantum-primary) 0%, var(--quantum-secondary) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.wallet-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.wallet-menu-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    color: white;
+}
+
+.wallet-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.portfolio-value {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.total-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.daily-change {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.daily-change.positive {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.daily-change.negative {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.usdtg-balance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+}
+
+.balance-amount {
+    font-weight: 600;
+}
+
+/* 🚀 QUICK ACTIONS */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.action-btn:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-secondary);
+}
+
+.action-icon {
+    font-size: 20px;
+}
+
+.action-btn span:last-child {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.action-btn.send:hover { border-color: var(--quantum-error); }
+.action-btn.receive:hover { border-color: var(--quantum-success); }
+.action-btn.swap:hover { border-color: var(--quantum-info); }
+.action-btn.bridge:hover { border-color: var(--quantum-warning); }
+
+/* 📈 SECTIONS */
+.assets-section, .transactions-section {
+    margin-bottom: 20px;
+}
+
+.assets-section h3, .transactions-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+/* 📈 ASSETS LIST */
+.assets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.asset-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-secondary);
+    transition: var(--transition);
+}
+
+.asset-item:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-primary);
+}
+
+.asset-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--quantum-primary), var(--quantum-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    margin-right: 12px;
+}
+
+.asset-info {
+    flex: 1;
+}
+
+.asset-symbol {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.asset-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.asset-balance {
+    text-align: right;
+}
+
+.balance-amount {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.balance-value {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* 📋 TRANSACTIONS LIST */
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-secondary);
+}
+
+.transaction-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.transaction-icon.received {
+    background: rgba(0, 230, 118, 0.2);
+    color: var(--quantum-success);
+}
+
+.transaction-icon.sent {
+    background: rgba(255, 82, 82, 0.2);
+    color: var(--quantum-error);
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-type {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.transaction-hash {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+}
+
+.transaction-amount {
+    text-align: right;
+}
+
+.amount {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.amount.received {
+    color: var(--quantum-success);
+}
+
+.amount.sent {
+    color: var(--quantum-error);
+}
+
+.time {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.no-transactions {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* 🔐 MODALS */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    width: 90%;
+    max-width: 340px;
+    max-height: 80%;
+    overflow-y: auto;
+    border: 1px solid var(--border-primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.close-btn {
+    background: var(--bg-tertiary);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* 📝 INPUT GROUPS */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--quantum-primary);
+    box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.qr-btn {
+    background: var(--quantum-info);
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.qr-btn:hover {
+    background: var(--quantum-secondary);
+}
+
+/* ℹ️ INFO SECTIONS */
+.quantum-info {
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid rgba(0, 212, 170, 0.2);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.quantum-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--quantum-primary);
+    margin-bottom: 8px;
+}
+
+.quantum-info ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.quantum-info li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.quantum-info li::before {
+    content: '•';
+    color: var(--quantum-primary);
+    position: absolute;
+    left: 0;
+}
+
+/* 📥 RECEIVE MODAL SPECIFIC */
+.network-selector-modal {
+    margin-bottom: 20px;
+}
+
+.qr-code-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qr-code-placeholder,
+.qr-placeholder {
+    background: var(--bg-tertiary);
+    border: 2px dashed var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: 40px 20px;
+    margin-bottom: 12px;
+}
+
+.qr-code-mock {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.address-section {
+    margin-bottom: 20px;
+}
+
+.address-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: 12px;
+}
+
+.address-display span {
+    flex: 1;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+.copy-btn {
+    background: var(--quantum-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.copy-btn:hover {
+    background: var(--quantum-secondary);
+}
+
+/* ⚙️ SETTINGS */
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-primary);
+    text-align: left;
+    width: 100%;
+}
+
+.settings-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-primary);
+}
+
+.settings-icon {
+    font-size: 18px;
+}
+
+/* 🔄 LOADING OVERLAY */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.loading-content {
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.quantum-spinner {
+    font-size: 48px;
+    margin-bottom: 16px;
+    animation: quantumSpin 1s linear infinite;
+}
+
+@keyframes quantumSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 📢 NOTIFICATIONS */
+.notification-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3000;
+    box-shadow: var(--shadow-secondary);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.notification-toast span {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.notification-toast button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+}
+
+/* 🎯 UTILITY CLASSES */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-success {
+    color: var(--quantum-success);
+}
+
+.text-error {
+    color: var(--quantum-error);
+}
+
+.text-warning {
+    color: var(--quantum-warning);
+}
+
+.text-info {
+    color: var(--quantum-info);
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 400px) {
+    body {
+        width: 360px;
+    }
+    
+    .wallet-header {
+        padding: 16px;
+    }
+    
+    .setup-screen {
+        padding: 30px 16px;
+    }
+    
+    .wallet-view {
+        padding: 16px;
+    }
+    
+    .portfolio-card {
+        padding: 20px;
+    }
+    
+    .quick-actions {
+        gap: 8px;
+    }
+    
+    .action-btn {
+        padding: 12px 6px;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+}

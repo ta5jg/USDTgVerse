@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgWallet - Quantum-Safe Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 🔐 QUANTUM-SAFE WALLET POPUP -->
+    <div id="wallet-container" class="wallet-container">
+        
+        <!-- 🌟 Header -->
+        <header class="wallet-header">
+            <div class="logo-section">
+                <div class="quantum-logo">⚛️</div>
+                <div class="wallet-info">
+                    <h1>USDTgWallet</h1>
+                    <span class="quantum-badge">Quantum-Safe</span>
+                </div>
+            </div>
+            <div class="network-selector" id="network-selector">
+                <span class="network-name" id="current-network">USDTgVerse</span>
+                <span class="network-status connected">●</span>
+            </div>
+        </header>
+
+        <!-- 📱 Wallet Setup Screen -->
+        <div id="setup-screen" class="setup-screen">
+            <div class="setup-content">
+                <div class="quantum-icon">🔐</div>
+                <h2>Welcome to USDTgWallet</h2>
+                <p class="quantum-description">
+                    World's first quantum-safe Web3 wallet with 256-bit security
+                </p>
+                
+                <div class="security-features">
+                    <div class="feature">
+                        <span class="feature-icon">⚛️</span>
+                        <span>Quantum-Resistant Cryptography</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🌐</span>
+                        <span>8-Chain Multi-Network</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔑</span>
+                        <span>24-48 Word Mnemonics</span>
+                    </div>
+                </div>
+                
+                <div class="setup-buttons">
+                    <button id="create-wallet-btn" class="btn-primary">
+                        <span class="btn-icon">➕</span>
+                        Create Quantum Wallet
+                    </button>
+                    <button id="import-wallet-btn" class="btn-secondary">
+                        <span class="btn-icon">📱</span>
+                        Import Existing Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 💰 Main Wallet View -->
+        <div id="wallet-view" class="wallet-view hidden">
+            
+            <!-- 📊 Portfolio Card -->
+            <div class="portfolio-card">
+                <div class="portfolio-header">
+                    <span class="wallet-name" id="wallet-name">My Quantum Wallet</span>
+                    <button id="wallet-menu-btn" class="wallet-menu-btn">⚙️</button>
+                </div>
+                <div class="portfolio-value">
+                    <span class="total-value" id="total-value">$1,250.00</span>
+                    <span class="daily-change positive" id="daily-change">+2.5% (24h)</span>
+                </div>
+                <div class="usdtg-balance">
+                    <span class="balance-label">USDTg Balance:</span>
+                    <span class="balance-amount" id="usdtg-balance">1,250.00</span>
+                </div>
+            </div>
+
+            <!-- 🚀 Quick Actions -->
+            <div class="quick-actions">
+                <button id="send-btn" class="action-btn send">
+                    <span class="action-icon">📤</span>
+                    <span>Send</span>
+                </button>
+                <button id="receive-btn" class="action-btn receive">
+                    <span class="action-icon">📥</span>
+                    <span>Receive</span>
+                </button>
+                <button id="swap-btn" class="action-btn swap">
+                    <span class="action-icon">🔄</span>
+                    <span>Swap</span>
+                </button>
+                <button id="bridge-btn" class="action-btn bridge">
+                    <span class="action-icon">🌉</span>
+                    <span>Bridge</span>
+                </button>
+            </div>
+
+            <!-- 📈 Assets List -->
+            <div class="assets-section">
+                <h3>Assets</h3>
+                <div class="assets-list" id="assets-list">
+                    <!-- Assets will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- 📋 Recent Transactions -->
+            <div class="transactions-section">
+                <h3>Recent Transactions</h3>
+                <div class="transactions-list" id="transactions-list">
+                    <!-- Transactions will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔐 Create Wallet Modal -->
+        <div id="create-wallet-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Quantum Wallet</h3>
+                    <button class="close-btn" id="close-create-modal">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label for="new-wallet-name">Wallet Name</label>
+                        <input type="text" id="new-wallet-name" placeholder="My Quantum Wallet">
+                    </div>
+                    
+                    <div class="quantum-info">
+                        <h4>⚛️ Quantum Security Features:</h4>
+                        <ul>
+                            <li>24-word quantum-safe mnemonic</li>
+                            <li>256-bit entropy validation</li>
+                            <li>Quantum-safe address generation</li>
+                            <li>10 USDTg welcome bonus</li>
+                        </ul>
+                    </div>
+                    
+                    <button id="confirm-create-btn" class="btn-primary full-width">
+                        <span class="btn-icon">🔐</span>
+                        Create Quantum Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📱 Import Wallet Modal -->
+        <div id="import-wallet-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Import Quantum Wallet</h3>
+                    <button class="close-btn" id="close-import-modal">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label for="import-wallet-name">Wallet Name</label>
+                        <input type="text" id="import-wallet-name" placeholder="Imported Wallet">
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-header">
+                            <label for="seed-phrase">Seed Phrase (24-48 words)</label>
+                            <button id="qr-scan-btn" class="qr-btn">📷 Scan QR</button>
+                        </div>
+                        <textarea id="seed-phrase" placeholder="Enter your 24-48 word quantum-safe seed phrase..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="import-network">Blockchain Network</label>
+                        <select id="import-network">
+                            <option value="USDTgVerse">USDTgVerse</option>
+                            <option value="Ethereum">Ethereum</option>
+                            <option value="BNB Chain">BNB Chain</option>
+                            <option value="TRON">TRON</option>
+                            <option value="Solana">Solana</option>
+                            <option value="Polygon">Polygon</option>
+                            <option value="Arbitrum">Arbitrum</option>
+                            <option value="Avalanche">Avalanche</option>
+                        </select>
+                    </div>
+                    
+                    <button id="confirm-import-btn" class="btn-primary full-width">
+                        <span class="btn-icon">📱</span>
+                        Import Quantum Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📥 Receive Modal -->
+        <div id="receive-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Receive Crypto</h3>
+                    <button class="close-btn" id="close-receive-modal">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="network-selector-modal">
+                        <label>Network</label>
+                        <select id="receive-network">
+                            <option value="USDTgVerse">USDTgVerse</option>
+                            <option value="Ethereum">Ethereum</option>
+                            <option value="BNB Chain">BNB Chain</option>
+                            <option value="TRON">TRON</option>
+                            <option value="Solana">Solana</option>
+                            <option value="Polygon">Polygon</option>
+                            <option value="Arbitrum">Arbitrum</option>
+                            <option value="Avalanche">Avalanche</option>
+                        </select>
+                    </div>
+                    
+                    <div class="qr-code-section">
+                        <div class="qr-code-placeholder" id="qr-code-display">
+                            <div class="qr-placeholder">📱</div>
+                            <p>QR Code will appear here</p>
+                        </div>
+                        <button id="share-qr-btn" class="btn-secondary">Share QR Code</button>
+                    </div>
+                    
+                    <div class="address-section">
+                        <label>Wallet Address</label>
+                        <div class="address-display">
+                            <span id="wallet-address">USDTg1qABC123...XYZ789</span>
+                            <button id="copy-address-btn" class="copy-btn">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔧 Settings/Menu Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Wallet Settings</h3>
+                    <button class="close-btn" id="close-settings-modal">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-options">
+                        <button id="backup-wallet-btn" class="settings-btn">
+                            <span class="settings-icon">💾</span>
+                            Backup Wallet
+                        </button>
+                        <button id="add-wallet-btn" class="settings-btn">
+                            <span class="settings-icon">➕</span>
+                            Add New Wallet
+                        </button>
+                        <button id="switch-wallet-btn" class="settings-btn">
+                            <span class="settings-icon">🔄</span>
+                            Switch Wallet
+                        </button>
+                        <button id="security-settings-btn" class="settings-btn">
+                            <span class="settings-icon">🔐</span>
+                            Security Settings
+                        </button>
+                        <button id="about-btn" class="settings-btn">
+                            <span class="settings-icon">ℹ️</span>
+                            About USDTgWallet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔄 Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="loading-content">
+                <div class="quantum-spinner">⚛️</div>
+                <p id="loading-message">Creating quantum-safe wallet...</p>
+            </div>
+        </div>
+
+        <!-- 📢 Notification Toast -->
+        <div id="notification-toast" class="notification-toast hidden">
+            <span id="notification-message"></span>
+            <button id="close-notification">✕</button>
+        </div>
+    </div>
+
+    <!-- 🚀 JavaScript -->
+    <script src="quantum-crypto.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
