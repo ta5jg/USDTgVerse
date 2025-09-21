@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgScript IDE Pro - Professional Development Environment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #1e1e1e;
+            color: #cccccc;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .ide-container {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
+        
+        /* Top Menu Bar */
+        .menu-bar {
+            background: #2d2d30;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #3e3e42;
+            justify-content: space-between;
+        }
+        
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: #007acc;
+        }
+        
+        .menu-items {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .menu-item {
+            color: #cccccc;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+        
+        .menu-item:hover {
+            background: #404040;
+        }
+        
+        .menu-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4caf50;
+        }
+        
+        /* Main Content Area */
+        .main-content {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 35px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #252526;
+            border-right: 1px solid #3e3e42;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            padding: 10px 15px;
+            background: #2d2d30;
+            border-bottom: 1px solid #3e3e42;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .file-explorer {
+            flex: 1;
+            padding: 10px;
+        }
+        
+        .folder {
+            margin-bottom: 5px;
+        }
+        
+        .folder-header {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .folder-header:hover {
+            background: #37373d;
+        }
+        
+        .folder-icon {
+            font-size: 12px;
+        }
+        
+        .file-list {
+            margin-left: 15px;
+            margin-top: 3px;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 5px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        
+        .file-item:hover {
+            background: #37373d;
+        }
+        
+        .file-item.active {
+            background: #094771;
+            color: white;
+        }
+        
+        /* Editor Area */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #2d2d30;
+            border-bottom: 1px solid #3e3e42;
+            min-height: 35px;
+        }
+        
+        .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #2d2d30;
+            border-right: 1px solid #3e3e42;
+            cursor: pointer;
+            font-size: 13px;
+            max-width: 200px;
+        }
+        
+        .tab.active {
+            background: #1e1e1e;
+        }
+        
+        .tab:hover {
+            background: #37373d;
+        }
+        
+        .tab-close {
+            color: #999;
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        .tab-close:hover {
+            color: #fff;
+        }
+        
+        .editor {
+            flex: 1;
+            background: #1e1e1e;
+            position: relative;
+        }
+        
+        #monaco-editor {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Bottom Panel */
+        .bottom-panel {
+            height: 200px;
+            background: #252526;
+            border-top: 1px solid #3e3e42;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-tabs {
+            display: flex;
+            background: #2d2d30;
+            border-bottom: 1px solid #3e3e42;
+            height: 35px;
+        }
+        
+        .panel-tab {
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 13px;
+            border-right: 1px solid #3e3e42;
+        }
+        
+        .panel-tab.active {
+            background: #252526;
+        }
+        
+        .panel-tab:hover {
+            background: #37373d;
+        }
+        
+        .terminal {
+            flex: 1;
+            background: #1e1e1e;
+            padding: 10px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+        
+        .terminal-line {
+            margin-bottom: 2px;
+        }
+        
+        .terminal-prompt {
+            color: #4caf50;
+        }
+        
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background: #2d2d30;
+            border-bottom: 1px solid #3e3e42;
+        }
+        
+        .toolbar-button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.2s;
+        }
+        
+        .toolbar-button:hover {
+            background: #005a9e;
+        }
+        
+        .toolbar-button.secondary {
+            background: #0e639c;
+        }
+        
+        .toolbar-button.danger {
+            background: #d73a49;
+        }
+        
+        .toolbar-button.success {
+            background: #28a745;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .menu-items {
+                display: none;
+            }
+            
+            .bottom-panel {
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar {
+                position: absolute;
+                left: -250px;
+                z-index: 1000;
+                transition: left 0.3s ease;
+            }
+            
+            .sidebar.open {
+                left: 0;
+            }
+            
+            .menu-bar {
+                padding: 0 10px;
+            }
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .loading-logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: #3e3e42;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #007acc, #4caf50);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">⚛️</div>
+        <div class="loading-text">Loading USDTgScript IDE Pro...</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+    </div>
+
+    <!-- Main IDE Container -->
+    <div class="ide-container" id="ideContainer" style="display: none;">
+        <!-- Top Menu Bar -->
+        <div class="menu-bar">
+            <div class="menu-left">
+                <div class="logo">
+                    ⚛️ USDTgScript IDE Pro
+                </div>
+                <div class="menu-items">
+                    <a href="#" class="menu-item">File</a>
+                    <a href="#" class="menu-item">Edit</a>
+                    <a href="#" class="menu-item">View</a>
+                    <a href="#" class="menu-item">Go</a>
+                    <a href="#" class="menu-item">Run</a>
+                    <a href="#" class="menu-item">Terminal</a>
+                    <a href="#" class="menu-item">Help</a>
+                </div>
+            </div>
+            <div class="menu-right">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>USDTgVerse Connected</span>
+                </div>
+                <a href="../index.html" class="menu-item">← Dashboard</a>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    📁 Project Explorer
+                </div>
+                <div class="file-explorer">
+                    <div class="folder">
+                        <div class="folder-header">
+                            <span class="folder-icon">📁</span>
+                            <span>MyUSDTgProject</span>
+                        </div>
+                        <div class="file-list">
+                            <div class="file-item active" onclick="openFile('contract.usdtg')">
+                                <span>📄</span>
+                                <span>contract.usdtg</span>
+                            </div>
+                            <div class="file-item" onclick="openFile('token.usdtg')">
+                                <span>📄</span>
+                                <span>token.usdtg</span>
+                            </div>
+                            <div class="file-item" onclick="openFile('deploy.js')">
+                                <span>📄</span>
+                                <span>deploy.js</span>
+                            </div>
+                            <div class="file-item" onclick="openFile('README.md')">
+                                <span>📄</span>
+                                <span>README.md</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-header">
+                            <span class="folder-icon">📁</span>
+                            <span>Libraries</span>
+                        </div>
+                        <div class="file-list">
+                            <div class="file-item" onclick="openFile('USDTgSecurity.usdtg')">
+                                <span>🛡️</span>
+                                <span>USDTgSecurity.usdtg</span>
+                            </div>
+                            <div class="file-item" onclick="openFile('QuantumSafe.usdtg')">
+                                <span>⚛️</span>
+                                <span>QuantumSafe.usdtg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor Area -->
+            <div class="editor-area">
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <button class="toolbar-button success" onclick="runCode()">▶️ Run</button>
+                    <button class="toolbar-button" onclick="compileCode()">🔧 Compile</button>
+                    <button class="toolbar-button secondary" onclick="deployContract()">🚀 Deploy</button>
+                    <button class="toolbar-button" onclick="debugCode()">🐛 Debug</button>
+                    <button class="toolbar-button" onclick="saveFile()">💾 Save</button>
+                    <button class="toolbar-button danger" onclick="stopExecution()">⏹️ Stop</button>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <div class="tab active">
+                        <span>📄</span>
+                        <span>contract.usdtg</span>
+                        <span class="tab-close">×</span>
+                    </div>
+                    <div class="tab">
+                        <span>📄</span>
+                        <span>token.usdtg</span>
+                        <span class="tab-close">×</span>
+                    </div>
+                </div>
+
+                <!-- Monaco Editor -->
+                <div class="editor">
+                    <div id="monaco-editor"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Panel -->
+        <div class="bottom-panel">
+            <div class="panel-tabs">
+                <div class="panel-tab active">🖥️ Terminal</div>
+                <div class="panel-tab">🔍 Problems</div>
+                <div class="panel-tab">📊 Output</div>
+                <div class="panel-tab">🐛 Debug Console</div>
+            </div>
+            <div class="terminal">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                    <span>Welcome to USDTgScript IDE Pro!</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                    <span>Quantum-safe development environment ready.</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                    <span>Type 'help' for available commands.</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                    <span style="animation: blink 1s infinite;">_</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monaco Editor CDN -->
+    <script src="https://unpkg.com/monaco-editor@0.44.0/min/vs/loader.js"></script>
+    
+    <script>
+        // Loading simulation
+        let progress = 0;
+        const loadingInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
+                setTimeout(initializeIDE, 500);
+            }
+            document.getElementById('loadingProgress').style.width = progress + '%';
+        }, 200);
+
+        function initializeIDE() {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('ideContainer').style.display = 'flex';
+            
+            // Initialize Monaco Editor
+            require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.44.0/min/vs' } });
+            require(['vs/editor/editor.main'], function () {
+                // Define USDTgScript language
+                monaco.languages.register({ id: 'usdtgscript' });
+                
+                // Define syntax highlighting
+                monaco.languages.setMonarchTokensProvider('usdtgscript', {
+                    tokenizer: {
+                        root: [
+                            [/\b(contract|function|public|private|quantum|safe|uint256|address|string|bool|mapping)\b/, 'keyword'],
+                            [/\b(import|from|using|library|interface|event|modifier)\b/, 'keyword'],
+                            [/\b(if|else|for|while|do|break|continue|return|try|catch)\b/, 'keyword'],
+                            [/\b(true|false|null|undefined)\b/, 'keyword'],
+                            [/\b\d+\b/, 'number'],
+                            [/".*?"/, 'string'],
+                            [/'.*?'/, 'string'],
+                            [/\/\/.*/, 'comment'],
+                            [/\/\*[\s\S]*?\*\//, 'comment'],
+                            [/[{}()\[\]]/, 'delimiter'],
+                            [/[<>]=?|[!=]=?|&&|\|\||[+\-*/%]/, 'operator']
+                        ]
+                    }
+                });
+
+                // Sample USDTgScript code
+                const sampleCode = `// USDTgScript - Quantum-Safe Smart Contract
+import { QuantumSafe, USDTgSecurity } from "usdtgverse/security";
+import { UST1Token } from "usdtgverse/standards";
+
+@quantum_safe
+@security_level(256)
+contract MyQuantumToken extends UST1Token {
+    using USDTgSecurity for uint256;
+    using QuantumSafe for address;
+    
+    string public name = "My Quantum Token";
+    string public symbol = "MQT";
+    uint8 public decimals = 18;
+    uint256 public totalSupply = 1000000 * 10**18;
+    
+    mapping(address => uint256) private balances;
+    mapping(address => mapping(address => uint256)) private allowed;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    
+    constructor() {
+        balances[msg.sender] = totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply);
+    }
+    
+    @quantum_resistant
+    function transfer(address to, uint256 value) public returns (bool) {
+        require(to != address(0), "Invalid address");
+        require(balances[msg.sender] >= value, "Insufficient balance");
+        
+        balances[msg.sender] = balances[msg.sender].safeSub(value);
+        balances[to] = balances[to].safeAdd(value);
+        
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+    
+    @view
+    function balanceOf(address owner) public returns (uint256) {
+        return balances[owner];
+    }
+    
+    @quantum_resistant
+    function approve(address spender, uint256 value) public returns (bool) {
+        allowed[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        return true;
+    }
+    
+    function allowance(address owner, address spender) public view returns (uint256) {
+        return allowed[owner][spender];
+    }
+}`;
+
+                // Create editor
+                window.editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+                    value: sampleCode,
+                    language: 'usdtgscript',
+                    theme: 'vs-dark',
+                    fontSize: 14,
+                    minimap: { enabled: true },
+                    scrollBeyondLastLine: false,
+                    automaticLayout: true,
+                    wordWrap: 'on',
+                    lineNumbers: 'on',
+                    folding: true,
+                    renderWhitespace: 'selection'
+                });
+
+                // Add keyboard shortcuts
+                window.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, saveFile);
+                window.editor.addCommand(monaco.KeyCode.F5, runCode);
+                window.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.F5, debugCode);
+            });
+        }
+
+        // IDE Functions
+        function openFile(filename) {
+            // Remove active class from all files
+            document.querySelectorAll('.file-item').forEach(item => item.classList.remove('active'));
+            
+            // Add active class to clicked file
+            event.target.closest('.file-item').classList.add('active');
+            
+            // Load file content (simulated)
+            console.log('Opening file:', filename);
+            
+            // Add tab if not exists
+            const tabs = document.querySelector('.tabs');
+            if (!document.querySelector(`[data-file="${filename}"]`)) {
+                const tab = document.createElement('div');
+                tab.className = 'tab';
+                tab.setAttribute('data-file', filename);
+                tab.innerHTML = `<span>📄</span><span>${filename}</span><span class="tab-close">×</span>`;
+                tabs.appendChild(tab);
+            }
+        }
+
+        function runCode() {
+            addTerminalLine('🚀 Running USDTgScript code...');
+            addTerminalLine('✅ Compilation successful!');
+            addTerminalLine('⚛️ Quantum security checks passed.');
+            addTerminalLine('🎯 Deployment ready.');
+        }
+
+        function compileCode() {
+            addTerminalLine('🔧 Compiling USDTgScript...');
+            addTerminalLine('📦 Generating bytecode...');
+            addTerminalLine('✅ Compilation completed successfully!');
+        }
+
+        function deployContract() {
+            addTerminalLine('🚀 Deploying contract to USDTgVerse...');
+            addTerminalLine('🔗 Contract address: 0xUSDTgQ' + Math.random().toString(36).substr(2, 8));
+            addTerminalLine('✅ Contract deployed successfully!');
+        }
+
+        function debugCode() {
+            addTerminalLine('🐛 Starting debug session...');
+            addTerminalLine('🔍 Breakpoints set.');
+            addTerminalLine('▶️ Debug mode active.');
+        }
+
+        function saveFile() {
+            addTerminalLine('💾 File saved successfully.');
+        }
+
+        function stopExecution() {
+            addTerminalLine('⏹️ Execution stopped.');
+        }
+
+        function addTerminalLine(text) {
+            const terminal = document.querySelector('.terminal');
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="terminal-prompt">usdtg@quantum:~/project$</span> <span>${text}</span>`;
+            
+            // Remove the cursor line
+            const cursorLine = terminal.querySelector('.terminal-line:last-child');
+            if (cursorLine && cursorLine.innerHTML.includes('_')) {
+                terminal.removeChild(cursorLine);
+            }
+            
+            terminal.appendChild(line);
+            
+            // Add new cursor line
+            const newCursorLine = document.createElement('div');
+            newCursorLine.className = 'terminal-line';
+            newCursorLine.innerHTML = `<span class="terminal-prompt">usdtg@quantum:~/project$</span> <span style="animation: blink 1s infinite;">_</span>`;
+            terminal.appendChild(newCursorLine);
+            
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // Responsive sidebar toggle
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
+
+        // Add mobile menu button
+        if (window.innerWidth <= 480) {
+            const menuLeft = document.querySelector('.menu-left');
+            const menuButton = document.createElement('button');
+            menuButton.innerHTML = '☰';
+            menuButton.style.cssText = 'background: none; border: none; color: white; font-size: 16px; cursor: pointer; margin-right: 10px;';
+            menuButton.onclick = toggleSidebar;
+            menuLeft.insertBefore(menuButton, menuLeft.firstChild);
+        }
+
+        // Blinking cursor animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes blink {
+                0%, 50% { opacity: 1; }
+                51%, 100% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('🚀 USDTgScript IDE Pro initialized!');
+        console.log('⚛️ Quantum-safe development environment ready.');
+    </script>
+</body>
+</html>

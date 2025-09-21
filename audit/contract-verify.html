@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Verification - USDTgVerse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .verify-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .verify-form {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .form-group input, .form-group textarea {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .verify-button {
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .verify-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.6);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Dashboard</a>
+        
+        <div class="header">
+            <h1>🛡️ Contract Verification</h1>
+            <p>Verify and audit smart contracts on USDTgVerse blockchain</p>
+        </div>
+        
+        <div class="verify-section">
+            <h2>🔍 Verify Smart Contract</h2>
+            <form class="verify-form">
+                <div class="form-group">
+                    <label for="contract-address">Contract Address:</label>
+                    <input type="text" id="contract-address" placeholder="0x..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contract-name">Contract Name:</label>
+                    <input type="text" id="contract-name" placeholder="MyToken" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="compiler-version">Compiler Version:</label>
+                    <input type="text" id="compiler-version" placeholder="v0.8.19+commit.7dd6d404" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="source-code">Source Code:</label>
+                    <textarea id="source-code" rows="10" placeholder="Paste your Solidity source code here..." required></textarea>
+                </div>
+                
+                <button type="submit" class="verify-button">🚀 Verify Contract</button>
+            </form>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Verification</h3>
+                <p>Automated verification process with instant results</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Security Analysis</h3>
+                <p>Comprehensive security checks and vulnerability detection</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Gas Optimization</h3>
+                <p>Analyze and optimize gas usage for better efficiency</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Compliance Check</h3>
+                <p>Ensure contracts meet USDTgVerse standards</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.querySelector('.verify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🚀 Contract verification initiated! This is a demo interface.');
+        });
+    </script>
+</body>
+</html>
