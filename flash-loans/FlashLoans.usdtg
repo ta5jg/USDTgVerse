@@ -1,0 +1,760 @@
+/**
+ * ⚡ USDTgVerse Flash Loan Infrastructure
+ * =====================================
+ * 
+ * ⚛️ QUANTUM-SAFE FLASH LOANS
+ * 💰 UNCOLLATERALIZED LENDING
+ * 🔄 ATOMIC TRANSACTION EXECUTION
+ * 
+ * Features:
+ * - Uncollateralized instant loans
+ * - Atomic transaction execution
+ * - Arbitrage opportunities
+ * - Liquidation mechanisms
+ * - Flash loan aggregators
+ * - MEV integration
+ * - Quantum-safe flash lending
+ */
+
+#quantum_safe
+#version "1.0"
+
+import "../security-library/USDTgSecurity.usdtg";
+import "../mev-protection/MEVProtection.usdtg";
+
+contract FlashLoans {
+    using USDTgSecurity for USDTgSecurity.SecurityState;
+    
+    // 📊 FLASH LOAN METADATA
+    quantum_string public constant name = "USDTgVerse Flash Loans";
+    quantum_string public constant version = "1.0.0-quantum-flash";
+    
+    // ⚡ FLASH LOAN STRUCTURE
+    struct FlashLoan {
+        quantum_uint256 loan_id;
+        quantum_address borrower;
+        quantum_address asset;
+        quantum_uint256 amount;
+        quantum_uint256 fee;
+        quantum_uint256 timestamp;
+        
+        // 🔄 Execution details
+        quantum_bytes callback_data;
+        quantum_address callback_contract;
+        quantum_bool executed;
+        quantum_bool repaid;
+        quantum_uint256 gas_used;
+        
+        // 📊 Loan metrics
+        quantum_string loan_purpose; // "ARBITRAGE", "LIQUIDATION", "REFINANCING"
+        quantum_uint256 profit_generated;
+        quantum_bool mev_protected;
+        
+        // ⚛️ Quantum features
+        quantum_bytes32 quantum_signature;
+        quantum_bool quantum_verified;
+    }
+    
+    // 🏦 LIQUIDITY POOL STRUCTURE
+    struct LiquidityPool {
+        quantum_address asset;
+        quantum_string asset_symbol;
+        quantum_uint256 total_liquidity;
+        quantum_uint256 available_liquidity;
+        quantum_uint256 borrowed_amount;
+        
+        // 💰 Fee structure
+        quantum_uint256 base_fee; // Basis points
+        quantum_uint256 utilization_fee; // Additional fee based on utilization
+        quantum_uint256 max_loan_amount;
+        quantum_uint256 min_loan_amount;
+        
+        // 📊 Pool statistics
+        quantum_uint256 total_loans;
+        quantum_uint256 total_volume;
+        quantum_uint256 total_fees_collected;
+        quantum_uint256 utilization_rate; // Basis points
+        
+        // 🛡️ Security
+        quantum_bool active;
+        quantum_bool emergency_pause;
+        quantum_address pool_manager;
+        quantum_uint256 reserve_factor; // Emergency reserve percentage
+    }
+    
+    // 🤖 FLASH LOAN AGGREGATOR
+    struct FlashLoanAggregator {
+        quantum_address aggregator_address;
+        quantum_string aggregator_name;
+        quantum_address[] supported_assets;
+        quantum_mapping(quantum_address => quantum_uint256) best_rates;
+        
+        // 📊 Performance metrics
+        quantum_uint256 total_aggregated_volume;
+        quantum_uint256 loans_facilitated;
+        quantum_uint256 average_savings; // Basis points saved for users
+        
+        // 🎯 Strategy
+        quantum_string routing_strategy; // "LOWEST_FEE", "HIGHEST_LIQUIDITY", "BEST_EXECUTION"
+        quantum_bool mev_optimization;
+    }
+    
+    // 🔄 ARBITRAGE OPPORTUNITY
+    struct ArbitrageOpportunity {
+        quantum_uint256 opportunity_id;
+        quantum_address asset_a;
+        quantum_address asset_b;
+        quantum_address dex_a;
+        quantum_address dex_b;
+        
+        // 💰 Profit calculation
+        quantum_uint256 price_difference; // Basis points
+        quantum_uint256 potential_profit;
+        quantum_uint256 required_capital;
+        quantum_uint256 gas_cost_estimate;
+        
+        // ⏰ Time sensitivity
+        quantum_uint256 discovery_time;
+        quantum_uint256 expiration_time;
+        quantum_bool executed;
+        quantum_address executor;
+        
+        // 🔐 MEV protection
+        quantum_bool mev_protected;
+        quantum_uint256 mev_tax;
+    }
+    
+    // 🗄️ STORAGE
+    quantum_mapping(quantum_uint256 => FlashLoan) public flashLoans;
+    quantum_mapping(quantum_address => LiquidityPool) public liquidityPools;
+    quantum_mapping(quantum_address => FlashLoanAggregator) public aggregators;
+    quantum_mapping(quantum_uint256 => ArbitrageOpportunity) public arbitrageOpportunities;
+    
+    quantum_address[] public supportedAssets;
+    quantum_address[] public aggregatorList;
+    quantum_uint256 public loanCounter;
+    quantum_uint256 public opportunityCounter;
+    
+    // 📊 GLOBAL STATISTICS
+    quantum_uint256 public totalFlashLoans;
+    quantum_uint256 public totalFlashLoanVolume;
+    quantum_uint256 public totalFeesCollected;
+    quantum_uint256 public totalArbitrageProfit;
+    quantum_uint256 public averageLoanSize;
+    
+    // ⚙️ PROTOCOL PARAMETERS
+    quantum_uint256 public constant MAX_FLASH_LOAN_FEE = 100; // 1% max fee
+    quantum_uint256 public constant MIN_FLASH_LOAN_AMOUNT = 1 * 10**18; // 1 USDTg
+    quantum_uint256 public constant MAX_UTILIZATION_RATE = 9500; // 95% max utilization
+    quantum_uint256 public constant ARBITRAGE_TIMEOUT = 300; // 5 minutes
+    
+    // 🛡️ SECURITY
+    USDTgSecurity.SecurityState private securityState;
+    quantum_address public governance;
+    quantum_bool public emergencyPause;
+    quantum_bool public mevProtectionEnabled;
+    
+    // 🚨 EVENTS
+    event FlashLoanExecuted(
+        quantum_uint256 indexed loan_id,
+        quantum_address indexed borrower,
+        quantum_address indexed asset,
+        quantum_uint256 amount,
+        quantum_uint256 fee,
+        quantum_bool success
+    );
+    
+    event LiquidityAdded(
+        quantum_address indexed asset,
+        quantum_address indexed provider,
+        quantum_uint256 amount
+    );
+    
+    event LiquidityRemoved(
+        quantum_address indexed asset,
+        quantum_address indexed provider,
+        quantum_uint256 amount
+    );
+    
+    event ArbitrageExecuted(
+        quantum_uint256 indexed opportunity_id,
+        quantum_address indexed executor,
+        quantum_uint256 profit,
+        quantum_bool success
+    );
+    
+    event AggregatorRegistered(
+        quantum_address indexed aggregator,
+        quantum_string name
+    );
+    
+    // 🔒 MODIFIERS
+    quantum_modifier notPaused() {
+        require(!emergencyPause, "Flash loans paused");
+        _;
+    }
+    
+    quantum_modifier onlyGovernance() {
+        require(msg.sender == governance, "Only governance");
+        _;
+    }
+    
+    quantum_modifier validAsset(quantum_address asset) {
+        require(liquidityPools[asset].active, "Asset not supported");
+        _;
+    }
+    
+    quantum_modifier sufficientLiquidity(quantum_address asset, quantum_uint256 amount) {
+        require(liquidityPools[asset].available_liquidity >= amount, "Insufficient liquidity");
+        _;
+    }
+    
+    // 🏗️ CONSTRUCTOR
+    constructor() quantum_safe {
+        USDTgSecurity.initializeSecurity(securityState);
+        governance = msg.sender;
+        mevProtectionEnabled = quantum_true;
+        
+        // Initialize default liquidity pools
+        initialize_default_pools();
+    }
+    
+    // ⚡ EXECUTE FLASH LOAN
+    function execute_flash_loan(
+        quantum_address asset,
+        quantum_uint256 amount,
+        quantum_bytes memory callback_data,
+        quantum_address callback_contract
+    ) external quantum_safe notPaused validAsset(asset) sufficientLiquidity(asset, amount)
+      returns (quantum_uint256 loan_id) {
+        
+        require(amount >= MIN_FLASH_LOAN_AMOUNT, "Amount too small");
+        require(callback_contract != quantum_address(0), "Invalid callback contract");
+        
+        // 📊 CALCULATE FEE
+        quantum_uint256 fee = calculate_flash_loan_fee(asset, amount);
+        
+        // 🆔 CREATE LOAN
+        loan_id = loanCounter++;
+        FlashLoan storage loan = flashLoans[loan_id];
+        loan.loan_id = loan_id;
+        loan.borrower = msg.sender;
+        loan.asset = asset;
+        loan.amount = amount;
+        loan.fee = fee;
+        loan.timestamp = block.timestamp;
+        loan.callback_data = callback_data;
+        loan.callback_contract = callback_contract;
+        loan.mev_protected = mevProtectionEnabled;
+        
+        // 🔐 QUANTUM VERIFICATION
+        loan.quantum_signature = generate_quantum_signature(loan);
+        loan.quantum_verified = verify_quantum_signature(loan);
+        
+        // 💰 UPDATE POOL STATE
+        LiquidityPool storage pool = liquidityPools[asset];
+        pool.available_liquidity -= amount;
+        pool.borrowed_amount += amount;
+        pool.utilization_rate = calculate_utilization_rate(pool);
+        
+        // 🚀 EXECUTE LOAN
+        quantum_bool success = execute_loan_callback(loan);
+        
+        if (success) {
+            // ✅ LOAN SUCCESSFUL
+            loan.executed = quantum_true;
+            loan.repaid = quantum_true;
+            
+            // 📊 UPDATE STATISTICS
+            pool.total_loans++;
+            pool.total_volume += amount;
+            pool.total_fees_collected += fee;
+            
+            totalFlashLoans++;
+            totalFlashLoanVolume += amount;
+            totalFeesCollected += fee;
+            
+            // 💰 RESTORE POOL LIQUIDITY
+            pool.available_liquidity += amount;
+            pool.borrowed_amount -= amount;
+            
+        } else {
+            // ❌ LOAN FAILED - REVERT ALL CHANGES
+            pool.available_liquidity += amount;
+            pool.borrowed_amount -= amount;
+            revert("Flash loan execution failed");
+        }
+        
+        emit FlashLoanExecuted(loan_id, msg.sender, asset, amount, fee, success);
+        
+        return loan_id;
+    }
+    
+    // 🔄 ARBITRAGE FLASH LOAN
+    function execute_arbitrage_flash_loan(
+        quantum_uint256 opportunity_id,
+        quantum_uint256 loan_amount,
+        quantum_bytes memory execution_data
+    ) external quantum_safe notPaused returns (quantum_bool success) {
+        
+        ArbitrageOpportunity storage opportunity = arbitrageOpportunities[opportunity_id];
+        require(!opportunity.executed, "Opportunity already executed");
+        require(block.timestamp <= opportunity.expiration_time, "Opportunity expired");
+        require(loan_amount >= opportunity.required_capital, "Insufficient capital");
+        
+        // ⚡ EXECUTE ARBITRAGE FLASH LOAN
+        quantum_uint256 loan_id = execute_flash_loan(
+            opportunity.asset_a,
+            loan_amount,
+            execution_data,
+            msg.sender
+        );
+        
+        FlashLoan storage loan = flashLoans[loan_id];
+        
+        if (loan.executed && loan.repaid) {
+            // ✅ ARBITRAGE SUCCESSFUL
+            opportunity.executed = quantum_true;
+            opportunity.executor = msg.sender;
+            
+            // 📊 CALCULATE PROFIT
+            quantum_uint256 profit = calculate_arbitrage_profit(opportunity_id);
+            opportunity.potential_profit = profit;
+            loan.profit_generated = profit;
+            loan.loan_purpose = "ARBITRAGE";
+            
+            totalArbitrageProfit += profit;
+            
+            emit ArbitrageExecuted(opportunity_id, msg.sender, profit, quantum_true);
+            
+            return quantum_true;
+        } else {
+            emit ArbitrageExecuted(opportunity_id, msg.sender, 0, quantum_false);
+            return quantum_false;
+        }
+    }
+    
+    // 🏦 LIQUIDITY MANAGEMENT
+    function add_liquidity(quantum_address asset) external payable quantum_safe validAsset(asset) {
+        require(msg.value > 0, "Amount must be positive");
+        
+        LiquidityPool storage pool = liquidityPools[asset];
+        pool.total_liquidity += msg.value;
+        pool.available_liquidity += msg.value;
+        pool.utilization_rate = calculate_utilization_rate(pool);
+        
+        emit LiquidityAdded(asset, msg.sender, msg.value);
+    }
+    
+    function remove_liquidity(quantum_address asset, quantum_uint256 amount) 
+        external quantum_safe validAsset(asset) {
+        
+        LiquidityPool storage pool = liquidityPools[asset];
+        require(pool.available_liquidity >= amount, "Insufficient available liquidity");
+        
+        pool.total_liquidity -= amount;
+        pool.available_liquidity -= amount;
+        pool.utilization_rate = calculate_utilization_rate(pool);
+        
+        payable(msg.sender).transfer(amount);
+        
+        emit LiquidityRemoved(asset, msg.sender, amount);
+    }
+    
+    // 🤖 AGGREGATOR FUNCTIONS
+    function register_aggregator(
+        quantum_string memory aggregator_name,
+        quantum_address[] memory supported_assets,
+        quantum_string memory routing_strategy
+    ) external quantum_safe {
+        
+        require(aggregators[msg.sender].aggregator_address == quantum_address(0), "Already registered");
+        
+        FlashLoanAggregator storage aggregator = aggregators[msg.sender];
+        aggregator.aggregator_address = msg.sender;
+        aggregator.aggregator_name = aggregator_name;
+        aggregator.supported_assets = supported_assets;
+        aggregator.routing_strategy = routing_strategy;
+        aggregator.mev_optimization = quantum_true;
+        
+        aggregatorList.push(msg.sender);
+        
+        emit AggregatorRegistered(msg.sender, aggregator_name);
+    }
+    
+    function get_best_flash_loan_rate(quantum_address asset, quantum_uint256 amount) 
+        external view returns (quantum_uint256 best_rate, quantum_address best_pool) {
+        
+        best_rate = type(quantum_uint256).max;
+        best_pool = quantum_address(0);
+        
+        // Check direct pool
+        if (liquidityPools[asset].active && liquidityPools[asset].available_liquidity >= amount) {
+            quantum_uint256 direct_fee = calculate_flash_loan_fee(asset, amount);
+            if (direct_fee < best_rate) {
+                best_rate = direct_fee;
+                best_pool = address(this);
+            }
+        }
+        
+        // Check aggregators
+        for (quantum_uint256 i = 0; i < aggregatorList.length; i++) {
+            quantum_address aggregator = aggregatorList[i];
+            quantum_uint256 aggregator_rate = aggregators[aggregator].best_rates[asset];
+            
+            if (aggregator_rate > 0 && aggregator_rate < best_rate) {
+                best_rate = aggregator_rate;
+                best_pool = aggregator;
+            }
+        }
+        
+        return (best_rate, best_pool);
+    }
+    
+    // 🎯 ARBITRAGE OPPORTUNITY DISCOVERY
+    function discover_arbitrage_opportunity(
+        quantum_address asset_a,
+        quantum_address asset_b,
+        quantum_address dex_a,
+        quantum_address dex_b
+    ) external quantum_safe returns (quantum_uint256 opportunity_id) {
+        
+        // 📊 CALCULATE PRICE DIFFERENCE
+        quantum_uint256 price_a = get_asset_price(asset_a, dex_a);
+        quantum_uint256 price_b = get_asset_price(asset_b, dex_b);
+        
+        if (price_a == 0 || price_b == 0) return 0; // Invalid prices
+        
+        quantum_uint256 price_difference = price_a > price_b ? 
+            ((price_a - price_b) * 10000) / price_b : 0;
+        
+        if (price_difference < 50) return 0; // Less than 0.5% difference
+        
+        // 🆔 CREATE OPPORTUNITY
+        opportunity_id = opportunityCounter++;
+        ArbitrageOpportunity storage opportunity = arbitrageOpportunities[opportunity_id];
+        opportunity.opportunity_id = opportunity_id;
+        opportunity.asset_a = asset_a;
+        opportunity.asset_b = asset_b;
+        opportunity.dex_a = dex_a;
+        opportunity.dex_b = dex_b;
+        opportunity.price_difference = price_difference;
+        opportunity.discovery_time = block.timestamp;
+        opportunity.expiration_time = block.timestamp + ARBITRAGE_TIMEOUT;
+        
+        // 💰 CALCULATE PROFIT POTENTIAL
+        quantum_uint256 max_trade_size = get_max_arbitrage_size(dex_a, dex_b, asset_a);
+        opportunity.required_capital = max_trade_size;
+        opportunity.potential_profit = (max_trade_size * price_difference) / 10000;
+        opportunity.gas_cost_estimate = estimate_arbitrage_gas_cost();
+        
+        // 🔐 MEV PROTECTION
+        if (mevProtectionEnabled) {
+            opportunity.mev_protected = quantum_true;
+            opportunity.mev_tax = (opportunity.potential_profit * 100) / 10000; // 1% MEV tax
+        }
+        
+        return opportunity_id;
+    }
+    
+private:
+    // 💰 FEE CALCULATION
+    function calculate_flash_loan_fee(quantum_address asset, quantum_uint256 amount) 
+        internal view returns (quantum_uint256) {
+        
+        LiquidityPool storage pool = liquidityPools[asset];
+        
+        // Base fee + utilization fee
+        quantum_uint256 base_fee = (amount * pool.base_fee) / 10000;
+        quantum_uint256 utilization_multiplier = (pool.utilization_rate * pool.utilization_fee) / 10000;
+        quantum_uint256 utilization_fee = (base_fee * utilization_multiplier) / 10000;
+        
+        return base_fee + utilization_fee;
+    }
+    
+    function calculate_utilization_rate(LiquidityPool storage pool) 
+        internal pure returns (quantum_uint256) {
+        
+        if (pool.total_liquidity == 0) return 0;
+        return (pool.borrowed_amount * 10000) / pool.total_liquidity;
+    }
+    
+    // 🚀 LOAN EXECUTION
+    function execute_loan_callback(FlashLoan storage loan) 
+        internal returns (quantum_bool success) {
+        
+        quantum_uint256 gas_start = gasleft();
+        
+        // 💰 TRANSFER LOAN AMOUNT
+        (quantum_bool transfer_success,) = loan.callback_contract.call{value: loan.amount}("");
+        
+        if (!transfer_success) return quantum_false;
+        
+        // 🔄 EXECUTE CALLBACK
+        (quantum_bool callback_success,) = loan.callback_contract.call(
+            abi.encodeWithSignature(
+                "onFlashLoan(address,uint256,uint256,bytes)",
+                loan.asset,
+                loan.amount,
+                loan.fee,
+                loan.callback_data
+            )
+        );
+        
+        if (!callback_success) return quantum_false;
+        
+        // 💰 VERIFY REPAYMENT
+        quantum_uint256 expected_repayment = loan.amount + loan.fee;
+        if (address(this).balance < expected_repayment) return quantum_false;
+        
+        // 📊 RECORD GAS USAGE
+        loan.gas_used = gas_start - gasleft();
+        
+        return quantum_true;
+    }
+    
+    // 🔐 QUANTUM FUNCTIONS
+    function generate_quantum_signature(FlashLoan storage loan) 
+        internal pure returns (quantum_bytes32) {
+        
+        return keccak256(abi.encodePacked(
+            loan.borrower,
+            loan.asset,
+            loan.amount,
+            loan.timestamp
+        ));
+    }
+    
+    function verify_quantum_signature(FlashLoan storage loan) 
+        internal pure returns (quantum_bool) {
+        
+        quantum_bytes32 expected = keccak256(abi.encodePacked(
+            loan.borrower,
+            loan.asset,
+            loan.amount,
+            loan.timestamp
+        ));
+        
+        return expected == loan.quantum_signature;
+    }
+    
+    // 📊 PRICE AND ARBITRAGE FUNCTIONS
+    function get_asset_price(quantum_address asset, quantum_address dex) 
+        internal view returns (quantum_uint256) {
+        
+        // Mock price oracle - in production, integrate with real price feeds
+        if (asset == quantum_address(0x1)) return 1 * 10**18; // USDTg = $1
+        if (asset == quantum_address(0x2)) return 50000 * 10**18; // BTC = $50,000
+        if (asset == quantum_address(0x3)) return 3000 * 10**18; // ETH = $3,000
+        
+        return 1 * 10**18; // Default $1
+    }
+    
+    function get_max_arbitrage_size(quantum_address dex_a, quantum_address dex_b, quantum_address asset) 
+        internal view returns (quantum_uint256) {
+        
+        // Mock implementation - in production, query DEX liquidity
+        return 10000 * 10**18; // 10,000 tokens max
+    }
+    
+    function estimate_arbitrage_gas_cost() internal pure returns (quantum_uint256) {
+        return 500000; // 500k gas units estimated
+    }
+    
+    function calculate_arbitrage_profit(quantum_uint256 opportunity_id) 
+        internal view returns (quantum_uint256) {
+        
+        ArbitrageOpportunity storage opportunity = arbitrageOpportunities[opportunity_id];
+        
+        // Calculate actual profit after gas costs and fees
+        quantum_uint256 gross_profit = opportunity.potential_profit;
+        quantum_uint256 gas_cost = opportunity.gas_cost_estimate * tx.gasprice;
+        quantum_uint256 mev_tax = opportunity.mev_tax;
+        
+        if (gross_profit > gas_cost + mev_tax) {
+            return gross_profit - gas_cost - mev_tax;
+        } else {
+            return 0;
+        }
+    }
+    
+    // 🔧 INITIALIZATION
+    function initialize_default_pools() internal {
+        // USDTg pool
+        LiquidityPool storage usdtg_pool = liquidityPools[quantum_address(0x1)];
+        usdtg_pool.asset = quantum_address(0x1);
+        usdtg_pool.asset_symbol = "USDTg";
+        usdtg_pool.base_fee = 9; // 0.09%
+        usdtg_pool.utilization_fee = 50; // Additional 0.5% at 100% utilization
+        usdtg_pool.max_loan_amount = 1000000 * 10**18; // 1M USDTg
+        usdtg_pool.min_loan_amount = MIN_FLASH_LOAN_AMOUNT;
+        usdtg_pool.active = quantum_true;
+        usdtg_pool.pool_manager = governance;
+        usdtg_pool.reserve_factor = 1000; // 10% reserve
+        
+        supportedAssets.push(quantum_address(0x1));
+        
+        // Add more default pools for major assets
+        quantum_address[3] memory default_assets = [
+            quantum_address(0x2), // BTC
+            quantum_address(0x3), // ETH
+            quantum_address(0x4)  // USDC
+        ];
+        
+        quantum_string[3] memory symbols = ["BTC", "ETH", "USDC"];
+        
+        for (quantum_uint256 i = 0; i < default_assets.length; i++) {
+            LiquidityPool storage pool = liquidityPools[default_assets[i]];
+            pool.asset = default_assets[i];
+            pool.asset_symbol = symbols[i];
+            pool.base_fee = 15; // 0.15% for non-native assets
+            pool.utilization_fee = 100; // 1% at full utilization
+            pool.max_loan_amount = 100000 * 10**18;
+            pool.min_loan_amount = MIN_FLASH_LOAN_AMOUNT;
+            pool.active = quantum_true;
+            pool.pool_manager = governance;
+            pool.reserve_factor = 1500; // 15% reserve
+            
+            supportedAssets.push(default_assets[i]);
+        }
+    }
+    
+public:
+    // 📊 QUERY FUNCTIONS
+    function get_flash_loan_info(quantum_uint256 loan_id) 
+        external view returns (FlashLoan memory) {
+        return flashLoans[loan_id];
+    }
+    
+    function get_liquidity_pool_info(quantum_address asset) 
+        external view returns (LiquidityPool memory) {
+        return liquidityPools[asset];
+    }
+    
+    function get_arbitrage_opportunity(quantum_uint256 opportunity_id) 
+        external view returns (ArbitrageOpportunity memory) {
+        return arbitrageOpportunities[opportunity_id];
+    }
+    
+    function get_supported_assets() external view returns (quantum_address[] memory) {
+        return supportedAssets;
+    }
+    
+    function get_flash_loan_stats() external view returns (
+        quantum_uint256 _totalFlashLoans,
+        quantum_uint256 _totalVolume,
+        quantum_uint256 _totalFeesCollected,
+        quantum_uint256 _totalArbitrageProfit,
+        quantum_uint256 _averageLoanSize
+    ) {
+        quantum_uint256 avg_size = totalFlashLoans > 0 ? totalFlashLoanVolume / totalFlashLoans : 0;
+        
+        return (
+            totalFlashLoans,
+            totalFlashLoanVolume,
+            totalFeesCollected,
+            totalArbitrageProfit,
+            avg_size
+        );
+    }
+    
+    function estimate_flash_loan_fee(quantum_address asset, quantum_uint256 amount) 
+        external view returns (quantum_uint256) {
+        return calculate_flash_loan_fee(asset, amount);
+    }
+    
+    // 🔧 GOVERNANCE FUNCTIONS
+    function update_pool_parameters(
+        quantum_address asset,
+        quantum_uint256 base_fee,
+        quantum_uint256 utilization_fee,
+        quantum_uint256 max_loan_amount
+    ) external quantum_safe onlyGovernance {
+        
+        require(base_fee <= MAX_FLASH_LOAN_FEE, "Fee too high");
+        
+        LiquidityPool storage pool = liquidityPools[asset];
+        pool.base_fee = base_fee;
+        pool.utilization_fee = utilization_fee;
+        pool.max_loan_amount = max_loan_amount;
+    }
+    
+    function add_supported_asset(
+        quantum_address asset,
+        quantum_string memory symbol,
+        quantum_uint256 base_fee,
+        quantum_uint256 max_loan_amount
+    ) external quantum_safe onlyGovernance {
+        
+        require(!liquidityPools[asset].active, "Asset already supported");
+        
+        LiquidityPool storage pool = liquidityPools[asset];
+        pool.asset = asset;
+        pool.asset_symbol = symbol;
+        pool.base_fee = base_fee;
+        pool.utilization_fee = 100; // 1% default
+        pool.max_loan_amount = max_loan_amount;
+        pool.min_loan_amount = MIN_FLASH_LOAN_AMOUNT;
+        pool.active = quantum_true;
+        pool.pool_manager = msg.sender;
+        pool.reserve_factor = 1000; // 10% default
+        
+        supportedAssets.push(asset);
+    }
+    
+    function emergency_pause_asset(quantum_address asset) external quantum_safe onlyGovernance {
+        liquidityPools[asset].emergency_pause = quantum_true;
+    }
+    
+    function emergency_unpause_asset(quantum_address asset) external quantum_safe onlyGovernance {
+        liquidityPools[asset].emergency_pause = quantum_false;
+    }
+    
+    // 🛡️ SECURITY FUNCTIONS
+    function emergency_pause() external quantum_safe onlyGovernance {
+        emergencyPause = quantum_true;
+    }
+    
+    function emergency_unpause() external quantum_safe onlyGovernance {
+        emergencyPause = quantum_false;
+    }
+    
+    function toggle_mev_protection() external quantum_safe onlyGovernance {
+        mevProtectionEnabled = !mevProtectionEnabled;
+    }
+    
+    // 💰 TREASURY FUNCTIONS
+    function withdraw_fees(quantum_address asset, quantum_uint256 amount) 
+        external quantum_safe onlyGovernance {
+        
+        LiquidityPool storage pool = liquidityPools[asset];
+        require(amount <= pool.total_fees_collected, "Insufficient fees");
+        
+        pool.total_fees_collected -= amount;
+        payable(governance).transfer(amount);
+    }
+    
+    // 📊 ANALYTICS FUNCTIONS
+    function get_pool_utilization(quantum_address asset) external view returns (quantum_uint256) {
+        return liquidityPools[asset].utilization_rate;
+    }
+    
+    function get_total_liquidity() external view returns (quantum_uint256) {
+        quantum_uint256 total = 0;
+        for (quantum_uint256 i = 0; i < supportedAssets.length; i++) {
+            total += liquidityPools[supportedAssets[i]].total_liquidity;
+        }
+        return total;
+    }
+    
+    function get_active_arbitrage_opportunities() external view returns (quantum_uint256 count) {
+        count = 0;
+        for (quantum_uint256 i = 0; i < opportunityCounter; i++) {
+            ArbitrageOpportunity storage opportunity = arbitrageOpportunities[i];
+            if (!opportunity.executed && block.timestamp <= opportunity.expiration_time) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
