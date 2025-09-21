@@ -401,7 +401,7 @@ struct NewWalletSheet_Basic: View {
                         let walletAddresses = generateQuantumSafeAddresses(from: newSeedPhrase)
                         
                         // Add to wallet list (don't overwrite)
-                        var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? []
+                        var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? ["USDTgVerse Wallet"]
                         
                         if !savedWallets.contains(walletName) {
                             savedWallets.append(walletName)
@@ -578,7 +578,7 @@ struct ImportWalletSheet_Basic: View {
                                     let walletAddresses = generateRealWalletAddresses(from: seedPhrase, network: selectedNetwork)
                                     
                                     // Add to wallet list (don't overwrite)
-                                    var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? []
+                                    var savedWallets = UserDefaults.standard.stringArray(forKey: "WalletList") ?? ["USDTgVerse Wallet"]
                                     
                                     if !savedWallets.contains(walletName) {
                                         savedWallets.append(walletName)

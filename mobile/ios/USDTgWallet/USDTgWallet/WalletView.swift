@@ -1106,19 +1106,10 @@ struct BasicWalletListSheet: View {
                                             .fontWeight(.semibold)
                                             .foregroundColor(.primary)
                                         
-                                        if walletName == "USDTgVerse Wallet" {
-                                            Text("DEMO")
-                                                .font(.caption2)
-                                                .fontWeight(.bold)
-                                                .padding(.horizontal, 6)
-                                                .padding(.vertical, 2)
-                                                .background(Color.orange.opacity(0.2))
-                                                .foregroundColor(.orange)
-                                                .cornerRadius(4)
-                                        }
+                                        // No demo badge - clean wallet list
                                     }
                                     
-                                    Text("Balance: $\(walletName == "USDTgVerse Wallet" ? 48904.26 : 10.0, specifier: "%.2f")")
+                                    Text("Balance: $\(walletName == "USDTgVerse Wallet" ? 0.0 : 10.0, specifier: "%.2f")")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
