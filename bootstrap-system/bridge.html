@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Bridge - Cross-Chain Asset Transfer</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+        }
+
+        .main-container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bridge-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bridge-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chain-selector {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            min-width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chain-selector:hover {
+            border-color: #00d4ff;
+            transform: translateY(-2px);
+        }
+
+        .chain-selector.selected {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .chain-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .chain-name {
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .bridge-arrow {
+            font-size: 2rem;
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+        }
+
+        .bridge-button {
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .bridge-button:hover {
+            transform: scale(1.02);
+        }
+
+        .bridge-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .transaction-status {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #00d4ff;
+            display: none;
+        }
+
+        .status-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .status-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .recent-transfers {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .transfer-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .transfer-route {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .transfer-amount {
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .bridge-flow {
+                flex-direction: column;
+            }
+            
+            .chain-selector {
+                min-width: 100%;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="logo">🌉 Bootstrap Bridge</div>
+            <div>
+                <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+                <a href="../oracle-network/dashboard.html" class="nav-link">🔮 Oracle Network</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">🌉 Bootstrap Bridge</h1>
+            <p class="hero-subtitle">Cross-Chain Asset Transfer to USDTgVerse</p>
+            <p>Transfer USDT, USDC, BNB, ETH and other assets from major blockchains to USDTgVerse with quantum-safe security</p>
+        </div>
+
+        <div class="bridge-container">
+            <h2>🔄 Bridge Assets to USDTgVerse</h2>
+            
+            <div class="bridge-flow">
+                <div class="chain-selector" id="sourceChain" onclick="selectSourceChain()">
+                    <div class="chain-icon">🔷</div>
+                    <div class="chain-name">Ethereum</div>
+                    <div>Select Source Chain</div>
+                </div>
+                
+                <div class="bridge-arrow">→</div>
+                
+                <div class="chain-selector selected">
+                    <div class="chain-icon">⚛️</div>
+                    <div class="chain-name">USDTgVerse</div>
+                    <div>Destination Chain</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>💰 Bridge Configuration</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Asset to Bridge</label>
+                <select class="form-select" id="assetSelect">
+                    <option value="usdt">💎 USDT - Tether USD</option>
+                    <option value="usdc">💙 USDC - USD Coin</option>
+                    <option value="eth">🔷 ETH - Ethereum</option>
+                    <option value="bnb">🟡 BNB - Binance Coin</option>
+                    <option value="matic">🟣 MATIC - Polygon</option>
+                    <option value="avax">🔴 AVAX - Avalanche</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Amount to Bridge</label>
+                <input type="number" class="form-input" id="bridgeAmount" placeholder="1000.00" min="1" step="0.01">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">USDTgVerse Recipient Address</label>
+                <input type="text" class="form-input" id="recipientAddress" placeholder="USDTg1q..." required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Bridge Fee</label>
+                <input type="text" class="form-input" value="0.1% + Gas Fees" readonly>
+                <small style="opacity: 0.7;">Bridge fee: 0.1% of bridged amount + network gas fees</small>
+            </div>
+            
+            <button class="bridge-button" onclick="initiateBridge()">
+                🌉 Initiate Bridge Transfer
+            </button>
+        </div>
+
+        <div class="transaction-status" id="transactionStatus">
+            <h3>📊 Bridge Transaction Status</h3>
+            <div id="statusSteps"></div>
+        </div>
+
+        <div class="recent-transfers">
+            <h2>📋 Recent Bridge Transfers</h2>
+            
+            <div class="transfer-item">
+                <div class="transfer-route">
+                    <span>🔷 Ethereum</span>
+                    <span>→</span>
+                    <span>⚛️ USDTgVerse</span>
+                </div>
+                <div class="transfer-amount">5,000 USDT</div>
+                <div>✅ Completed</div>
+            </div>
+            
+            <div class="transfer-item">
+                <div class="transfer-route">
+                    <span>🟡 BNB Chain</span>
+                    <span>→</span>
+                    <span>⚛️ USDTgVerse</span>
+                </div>
+                <div class="transfer-amount">2,500 USDC</div>
+                <div>✅ Completed</div>
+            </div>
+            
+            <div class="transfer-item">
+                <div class="transfer-route">
+                    <span>🟣 Polygon</span>
+                    <span>→</span>
+                    <span>⚛️ USDTgVerse</span>
+                </div>
+                <div class="transfer-amount">10 ETH</div>
+                <div>🔄 Processing</div>
+            </div>
+            
+            <div class="transfer-item">
+                <div class="transfer-route">
+                    <span>🔴 Avalanche</span>
+                    <span>→</span>
+                    <span>⚛️ USDTgVerse</span>
+                </div>
+                <div class="transfer-amount">1,000 AVAX</div>
+                <div>⏳ Pending</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedSourceChain = 'ethereum';
+        
+        const chainData = {
+            ethereum: { icon: '🔷', name: 'Ethereum', status: 'EVM Compatible' },
+            bsc: { icon: '🟡', name: 'BNB Chain', status: 'Fast & Low Cost' },
+            polygon: { icon: '🟣', name: 'Polygon', status: 'Layer 2 Scaling' },
+            arbitrum: { icon: '🔵', name: 'Arbitrum', status: 'Optimistic Rollup' },
+            avalanche: { icon: '🔴', name: 'Avalanche', status: 'High Throughput' },
+            solana: { icon: '🟢', name: 'Solana', status: 'Ultra Fast' },
+            tron: { icon: '🔻', name: 'TRON', status: 'Low Energy' }
+        };
+
+        function selectSourceChain() {
+            // In a real implementation, this would show a modal with chain options
+            const chains = Object.keys(chainData);
+            const randomChain = chains[Math.floor(Math.random() * chains.length)];
+            
+            const sourceChainElement = document.getElementById('sourceChain');
+            const chainInfo = chainData[randomChain];
+            
+            sourceChainElement.innerHTML = `
+                <div class="chain-icon">${chainInfo.icon}</div>
+                <div class="chain-name">${chainInfo.name}</div>
+                <div>${chainInfo.status}</div>
+            `;
+            
+            selectedSourceChain = randomChain;
+            console.log('Selected source chain:', randomChain);
+        }
+
+        async function initiateBridge() {
+            const amount = document.getElementById('bridgeAmount').value;
+            const asset = document.getElementById('assetSelect').value;
+            const recipient = document.getElementById('recipientAddress').value;
+
+            if (!amount || !recipient) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const bridgeButton = document.querySelector('.bridge-button');
+            const statusDiv = document.getElementById('transactionStatus');
+            const stepsDiv = document.getElementById('statusSteps');
+
+            bridgeButton.disabled = true;
+            bridgeButton.textContent = '🔄 Processing Bridge...';
+            statusDiv.style.display = 'block';
+            stepsDiv.innerHTML = '';
+
+            const steps = [
+                { icon: '🔐', text: 'Validating source chain transaction...', delay: 1000 },
+                { icon: '🔍', text: 'Verifying asset lock on source chain...', delay: 2000 },
+                { icon: '⚛️', text: 'Generating quantum-safe proof...', delay: 1500 },
+                { icon: '🌉', text: 'Relaying to USDTgVerse bridge...', delay: 2500 },
+                { icon: '🔄', text: 'Processing on USDTgVerse...', delay: 1000 },
+                { icon: '💰', text: 'Minting assets on USDTgVerse...', delay: 1500 },
+                { icon: '✅', text: 'Bridge transfer completed!', delay: 500 }
+            ];
+
+            for (let i = 0; i < steps.length; i++) {
+                const step = steps[i];
+                
+                const stepElement = document.createElement('div');
+                stepElement.className = 'status-step';
+                stepElement.innerHTML = `
+                    <span class="status-icon">🔄</span>
+                    <span>${step.text}</span>
+                `;
+                stepsDiv.appendChild(stepElement);
+
+                await new Promise(resolve => setTimeout(resolve, step.delay));
+
+                stepElement.querySelector('.status-icon').textContent = step.icon;
+                
+                if (i === steps.length - 1) {
+                    stepElement.style.background = 'rgba(74, 222, 128, 0.1)';
+                    stepElement.style.borderColor = '#4ade80';
+                }
+            }
+
+            // Generate mock transaction hash
+            const txHash = '0x' + Math.random().toString(16).substr(2, 64);
+            
+            const completionElement = document.createElement('div');
+            completionElement.className = 'status-step';
+            completionElement.innerHTML = `
+                <span class="status-icon">🔗</span>
+                <span>Transaction Hash: <code style="color: #00d4ff;">${txHash}</code></span>
+            `;
+            completionElement.style.background = 'rgba(0, 212, 255, 0.1)';
+            stepsDiv.appendChild(completionElement);
+
+            bridgeButton.disabled = false;
+            bridgeButton.textContent = '🎉 Bridge Complete!';
+            
+            setTimeout(() => {
+                bridgeButton.textContent = '🌉 Initiate Bridge Transfer';
+            }, 3000);
+        }
+
+        // Simulate real-time bridge statistics
+        function updateBridgeStats() {
+            // Update recent transfers with random data
+            const transferItems = document.querySelectorAll('.transfer-item');
+            
+            transferItems.forEach(item => {
+                const statusElement = item.querySelector('div:last-child');
+                if (statusElement.textContent.includes('Processing')) {
+                    if (Math.random() > 0.7) {
+                        statusElement.textContent = '✅ Completed';
+                        statusElement.style.color = '#4ade80';
+                    }
+                } else if (statusElement.textContent.includes('Pending')) {
+                    if (Math.random() > 0.8) {
+                        statusElement.textContent = '🔄 Processing';
+                        statusElement.style.color = '#00d4ff';
+                    }
+                }
+            });
+        }
+
+        // Initialize
+        setInterval(updateBridgeStats, 5000); // Update every 5 seconds
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌉 Bootstrap Bridge initialized');
+            console.log('⚛️ Quantum-safe cross-chain transfers ready');
+            
+            // Auto-fill recipient address with quantum format
+            document.getElementById('recipientAddress').placeholder = 'USDTg1q' + Math.random().toString(36).substr(2, 40);
+        });
+    </script>
+</body>
+</html>

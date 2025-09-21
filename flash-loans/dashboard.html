@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Loans Dashboard - Uncollateralized Lending</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+        }
+
+        .main-container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .flash-loan-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .flash-button {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .flash-button:hover {
+            transform: scale(1.02);
+        }
+
+        .liquidity-pools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .pool-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .pool-asset {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pool-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .arbitrage-opportunities {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .opportunity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .opportunity-profit {
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .execute-button {
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .execute-button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="logo">⚡ Flash Loans</div>
+            <div>
+                <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+                <a href="../liquid-staking/dashboard.html" class="nav-link">💎 Liquid Staking</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">⚡ Flash Loans</h1>
+            <p class="hero-subtitle">Uncollateralized Lending with Atomic Transaction Execution</p>
+            <p>Borrow any amount instantly without collateral - perfect for arbitrage and liquidations</p>
+        </div>
+
+        <div class="flash-loan-form">
+            <h2>⚡ Request Flash Loan</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Asset to Borrow</label>
+                <select class="form-select" id="borrowAsset">
+                    <option value="usdtg">⚛️ USDTg - 0.09% fee</option>
+                    <option value="usdt">💎 USDT - 0.15% fee</option>
+                    <option value="usdc">💙 USDC - 0.15% fee</option>
+                    <option value="eth">🔷 ETH - 0.2% fee</option>
+                    <option value="btc">₿ BTC - 0.25% fee</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Loan Amount</label>
+                <input type="number" class="form-input" id="loanAmount" placeholder="10000.00" min="1" step="0.01">
+                <small style="opacity: 0.7;">Maximum available liquidity will be shown below</small>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Callback Contract Address</label>
+                <input type="text" class="form-input" id="callbackContract" placeholder="0x..." required>
+                <small style="opacity: 0.7;">Your contract that will receive and repay the loan</small>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Purpose</label>
+                <select class="form-select" id="loanPurpose">
+                    <option value="arbitrage">🎯 Arbitrage Trading</option>
+                    <option value="liquidation">💰 Liquidation</option>
+                    <option value="refinancing">🔄 Debt Refinancing</option>
+                    <option value="other">🔧 Other</option>
+                </select>
+            </div>
+            
+            <button class="flash-button" onclick="requestFlashLoan()">
+                ⚡ Request Flash Loan
+            </button>
+        </div>
+
+        <div class="flash-loan-form">
+            <h2>💰 Liquidity Pools</h2>
+            
+            <div class="liquidity-pools">
+                <div class="pool-card">
+                    <div class="pool-asset">⚛️ USDTg</div>
+                    <div style="font-weight: bold; color: #00d4ff;">Available: 5.2M USDTg</div>
+                    <div class="pool-stats">
+                        <div>Fee: <strong>0.09%</strong></div>
+                        <div>Utilization: <strong>67%</strong></div>
+                        <div>Total Loans: <strong>1,247</strong></div>
+                        <div>Volume: <strong>$12.5M</strong></div>
+                    </div>
+                </div>
+                
+                <div class="pool-card">
+                    <div class="pool-asset">💎 USDT</div>
+                    <div style="font-weight: bold; color: #00d4ff;">Available: 2.8M USDT</div>
+                    <div class="pool-stats">
+                        <div>Fee: <strong>0.15%</strong></div>
+                        <div>Utilization: <strong>73%</strong></div>
+                        <div>Total Loans: <strong>892</strong></div>
+                        <div>Volume: <strong>$8.7M</strong></div>
+                    </div>
+                </div>
+                
+                <div class="pool-card">
+                    <div class="pool-asset">🔷 ETH</div>
+                    <div style="font-weight: bold; color: #00d4ff;">Available: 1,250 ETH</div>
+                    <div class="pool-stats">
+                        <div>Fee: <strong>0.2%</strong></div>
+                        <div>Utilization: <strong>58%</strong></div>
+                        <div>Total Loans: <strong>456</strong></div>
+                        <div>Volume: <strong>$4.2M</strong></div>
+                    </div>
+                </div>
+                
+                <div class="pool-card">
+                    <div class="pool-asset">₿ BTC</div>
+                    <div style="font-weight: bold; color: #00d4ff;">Available: 125 BTC</div>
+                    <div class="pool-stats">
+                        <div>Fee: <strong>0.25%</strong></div>
+                        <div>Utilization: <strong>45%</strong></div>
+                        <div>Total Loans: <strong>234</strong></div>
+                        <div>Volume: <strong>$3.1M</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arbitrage-opportunities">
+            <h2>🎯 Live Arbitrage Opportunities</h2>
+            <p>Profitable arbitrage opportunities detected across DEXs - execute with flash loans</p>
+            
+            <div class="opportunity-item">
+                <div>
+                    <div style="font-weight: bold;">USDTg/USDT</div>
+                    <div style="opacity: 0.8;">USDTgDEX ↔ Uniswap</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="opportunity-profit">+2.34% profit</div>
+                    <button class="execute-button" onclick="executeArbitrage('usdtg-usdt')">Execute</button>
+                </div>
+            </div>
+            
+            <div class="opportunity-item">
+                <div>
+                    <div style="font-weight: bold;">ETH/USDC</div>
+                    <div style="opacity: 0.8;">SushiSwap ↔ PancakeSwap</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="opportunity-profit">+1.87% profit</div>
+                    <button class="execute-button" onclick="executeArbitrage('eth-usdc')">Execute</button>
+                </div>
+            </div>
+            
+            <div class="opportunity-item">
+                <div>
+                    <div style="font-weight: bold;">BNB/BUSD</div>
+                    <div style="opacity: 0.8;">PancakeSwap ↔ BiSwap</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="opportunity-profit">+1.45% profit</div>
+                    <button class="execute-button" onclick="executeArbitrage('bnb-busd')">Execute</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function requestFlashLoan() {
+            const asset = document.getElementById('borrowAsset').value;
+            const amount = document.getElementById('loanAmount').value;
+            const callback = document.getElementById('callbackContract').value;
+            const purpose = document.getElementById('loanPurpose').value;
+            
+            if (!amount || !callback) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            alert(`⚡ Flash loan of ${amount} ${asset.toUpperCase()} initiated!\nCallback: ${callback}\nPurpose: ${purpose}`);
+            console.log('Flash loan requested:', { asset, amount, callback, purpose });
+        }
+        
+        function executeArbitrage(pair) {
+            alert(`🎯 Executing arbitrage for ${pair.toUpperCase()} pair with flash loan!`);
+            console.log('Arbitrage executed for:', pair);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('⚡ Flash Loans Dashboard initialized');
+        });
+    </script>
+</body>
+</html>

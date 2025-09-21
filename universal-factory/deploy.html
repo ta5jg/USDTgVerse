@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Contract Factory - Multi-Chain Deployment</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+        }
+
+        .main-container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .deployment-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chain-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chain-card:hover {
+            border-color: #00d4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .chain-card.selected {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .chain-logo {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chain-name {
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .chain-status {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .deployment-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+        }
+
+        .deploy-button {
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .deploy-button:hover {
+            transform: scale(1.02);
+        }
+
+        .deploy-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .deployment-status {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .status-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .chain-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="logo">🏭 Universal Factory</div>
+            <div>
+                <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+                <a href="../dev-tools/USDTgIDE.html" class="nav-link">🔧 IDE</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">🏭 Universal Contract Factory</h1>
+            <p class="hero-subtitle">Deploy Smart Contracts to Any Blockchain from a Single Interface</p>
+            <p>Deploy once, run everywhere. Our Universal Factory supports 8+ major blockchains with quantum-safe deployment.</p>
+        </div>
+
+        <div class="deployment-container">
+            <h2>🌐 Select Target Blockchains</h2>
+            <p>Choose one or multiple blockchains for simultaneous deployment</p>
+            
+            <div class="chain-grid" id="chainGrid">
+                <div class="chain-card" data-chain="usdtgverse">
+                    <div class="chain-logo">⚛️</div>
+                    <div class="chain-name">USDTgVerse</div>
+                    <div class="chain-status">✅ Quantum-Safe Native</div>
+                </div>
+                
+                <div class="chain-card" data-chain="ethereum">
+                    <div class="chain-logo">🔷</div>
+                    <div class="chain-name">Ethereum</div>
+                    <div class="chain-status">✅ EVM Compatible</div>
+                </div>
+                
+                <div class="chain-card" data-chain="bsc">
+                    <div class="chain-logo">🟡</div>
+                    <div class="chain-name">BNB Chain</div>
+                    <div class="chain-status">✅ Fast & Low Cost</div>
+                </div>
+                
+                <div class="chain-card" data-chain="polygon">
+                    <div class="chain-logo">🟣</div>
+                    <div class="chain-name">Polygon</div>
+                    <div class="chain-status">✅ Layer 2 Scaling</div>
+                </div>
+                
+                <div class="chain-card" data-chain="arbitrum">
+                    <div class="chain-logo">🔵</div>
+                    <div class="chain-name">Arbitrum</div>
+                    <div class="chain-status">✅ Optimistic Rollup</div>
+                </div>
+                
+                <div class="chain-card" data-chain="avalanche">
+                    <div class="chain-logo">🔴</div>
+                    <div class="chain-name">Avalanche</div>
+                    <div class="chain-status">✅ High Throughput</div>
+                </div>
+                
+                <div class="chain-card" data-chain="solana">
+                    <div class="chain-logo">🟢</div>
+                    <div class="chain-name">Solana</div>
+                    <div class="chain-status">✅ Ultra Fast</div>
+                </div>
+                
+                <div class="chain-card" data-chain="tron">
+                    <div class="chain-logo">🔻</div>
+                    <div class="chain-name">TRON</div>
+                    <div class="chain-status">✅ Low Energy</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="deployment-form">
+            <h2>📝 Contract Deployment Configuration</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Contract Name</label>
+                <input type="text" class="form-input" id="contractName" placeholder="MyAwesomeContract" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Contract Type</label>
+                <select class="form-select" id="contractType">
+                    <option value="token">🪙 Token Contract</option>
+                    <option value="nft">🖼️ NFT Contract</option>
+                    <option value="defi">💰 DeFi Protocol</option>
+                    <option value="dao">🏛️ DAO Contract</option>
+                    <option value="custom">🔧 Custom Contract</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Contract Source Code</label>
+                <textarea class="form-textarea" id="contractCode" rows="10" placeholder="Paste your USDTgScript contract code here...">/**
+ * 🪙 Example Token Contract
+ * ⚛️ Quantum-Safe Implementation
+ */
+
+#quantum_safe
+#version "1.0"
+
+contract MyToken {
+    quantum_string public name = "My Token";
+    quantum_string public symbol = "MTK";
+    quantum_uint8 public decimals = 18;
+    quantum_uint256 public totalSupply = 1000000 * 10**18;
+    
+    quantum_mapping(quantum_address => quantum_uint256) public balances;
+    
+    constructor() quantum_safe {
+        balances[msg.sender] = totalSupply;
+    }
+    
+    function transfer(quantum_address to, quantum_uint256 amount) 
+        external quantum_safe returns (quantum_bool) {
+        require(balances[msg.sender] >= amount, "Insufficient balance");
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+        return quantum_true;
+    }
+}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Constructor Parameters (JSON)</label>
+                <input type="text" class="form-input" id="constructorParams" placeholder='["param1", "param2", 1000]'>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Gas Limit</label>
+                <input type="number" class="form-input" id="gasLimit" value="5000000" min="21000">
+            </div>
+            
+            <button class="deploy-button" id="deployButton" onclick="deployContract()">
+                🚀 Deploy to Selected Chains
+            </button>
+        </div>
+
+        <div class="deployment-status" id="deploymentStatus" style="display: none;">
+            <h3>📊 Deployment Status</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="statusList"></div>
+        </div>
+    </div>
+
+    <script>
+        let selectedChains = ['usdtgverse']; // Default to USDTgVerse
+
+        // Chain selection handling
+        document.querySelectorAll('.chain-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const chain = this.dataset.chain;
+                
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    selectedChains = selectedChains.filter(c => c !== chain);
+                } else {
+                    this.classList.add('selected');
+                    selectedChains.push(chain);
+                }
+                
+                // Always keep USDTgVerse selected
+                if (chain === 'usdtgverse') {
+                    this.classList.add('selected');
+                    if (!selectedChains.includes('usdtgverse')) {
+                        selectedChains.push('usdtgverse');
+                    }
+                }
+                
+                console.log('Selected chains:', selectedChains);
+            });
+        });
+
+        // Initialize USDTgVerse as selected
+        document.querySelector('[data-chain="usdtgverse"]').classList.add('selected');
+
+        async function deployContract() {
+            const contractName = document.getElementById('contractName').value;
+            const contractType = document.getElementById('contractType').value;
+            const contractCode = document.getElementById('contractCode').value;
+            const constructorParams = document.getElementById('constructorParams').value;
+            const gasLimit = document.getElementById('gasLimit').value;
+
+            if (!contractName || !contractCode || selectedChains.length === 0) {
+                alert('Please fill in all required fields and select at least one blockchain.');
+                return;
+            }
+
+            const deployButton = document.getElementById('deployButton');
+            const statusDiv = document.getElementById('deploymentStatus');
+            const progressFill = document.getElementById('progressFill');
+            const statusList = document.getElementById('statusList');
+
+            deployButton.disabled = true;
+            deployButton.textContent = '🔄 Deploying...';
+            statusDiv.style.display = 'block';
+            statusList.innerHTML = '';
+
+            const chainNames = {
+                'usdtgverse': '⚛️ USDTgVerse',
+                'ethereum': '🔷 Ethereum',
+                'bsc': '🟡 BNB Chain',
+                'polygon': '🟣 Polygon',
+                'arbitrum': '🔵 Arbitrum',
+                'avalanche': '🔴 Avalanche',
+                'solana': '🟢 Solana',
+                'tron': '🔻 TRON'
+            };
+
+            let completedDeployments = 0;
+            const totalDeployments = selectedChains.length;
+
+            for (let i = 0; i < selectedChains.length; i++) {
+                const chain = selectedChains[i];
+                const chainName = chainNames[chain];
+                
+                // Add status item
+                const statusItem = document.createElement('div');
+                statusItem.className = 'status-item';
+                statusItem.innerHTML = `
+                    <span class="status-icon">🔄</span>
+                    <span>Deploying to ${chainName}...</span>
+                `;
+                statusList.appendChild(statusItem);
+
+                // Simulate deployment delay
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+
+                // Update status to success
+                statusItem.innerHTML = `
+                    <span class="status-icon">✅</span>
+                    <span>Successfully deployed to ${chainName}</span>
+                `;
+
+                completedDeployments++;
+                const progress = (completedDeployments / totalDeployments) * 100;
+                progressFill.style.width = progress + '%';
+            }
+
+            // Add contract addresses
+            selectedChains.forEach(chain => {
+                const chainName = chainNames[chain];
+                const contractAddress = generateMockAddress(chain);
+                
+                const addressItem = document.createElement('div');
+                addressItem.className = 'status-item';
+                addressItem.innerHTML = `
+                    <span class="status-icon">📍</span>
+                    <span>${chainName}: <code style="color: #00d4ff;">${contractAddress}</code></span>
+                `;
+                statusList.appendChild(addressItem);
+            });
+
+            deployButton.disabled = false;
+            deployButton.textContent = '🎉 Deployment Complete!';
+            
+            setTimeout(() => {
+                deployButton.textContent = '🚀 Deploy to Selected Chains';
+            }, 3000);
+        }
+
+        function generateMockAddress(chain) {
+            const prefixes = {
+                'usdtgverse': 'USDTg1q',
+                'ethereum': '0x',
+                'bsc': '0x',
+                'polygon': '0x',
+                'arbitrum': '0x',
+                'avalanche': '0x',
+                'solana': '',
+                'tron': 'T'
+            };
+
+            const lengths = {
+                'usdtgverse': 42,
+                'ethereum': 42,
+                'bsc': 42,
+                'polygon': 42,
+                'arbitrum': 42,
+                'avalanche': 42,
+                'solana': 44,
+                'tron': 34
+            };
+
+            const prefix = prefixes[chain];
+            const length = lengths[chain] - prefix.length;
+            const chars = '0123456789abcdefABCDEF';
+            let address = prefix;
+
+            for (let i = 0; i < length; i++) {
+                address += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            return address;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏭 Universal Contract Factory initialized');
+            console.log('Selected chains:', selectedChains);
+        });
+    </script>
+</body>
+</html>

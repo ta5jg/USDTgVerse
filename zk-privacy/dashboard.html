@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZK Privacy Dashboard - Zero-Knowledge Privacy Layer</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: #00d4ff; }
+        .nav-link { color: #ffffff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 5px; transition: all 0.3s ease; }
+        .nav-link:hover { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
+
+        .main-container { margin-top: 80px; padding: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .privacy-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2); }
+
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .feature-title { font-size: 1.3rem; margin-bottom: 1rem; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="logo">🔒 ZK Privacy</div>
+            <div>
+                <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+                <a href="../homomorphic-encryption/dashboard.html" class="nav-link">🔐 Homomorphic Encryption</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">🔒 Zero-Knowledge Privacy</h1>
+            <p class="hero-subtitle">Enterprise-Grade Privacy with Mathematical Guarantees</p>
+            <p>Transact privately while maintaining public verifiability - perfect for enterprise compliance</p>
+        </div>
+
+        <div class="privacy-features">
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3 class="feature-title">Private Transactions</h3>
+                <p>Send and receive assets with complete privacy using zk-SNARKs and zk-STARKs</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏊</div>
+                <h3 class="feature-title">Shielded Pools</h3>
+                <p>Anonymous asset pools with Zcash-style privacy and regulatory compliance</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🗳️</div>
+                <h3 class="feature-title">Anonymous Voting</h3>
+                <p>Participate in governance while preserving voter privacy and preventing coercion</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3 class="feature-title">Compliance Ready</h3>
+                <p>Regulatory-friendly privacy with selective disclosure for audit and compliance</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

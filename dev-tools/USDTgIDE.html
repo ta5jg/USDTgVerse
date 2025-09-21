@@ -3,26 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔧 USDTgScript IDE - Quantum-Safe Smart Contract Development</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
-    
-    <!-- Monaco Editor (VS Code engine) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
-    
+    <title>USDTgScript IDE - Professional Development Environment</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
     <style>
-        :root {
-            --primary: #00d4ff;
-            --secondary: #ff6b35;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --dark: #1a1a2e;
-            --darker: #16213e;
-            --light: #f8f9fa;
-            --quantum: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --quantum-glow: 0 0 20px rgba(102, 126, 234, 0.5);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -30,884 +13,381 @@
         }
 
         body {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            background: var(--dark);
-            color: var(--light);
-            height: 100vh;
-            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
         }
 
-        .ide-container {
-            display: flex;
-            height: 100vh;
-            flex-direction: column;
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .ide-header {
-            background: var(--darker);
-            padding: 10px 20px;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .ide-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
+        .logo {
+            font-size: 1.5rem;
             font-weight: bold;
-            background: var(--quantum);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #00d4ff;
         }
 
-        .ide-toolbar {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            background: var(--quantum);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
             transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--quantum-glow);
+        .nav-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
         }
 
-        .btn-success { background: var(--success); }
-        .btn-warning { background: var(--warning); color: var(--dark); }
-        .btn-danger { background: var(--danger); }
+        .main-container {
+            margin-top: 80px;
+            padding: 2rem;
+        }
 
-        .ide-body {
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .ide-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ide-header {
             display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: var(--darker);
-            border-right: 1px solid rgba(0, 212, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar-section {
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .sidebar-header {
-            padding: 15px;
+        .ide-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ide-tab {
             background: rgba(0, 212, 255, 0.1);
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar-content {
-            padding: 10px;
-        }
-
-        .file-tree {
-            list-style: none;
-        }
-
-        .file-tree li {
-            padding: 5px 10px;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s;
         }
 
-        .file-tree li:hover {
-            background: rgba(0, 212, 255, 0.1);
+        .ide-tab.active {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
         }
 
-        .file-tree li.active {
-            background: var(--quantum);
-            color: white;
-        }
-
-        .main-editor {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .editor-tabs {
-            background: var(--darker);
-            padding: 0;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
-            display: flex;
-        }
-
-        .editor-tab {
-            padding: 12px 20px;
-            background: transparent;
-            border: none;
-            color: var(--light);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .editor-tab.active {
-            border-bottom-color: var(--primary);
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        .editor-tab:hover {
-            background: rgba(0, 212, 255, 0.05);
-        }
-
-        .editor-content {
-            flex: 1;
-            position: relative;
-        }
-
-        .output-panel {
-            height: 200px;
-            background: var(--darker);
-            border-top: 1px solid rgba(0, 212, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .output-header {
-            padding: 10px 15px;
-            background: rgba(0, 212, 255, 0.1);
-            font-weight: bold;
+        .code-editor {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
             font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .output-content {
-            flex: 1;
-            padding: 15px;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            overflow-y: auto;
-            white-space: pre-wrap;
+        .code-line {
+            display: block;
+            margin-bottom: 0.2rem;
         }
 
-        .status-bar {
-            background: var(--darker);
-            padding: 8px 20px;
-            border-top: 1px solid rgba(0, 212, 255, 0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-        }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .function { color: #dcdcaa; }
+        .type { color: #4ec9b0; }
 
-        .status-left {
-            display: flex;
-            gap: 20px;
-        }
-
-        .status-right {
-            display: flex;
-            gap: 15px;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .quantum-indicator {
-            background: var(--quantum);
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .templates-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
-        .template-item {
-            padding: 10px;
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .template-item:hover {
-            background: rgba(0, 212, 255, 0.1);
-            border-color: var(--primary);
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
-        .template-title {
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 4px;
+            transition: transform 0.3s ease;
+            margin: 0.5rem;
         }
 
-        .template-desc {
-            font-size: 0.8rem;
-            opacity: 0.7;
+        .cta-button:hover {
+            transform: scale(1.05);
         }
 
-        .compiler-output {
-            color: var(--success);
-        }
-
-        .compiler-error {
-            color: var(--danger);
-        }
-
-        .compiler-warning {
-            color: var(--warning);
-        }
-
-        .quantum-feature {
-            background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 102, 255, 0.1));
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            border-radius: 6px;
-            padding: 10px;
-            margin: 5px 0;
-        }
-
-        .quantum-feature-title {
-            font-weight: bold;
-            color: #00ff88;
-            margin-bottom: 5px;
-        }
-
-        .quantum-feature-desc {
-            font-size: 0.85rem;
-            opacity: 0.9;
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="ide-container">
-        <!-- IDE Header -->
-        <div class="ide-header">
-            <div class="ide-title">
-                <span>⚛️</span>
-                <span>USDTgScript IDE</span>
-                <span class="quantum-indicator">QUANTUM-SAFE</span>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="logo">🔧 USDTgScript IDE</div>
+            <div>
+                <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+                <a href="../website/quantum-safe.html" class="nav-link">⚛️ Quantum Security</a>
             </div>
-            <div class="ide-toolbar">
-                <button class="btn" onclick="newFile()">📄 New</button>
-                <button class="btn" onclick="openFile()">📁 Open</button>
-                <button class="btn" onclick="saveFile()">💾 Save</button>
-                <button class="btn btn-success" onclick="compileContract()">🔧 Compile</button>
-                <button class="btn btn-warning" onclick="deployContract()">🚀 Deploy</button>
-                <button class="btn" onclick="verifyContract()">🔍 Verify</button>
-                <button class="btn btn-danger" onclick="auditContract()">🛡️ Audit</button>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">🔧 USDTgScript IDE</h1>
+            <p class="hero-subtitle">Professional Development Environment for Quantum-Safe Smart Contracts</p>
+            <p>Build, debug, and deploy USDTgScript contracts with our advanced IDE featuring AI assistance and quantum security</p>
+        </div>
+
+        <div class="ide-container">
+            <div class="ide-header">
+                <h2>🚀 Live IDE Environment</h2>
+            </div>
+            
+            <div class="ide-tabs">
+                <div class="ide-tab active">📄 MyToken.usdtg</div>
+                <div class="ide-tab">🔧 Deploy.js</div>
+                <div class="ide-tab">🧪 Test.usdtg</div>
+                <div class="ide-tab">📚 Docs</div>
+            </div>
+
+            <div class="code-editor">
+<span class="comment">/**</span>
+<span class="comment"> * 🪙 USDTgScript Smart Contract Example</span>
+<span class="comment"> * ⚛️ Quantum-Safe Token Implementation</span>
+<span class="comment"> */</span>
+
+<span class="keyword">#quantum_safe</span>
+<span class="keyword">#version</span> <span class="string">"1.0"</span>
+
+<span class="keyword">import</span> <span class="string">"../security-library/USDTgSecurity.usdtg"</span>;
+
+<span class="keyword">contract</span> <span class="type">MyQuantumToken</span> {
+    <span class="keyword">using</span> <span class="type">USDTgSecurity</span> <span class="keyword">for</span> <span class="type">USDTgSecurity.SecurityState</span>;
+    
+    <span class="comment">// 📊 Token metadata</span>
+    <span class="type">quantum_string</span> <span class="keyword">public</span> <span class="keyword">constant</span> name = <span class="string">"My Quantum Token"</span>;
+    <span class="type">quantum_string</span> <span class="keyword">public</span> <span class="keyword">constant</span> symbol = <span class="string">"MQT"</span>;
+    <span class="type">quantum_uint8</span> <span class="keyword">public</span> <span class="keyword">constant</span> decimals = 18;
+    
+    <span class="comment">// 💰 Token balances</span>
+    <span class="type">quantum_mapping</span>(<span class="type">quantum_address</span> => <span class="type">quantum_uint256</span>) <span class="keyword">public</span> balances;
+    <span class="type">quantum_uint256</span> <span class="keyword">public</span> totalSupply;
+    
+    <span class="comment">// 🛡️ Security</span>
+    <span class="type">USDTgSecurity.SecurityState</span> <span class="keyword">private</span> securityState;
+    
+    <span class="comment">// 🏗️ Constructor</span>
+    <span class="function">constructor</span>(<span class="type">quantum_uint256</span> initialSupply) <span class="keyword">quantum_safe</span> {
+        <span class="type">USDTgSecurity</span>.<span class="function">initializeSecurity</span>(securityState);
+        totalSupply = initialSupply * 10**decimals;
+        balances[msg.sender] = totalSupply;
+    }
+    
+    <span class="comment">// 💸 Transfer function</span>
+    <span class="keyword">function</span> <span class="function">transfer</span>(<span class="type">quantum_address</span> to, <span class="type">quantum_uint256</span> amount) 
+        <span class="keyword">external</span> <span class="keyword">quantum_safe</span> <span class="keyword">returns</span> (<span class="type">quantum_bool</span>) {
+        
+        <span class="function">require</span>(balances[msg.sender] >= amount, <span class="string">"Insufficient balance"</span>);
+        
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+        
+        <span class="keyword">return</span> <span class="keyword">quantum_true</span>;
+    }
+}
             </div>
         </div>
 
-        <!-- IDE Body -->
-        <div class="ide-body">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- File Explorer -->
-                <div class="sidebar-section">
-                    <div class="sidebar-header">📁 File Explorer</div>
-                    <div class="sidebar-content">
-                        <ul class="file-tree">
-                            <li onclick="openTemplate('native-token')" class="active">💰 USDTgNativeCoin.usdtg</li>
-                            <li onclick="openTemplate('secure-token')">🛡️ SecureToken.usdtg</li>
-                            <li onclick="openTemplate('bridge')">🌉 Bridge.usdtg</li>
-                            <li onclick="openTemplate('dao')">🏛️ DAO.usdtg</li>
-                            <li onclick="openTemplate('nft')">🎨 NFT.usdtg</li>
-                            <li onclick="openTemplate('defi')">🏦 DeFi.usdtg</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Contract Templates -->
-                <div class="sidebar-section">
-                    <div class="sidebar-header">📚 Templates</div>
-                    <div class="sidebar-content">
-                        <div class="templates-grid">
-                            <div class="template-item" onclick="loadTemplate('ust1')">
-                                <div class="template-title">💰 UST-1 Token</div>
-                                <div class="template-desc">Native USDTgVerse token standard</div>
-                            </div>
-                            <div class="template-item" onclick="loadTemplate('nft')">
-                                <div class="template-title">🎨 UST-721 NFT</div>
-                                <div class="template-desc">Quantum-safe NFT collection</div>
-                            </div>
-                            <div class="template-item" onclick="loadTemplate('defi')">
-                                <div class="template-title">🏦 DeFi Protocol</div>
-                                <div class="template-desc">Lending/borrowing platform</div>
-                            </div>
-                            <div class="template-item" onclick="loadTemplate('dao')">
-                                <div class="template-title">🏛️ DAO Governance</div>
-                                <div class="template-desc">Decentralized organization</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quantum Features -->
-                <div class="sidebar-section">
-                    <div class="sidebar-header">⚛️ Quantum Features</div>
-                    <div class="sidebar-content">
-                        <div class="quantum-feature">
-                            <div class="quantum-feature-title">🔐 Quantum Security</div>
-                            <div class="quantum-feature-desc">256-bit post-quantum cryptography</div>
-                        </div>
-                        <div class="quantum-feature">
-                            <div class="quantum-feature-title">🛡️ Formal Verification</div>
-                            <div class="quantum-feature-desc">Mathematical security proof</div>
-                        </div>
-                        <div class="quantum-feature">
-                            <div class="quantum-feature-title">⚡ Optimized Execution</div>
-                            <div class="quantum-feature-desc">C-based high performance</div>
-                        </div>
-                        <div class="quantum-feature">
-                            <div class="quantum-feature-title">🌍 Multi-Chain Deploy</div>
-                            <div class="quantum-feature-desc">One code, all blockchains</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">AI-Powered Coding</h3>
+                <p>Natural language to USDTgScript conversion with intelligent code suggestions and automatic optimization.</p>
             </div>
 
-            <!-- Main Editor -->
-            <div class="main-editor">
-                <!-- Editor Tabs -->
-                <div class="editor-tabs">
-                    <button class="editor-tab active" onclick="switchTab('main')">
-                        💰 USDTgNativeCoin.usdtg
-                    </button>
-                    <button class="editor-tab" onclick="switchTab('test')">
-                        🧪 Test.usdtg
-                    </button>
-                    <button class="editor-tab" onclick="switchTab('deploy')">
-                        🚀 Deploy.js
-                    </button>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">Advanced Debugging</h3>
+                <p>Step-through debugging, breakpoints, variable inspection, and real-time contract state monitoring.</p>
+            </div>
 
-                <!-- Editor Content -->
-                <div class="editor-content">
-                    <div id="monaco-editor" style="height: 100%; width: 100%;"></div>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3 class="feature-title">Integrated Testing</h3>
+                <p>Built-in testing framework with automated test generation and comprehensive coverage analysis.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚛️</div>
+                <h3 class="feature-title">Quantum Security</h3>
+                <p>Built-in quantum-safe cryptography with automatic security vulnerability detection and prevention.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">One-Click Deploy</h3>
+                <p>Deploy to USDTgVerse mainnet, testnet, or other chains with a single click. Multi-chain support included.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Performance Analytics</h3>
+                <p>Real-time gas usage analysis, performance optimization suggestions, and contract efficiency metrics.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3 class="feature-title">Version Control</h3>
+                <p>Integrated Git support with collaborative development features and automated backup to GitHub.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Smart Documentation</h3>
+                <p>Auto-generated documentation, inline help, and comprehensive USDTgScript language reference.</p>
             </div>
         </div>
 
-        <!-- Output Panel -->
-        <div class="output-panel">
-            <div class="output-header">
-                📊 Compiler Output & Verification Results
-            </div>
-            <div class="output-content" id="output-content">
-🔧 USDTgScript IDE v1.0.0 - Ready for quantum-safe development!
-⚛️ Quantum security features enabled
-🛡️ Formal verification system active
-🚀 Multi-chain deployment ready
-
-💡 Tips:
-• Use quantum_safe modifier for all functions
-• Leverage USDTgSecurity library for maximum protection
-• Enable formal verification before deployment
-• Test on quantum-safe testnet first
-
-Ready to build the future! 🌟
-            </div>
-        </div>
-
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <div class="status-left">
-                <div class="status-indicator">
-                    <div class="status-dot"></div>
-                    <span>USDTgVM Connected</span>
-                </div>
-                <div>Line 1, Column 1</div>
-                <div>USDTgScript v1.0</div>
-            </div>
-            <div class="status-right">
-                <div class="quantum-indicator">⚛️ QUANTUM-SAFE</div>
-                <div>🔧 Compiler Ready</div>
-                <div>🛡️ Verifier Active</div>
-            </div>
+        <div class="cta-section">
+            <h2>🚀 Ready to Build the Future?</h2>
+            <p>Start developing quantum-safe smart contracts with the world's most advanced blockchain IDE</p>
+            <a href="#" class="cta-button">🔧 Launch IDE</a>
+            <a href="#" class="cta-button">📚 View Documentation</a>
+            <a href="#" class="cta-button">🎓 Start Tutorial</a>
         </div>
     </div>
 
     <script>
-        let editor;
-        let currentFile = 'main';
-        
-        // Initialize Monaco Editor
-        require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
-        require(['vs/editor/editor.main'], function () {
-            // Register USDTgScript language
-            monaco.languages.register({ id: 'usdtgscript' });
-            
-            // Define USDTgScript syntax highlighting
-            monaco.languages.setMonarchTokensProvider('usdtgscript', {
-                tokenizer: {
-                    root: [
-                        [/quantum_\w+/, 'type.quantum'],
-                        [/\b(contract|function|constructor|modifier|event|struct|enum)\b/, 'keyword'],
-                        [/\b(quantum_safe|quantum_view|quantum_pure|quantum_payable)\b/, 'keyword.quantum'],
-                        [/\b(if|else|for|while|return|require|emit)\b/, 'keyword.control'],
-                        [/\b(public|private|internal|external)\b/, 'keyword.visibility'],
-                        [/\b\d+\b/, 'number'],
-                        [/"([^"\\]|\\.)*$/, 'string.invalid'],
-                        [/"/, 'string', '@string'],
-                        [/\/\/.*$/, 'comment'],
-                        [/\/\*/, 'comment', '@comment'],
-                    ],
-                    string: [
-                        [/[^\\"]+/, 'string'],
-                        [/"/, 'string', '@pop']
-                    ],
-                    comment: [
-                        [/[^\/*]+/, 'comment'],
-                        [/\*\//, 'comment', '@pop'],
-                        [/[\/*]/, 'comment']
-                    ]
-                }
+        // IDE tab switching
+        document.querySelectorAll('.ide-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.ide-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real IDE, this would switch the editor content
+                console.log('Switched to tab:', this.textContent);
             });
-            
-            // Define theme
-            monaco.editor.defineTheme('quantum-theme', {
-                base: 'vs-dark',
-                inherit: true,
-                rules: [
-                    { token: 'type.quantum', foreground: '00ff88', fontStyle: 'bold' },
-                    { token: 'keyword.quantum', foreground: '0066ff', fontStyle: 'bold' },
-                    { token: 'keyword', foreground: '667eea' },
-                    { token: 'keyword.control', foreground: 'ff6b35' },
-                    { token: 'string', foreground: 'ffc107' },
-                    { token: 'comment', foreground: '6c757d', fontStyle: 'italic' },
-                    { token: 'number', foreground: '28a745' }
-                ],
-                colors: {
-                    'editor.background': '#1a1a2e',
-                    'editor.foreground': '#f8f9fa',
-                    'editorLineNumber.foreground': '#6c757d',
-                    'editor.selectionBackground': '#667eea33',
-                    'editor.lineHighlightBackground': '#16213e'
-                }
-            });
-            
-            // Create editor
-            editor = monaco.editor.create(document.getElementById('monaco-editor'), {
-                value: getDefaultContract(),
-                language: 'usdtgscript',
-                theme: 'quantum-theme',
-                fontSize: 14,
-                lineNumbers: 'on',
-                minimap: { enabled: true },
-                scrollBeyondLastLine: false,
-                automaticLayout: true,
-                wordWrap: 'on',
-                folding: true,
-                renderLineHighlight: 'all',
-                cursorBlinking: 'smooth',
-                cursorSmoothCaretAnimation: true
-            });
-            
-            // Add keyboard shortcuts
-            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, saveFile);
-            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyB, compileContract);
-            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyD, deployContract);
-            
-            console.log('⚛️ USDTgScript IDE initialized successfully!');
         });
-        
-        function getDefaultContract() {
-            return `/**
- * 💰 USDTg Native Token - Quantum-Safe Implementation
- * =================================================
- * 
- * ⚛️ QUANTUM-SAFE NATIVE TOKEN
- * 🛡️ ULTRA-SECURE WITH FORMAL VERIFICATION
- * 🌍 MULTI-CHAIN DEPLOYMENT READY
- */
 
-#quantum_safe
-#version "1.0"
-
-import "../security-library/USDTgSecurity.usdtg";
-
-contract USDTgNativeToken {
-    using USDTgSecurity for USDTgSecurity.SecurityState;
-    
-    // 📊 TOKEN METADATA
-    quantum_string public name = "USDTgVerse Coin";
-    quantum_string public symbol = "USDTg";
-    quantum_uint8 public decimals = 18;
-    quantum_uint256 public totalSupply;
-    
-    // 💰 BALANCES
-    quantum_mapping(quantum_address => quantum_uint256) private balances;
-    quantum_mapping(quantum_address => quantum_mapping(quantum_address => quantum_uint256)) private allowances;
-    
-    // 🛡️ SECURITY
-    USDTgSecurity.SecurityState private securityState;
-    
-    // 🚨 EVENTS
-    event Transfer(quantum_address indexed from, quantum_address indexed to, quantum_uint256 value);
-    event Approval(quantum_address indexed owner, quantum_address indexed spender, quantum_uint256 value);
-    
-    // 🏗️ CONSTRUCTOR
-    constructor(quantum_uint256 _initialSupply) quantum_safe {
-        totalSupply = _initialSupply;
-        balances[msg.sender] = _initialSupply;
-        
-        USDTgSecurity.initializeSecurity(securityState);
-        
-        emit Transfer(quantum_address(0), msg.sender, _initialSupply);
-    }
-    
-    // 💰 CORE FUNCTIONS
-    function balanceOf(quantum_address account) quantum_view returns (quantum_uint256) {
-        return balances[account];
-    }
-    
-    function transfer(quantum_address to, quantum_uint256 amount) 
-        quantum_safe 
-        returns (quantum_bool) {
-        
-        require(to != quantum_address(0), "Invalid recipient");
-        require(balances[msg.sender] >= amount, "Insufficient balance");
-        
-        balances[msg.sender] = USDTgSecurity.safeSub(balances[msg.sender], amount);
-        balances[to] = USDTgSecurity.safeAdd(balances[to], amount);
-        
-        emit Transfer(msg.sender, to, amount);
-        return quantum_true;
-    }
-    
-    function approve(quantum_address spender, quantum_uint256 amount) 
-        quantum_safe 
-        returns (quantum_bool) {
-        
-        require(spender != quantum_address(0), "Invalid spender");
-        
-        allowances[msg.sender][spender] = amount;
-        emit Approval(msg.sender, spender, amount);
-        return quantum_true;
-    }
-    
-    function transferFrom(quantum_address from, quantum_address to, quantum_uint256 amount) 
-        quantum_safe 
-        returns (quantum_bool) {
-        
-        quantum_uint256 currentAllowance = allowances[from][msg.sender];
-        require(currentAllowance >= amount, "Insufficient allowance");
-        require(balances[from] >= amount, "Insufficient balance");
-        
-        allowances[from][msg.sender] = USDTgSecurity.safeSub(currentAllowance, amount);
-        balances[from] = USDTgSecurity.safeSub(balances[from], amount);
-        balances[to] = USDTgSecurity.safeAdd(balances[to], amount);
-        
-        emit Transfer(from, to, amount);
-        return quantum_true;
-    }
-}`;
-        }
-        
-        // 🔧 IDE FUNCTIONS
-        function newFile() {
-            editor.setValue('');
-            updateOutput('📄 New file created');
-        }
-        
-        function openFile() {
-            updateOutput('📁 File open dialog (in production, this would open a file picker)');
-        }
-        
-        function saveFile() {
-            const content = editor.getValue();
-            updateOutput('💾 File saved successfully\n📊 Lines: ' + content.split('\\n').length);
-        }
-        
-        function compileContract() {
-            updateOutput('🔧 Compiling USDTgScript contract...');
-            
-            setTimeout(() => {
-                const output = \`✅ COMPILATION SUCCESSFUL!
-=====================================
-
-📊 Compilation Results:
-   • Contract: USDTgNativeToken
-   • Target: USDTgVM bytecode
-   • Size: 12,847 bytes (80% smaller than Solidity)
-   • Gas Estimate: 850,000 (68% less than OpenZeppelin)
-   • Security Level: 256-bit quantum-safe
-
-⚛️ Quantum-Safe Features Detected:
-   ✅ quantum_safe modifiers
-   ✅ USDTgSecurity library usage
-   ✅ Quantum-safe data types
-   ✅ Post-quantum cryptography
-
-🛡️ Security Analysis:
-   ✅ No overflow vulnerabilities
-   ✅ No reentrancy vulnerabilities
-   ✅ Proper access control
-   ✅ Input validation complete
-
-🚀 Ready for deployment!\`;
-                
-                updateOutput(output, 'compiler-output');
-            }, 2000);
-        }
-        
-        function deployContract() {
-            updateOutput('🚀 Deploying contract...');
-            
-            setTimeout(() => {
-                const output = \`🎉 DEPLOYMENT SUCCESSFUL!
-==============================
-
-📍 Contract Deployed:
-   • Network: USDTgVerse Mainnet
-   • Address: USDTg1qw2e3r4t5y6u7i8o9p0a1s2d3f4g5h6j7k8l9z0x1c2v3b4n5m6k2p
-   • Transaction: 0x742d35cc6634c0532925a3b8d2cc7a1c4c1aa6d1234567890abcdef
-   • Gas Used: 847,392 (within estimate)
-   • Cost: 0.847 USDTg ($0.85)
-
-🌍 Cross-Chain Deployment Options:
-   🔵 Ethereum: Click to deploy ERC-20 version
-   🟡 BNB Chain: Click to deploy BEP-20 version
-   🔴 TRON: Click to deploy TRC-20 version
-   🟣 Solana: Click to deploy SPL version
-
-⚛️ Quantum-safe deployment complete!\`;
-                
-                updateOutput(output, 'compiler-output');
-            }, 3000);
-        }
-        
-        function verifyContract() {
-            updateOutput('🔍 Running formal verification...');
-            
-            setTimeout(() => {
-                const output = \`🔬 FORMAL VERIFICATION COMPLETE!
-==================================
-
-✅ MATHEMATICAL PROOF SUCCESSFUL:
-   • Security: PROVEN SECURE
-   • Correctness: MATHEMATICALLY VERIFIED
-   • Quantum Safety: CONFIRMED
-   • Enterprise Grade: CERTIFIED
-
-🛡️ Verified Properties:
-   ✅ No arithmetic overflow possible
-   ✅ No reentrancy attacks possible
-   ✅ Balance conservation proven
-   ✅ Access control verified
-   ✅ Quantum signature validity proven
-
-📊 Verification Confidence: 100%
-🏆 Enterprise Ready: YES
-⚛️ Quantum-Safe: CONFIRMED
-
-🎉 CONTRACT IS MATHEMATICALLY PROVEN SECURE!\`;
-                
-                updateOutput(output, 'compiler-output');
-            }, 4000);
-        }
-        
-        function auditContract() {
-            updateOutput('🛡️ Running comprehensive security audit...');
-            
-            setTimeout(() => {
-                const output = \`🛡️ SECURITY AUDIT COMPLETE!
-============================
-
-🏆 AUDIT SCORE: 100/100 (PERFECT)
-
-✅ SECURITY ANALYSIS:
-   • Vulnerability Scan: 0 issues found
-   • Gas Optimization: Excellent (68% better than OpenZeppelin)
-   • Code Quality: Perfect (A+ grade)
-   • Quantum Safety: Confirmed
-   • Enterprise Compliance: Ready
-
-🔐 Security Features:
-   ✅ Reentrancy protection
-   ✅ Overflow protection
-   ✅ Access control
-   ✅ Input validation
-   ✅ Quantum-safe cryptography
-
-💰 INVESTOR PROTECTION:
-   ✅ Zero-loss guarantee
-   ✅ $10M insurance backing
-   ✅ Formal verification certified
-   ✅ Real-time monitoring
-
-🎉 AUDIT PASSED - READY FOR PRODUCTION!\`;
-                
-                updateOutput(output, 'compiler-output');
-            }, 5000);
-        }
-        
-        function loadTemplate(templateType) {
-            const templates = {
-                'ust1': getDefaultContract(),
-                'nft': getNFTTemplate(),
-                'defi': getDeFiTemplate(),
-                'dao': getDAOTemplate()
-            };
-            
-            if (templates[templateType]) {
-                editor.setValue(templates[templateType]);
-                updateOutput(\`📚 Loaded \${templateType.toUpperCase()} template\`);
-            }
-        }
-        
-        function getNFTTemplate() {
-            return \`/**
- * 🎨 Quantum-Safe NFT Collection
- * =============================
- */
-
-#quantum_safe
-#version "1.0"
-
-contract QuantumNFT {
-    quantum_string public name = "Quantum Art Collection";
-    quantum_string public symbol = "QART";
-    
-    quantum_mapping(quantum_uint256 => quantum_address) private owners;
-    quantum_mapping(quantum_address => quantum_uint256) private balances;
-    quantum_uint256 private nextTokenId = 1;
-    
-    function mint(quantum_address to) quantum_safe returns (quantum_uint256) {
-        quantum_uint256 tokenId = nextTokenId++;
-        owners[tokenId] = to;
-        balances[to]++;
-        return tokenId;
-    }
-}\`;
-        }
-        
-        function getDeFiTemplate() {
-            return \`/**
- * 🏦 Quantum-Safe DeFi Protocol
- * ============================
- */
-
-#quantum_safe
-#version "1.0"
-
-contract QuantumDeFi {
-    quantum_mapping(quantum_address => quantum_uint256) public deposits;
-    quantum_uint256 public totalDeposits;
-    
-    function deposit(quantum_uint256 amount) quantum_safe external payable {
-        require(msg.value == amount, "Amount mismatch");
-        deposits[msg.sender] += amount;
-        totalDeposits += amount;
-    }
-    
-    function withdraw(quantum_uint256 amount) quantum_safe external {
-        require(deposits[msg.sender] >= amount, "Insufficient deposit");
-        deposits[msg.sender] -= amount;
-        totalDeposits -= amount;
-        payable(msg.sender).transfer(amount);
-    }
-}\`;
-        }
-        
-        function getDAOTemplate() {
-            return \`/**
- * 🏛️ Quantum-Safe DAO Governance
- * =============================
- */
-
-#quantum_safe
-#version "1.0"
-
-contract QuantumDAO {
-    struct Proposal {
-        quantum_uint256 id;
-        quantum_string description;
-        quantum_uint256 forVotes;
-        quantum_uint256 againstVotes;
-        quantum_bool executed;
-    }
-    
-    quantum_mapping(quantum_uint256 => Proposal) public proposals;
-    quantum_uint256 public proposalCount;
-    
-    function createProposal(quantum_string memory description) quantum_safe external {
-        proposalCount++;
-        proposals[proposalCount] = Proposal(proposalCount, description, 0, 0, quantum_false);
-    }
-}\`;
-        }
-        
-        function switchTab(tabName) {
-            // Update tab appearance
-            document.querySelectorAll('.editor-tab').forEach(tab => {
-                tab.classList.remove('active');
+        // Simulate typing effect for code
+        function typeCode() {
+            const codeLines = document.querySelectorAll('.code-line');
+            codeLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.opacity = '1';
+                    line.style.transform = 'translateX(0)';
+                }, index * 100);
             });
-            event.target.classList.add('active');
-            
-            currentFile = tabName;
-            updateOutput(\`📝 Switched to \${tabName} file\`);
         }
-        
-        function updateOutput(message, className = '') {
-            const output = document.getElementById('output-content');
-            const timestamp = new Date().toLocaleTimeString();
-            output.innerHTML += \`\\n[\${timestamp}] \${message}\`;
-            output.scrollTop = output.scrollHeight;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔧 USDTgScript IDE initialized');
             
-            if (className) {
-                output.className = className;
-            }
-        }
-        
-        // 🎯 REAL-TIME FEATURES
-        setInterval(() => {
-            // Simulate real-time compilation feedback
-            if (editor && Math.random() > 0.95) {
-                const lineCount = editor.getModel().getLineCount();
-                document.querySelector('.status-left div:nth-child(2)').textContent = 
-                    \`Line \${Math.ceil(Math.random() * lineCount)}, Column \${Math.ceil(Math.random() * 50)}\`;
-            }
-        }, 1000);
-        
-        console.log('🔧 USDTgScript IDE loaded successfully!');
-        console.log('⚛️ Quantum-safe development environment ready!');
+            // Add some interactive effects
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderColor = '#00d4ff';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                });
+            });
+        });
     </script>
 </body>
 </html>
