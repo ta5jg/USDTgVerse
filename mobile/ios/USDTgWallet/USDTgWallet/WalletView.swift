@@ -62,7 +62,7 @@ struct WalletView: View {
     @State private var showingSwapView = false
     @State private var showingWalletList = false
     @State private var showingNetworkSelector = false
-    @State private var currentWalletName = "USDTgVerse Wallet"
+    @State private var currentWalletName = "My Quantum Wallet"
     @State private var currentNetwork = "USDTgVerse"
     @State private var currentWalletAssets: [WalletAsset] = []
     
@@ -171,35 +171,28 @@ struct WalletView: View {
     // MARK: - Wallet Data Loading
     private func loadCurrentWallet() {
         // Load current wallet from UserDefaults
-        let currentWallet = UserDefaults.standard.string(forKey: "CurrentWallet") ?? "USDTgVerse Wallet"
-        currentWalletName = currentWallet
-        
-        // Load assets for current wallet
-        if currentWallet == "USDTgVerse Wallet" {
-            // Demo wallet assets
-            currentWalletAssets = [
-                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10000.0, price: 1.0),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.1, price: 1.0),
-                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.0),
-                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2337.85),
-                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 245.5),
-                WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 145.75),
-                WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.091),
-                WalletAsset(symbol: "MATIC", name: "Polygon", balance: 8750.0, price: 0.89)
-            ]
-        } else {
-            // New/imported wallet assets (10 USDTg bonus)
-            currentWalletAssets = [
-                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10.0, price: 1.0),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
-                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5)
-            ]
-        }
+        currentWalletName = UserDefaults.standard.string(forKey: "CurrentWallet") ?? "My Quantum Wallet"
+        currentNetwork = UserDefaults.standard.string(forKey: "Wallet_\(currentWalletName)_Network") ?? "USDTgVerse"
         
         // Load assets for current network
         loadAssetsForNetwork(currentNetwork)
+    }
+    
+    // MARK: - Balance Loading Helper
+    private func loadWalletBalance(for walletName: String, asset: String) -> Double? {
+        // In production, this would load from blockchain
+        // For now, return stored balance or welcome bonus for new wallets
+        let balanceKey = "Wallet_\(walletName)_Balance_\(asset)"
+        let storedBalance = UserDefaults.standard.double(forKey: balanceKey)
+        
+        if storedBalance > 0 {
+            return storedBalance
+        } else if asset == "USDTg" {
+            // Return welcome bonus for USDTg
+            return 10.0
+        } else {
+            return nil
+        }
     }
     
     private func loadAssetsForNetwork(_ network: String) {
@@ -222,44 +215,23 @@ struct WalletView: View {
             ]
             
         case "BNB Chain":
-            if currentWalletName == "USDTgVerse Wallet" {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 245.5),
-                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 800.0, price: 1.0),
-                    WalletAsset(symbol: "BUSD", name: "Binance USD", balance: 300.0, price: 1.0)
-                ]
-            } else {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5),
-                    WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0)
-                ]
-            }
+            currentWalletAssets = [
+                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
+                WalletAsset(symbol: "BUSD", name: "Binance USD", balance: 0.0, price: 1.0)
+            ]
             
         case "TRON":
-            if currentWalletName == "USDTgVerse Wallet" {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.091),
-                    WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 600.0, price: 1.0)
-                ]
-            } else {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "TRX", name: "TRON", balance: 0.0, price: 0.091),
-                    WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 0.0, price: 1.0)
-                ]
-            }
+            currentWalletAssets = [
+                WalletAsset(symbol: "TRX", name: "TRON", balance: 0.0, price: 0.091),
+                WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 0.0, price: 1.0)
+            ]
             
         case "Solana":
-            if currentWalletName == "USDTgVerse Wallet" {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 145.75),
-                    WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 400.0, price: 1.0)
-                ]
-            } else {
-                currentWalletAssets = [
-                    WalletAsset(symbol: "SOL", name: "Solana", balance: 0.0, price: 145.75),
-                    WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 0.0, price: 1.0)
-                ]
-            }
+            currentWalletAssets = [
+                WalletAsset(symbol: "SOL", name: "Solana", balance: 0.0, price: 145.75),
+                WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 0.0, price: 1.0)
+            ]
             
         default:
             // Default to USDTgVerse
@@ -410,7 +382,7 @@ struct WalletView: View {
                  .foregroundColor(.white)
              
              HStack {
-                 Text("USDTg: \(formatBalance(currentWalletName == "USDTgVerse Wallet" ? 10000.0 : 10.0))")
+                 Text("USDTg: \(formatBalance(loadWalletBalance(for: currentWalletName, asset: "USDTg") ?? 10.0))")
                      .font(.subheadline)
                      .foregroundColor(Color(red: 0.3, green: 0.7, blue: 0.3))
                 
@@ -551,34 +523,21 @@ struct WalletView: View {
     }
     
     private func getWalletTransactions() -> [WalletTransaction] {
-        if currentWalletName == "USDTgVerse Wallet" {
-            // Demo wallet transactions
+        // Load real transactions from UserDefaults or show welcome bonus
+        let hasTransactions = UserDefaults.standard.array(forKey: "Wallet_\(currentWalletName)_Transactions") != nil
+        if !hasTransactions {
+            // Show welcome bonus for new wallets
             return [
                 WalletTransaction(
-                    id: "1", type: "received", title: "Received USDTg", 
-                    subtitle: "From: usdtgGenesis", amount: "+1000.000000 USDTg", 
-                    time: "11:23 PM", icon: "arrow.down"
-                ),
-                WalletTransaction(
-                    id: "2", type: "sent", title: "Sent USDTg", 
-                    subtitle: "To: usdtgbridge", amount: "-250.000000 USDTg", 
-                    time: "10:23 PM", icon: "arrow.up"
-                ),
-                WalletTransaction(
-                    id: "3", type: "bridge", title: "Bridge Transfer", 
-                    subtitle: "From: Ethereum", amount: "+1.500000 ETH", 
-                    time: "9:23 PM", icon: "arrow.left.arrow.right"
+                    id: "welcome", type: "received", title: "Welcome Bonus", 
+                    subtitle: "USDTgVerse Quantum Wallet", amount: "+10.00 USDTg", 
+                    time: "Just now", icon: "gift"
                 )
             ]
         } else {
-            // New wallet transactions (AirDrop only)
-            return [
-                WalletTransaction(
-                    id: "1", type: "received", title: "Welcome AirDrop", 
-                    subtitle: "From: USDTgVerse", amount: "+10.00 USDTg", 
-                    time: "Now", icon: "gift"
-                )
-            ]
+            // Load real transactions from storage
+            // In production, this would parse stored transaction data
+            return []
         }
     }
     
