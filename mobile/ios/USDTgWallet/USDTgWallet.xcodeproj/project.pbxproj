@@ -7,22 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEF /* USDTgWalletApp.swift */; };
 		A1234567890ABCDE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE0 /* ContentView.swift */; };
 		A1234567890ABCDE1 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE1 /* WalletView.swift */; };
 		A1234567890ABCDE2 /* OdixPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE2 /* OdixPayView.swift */; };
 		A1234567890ABCDE3 /* BridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE3 /* BridgeView.swift */; };
 		A1234567890ABCDE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE4 /* Assets.xcassets */; };
+		A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEF /* USDTgWalletApp.swift */; };
+		B2B1D63D2E7EA4E300F3CC9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2B1D6362E7EA4E300F3CC9F /* Preview Assets.xcassets */; };
+		B2B1D6422E7EA4E300F3CC9F /* BlockchainConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1D6332E7EA4E300F3CC9F /* BlockchainConnector.swift */; };
+		B2B1D6632E7EEC6100F3CC9F /* MultiWalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C1234567890ABCDEF /* USDTgWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USDTgWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1234567890ABCDEF /* USDTgWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDTgWalletApp.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE1 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE2 /* OdixPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdixPayView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE3 /* BridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1234567890ABCDEF /* USDTgWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDTgWalletApp.swift; sourceTree = "<group>"; };
+		B2B1D6332E7EA4E300F3CC9F /* BlockchainConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainConnector.swift; sourceTree = "<group>"; };
+		B2B1D6362E7EA4E300F3CC9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiWalletManager.swift; sourceTree = "<group>"; };
+		C1234567890ABCDEF /* USDTgWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USDTgWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B2B1D6372E7EA4E300F3CC9F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B2B1D6362E7EA4E300F3CC9F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		E1234567890ABCDEF = {
 			isa = PBXGroup;
 			children = (
@@ -47,6 +61,9 @@
 		F1234567890ABCDEF /* USDTgWallet */ = {
 			isa = PBXGroup;
 			children = (
+				B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */,
+				B2B1D6332E7EA4E300F3CC9F /* BlockchainConnector.swift */,
+				B2B1D6372E7EA4E300F3CC9F /* Preview Content */,
 				B1234567890ABCDEF /* USDTgWalletApp.swift */,
 				B1234567890ABCDE0 /* ContentView.swift */,
 				B1234567890ABCDE1 /* WalletView.swift */,
@@ -93,7 +110,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					H1234567890ABCDEF = {
 						CreatedOnToolsVersion = 15.0;
@@ -123,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B1D63D2E7EA4E300F3CC9F /* Preview Assets.xcassets in Resources */,
 				A1234567890ABCDE4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +154,8 @@
 			files = (
 				A1234567890ABCDE0 /* ContentView.swift in Sources */,
 				A1234567890ABCDE1 /* WalletView.swift in Sources */,
+				B2B1D6632E7EEC6100F3CC9F /* MultiWalletManager.swift in Sources */,
+				B2B1D6422E7EA4E300F3CC9F /* BlockchainConnector.swift in Sources */,
 				A1234567890ABCDE2 /* OdixPayView.swift in Sources */,
 				A1234567890ABCDE3 /* BridgeView.swift in Sources */,
 				A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */,
@@ -180,6 +200,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 27575FW23Y;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -203,6 +224,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -243,6 +265,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 27575FW23Y;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -259,6 +282,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -272,7 +296,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"USDTgWallet/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -301,7 +324,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"USDTgWallet/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

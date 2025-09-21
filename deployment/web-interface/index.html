@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 USDTgVerse Contract Deployment Center</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --secondary: #ff6b35;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8f9fa;
+            --quantum: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --quantum-glow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .quantum-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 25% 25%, #667eea 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, #764ba2 0%, transparent 50%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: quantumPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes quantumPulse {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.2; }
+        }
+
+        .header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--quantum);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .network-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--quantum);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .deployment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .deployment-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .deployment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--quantum-glow);
+            border-color: var(--primary);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--quantum);
+            border-radius: 15px;
+            box-shadow: var(--quantum-glow);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .card-subtitle {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(22, 33, 62, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: var(--quantum);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--quantum-glow);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .network-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .network-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(22, 33, 62, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .network-option:hover {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .network-option.selected {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        .network-icon {
+            font-size: 1.5rem;
+        }
+
+        .network-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .deployment-status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(22, 33, 62, 0.8);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            display: none;
+        }
+
+        .status-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .quantum-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .deployment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .network-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quantum-bg"></div>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>⚛️</span>
+                    <span>USDTgVerse Deployment Center</span>
+                </div>
+                <div class="network-status">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Quantum Network Online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="hero">
+                <h1>🚀 Smart Contract Deployment</h1>
+                <p>Deploy your quantum-safe smart contracts to USDTgVerse and 8 major blockchain networks with enterprise-grade security and performance.</p>
+            </div>
+
+            <div class="quantum-stats">
+                <div class="stat-card">
+                    <div class="stat-value">256-bit</div>
+                    <div class="stat-label">Quantum Security</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Supported Networks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">15,000+</div>
+                    <div class="stat-label">TPS Performance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$0.001</div>
+                    <div class="stat-label">Average Gas Fee</div>
+                </div>
+            </div>
+
+            <div class="deployment-grid">
+                <!-- USDTg Native Coin Deployment -->
+                <div class="deployment-card">
+                    <div class="card-header">
+                        <div class="card-icon">💰</div>
+                        <div>
+                            <div class="card-title">USDTg Native Coin</div>
+                            <div class="card-subtitle">Deploy the official USDTg stablecoin</div>
+                        </div>
+                    </div>
+                    
+                    <form id="usdtgForm">
+                        <div class="form-group">
+                            <label class="form-label">Network Selection</label>
+                            <div class="network-selector">
+                                <div class="network-option selected" data-network="usdtgverse">
+                                    <div class="network-icon">⚛️</div>
+                                    <div class="network-name">USDTgVerse</div>
+                                </div>
+                                <div class="network-option" data-network="ethereum">
+                                    <div class="network-icon">🔵</div>
+                                    <div class="network-name">Ethereum</div>
+                                </div>
+                                <div class="network-option" data-network="bnb">
+                                    <div class="network-icon">🟡</div>
+                                    <div class="network-name">BNB Chain</div>
+                                </div>
+                                <div class="network-option" data-network="polygon">
+                                    <div class="network-icon">🟣</div>
+                                    <div class="network-name">Polygon</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="treasuryAddress">Treasury Address</label>
+                            <input type="text" id="treasuryAddress" class="form-input" 
+                                   placeholder="0x742d35cc6634c0532925a3b8d2cc7a1c4c1aa6d1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="developmentAddress">Development Address</label>
+                            <input type="text" id="developmentAddress" class="form-input" 
+                                   placeholder="0x8f3cf7ad23cd3cadbd9735aff958023239c6a063" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="marketingAddress">Marketing Address</label>
+                            <input type="text" id="marketingAddress" class="form-input" 
+                                   placeholder="0x2791bca1f2de4661ed88a30c99a7a9449aa84174" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-full">
+                            🚀 Deploy USDTg Contract
+                        </button>
+                    </form>
+
+                    <div class="deployment-status" id="usdtgStatus">
+                        <div class="status-content">
+                            <div class="spinner"></div>
+                            <div>
+                                <div><strong>Deploying USDTg Contract...</strong></div>
+                                <div id="usdtgStatusText">Preparing deployment...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Contract Deployment -->
+                <div class="deployment-card">
+                    <div class="card-header">
+                        <div class="card-icon">📝</div>
+                        <div>
+                            <div class="card-title">Custom Contract</div>
+                            <div class="card-subtitle">Deploy your own smart contract</div>
+                        </div>
+                    </div>
+                    
+                    <form id="customForm">
+                        <div class="form-group">
+                            <label class="form-label" for="contractName">Contract Name</label>
+                            <input type="text" id="contractName" class="form-input" 
+                                   placeholder="MyToken" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contractType">Contract Type</label>
+                            <select id="contractType" class="form-select" required>
+                                <option value="">Select contract type</option>
+                                <option value="erc20">ERC-20 Token</option>
+                                <option value="erc721">ERC-721 NFT</option>
+                                <option value="erc1155">ERC-1155 Multi-Token</option>
+                                <option value="defi">DeFi Protocol</option>
+                                <option value="dao">DAO Governance</option>
+                                <option value="custom">Custom Contract</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contractCode">Contract Code (Solidity)</label>
+                            <textarea id="contractCode" class="form-textarea" 
+                                      placeholder="// SPDX-License-Identifier: MIT&#10;pragma solidity ^0.8.19;&#10;&#10;contract MyToken {&#10;    // Your contract code here&#10;}"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Network Selection</label>
+                            <div class="network-selector">
+                                <div class="network-option selected" data-network="usdtgverse">
+                                    <div class="network-icon">⚛️</div>
+                                    <div class="network-name">USDTgVerse</div>
+                                </div>
+                                <div class="network-option" data-network="ethereum">
+                                    <div class="network-icon">🔵</div>
+                                    <div class="network-name">Ethereum</div>
+                                </div>
+                                <div class="network-option" data-network="bnb">
+                                    <div class="network-icon">🟡</div>
+                                    <div class="network-name">BNB Chain</div>
+                                </div>
+                                <div class="network-option" data-network="polygon">
+                                    <div class="network-icon">🟣</div>
+                                    <div class="network-name">Polygon</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning btn-full">
+                            🔧 Compile & Deploy
+                        </button>
+                    </form>
+
+                    <div class="deployment-status" id="customStatus">
+                        <div class="status-content">
+                            <div class="spinner"></div>
+                            <div>
+                                <div><strong>Compiling Contract...</strong></div>
+                                <div id="customStatusText">Analyzing Solidity code...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contract Templates -->
+                <div class="deployment-card">
+                    <div class="card-header">
+                        <div class="card-icon">📚</div>
+                        <div>
+                            <div class="card-title">Contract Templates</div>
+                            <div class="card-subtitle">Pre-built quantum-safe templates</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Template Library</label>
+                        <div style="display: grid; gap: 1rem;">
+                            <button class="btn" onclick="loadTemplate('erc20')">
+                                💰 ERC-20 Token Template
+                            </button>
+                            <button class="btn" onclick="loadTemplate('nft')">
+                                🎨 NFT Collection Template
+                            </button>
+                            <button class="btn" onclick="loadTemplate('defi')">
+                                🏦 DeFi Protocol Template
+                            </button>
+                            <button class="btn" onclick="loadTemplate('dao')">
+                                🏛️ DAO Governance Template
+                            </button>
+                            <button class="btn" onclick="loadTemplate('staking')">
+                                💎 Staking Rewards Template
+                            </button>
+                            <button class="btn" onclick="loadTemplate('bridge')">
+                                🌉 Cross-chain Bridge Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gas Calculator -->
+                <div class="deployment-card">
+                    <div class="card-header">
+                        <div class="card-icon">⛽</div>
+                        <div>
+                            <div class="card-title">Gas Calculator</div>
+                            <div class="card-subtitle">Estimate deployment costs</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="gasNetwork">Network</label>
+                        <select id="gasNetwork" class="form-select" onchange="calculateGas()">
+                            <option value="usdtgverse">USDTgVerse ($0.001)</option>
+                            <option value="ethereum">Ethereum ($15-50)</option>
+                            <option value="bnb">BNB Chain ($0.10-0.50)</option>
+                            <option value="polygon">Polygon ($0.01-0.10)</option>
+                            <option value="arbitrum">Arbitrum ($1-5)</option>
+                            <option value="avalanche">Avalanche ($0.50-2)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contractSize">Contract Size (bytes)</label>
+                        <input type="number" id="contractSize" class="form-input" 
+                               placeholder="24576" value="24576" onchange="calculateGas()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Estimated Cost</label>
+                        <div id="gasCost" style="font-size: 1.5rem; color: var(--primary); font-weight: bold;">
+                            $0.001 USDTg
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-full" onclick="showGasDetails()">
+                        📊 Detailed Gas Analysis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2024 USDTgVerse. World's First Quantum-Safe Blockchain.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://usdtgverse.com">Home</a>
+                    <a href="https://docs.usdtgverse.com">Documentation</a>
+                    <a href="https://explorer.usdtgverse.com">Explorer</a>
+                    <a href="https://github.com/usdtgverse">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="deployment.js"></script>
+</body>
+</html>

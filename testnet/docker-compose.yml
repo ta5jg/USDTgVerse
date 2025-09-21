@@ -1,0 +1,311 @@
+# 🧪 USDTgVerse Testnet Environment
+# ==================================
+# 
+# ⚛️ QUANTUM-SAFE BLOCKCHAIN TESTNET
+# 🔧 COMPLETE DEVELOPER ENVIRONMENT
+# 🌍 MULTI-SERVICE ORCHESTRATION
+
+version: '3.8'
+
+services:
+  # 🌐 USDTgVerse Testnet Node
+  usdtgverse-testnet:
+    image: usdtgverse/testnet-node:latest
+    container_name: usdtgverse-testnet-node
+    ports:
+      - "8545:8545"    # RPC
+      - "8546:8546"    # WebSocket
+      - "30303:30303"  # P2P
+    environment:
+      - NETWORK_ID=2025
+      - CHAIN_ID=2025
+      - QUANTUM_SAFE=true
+      - MINING_ENABLED=true
+      - RPC_ENABLED=true
+      - WS_ENABLED=true
+      - CORS_ENABLED=true
+      - BLOCK_TIME=1s
+      - GAS_LIMIT=8000000
+      - GAS_PRICE=1000000000
+      - FAUCET_ENABLED=true
+      - FAUCET_AMOUNT=1000000000000000000000  # 1000 USDTg
+    volumes:
+      - testnet_data:/data
+      - ./config/genesis.json:/app/genesis.json
+      - ./config/static-nodes.json:/app/static-nodes.json
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8545"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.testnet.rule=Host(`testnet-rpc.usdtgverse.com`)"
+      - "traefik.http.services.testnet.loadbalancer.server.port=8545"
+
+  # 🔍 Block Explorer
+  explorer:
+    image: usdtgverse/explorer:latest
+    container_name: usdtgverse-explorer
+    ports:
+      - "3000:3000"
+    environment:
+      - RPC_URL=http://usdtgverse-testnet:8545
+      - WS_URL=ws://usdtgverse-testnet:8546
+      - NETWORK_NAME=USDTgVerse Testnet
+      - CHAIN_ID=2025
+      - QUANTUM_SAFE=true
+      - EXPLORER_TITLE=USDTgVerse Testnet Explorer
+    depends_on:
+      - usdtgverse-testnet
+      - postgres
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.explorer.rule=Host(`testnet-explorer.usdtgverse.com`)"
+
+  # 💰 Faucet Service
+  faucet:
+    image: usdtgverse/faucet:latest
+    container_name: usdtgverse-faucet
+    ports:
+      - "3001:3001"
+    environment:
+      - RPC_URL=http://usdtgverse-testnet:8545
+      - PRIVATE_KEY=${FAUCET_PRIVATE_KEY}
+      - FAUCET_AMOUNT=1000000000000000000000  # 1000 USDTg
+      - RATE_LIMIT=1  # 1 request per address per day
+      - QUANTUM_VERIFICATION=true
+      - CAPTCHA_ENABLED=true
+      - TWITTER_VERIFICATION=false
+    depends_on:
+      - usdtgverse-testnet
+      - redis
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.faucet.rule=Host(`testnet-faucet.usdtgverse.com`)"
+
+  # 🗄️ PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: usdtgverse-postgres
+    environment:
+      - POSTGRES_DB=usdtgverse_testnet
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # 🔴 Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: usdtgverse-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 📊 Monitoring - Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: usdtgverse-grafana
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`testnet-monitoring.usdtgverse.com`)"
+
+  # 📈 Monitoring - Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: usdtgverse-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+
+  # 🔧 Contract Deployment Service
+  deployment-service:
+    image: usdtgverse/deployment-service:latest
+    container_name: usdtgverse-deployment
+    ports:
+      - "8080:8080"
+    environment:
+      - RPC_URL=http://usdtgverse-testnet:8545
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/usdtgverse_testnet
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379
+      - QUANTUM_SAFE=true
+      - AUTO_VERIFY=true
+    depends_on:
+      - usdtgverse-testnet
+      - postgres
+      - redis
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deployment.rule=Host(`testnet-deploy.usdtgverse.com`)"
+
+  # 🔍 Audit Service
+  audit-service:
+    image: usdtgverse/audit-service:latest
+    container_name: usdtgverse-audit
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/usdtgverse_testnet
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379
+      - RPC_URL=http://usdtgverse-testnet:8545
+      - QUANTUM_ANALYSIS=true
+      - AUTO_AUDIT=true
+    depends_on:
+      - postgres
+      - redis
+      - usdtgverse-testnet
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.audit.rule=Host(`testnet-audit.usdtgverse.com`)"
+
+  # 🌐 Load Balancer - Traefik
+  traefik:
+    image: traefik:v2.10
+    container_name: usdtgverse-traefik
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.myresolver.acme.tlschallenge=true
+      - --certificatesresolvers.myresolver.acme.email=${ACME_EMAIL}
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"  # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt:/letsencrypt
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+
+  # 📊 Node Exporter (Metrics)
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: usdtgverse-node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+
+  # 🔄 Backup Service
+  backup-service:
+    image: usdtgverse/backup-service:latest
+    container_name: usdtgverse-backup
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/usdtgverse_testnet
+      - S3_BUCKET=${BACKUP_S3_BUCKET}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - BACKUP_SCHEDULE=0 2 * * *  # Daily at 2 AM
+      - RETENTION_DAYS=30
+    volumes:
+      - testnet_data:/data:ro
+    depends_on:
+      - postgres
+      - usdtgverse-testnet
+    networks:
+      - usdtgverse-testnet
+    restart: unless-stopped
+
+# 🌐 Networks
+networks:
+  usdtgverse-testnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# 💾 Volumes
+volumes:
+  testnet_data:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  grafana_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  letsencrypt:
+    driver: local
+
+# 🏷️ Labels
+labels:
+  - "project=usdtgverse-testnet"
+  - "environment=development"
+  - "quantum-safe=true"
+  - "version=1.0.0"

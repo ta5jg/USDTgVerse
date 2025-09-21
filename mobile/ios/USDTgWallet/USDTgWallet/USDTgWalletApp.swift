@@ -125,17 +125,7 @@ class NetworkManager: ObservableObject {
 }
 
 // MARK: - Data Models
-struct WalletAsset: Identifiable {
-    let id = UUID()
-    let symbol: String
-    let name: String
-    let balance: Double
-    let price: Double
-    
-    var totalValue: Double {
-        return balance * price
-    }
-}
+// WalletAsset is now defined in WalletView.swift
 
 struct Transaction: Identifiable {
     let id: String

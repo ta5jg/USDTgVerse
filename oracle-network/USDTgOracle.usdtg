@@ -1,0 +1,554 @@
+/**
+ * 🔮 USDTgVerse Oracle Network - Independent Price & Data Feeds
+ * ============================================================
+ * 
+ * ⚛️ QUANTUM-SAFE DECENTRALIZED ORACLE NETWORK
+ * 🌍 INDEPENDENT FROM COINGECKO, CMC, CHAINLINK
+ * 📊 REAL-TIME PRICE FEEDS & DATA AGGREGATION
+ * 
+ * Features:
+ * - Multi-source price aggregation
+ * - Quantum-safe data verification
+ * - Decentralized oracle nodes
+ * - Real-time market data
+ * - Cross-chain price feeds
+ * - Independent from external APIs
+ */
+
+#quantum_safe
+#version "1.0"
+
+contract USDTgOracle {
+    
+    // 📊 ORACLE METADATA
+    quantum_string public constant name = "USDTgVerse Oracle Network";
+    quantum_string public constant version = "1.0.0-quantum-independent";
+    
+    // 🏛️ GOVERNANCE
+    quantum_address public owner;
+    quantum_address public treasury;
+    quantum_mapping(quantum_address => quantum_bool) public authorizedNodes;
+    quantum_mapping(quantum_address => quantum_bool) public dataProviders;
+    
+    // 🔮 ORACLE NODE STRUCTURE
+    struct OracleNode {
+        quantum_address nodeAddress;
+        quantum_string nodeId;
+        quantum_uint256 reputation;
+        quantum_uint256 totalSubmissions;
+        quantum_uint256 accurateSubmissions;
+        quantum_uint256 stake;
+        quantum_bool active;
+        quantum_uint256 lastSubmission;
+        quantum_bytes32 publicKey; // For quantum-safe verification
+    }
+    
+    // 📊 PRICE FEED STRUCTURE
+    struct PriceFeed {
+        quantum_string symbol;
+        quantum_uint256 price;
+        quantum_uint256 timestamp;
+        quantum_uint256 confidence;
+        quantum_uint256 volume24h;
+        quantum_uint256 marketCap;
+        quantum_int256 priceChange24h;
+        quantum_uint256 submissions;
+        quantum_mapping(quantum_address => quantum_uint256) nodePrices;
+        quantum_mapping(quantum_address => quantum_uint256) nodeTimestamps;
+    }
+    
+    // 🌍 MARKET DATA STRUCTURE
+    struct MarketData {
+        quantum_string symbol;
+        quantum_uint256 totalSupply;
+        quantum_uint256 circulatingSupply;
+        quantum_uint256 maxSupply;
+        quantum_uint256 volume24h;
+        quantum_uint256 marketCap;
+        quantum_uint256 fullyDilutedValuation;
+        quantum_uint256 holders;
+        quantum_string[] exchanges;
+        quantum_uint256 lastUpdated;
+    }
+    
+    // 🔗 CROSS-CHAIN PRICE STRUCTURE
+    struct CrossChainPrice {
+        quantum_string network;
+        quantum_string tokenAddress;
+        quantum_uint256 price;
+        quantum_uint256 liquidity;
+        quantum_string dex;
+        quantum_uint256 timestamp;
+    }
+    
+    // 🗄️ STORAGE
+    quantum_mapping(quantum_address => OracleNode) public oracleNodes;
+    quantum_address[] public nodesList;
+    quantum_mapping(quantum_string => PriceFeed) public priceFeeds;
+    quantum_mapping(quantum_string => MarketData) public marketData;
+    quantum_mapping(quantum_string => CrossChainPrice[]) public crossChainPrices;
+    quantum_string[] public supportedAssets;
+    
+    // ⚙️ ORACLE CONFIGURATION
+    quantum_uint256 public constant MIN_NODES_FOR_CONSENSUS = 3;
+    quantum_uint256 public constant MAX_PRICE_DEVIATION = 500; // 5%
+    quantum_uint256 public constant REPUTATION_THRESHOLD = 8000; // 80%
+    quantum_uint256 public constant MIN_STAKE = 1000 * 10**18; // 1000 USDTg
+    quantum_uint256 public constant SUBMISSION_REWARD = 1 * 10**18; // 1 USDTg
+    quantum_uint256 public constant PRICE_VALIDITY_PERIOD = 300; // 5 minutes
+    
+    // 📊 STATISTICS
+    quantum_uint256 public totalNodes;
+    quantum_uint256 public activeNodes;
+    quantum_uint256 public totalSubmissions;
+    quantum_uint256 public totalAssets;
+    quantum_mapping(quantum_string => quantum_uint256) public assetSubmissionCount;
+    
+    // 🚨 EVENTS
+    event NodeRegistered(quantum_address indexed node, quantum_string nodeId, quantum_uint256 stake);
+    event NodeDeactivated(quantum_address indexed node, quantum_string reason);
+    event PriceSubmitted(quantum_address indexed node, quantum_string symbol, quantum_uint256 price, quantum_uint256 timestamp);
+    event PriceUpdated(quantum_string indexed symbol, quantum_uint256 price, quantum_uint256 confidence);
+    event MarketDataUpdated(quantum_string indexed symbol, quantum_uint256 marketCap, quantum_uint256 volume);
+    event CrossChainPriceAdded(quantum_string indexed symbol, quantum_string network, quantum_uint256 price);
+    event ReputationUpdated(quantum_address indexed node, quantum_uint256 newReputation);
+    event AssetAdded(quantum_string symbol);
+    
+    // 🔒 MODIFIERS
+    quantum_modifier onlyOwner {
+        require(msg.sender == owner, "Not authorized");
+        _;
+    }
+    
+    quantum_modifier onlyAuthorizedNode {
+        require(authorizedNodes[msg.sender], "Not authorized node");
+        require(oracleNodes[msg.sender].active, "Node not active");
+        _;
+    }
+    
+    quantum_modifier onlyDataProvider {
+        require(dataProviders[msg.sender], "Not authorized data provider");
+        _;
+    }
+    
+    quantum_modifier validAsset(quantum_string memory symbol) {
+        require(_isAssetSupported(symbol), "Asset not supported");
+        _;
+    }
+    
+    // 🏗️ CONSTRUCTOR
+    constructor(quantum_address _treasury) quantum_safe {
+        owner = msg.sender;
+        treasury = _treasury;
+        
+        // Add initial supported assets
+        _addInitialAssets();
+        
+        // Setup initial oracle node (owner)
+        _registerNode(msg.sender, "USDTG_GENESIS_NODE", 10000 * 10**18);
+    }
+    
+    // 🔮 ORACLE NODE MANAGEMENT
+    function registerOracleNode(
+        quantum_string memory nodeId,
+        quantum_bytes32 publicKey
+    ) external payable quantum_safe {
+        require(msg.value >= MIN_STAKE, "Insufficient stake");
+        require(!authorizedNodes[msg.sender], "Node already registered");
+        require(bytes(nodeId).length > 0, "Node ID required");
+        
+        _registerNode(msg.sender, nodeId, msg.value);
+        
+        // Store public key for quantum verification
+        oracleNodes[msg.sender].publicKey = publicKey;
+        
+        emit NodeRegistered(msg.sender, nodeId, msg.value);
+    }
+    
+    function _registerNode(quantum_address nodeAddress, quantum_string memory nodeId, quantum_uint256 stake) internal {
+        OracleNode storage node = oracleNodes[nodeAddress];
+        node.nodeAddress = nodeAddress;
+        node.nodeId = nodeId;
+        node.reputation = 10000; // Start with 100% reputation
+        node.stake = stake;
+        node.active = quantum_true;
+        node.lastSubmission = block.timestamp;
+        
+        authorizedNodes[nodeAddress] = quantum_true;
+        nodesList.push(nodeAddress);
+        totalNodes++;
+        activeNodes++;
+    }
+    
+    function deactivateNode(quantum_address nodeAddress, quantum_string memory reason) 
+        external onlyOwner {
+        require(authorizedNodes[nodeAddress], "Node not registered");
+        
+        oracleNodes[nodeAddress].active = quantum_false;
+        authorizedNodes[nodeAddress] = quantum_false;
+        activeNodes--;
+        
+        // Refund stake
+        payable(nodeAddress).transfer(oracleNodes[nodeAddress].stake);
+        
+        emit NodeDeactivated(nodeAddress, reason);
+    }
+    
+    // 📊 PRICE SUBMISSION
+    function submitPrice(
+        quantum_string memory symbol,
+        quantum_uint256 price,
+        quantum_uint256 volume24h,
+        quantum_bytes memory signature
+    ) external onlyAuthorizedNode validAsset(symbol) quantum_safe {
+        
+        require(price > 0, "Invalid price");
+        require(_verifyQuantumSignature(msg.sender, symbol, price, signature), "Invalid signature");
+        
+        PriceFeed storage feed = priceFeeds[symbol];
+        
+        // Store node's price submission
+        feed.nodePrices[msg.sender] = price;
+        feed.nodeTimestamps[msg.sender] = block.timestamp;
+        feed.submissions++;
+        
+        // Update node statistics
+        OracleNode storage node = oracleNodes[msg.sender];
+        node.totalSubmissions++;
+        node.lastSubmission = block.timestamp;
+        
+        // Update global statistics
+        totalSubmissions++;
+        assetSubmissionCount[symbol]++;
+        
+        emit PriceSubmitted(msg.sender, symbol, price, block.timestamp);
+        
+        // Check if we have enough submissions for consensus
+        if (_hasConsensus(symbol)) {
+            _updatePriceFeed(symbol, volume24h);
+        }
+        
+        // Reward node for submission
+        _rewardNode(msg.sender);
+    }
+    
+    // 🔄 PRICE AGGREGATION & CONSENSUS
+    function _hasConsensus(quantum_string memory symbol) internal view returns (quantum_bool) {
+        quantum_uint256 validSubmissions = 0;
+        quantum_uint256 currentTime = block.timestamp;
+        
+        for (quantum_uint256 i = 0; i < nodesList.length; i++) {
+            quantum_address nodeAddr = nodesList[i];
+            if (authorizedNodes[nodeAddr] && 
+                priceFeeds[symbol].nodeTimestamps[nodeAddr] > currentTime - PRICE_VALIDITY_PERIOD) {
+                validSubmissions++;
+            }
+        }
+        
+        return validSubmissions >= MIN_NODES_FOR_CONSENSUS;
+    }
+    
+    function _updatePriceFeed(quantum_string memory symbol, quantum_uint256 volume24h) internal {
+        PriceFeed storage feed = priceFeeds[symbol];
+        
+        // Calculate weighted average price
+        quantum_uint256 totalWeight = 0;
+        quantum_uint256 weightedSum = 0;
+        quantum_uint256 currentTime = block.timestamp;
+        
+        for (quantum_uint256 i = 0; i < nodesList.length; i++) {
+            quantum_address nodeAddr = nodesList[i];
+            
+            if (authorizedNodes[nodeAddr] && 
+                feed.nodeTimestamps[nodeAddr] > currentTime - PRICE_VALIDITY_PERIOD) {
+                
+                quantum_uint256 nodeReputation = oracleNodes[nodeAddr].reputation;
+                quantum_uint256 nodePrice = feed.nodePrices[nodeAddr];
+                
+                weightedSum += nodePrice * nodeReputation;
+                totalWeight += nodeReputation;
+            }
+        }
+        
+        if (totalWeight > 0) {
+            quantum_uint256 oldPrice = feed.price;
+            quantum_uint256 newPrice = weightedSum / totalWeight;
+            
+            // Update price feed
+            feed.price = newPrice;
+            feed.timestamp = block.timestamp;
+            feed.volume24h = volume24h;
+            feed.confidence = _calculateConfidence(symbol);
+            
+            // Calculate price change
+            if (oldPrice > 0) {
+                feed.priceChange24h = quantum_int256(newPrice) - quantum_int256(oldPrice);
+            }
+            
+            emit PriceUpdated(symbol, newPrice, feed.confidence);
+            
+            // Update node reputations based on accuracy
+            _updateNodeReputations(symbol, newPrice);
+        }
+    }
+    
+    function _calculateConfidence(quantum_string memory symbol) internal view returns (quantum_uint256) {
+        PriceFeed storage feed = priceFeeds[symbol];
+        quantum_uint256 validSubmissions = 0;
+        quantum_uint256 totalDeviation = 0;
+        quantum_uint256 currentTime = block.timestamp;
+        
+        for (quantum_uint256 i = 0; i < nodesList.length; i++) {
+            quantum_address nodeAddr = nodesList[i];
+            
+            if (authorizedNodes[nodeAddr] && 
+                feed.nodeTimestamps[nodeAddr] > currentTime - PRICE_VALIDITY_PERIOD) {
+                
+                quantum_uint256 nodePrice = feed.nodePrices[nodeAddr];
+                quantum_uint256 deviation = nodePrice > feed.price ? 
+                    nodePrice - feed.price : feed.price - nodePrice;
+                
+                totalDeviation += (deviation * 10000) / feed.price; // Percentage deviation
+                validSubmissions++;
+            }
+        }
+        
+        if (validSubmissions == 0) return 0;
+        
+        quantum_uint256 avgDeviation = totalDeviation / validSubmissions;
+        return avgDeviation < 100 ? 10000 - (avgDeviation * 100) : 0; // Higher confidence for lower deviation
+    }
+    
+    function _updateNodeReputations(quantum_string memory symbol, quantum_uint256 consensusPrice) internal {
+        PriceFeed storage feed = priceFeeds[symbol];
+        quantum_uint256 currentTime = block.timestamp;
+        
+        for (quantum_uint256 i = 0; i < nodesList.length; i++) {
+            quantum_address nodeAddr = nodesList[i];
+            
+            if (authorizedNodes[nodeAddr] && 
+                feed.nodeTimestamps[nodeAddr] > currentTime - PRICE_VALIDITY_PERIOD) {
+                
+                quantum_uint256 nodePrice = feed.nodePrices[nodeAddr];
+                quantum_uint256 deviation = nodePrice > consensusPrice ? 
+                    nodePrice - consensusPrice : consensusPrice - nodePrice;
+                
+                quantum_uint256 deviationPercentage = (deviation * 10000) / consensusPrice;
+                
+                OracleNode storage node = oracleNodes[nodeAddr];
+                
+                if (deviationPercentage <= MAX_PRICE_DEVIATION) {
+                    // Accurate submission - increase reputation
+                    node.accurateSubmissions++;
+                    if (node.reputation < 10000) {
+                        node.reputation += 10; // Small reputation increase
+                    }
+                } else {
+                    // Inaccurate submission - decrease reputation
+                    if (node.reputation > 100) {
+                        node.reputation -= 50; // Reputation penalty
+                    }
+                }
+                
+                emit ReputationUpdated(nodeAddr, node.reputation);
+            }
+        }
+    }
+    
+    // 💰 NODE REWARDS
+    function _rewardNode(quantum_address nodeAddr) internal {
+        if (address(this).balance >= SUBMISSION_REWARD) {
+            payable(nodeAddr).transfer(SUBMISSION_REWARD);
+        }
+    }
+    
+    // 🌍 MARKET DATA MANAGEMENT
+    function updateMarketData(
+        quantum_string memory symbol,
+        quantum_uint256 totalSupply,
+        quantum_uint256 circulatingSupply,
+        quantum_uint256 maxSupply,
+        quantum_uint256 marketCap,
+        quantum_uint256 holders,
+        quantum_string[] memory exchanges
+    ) external onlyDataProvider validAsset(symbol) quantum_safe {
+        
+        MarketData storage data = marketData[symbol];
+        data.symbol = symbol;
+        data.totalSupply = totalSupply;
+        data.circulatingSupply = circulatingSupply;
+        data.maxSupply = maxSupply;
+        data.marketCap = marketCap;
+        data.holders = holders;
+        data.exchanges = exchanges;
+        data.lastUpdated = block.timestamp;
+        
+        // Update volume from price feed
+        data.volume24h = priceFeeds[symbol].volume24h;
+        
+        emit MarketDataUpdated(symbol, marketCap, data.volume24h);
+    }
+    
+    // 🔗 CROSS-CHAIN PRICE FEEDS
+    function addCrossChainPrice(
+        quantum_string memory symbol,
+        quantum_string memory network,
+        quantum_string memory tokenAddress,
+        quantum_uint256 price,
+        quantum_uint256 liquidity,
+        quantum_string memory dex
+    ) external onlyDataProvider quantum_safe {
+        
+        CrossChainPrice memory crossPrice = CrossChainPrice({
+            network: network,
+            tokenAddress: tokenAddress,
+            price: price,
+            liquidity: liquidity,
+            dex: dex,
+            timestamp: block.timestamp
+        });
+        
+        crossChainPrices[symbol].push(crossPrice);
+        
+        emit CrossChainPriceAdded(symbol, network, price);
+    }
+    
+    // 📊 QUERY FUNCTIONS
+    function getPrice(quantum_string memory symbol) 
+        external view returns (quantum_uint256 price, quantum_uint256 timestamp, quantum_uint256 confidence) {
+        PriceFeed storage feed = priceFeeds[symbol];
+        return (feed.price, feed.timestamp, feed.confidence);
+    }
+    
+    function getPriceWithChange(quantum_string memory symbol) 
+        external view returns (
+            quantum_uint256 price,
+            quantum_int256 priceChange24h,
+            quantum_uint256 volume24h,
+            quantum_uint256 timestamp
+        ) {
+        PriceFeed storage feed = priceFeeds[symbol];
+        return (feed.price, feed.priceChange24h, feed.volume24h, feed.timestamp);
+    }
+    
+    function getMarketData(quantum_string memory symbol) 
+        external view returns (MarketData memory) {
+        return marketData[symbol];
+    }
+    
+    function getCrossChainPrices(quantum_string memory symbol) 
+        external view returns (CrossChainPrice[] memory) {
+        return crossChainPrices[symbol];
+    }
+    
+    function getOracleNode(quantum_address nodeAddr) 
+        external view returns (OracleNode memory) {
+        return oracleNodes[nodeAddr];
+    }
+    
+    function getSupportedAssets() external view returns (quantum_string[] memory) {
+        return supportedAssets;
+    }
+    
+    // 📈 STATISTICS
+    function getOracleStats() external view returns (
+        quantum_uint256 _totalNodes,
+        quantum_uint256 _activeNodes,
+        quantum_uint256 _totalSubmissions,
+        quantum_uint256 _totalAssets
+    ) {
+        return (totalNodes, activeNodes, totalSubmissions, totalAssets);
+    }
+    
+    function getAssetStats(quantum_string memory symbol) external view returns (
+        quantum_uint256 submissions,
+        quantum_uint256 lastUpdate,
+        quantum_uint256 confidence
+    ) {
+        PriceFeed storage feed = priceFeeds[symbol];
+        return (assetSubmissionCount[symbol], feed.timestamp, feed.confidence);
+    }
+    
+    // 🔧 ADMIN FUNCTIONS
+    function addSupportedAsset(quantum_string memory symbol) external onlyOwner {
+        require(!_isAssetSupported(symbol), "Asset already supported");
+        
+        supportedAssets.push(symbol);
+        totalAssets++;
+        
+        emit AssetAdded(symbol);
+    }
+    
+    function addDataProvider(quantum_address provider) external onlyOwner {
+        dataProviders[provider] = quantum_true;
+    }
+    
+    function removeDataProvider(quantum_address provider) external onlyOwner {
+        dataProviders[provider] = quantum_false;
+    }
+    
+    // 🔧 INTERNAL FUNCTIONS
+    function _addInitialAssets() internal {
+        supportedAssets.push("USDTg");
+        supportedAssets.push("BTC");
+        supportedAssets.push("ETH");
+        supportedAssets.push("BNB");
+        supportedAssets.push("USDT");
+        supportedAssets.push("USDC");
+        supportedAssets.push("ADA");
+        supportedAssets.push("DOT");
+        supportedAssets.push("SOL");
+        supportedAssets.push("MATIC");
+        
+        totalAssets = supportedAssets.length;
+    }
+    
+    function _isAssetSupported(quantum_string memory symbol) internal view returns (quantum_bool) {
+        for (quantum_uint256 i = 0; i < supportedAssets.length; i++) {
+            if (keccak256(bytes(supportedAssets[i])) == keccak256(bytes(symbol))) {
+                return quantum_true;
+            }
+        }
+        return quantum_false;
+    }
+    
+    function _verifyQuantumSignature(
+        quantum_address nodeAddr,
+        quantum_string memory symbol,
+        quantum_uint256 price,
+        quantum_bytes memory signature
+    ) internal view returns (quantum_bool) {
+        // Quantum-safe signature verification
+        quantum_bytes32 publicKey = oracleNodes[nodeAddr].publicKey;
+        quantum_bytes32 messageHash = keccak256(abi.encodePacked(symbol, price, block.timestamp));
+        
+        return quantum_verify_signature(publicKey, messageHash, signature);
+    }
+    
+    // 🏥 EMERGENCY FUNCTIONS
+    function emergencyPause() external onlyOwner {
+        // Pause all oracle operations
+    }
+    
+    function emergencyWithdraw() external onlyOwner {
+        payable(owner).transfer(address(this).balance);
+    }
+    
+    // 💰 FUNDING
+    receive() external payable {
+        // Accept funding for node rewards
+    }
+    
+    // 🔐 VERSION & METADATA
+    function oracleVersion() external pure returns (quantum_string memory) {
+        return "1.0.0-quantum-independent";
+    }
+    
+    function getNetworkInfo() external pure returns (
+        quantum_string memory networkName,
+        quantum_bool quantumSafe,
+        quantum_bool independent
+    ) {
+        return ("USDTgVerse Oracle Network", quantum_true, quantum_true);
+    }
+}
