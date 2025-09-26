@@ -527,32 +527,157 @@
     </div>
     
     <script>
-        // Ana sayfa için navigation (Menu var, Back button yok)
+        // MEGA MENU Navigation
         document.getElementById('navigation-placeholder').innerHTML = `
-            <nav style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 15px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
-                <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+            <nav style="
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                padding: 15px 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            ">
+                <div style="
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                ">
                     <div style="display: flex; align-items: center; gap: 15px;">
-                        <img src="assets/logos/logo.png" alt="USDTgVerse" style="width: 50px; height: 50px;">
-                        <div style="color: white; font-weight: bold; font-size: 1.3em;">USDTgVerse Dashboard</div>
+                        <img src="assets/logos/logo.png" alt="USDTgVerse Logo" style="
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            border: 2px solid rgba(255, 255, 255, 0.2);
+                            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                        ">
+                        <h2 style="
+                            font-size: 24px;
+                            font-weight: bold;
+                            color: white;
+                            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                        ">USDTgVerse</h2>
                     </div>
                     
-                    <div style="display: flex; gap: 15px; align-items: center;">
-                        <!-- Navigation Menu (Back button YOK) -->
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <a href="/website/index.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">🌟 Website</a>
-                            <a href="/explorer/usdtgscan.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">🔍 Explorer</a>
-                            <a href="/dapps/usdtg-transfer/index.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">💳 dApp</a>
-                            <a href="/dashboard/index.html#dex" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">🔄 DEX (Live)</a>
-                            <a href="/dashboard/index.html#cex" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">🏪 CEX (Live)</a>
-                            <a href="/wallet/demo/wallet.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">💳 Wallet</a>
-                            <a href="/bridges/web/bridge.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">🌉 Bridges</a>
-                            <a href="/audit/USDTgVerse_Security_Audit_Report_FIXED.html" style="color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; background: rgba(255,255,255,0.1); font-size: 0.9em; transition: all 0.3s;">🔒 Audit</a>
+                    <div style="display: flex; gap: 30px; align-items: center;">
+                        <!-- Platform Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🌟 Platform
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(0, 0, 0, 0.95);
+                                backdrop-filter: blur(15px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 1px solid rgba(255, 255, 255, 0.1);
+                            ">
+                                <a href="website/index.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🌐 Main Website</a>
+                                <a href="explorer/usdtgscan.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔍 Explorer</a>
+                                <a href="dapps/usdtg-transfer/index.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📱 dApp</a>
+                                <a href="wallet/index.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💳 Wallet</a>
+                            </div>
                         </div>
                         
-                        <!-- Status -->
-                        <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 20px; color: white; font-size: 0.9em;">
-                            <span style="display: inline-block; width: 8px; height: 8px; background: #28a745; border-radius: 50%; margin-right: 8px; animation: pulse 2s infinite;"></span>
-                            Mainnet Live
+                        <!-- Development Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                💻 Development
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(0, 0, 0, 0.95);
+                                backdrop-filter: blur(15px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 1px solid rgba(255, 255, 255, 0.1);
+                            ">
+                                <a href="dev-tools/USDTgIDE-Real.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔧 USDTgScript IDE Pro</a>
+                                <a href="universal-factory/deploy.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏭 Contract Deploy</a>
+                                <a href="audit/contract-verify.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ Contract Verify</a>
+                                <a href="oracle-network/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔮 Oracle Network</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Trading Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                💰 Trading
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(0, 0, 0, 0.95);
+                                backdrop-filter: blur(15px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 1px solid rgba(255, 255, 255, 0.1);
+                            ">
+                                <a href="dashboard/index.html#dex" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 DEX (Live)</a>
+                                <a href="dashboard/index.html#cex" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏢 CEX (Live)</a>
+                                <a href="liquid-staking/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💧 Liquid Staking</a>
+                                <a href="flash-loans/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">⚡ Flash Loans</a>
+                                <a href="bootstrap-system/bridge.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🌉 Bridge</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Privacy Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🔒 Privacy
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(0, 0, 0, 0.95);
+                                backdrop-filter: blur(15px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 1px solid rgba(255, 255, 255, 0.1);
+                            ">
+                                <a href="zk-privacy/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ ZK Privacy</a>
+                                <a href="homomorphic-encryption/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔐 Homomorphic Encryption</a>
+                                <a href="mev-protection/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ MEV Protection</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantum Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="website/quantum-safe.html" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                ⚛️ Quantum
+                            </a>
                         </div>
                     </div>
                 </div>
