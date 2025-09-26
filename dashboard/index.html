@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="../assets/logos/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/logos/logo.png" alt="USDTgVerse" class="logo">
+                <h2>USDTgVerse</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#overview" class="nav-link active">📊 Overview</a></li>
+                    <li><a href="#tokens" class="nav-link">🪙 Tokens</a></li>
+                    <li><a href="#dex" class="nav-link">🔄 DEX</a></li>
+                    <li><a href="#cex" class="nav-link">🏦 CEX</a></li>
+                    <li><a href="#staking" class="nav-link">💎 Staking</a></li>
+                    <li><a href="#governance" class="nav-link">🏛️ Governance</a></li>
+                    <li><a href="#analytics" class="nav-link">📈 Analytics</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>USDTgVerse Dashboard</h1>
+                <div class="header-actions">
+                    <div class="network-status">
+                        <span class="status-dot online"></span>
+                        <span>Mainnet Online</span>
+                    </div>
+                    <button class="btn btn-primary">Connect Wallet</button>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <div class="section-header">
+                    <h2>Overview</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-secondary">Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-content">
+                            <h3>Total Value Locked</h3>
+                            <div class="metric-value">$4,200,000</div>
+                            <div class="metric-change positive">+12.5%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🔄</div>
+                        <div class="metric-content">
+                            <h3>24h Volume</h3>
+                            <div class="metric-value">$890,000</div>
+                            <div class="metric-change positive">+8.3%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-content">
+                            <h3>Active Users</h3>
+                            <div class="metric-value">2,847</div>
+                            <div class="metric-change positive">+15.2%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⛓️</div>
+                        <div class="metric-content">
+                            <h3>Block Height</h3>
+                            <div class="metric-value">1,247,892</div>
+                            <div class="metric-change">+1,247</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Price Chart</h3>
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Volume Chart</h3>
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="transactions-card">
+                    <h3>Recent Transactions</h3>
+                    <div class="transactions-list">
+                        <div class="transaction-item">
+                            <div class="tx-icon">🔄</div>
+                            <div class="tx-details">
+                                <div class="tx-type">Swap</div>
+                                <div class="tx-amount">1,000 USDTg → 2,000 USDTgV</div>
+                                <div class="tx-time">2 minutes ago</div>
+                            </div>
+                            <div class="tx-status success">Success</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="tx-icon">💎</div>
+                            <div class="tx-details">
+                                <div class="tx-type">Stake</div>
+                                <div class="tx-amount">500 USDTgV staked</div>
+                                <div class="tx-time">5 minutes ago</div>
+                            </div>
+                            <div class="tx-status success">Success</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="tx-icon">🏛️</div>
+                            <div class="tx-details">
+                                <div class="tx-type">Vote</div>
+                                <div class="tx-amount">Proposal #42</div>
+                                <div class="tx-time">10 minutes ago</div>
+                            </div>
+                            <div class="tx-status success">Success</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tokens Section -->
+            <section id="tokens" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Tokens</h2>
+                </div>
+                <div class="tokens-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Price</th>
+                                <th>24h Change</th>
+                                <th>Market Cap</th>
+                                <th>Supply</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <div>
+                                            <div class="token-name">USDTg</div>
+                                            <div class="token-symbol">USDTgVerse Native</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$1.00</td>
+                                <td class="change stable">0.00%</td>
+                                <td class="market-cap">$1,000,000,000</td>
+                                <td class="supply">1,000,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo">
+                                        <div>
+                                            <div class="token-name">USDTgV</div>
+                                            <div class="token-symbol">Utility Token</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$0.50</td>
+                                <td class="change positive">+2.5%</td>
+                                <td class="market-cap">$250,000,000</td>
+                                <td class="supply">500,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo">
+                                        <div>
+                                            <div class="token-name">USDTgG</div>
+                                            <div class="token-symbol">Governance Token</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$5.00</td>
+                                <td class="change positive">+1.8%</td>
+                                <td class="market-cap">$500,000,000</td>
+                                <td class="supply">100,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- DEX Section -->
+            <section id="dex" class="dashboard-section">
+                <div class="section-header">
+                    <h2>DEX Trading</h2>
+                </div>
+                <div class="dex-content">
+                    <div class="trading-pairs">
+                        <h3>Trading Pairs</h3>
+                        <div class="pairs-grid">
+                            <div class="pair-card">
+                                <div class="pair-header">
+                                    <div class="pair-tokens">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo">
+                                    </div>
+                                    <div class="pair-name">USDTg/USDTgV</div>
+                                </div>
+                                <div class="pair-price">0.5 USDTgV</div>
+                                <div class="pair-liquidity">$3,000,000</div>
+                                <div class="pair-volume">$450,000</div>
+                                <button class="btn btn-primary">Trade</button>
+                            </div>
+                            <div class="pair-card">
+                                <div class="pair-header">
+                                    <div class="pair-tokens">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <img src="../assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo">
+                                    </div>
+                                    <div class="pair-name">USDTg/USDTgG</div>
+                                </div>
+                                <div class="pair-price">5.0 USDTgG</div>
+                                <div class="pair-liquidity">$1,200,000</div>
+                                <div class="pair-volume">$180,000</div>
+                                <button class="btn btn-primary">Trade</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CEX Section -->
+            <section id="cex" class="dashboard-section">
+                <div class="section-header">
+                    <h2>CEX Trading</h2>
+                </div>
+                <div class="cex-content">
+                    <div class="exchange-pairs">
+                        <h3>Exchange Pairs</h3>
+                        <div class="exchange-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Pair</th>
+                                        <th>Price</th>
+                                        <th>24h Change</th>
+                                        <th>Volume</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>USDTg/USDT</td>
+                                        <td class="price">$1.00</td>
+                                        <td class="change stable">0.00%</td>
+                                        <td class="volume">$50,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>USDTgV/USDT</td>
+                                        <td class="price">$0.50</td>
+                                        <td class="change positive">+2.5%</td>
+                                        <td class="volume">$25,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>USDTgG/USDT</td>
+                                        <td class="price">$5.00</td>
+                                        <td class="change positive">+1.8%</td>
+                                        <td class="volume">$15,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Staking Section -->
+            <section id="staking" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Staking</h2>
+                </div>
+                <div class="staking-content">
+                    <div class="staking-pools">
+                        <h3>Staking Pools</h3>
+                        <div class="pools-grid">
+                            <div class="pool-card">
+                                <div class="pool-header">
+                                    <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo">
+                                    <div class="pool-name">USDTgV Staking</div>
+                                </div>
+                                <div class="pool-apy">10% APY</div>
+                                <div class="pool-tvl">$2,500,000</div>
+                                <button class="btn btn-primary">Stake</button>
+                            </div>
+                            <div class="pool-card">
+                                <div class="pool-header">
+                                    <img src="../assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo">
+                                    <div class="pool-name">USDTgG Staking</div>
+                                </div>
+                                <div class="pool-apy">15% APY</div>
+                                <div class="pool-tvl">$1,800,000</div>
+                                <button class="btn btn-primary">Stake</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Governance Section -->
+            <section id="governance" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Governance</h2>
+                </div>
+                <div class="governance-content">
+                    <div class="proposals">
+                        <h3>Active Proposals</h3>
+                        <div class="proposals-list">
+                            <div class="proposal-card">
+                                <div class="proposal-header">
+                                    <div class="proposal-title">Increase USDTgV Staking Rewards</div>
+                                    <div class="proposal-status active">Active</div>
+                                </div>
+                                <div class="proposal-description">
+                                    Proposal to increase USDTgV staking rewards from 10% to 12% APY
+                                </div>
+                                <div class="proposal-votes">
+                                    <div class="vote-bar">
+                                        <div class="vote-for" style="width: 65%"></div>
+                                    </div>
+                                    <div class="vote-counts">
+                                        <span class="for">65% For</span>
+                                        <span class="against">35% Against</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary">Vote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Analytics</h2>
+                </div>
+                <div class="analytics-content">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Network Health</h3>
+                            <div class="health-metrics">
+                                <div class="health-item">
+                                    <span class="health-label">Uptime</span>
+                                    <span class="health-value">99.9%</span>
+                                </div>
+                                <div class="health-item">
+                                    <span class="health-label">Block Time</span>
+                                    <span class="health-value">1.2s</span>
+                                </div>
+                                <div class="health-item">
+                                    <span class="health-label">Finality</span>
+                                    <span class="health-value">3.0s</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Security Status</h3>
+                            <div class="security-metrics">
+                                <div class="security-item">
+                                    <span class="security-label">Quantum-Safe</span>
+                                    <span class="security-status active">✅ Active</span>
+                                </div>
+                                <div class="security-item">
+                                    <span class="security-label">MEV Protection</span>
+                                    <span class="security-status active">✅ Active</span>
+                                </div>
+                                <div class="security-item">
+                                    <span class="security-label">Anti-Fraud</span>
+                                    <span class="security-status active">✅ Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

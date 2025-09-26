@@ -1,0 +1,56 @@
+{
+    "tokens": {
+        "USDTg": {
+            "name": "USDTgVerse Native Coin",
+            "symbol": "USDTg",
+            "price": "1.00",
+            "change_24h": "0.00",
+            "market_cap": "1000000000",
+            "volume_24h": "0",
+            "supply": "1000000000",
+            "address": "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6",
+            "type": "stablecoin"
+        },
+        "USDTgV": {
+            "name": "USDTgV Utility Token",
+            "symbol": "USDTgV",
+            "price": "0.50",
+            "change_24h": "0.00",
+            "market_cap": "250000000",
+            "volume_24h": "0",
+            "supply": "500000000",
+            "address": "0x8ba1f109551bD432803012645Hac136c4c8b3d5",
+            "type": "utility"
+        },
+        "USDTgG": {
+            "name": "USDTgG Governance Token",
+            "symbol": "USDTgG",
+            "price": "5.00",
+            "change_24h": "0.00",
+            "market_cap": "500000000",
+            "volume_24h": "0",
+            "supply": "100000000",
+            "address": "0x1234567890123456789012345678901234567890",
+            "type": "governance"
+        }
+    },
+    "trading_pairs": {
+        "USDTg/USDTgV": {
+            "price": "0.5",
+            "volume_24h": "0",
+            "liquidity": "2000000"
+        },
+        "USDTg/USDTgG": {
+            "price": "5.0",
+            "volume_24h": "0",
+            "liquidity": "2000000"
+        }
+    },
+    "ecosystem": {
+        "total_market_cap": "1750000000",
+        "active_tokens": 3,
+        "liquidity_pools": 2,
+        "trading_pairs": 5,
+        "security_score": 95
+    }
+}

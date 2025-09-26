@@ -42,9 +42,12 @@ fi
 
 echo "✅ Contract file found: $CONTRACT_FILE"
 
+# Set compiler path
+COMPILER_PATH="/Users/irfangedik/USDTgVerse/native-ecosystem/compiler/usdtgc"
+
 # Validate contract syntax
 echo "🔍 Validating contract syntax..."
-if ! usdtg-compiler --validate "$CONTRACT_FILE"; then
+if ! "$COMPILER_PATH" "$CONTRACT_FILE" --target usdtgvm; then
     echo "❌ Error: Contract validation failed!"
     exit 1
 fi
@@ -53,7 +56,7 @@ echo "✅ Contract validation passed"
 
 # Compile contract
 echo "🔨 Compiling contract..."
-if ! usdtg-compiler --optimize --gas-optimize "$CONTRACT_FILE" -o "${CONTRACT_NAME}.bytecode"; then
+if ! "$COMPILER_PATH" "$CONTRACT_FILE" --output "${CONTRACT_NAME}.bytecode" --target usdtgvm --optimize; then
     echo "❌ Error: Contract compilation failed!"
     exit 1
 fi
@@ -62,7 +65,7 @@ echo "✅ Contract compiled successfully"
 
 # Generate ABI
 echo "📄 Generating ABI..."
-if ! usdtg-compiler --abi "$CONTRACT_FILE" -o "${CONTRACT_NAME}.abi"; then
+if ! "$COMPILER_PATH" "$CONTRACT_FILE" --abi "${CONTRACT_NAME}.abi" --target usdtgvm; then
     echo "❌ Error: ABI generation failed!"
     exit 1
 fi

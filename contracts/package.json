@@ -40,30 +40,29 @@
   "author": "USDTgVerse Development Team",
   "license": "MIT",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^3.0.2",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.2",
-    "@nomicfoundation/hardhat-ethers": "^3.0.4",
+    "@nomicfoundation/hardhat-ethers": "^2.0.0",
     "@nomicfoundation/hardhat-verify": "^1.1.1",
-    "@openzeppelin/hardhat-upgrades": "^2.2.1",
-    "@typechain/hardhat": "^8.0.3",
-    "@typechain/ethers-v6": "^0.4.3",
+    "@openzeppelin/hardhat-upgrades": "^1.28.0",
+    "@typechain/hardhat": "^6.1.6",
+    "@typechain/ethers-v5": "^10.2.1",
     "hardhat": "^2.17.1",
     "hardhat-gas-reporter": "^1.0.9",
     "hardhat-contract-sizer": "^2.10.0",
     "solidity-coverage": "^0.8.4",
     "solhint": "^4.0.0",
     "prettier": "^3.0.0",
-    "prettier-plugin-solidity": "^1.1.3",
-    "slither-analyzer": "^0.1.0"
+    "prettier-plugin-solidity": "^1.1.3"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.3",
     "@openzeppelin/contracts-upgradeable": "^4.9.3",
     "dotenv": "^16.3.1",
-    "ethers": "^6.7.1",
+    "ethers": "^5.7.2",
     "hardhat-deploy": "^0.11.34",
-    "hardhat-deploy-ethers": "^0.4.1"
+    "hardhat-deploy-ethers": "^0.3.0"
   },
   "engines": {
     "node": ">=16.0.0",

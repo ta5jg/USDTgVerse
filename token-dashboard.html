@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Token Dashboard - Live Prices & Trading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ff6b00;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-change {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+        
+        .positive {
+            color: #00ff88;
+        }
+        
+        .negative {
+            color: #ff4444;
+        }
+        
+        .tokens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .token-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .token-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .token-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .token-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .token-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .token-symbol {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        
+        .token-price {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ff6b00;
+        }
+        
+        .token-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .detail-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .detail-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .trading-pairs {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .trading-pairs h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #ff6b00;
+        }
+        
+        .pair-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .pair-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .pair-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .pair-price {
+            font-size: 2em;
+            color: #ff6b00;
+            margin-bottom: 10px;
+        }
+        
+        .pair-liquidity {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff88;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .last-updated {
+            text-align: center;
+            margin-top: 30px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">USDTgVerse</div>
+        <div class="subtitle">Live Token Dashboard - Real-Time Prices & Trading</div>
+    </div>
+    
+    <div class="main-container">
+        <!-- Ecosystem Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">Total Market Cap</div>
+                <div class="stat-value" id="totalMarketCap">$1.75B</div>
+                <div class="stat-change positive">+0.00% (24h)</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-title">Active Tokens</div>
+                <div class="stat-value" id="activeTokens">3</div>
+                <div class="stat-change">All systems operational</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-title">Trading Pairs</div>
+                <div class="stat-value" id="tradingPairs">5</div>
+                <div class="stat-change">DEX + CEX active</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-title">Security Score</div>
+                <div class="stat-value" id="securityScore">95%</div>
+                <div class="stat-change positive">Quantum-safe</div>
+            </div>
+        </div>
+        
+        <!-- Token Cards -->
+        <div class="tokens-grid">
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">USDTg</div>
+                    <div class="token-info">
+                        <h3>USDTgVerse Native Coin</h3>
+                        <div class="token-symbol">USDTg</div>
+                    </div>
+                </div>
+                <div class="token-price" id="usdtgPrice">$1.00</div>
+                <div class="stat-change positive">+0.00% (24h)</div>
+                <div class="token-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Market Cap</div>
+                        <div class="detail-value" id="usdtgMarketCap">$1.00B</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Volume (24h)</div>
+                        <div class="detail-value" id="usdtgVolume">$0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Supply</div>
+                        <div class="detail-value" id="usdtgSupply">1.00B</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Type</div>
+                        <div class="detail-value">Stablecoin</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">USDTgV</div>
+                    <div class="token-info">
+                        <h3>USDTgV Utility Token</h3>
+                        <div class="token-symbol">USDTgV</div>
+                    </div>
+                </div>
+                <div class="token-price" id="usdtgvPrice">$0.50</div>
+                <div class="stat-change positive">+0.00% (24h)</div>
+                <div class="token-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Market Cap</div>
+                        <div class="detail-value" id="usdtgvMarketCap">$250M</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Volume (24h)</div>
+                        <div class="detail-value" id="usdtgvVolume">$0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Supply</div>
+                        <div class="detail-value" id="usdtgvSupply">500M</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Staking APY</div>
+                        <div class="detail-value">10%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">USDTgG</div>
+                    <div class="token-info">
+                        <h3>USDTgG Governance Token</h3>
+                        <div class="token-symbol">USDTgG</div>
+                    </div>
+                </div>
+                <div class="token-price" id="usdtggPrice">$5.00</div>
+                <div class="stat-change positive">+0.00% (24h)</div>
+                <div class="token-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Market Cap</div>
+                        <div class="detail-value" id="usdtggMarketCap">$500M</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Volume (24h)</div>
+                        <div class="detail-value" id="usdtggVolume">$0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Supply</div>
+                        <div class="detail-value" id="usdtggSupply">100M</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Voting Power</div>
+                        <div class="detail-value">Active</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trading Pairs -->
+        <div class="trading-pairs">
+            <h2>🔄 Trading Pairs</h2>
+            <div class="pair-grid">
+                <div class="pair-card">
+                    <div class="pair-name">USDTg/USDTgV</div>
+                    <div class="pair-price" id="pair1Price">0.5</div>
+                    <div class="pair-liquidity">Liquidity: $2M</div>
+                </div>
+                
+                <div class="pair-card">
+                    <div class="pair-name">USDTg/USDTgG</div>
+                    <div class="pair-price" id="pair2Price">5.0</div>
+                    <div class="pair-liquidity">Liquidity: $2M</div>
+                </div>
+                
+                <div class="pair-card">
+                    <div class="pair-name">USDTg/USDT</div>
+                    <div class="pair-price" id="pair3Price">1.0</div>
+                    <div class="pair-liquidity">Liquidity: $10M</div>
+                </div>
+                
+                <div class="pair-card">
+                    <div class="pair-name">USDTgV/USDT</div>
+                    <div class="pair-price" id="pair4Price">0.5</div>
+                    <div class="pair-liquidity">Liquidity: $5M</div>
+                </div>
+                
+                <div class="pair-card">
+                    <div class="pair-name">USDTgG/USDT</div>
+                    <div class="pair-price" id="pair5Price">5.0</div>
+                    <div class="pair-liquidity">Liquidity: $2M</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="last-updated">
+            <span class="status-indicator"></span>
+            Last updated: <span id="lastUpdated">Loading...</span>
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="refreshData()">🔄 Refresh</button>
+    
+    <script>
+        // Load token data from deployment
+        async function loadTokenData() {
+            try {
+                const response = await fetch('/deployment/scripts/website_data.json');
+                const data = await response.json();
+                
+                // Update token prices
+                document.getElementById('usdtgPrice').textContent = '$' + data.tokens.USDTg.price;
+                document.getElementById('usdtgvPrice').textContent = '$' + data.tokens.USDTgV.price;
+                document.getElementById('usdtggPrice').textContent = '$' + data.tokens.USDTgG.price;
+                
+                // Update market caps
+                document.getElementById('usdtgMarketCap').textContent = '$' + formatNumber(data.tokens.USDTg.market_cap);
+                document.getElementById('usdtgvMarketCap').textContent = '$' + formatNumber(data.tokens.USDTgV.market_cap);
+                document.getElementById('usdtggMarketCap').textContent = '$' + formatNumber(data.tokens.USDTgG.market_cap);
+                
+                // Update supplies
+                document.getElementById('usdtgSupply').textContent = formatNumber(data.tokens.USDTg.supply);
+                document.getElementById('usdtgvSupply').textContent = formatNumber(data.tokens.USDTgV.supply);
+                document.getElementById('usdtggSupply').textContent = formatNumber(data.tokens.USDTgG.supply);
+                
+                // Update trading pairs
+                document.getElementById('pair1Price').textContent = data.trading_pairs['USDTg/USDTgV'].price;
+                document.getElementById('pair2Price').textContent = data.trading_pairs['USDTg/USDTgG'].price;
+                
+                // Update ecosystem stats
+                document.getElementById('totalMarketCap').textContent = '$' + formatNumber(data.ecosystem.total_market_cap);
+                document.getElementById('activeTokens').textContent = data.ecosystem.active_tokens;
+                document.getElementById('tradingPairs').textContent = data.ecosystem.trading_pairs;
+                document.getElementById('securityScore').textContent = data.ecosystem.security_score + '%';
+                
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+                
+            } catch (error) {
+                console.error('Error loading token data:', error);
+                // Fallback to static data
+                document.getElementById('lastUpdated').textContent = 'Using static data';
+            }
+        }
+        
+        function formatNumber(num) {
+            if (num >= 1000000000) {
+                return (num / 1000000000).toFixed(1) + 'B';
+            } else if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+        
+        function refreshData() {
+            loadTokenData();
+        }
+        
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTokenData();
+            
+            // Auto-refresh every 30 seconds
+            setInterval(loadTokenData, 30000);
+        });
+    </script>
+</body>
+</html>

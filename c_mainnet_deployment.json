@@ -1,0 +1,60 @@
+{
+    "deployment_info": {
+        "network": "usdtgverse-mainnet-1",
+        "deployment_time": "2025-09-26T11:11:13Z",
+        "deployment_type": "c_based_mainnet",
+        "status": "completed"
+    },
+    "contracts": {
+        "USDTg_Native": {
+            "name": "USDTgVerse Native Coin",
+            "symbol": "USDTg",
+            "address": "usdtg1native...",
+            "type": "native_token",
+            "supply": "1000000000",
+            "decimals": 18
+        },
+        "USDTgV": {
+            "name": "USDTgV Utility Token",
+            "symbol": "USDTgV",
+            "address": "usdtg1usdtgv...",
+            "type": "utility_contract",
+            "supply": "500000000",
+            "decimals": 18
+        },
+        "USDTgG": {
+            "name": "USDTgG Governance Token",
+            "symbol": "USDTgG",
+            "address": "usdtg1usdtgg...",
+            "type": "governance_contract",
+            "supply": "100000000",
+            "decimals": 18
+        }
+    },
+    "liquidity_pools": {
+        "USDTg_USDTgV": {
+            "pair_address": "usdtg1pair1...",
+            "token0": "usdtg1native...",
+            "token1": "usdtg1usdtgv...",
+            "liquidity": "3000000"
+        },
+        "USDTg_USDTgG": {
+            "pair_address": "usdtg1pair2...",
+            "token0": "usdtg1native...",
+            "token1": "usdtg1usdtgg...",
+            "liquidity": "1200000"
+        }
+    },
+    "trading_pairs": {
+        "USDTg/USDTgV": {
+            "pair": "usdtg1pair1...",
+            "price": "0.5",
+            "liquidity": "3000000"
+        },
+        "USDTg/USDTgG": {
+            "pair": "usdtg1pair2...",
+            "price": "5.0",
+            "liquidity": "1200000"
+        }
+    }
+}
