@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        ZKPrivacy.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Zero-Knowledge Privacy Layer
+   
+   Quantum-safe zero-knowledge proofs featuring:
+   - Enterprise-grade privacy
+   - Compliance-friendly anonymity
+   - zk-SNARKs/zk-STARKs integration
+   - Privacy transaction support
+   - Zero-knowledge proof generation
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🔒 USDTgVerse Zero-Knowledge Privacy Layer
  * ==========================================

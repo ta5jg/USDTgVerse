@@ -1,4 +1,5 @@
 {
+    "_comment": "==============================================\n File:        website_data.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   USDTgVerse Website Data Configuration\n   \n   JSON configuration file containing:\n   - Token information and prices\n   - Market data and statistics\n   - Trading pair configurations\n   - Real-time data feeds\n\n License:\n   MIT License\n==============================================",
     "tokens": {
         "USDTg": {
             "name": "USDTgVerse Native Coin",

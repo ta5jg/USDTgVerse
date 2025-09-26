@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        zk_test_app.c
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Zero-Knowledge Privacy Layer System Test
+   
+   ZK privacy layer test application featuring:
+   - Zero-knowledge proof testing
+   - Privacy layer validation
+   - ZK-SNARKs proof generation
+   - Privacy transaction testing
+   - System performance validation
+
+ License:
+   MIT License
+==============================================
+*/
+
 #include "../include/zk_privacy.h"
 #include <time.h>
 

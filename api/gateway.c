@@ -1,13 +1,26 @@
 /*
- * USDTgVerse API Gateway
- * Pure C Implementation - RESTful API Server
- * 
- * Connects Pure C blockchain backend with frontend applications
- * Provides HTTP/JSON API for:
- * - Blockchain queries
- * - Transaction submission
- * - Real-time data
- * - WebSocket streaming
+==============================================
+ File:        gateway.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse API Gateway
+   Pure C Implementation - RESTful API Server
+   
+   Connects Pure C blockchain backend with frontend applications
+   Provides HTTP/JSON API for:
+   - Blockchain queries
+   - Transaction submission
+   - Real-time data
+   - WebSocket streaming
+
+ License:
+   MIT License
+==============================================
+*/
  */
 
 #include <stdio.h>

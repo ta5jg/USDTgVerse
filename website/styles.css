@@ -1,4 +1,25 @@
-/* USDTgVerse Website Styles */
+/*
+==============================================
+ File:        styles.css
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Website Styles
+   
+   Professional CSS styling for the USDTgVerse website including:
+   - Corporate design elements
+   - Responsive layout
+   - Professional typography
+   - Color scheme and branding
+   - Interactive components
+
+ License:
+   MIT License
+==============================================
+*/
 * {
     margin: 0;
     padding: 0;

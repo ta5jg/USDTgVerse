@@ -1,10 +1,25 @@
-//
-//  DevTools.h
-//  USDTgVerse Professional Development Tools
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        DevTools.h
+ Author:      Irfan Gedik
+ Created:     25.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Professional Development Tools Header
+   
+   Header file for the professional development tools including:
+   - IDE integration interfaces
+   - Compiler and build tools
+   - Debugger and testing frameworks
+   - Code analysis and optimization
+   - Development workflow automation
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef DEVTOOLS_H
 #define DEVTOOLS_H

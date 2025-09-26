@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        MEVProtection.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse MEV Protection System
+   
+   Quantum-safe MEV protection system featuring:
+   - User protection against front-running
+   - Fair transaction ordering
+   - MEV-Boost integration for fair block building
+   - Private mempool management
+   - MEV detection and prevention
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🔐 USDTgVerse MEV Protection System
  * ==================================

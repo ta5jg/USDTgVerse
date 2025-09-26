@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        USDTgDeployment.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTg Native Coin Deployment Script
+   
+   USDTg Native Coin deployment script featuring:
+   - Quantum-safe deployment for USDTgVerse blockchain
+   - Initial supply configuration (1 Billion USDTg)
+   - Multi-signature treasury setup
+   - Cross-chain bridge preparation
+   - Deployment automation
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🚀 USDTg Native Coin Deployment Script
  * =====================================

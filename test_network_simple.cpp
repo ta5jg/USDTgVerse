@@ -1,7 +1,25 @@
 /*
- * Simple Network Test - No actual socket binding
- * Test the architecture without network permissions
- */
+==============================================
+ File:        test_network_simple.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Simple Network Test - No actual socket binding
+   
+   Network test application featuring:
+   - Architecture testing without network permissions
+   - Simple network simulation
+   - Test framework for network components
+   - Network protocol validation
+   - Performance testing
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <iostream>
 #include <string>

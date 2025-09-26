@@ -1,10 +1,25 @@
-//
-//  mev_protection.c
-//  USDTgVerse MEV Protection System
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        mev_protection.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse MEV Protection System
+   
+   Advanced MEV (Maximal Extractable Value) protection system featuring:
+   - Private mempool implementation
+   - Flashbots-style auction mechanism
+   - Transaction ordering optimization
+   - Front-running prevention
+   - Slippage protection
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include "mev_protection.h"
 #include <stdlib.h>

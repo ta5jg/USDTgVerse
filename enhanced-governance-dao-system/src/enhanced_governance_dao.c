@@ -1,10 +1,25 @@
-//
-//  enhanced_governance_dao.c
-//  USDTgVerse Enhanced Governance & DAO Infrastructure
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        enhanced_governance_dao.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Enhanced Governance & DAO Infrastructure
+   
+   Advanced governance and DAO system featuring:
+   - Multi-signature governance
+   - Proposal and voting mechanisms
+   - Treasury management
+   - Delegation systems
+   - Governance token integration
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include "enhanced_governance_dao.h"
 #include <stdlib.h>

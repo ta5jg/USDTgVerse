@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        APP_STORE_METADATA.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   App Store Marketing Materials - USDTgVerse Wallet
+   
+   Comprehensive app store marketing materials including:
+   - iOS App Store metadata and descriptions
+   - Google Play Store listings
+   - Marketing copy and promotional materials
+   - Screenshots and visual assets
+   - App store optimization strategies
+
+ License:
+   MIT License
+==============================================
+-->
+
 # App Store Marketing Materials - USDTgVerse Wallet
 
 ## 🍎 iOS App Store Metadata

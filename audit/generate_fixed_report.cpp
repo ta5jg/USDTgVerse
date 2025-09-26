@@ -1,7 +1,25 @@
 /*
- * USDTgVerse Fixed Security Audit Report Generator
- * Generates updated HTML report with all fixes applied
- */
+==============================================
+ File:        generate_fixed_report.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Fixed Security Audit Report Generator
+   
+   Updated HTML report generator with all fixes applied featuring:
+   - Fixed security audit report generation
+   - Updated HTML report formatting
+   - Security fix documentation
+   - Comprehensive security assessment
+   - Professional report templates
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <iostream>
 #include <fstream>

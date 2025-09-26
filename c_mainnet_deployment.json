@@ -1,4 +1,5 @@
 {
+    "_comment": "==============================================\n File:        c_mainnet_deployment.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   USDTgVerse C-based Mainnet Deployment Configuration\n   \n   JSON configuration file containing:\n   - Deployment information and status\n   - Contract deployment details\n   - Token information and addresses\n   - Network configuration\n   - Deployment verification data\n\n License:\n   MIT License\n==============================================",
     "deployment_info": {
         "network": "usdtgverse-mainnet-1",
         "deployment_time": "2025-09-26T11:11:13Z",

@@ -1,0 +1,694 @@
+<!--
+==============================================
+ File:        stake-interface.html
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Staking Interface
+   
+   Professional staking interface featuring:
+   - Staking pool management
+   - Reward calculation and tracking
+   - Unstaking and claim functionality
+   - Staking history and analytics
+   - APY and performance metrics
+
+ License:
+   MIT License
+==============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Staking Interface</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .staking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00D4AA 0%, #0099FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00D4AA;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .staking-pools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .pool-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+        }
+
+        .pool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .pool-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00D4AA;
+        }
+
+        .pool-apy {
+            background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pool-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stake-form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: #0f0f23;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00D4AA;
+        }
+
+        .balance-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .stake-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .stake-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
+        }
+
+        .unstake-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .unstake-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .claim-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #0099FF 0%, #007ACC 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .claim-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 153, 255, 0.3);
+        }
+
+        .staking-history {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+        }
+
+        .history-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 20px;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .history-table th {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .history-table td {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .status-active {
+            color: #00D4AA;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            color: #0099FF;
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid #333;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .close {
+            color: #666;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .staking-container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .staking-pools {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="staking-container">
+        <div class="header">
+            <h1>USDTgVerse Staking</h1>
+            <p>Earn rewards by staking your tokens</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$2,450.00</div>
+                <div class="stat-label">Total Staked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$125.50</div>
+                <div class="stat-label">Total Rewards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">12.5%</div>
+                <div class="stat-label">Average APY</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">45</div>
+                <div class="stat-label">Days Staked</div>
+            </div>
+        </div>
+
+        <div class="staking-pools">
+            <div class="pool-card">
+                <div class="pool-header">
+                    <div class="pool-title">USDTg Staking</div>
+                    <div class="pool-apy">10% APY</div>
+                </div>
+                <div class="pool-info">
+                    <div class="info-item">
+                        <div class="info-value">$1,800,000</div>
+                        <div class="info-label">Total Staked</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value">1,250</div>
+                        <div class="info-label">Stakers</div>
+                    </div>
+                </div>
+                <div class="stake-form">
+                    <div class="form-group">
+                        <label class="form-label">Stake Amount</label>
+                        <input type="number" class="form-input" placeholder="0.00" id="usdtgStakeAmount">
+                        <div class="balance-info">Balance: 1,000.00 USDTg</div>
+                    </div>
+                    <button class="stake-button" onclick="stakeUSDTg()">Stake USDTg</button>
+                    <button class="claim-button" onclick="claimRewards('USDTg')">Claim Rewards</button>
+                    <button class="unstake-button" onclick="unstakeUSDTg()">Unstake</button>
+                </div>
+            </div>
+
+            <div class="pool-card">
+                <div class="pool-header">
+                    <div class="pool-title">USDTgV Staking</div>
+                    <div class="pool-apy">15% APY</div>
+                </div>
+                <div class="pool-info">
+                    <div class="info-item">
+                        <div class="info-value">$950,000</div>
+                        <div class="info-label">Total Staked</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value">890</div>
+                        <div class="info-label">Stakers</div>
+                    </div>
+                </div>
+                <div class="stake-form">
+                    <div class="form-group">
+                        <label class="form-label">Stake Amount</label>
+                        <input type="number" class="form-input" placeholder="0.00" id="usdtgvStakeAmount">
+                        <div class="balance-info">Balance: 500.00 USDTgV</div>
+                    </div>
+                    <button class="stake-button" onclick="stakeUSDTgV()">Stake USDTgV</button>
+                    <button class="claim-button" onclick="claimRewards('USDTgV')">Claim Rewards</button>
+                    <button class="unstake-button" onclick="unstakeUSDTgV()">Unstake</button>
+                </div>
+            </div>
+
+            <div class="pool-card">
+                <div class="pool-header">
+                    <div class="pool-title">USDTgG Staking</div>
+                    <div class="pool-apy">20% APY</div>
+                </div>
+                <div class="pool-info">
+                    <div class="info-item">
+                        <div class="info-value">$1,200,000</div>
+                        <div class="info-label">Total Staked</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value">650</div>
+                        <div class="info-label">Stakers</div>
+                    </div>
+                </div>
+                <div class="stake-form">
+                    <div class="form-group">
+                        <label class="form-label">Stake Amount</label>
+                        <input type="number" class="form-input" placeholder="0.00" id="usdtggStakeAmount">
+                        <div class="balance-info">Balance: 100.00 USDTgG</div>
+                    </div>
+                    <button class="stake-button" onclick="stakeUSDTgG()">Stake USDTgG</button>
+                    <button class="claim-button" onclick="claimRewards('USDTgG')">Claim Rewards</button>
+                    <button class="unstake-button" onclick="unstakeUSDTgG()">Unstake</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="staking-history">
+            <div class="history-header">Staking History</div>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Amount</th>
+                        <th>APY</th>
+                        <th>Start Date</th>
+                        <th>Status</th>
+                        <th>Rewards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>USDTg</td>
+                        <td>1,000.00</td>
+                        <td>10%</td>
+                        <td>2025-09-15</td>
+                        <td class="status-active">Active</td>
+                        <td>25.50</td>
+                    </tr>
+                    <tr>
+                        <td>USDTgV</td>
+                        <td>500.00</td>
+                        <td>15%</td>
+                        <td>2025-09-20</td>
+                        <td class="status-active">Active</td>
+                        <td>15.75</td>
+                    </tr>
+                    <tr>
+                        <td>USDTgG</td>
+                        <td>100.00</td>
+                        <td>20%</td>
+                        <td>2025-09-10</td>
+                        <td class="status-completed">Completed</td>
+                        <td>45.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for staking confirmation -->
+    <div id="stakingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">Confirm Staking</div>
+            <div id="modalContent"></div>
+            <button class="stake-button" onclick="confirmStaking()">Confirm</button>
+        </div>
+    </div>
+
+    <script>
+        // Staking Interface JavaScript
+        class StakingInterface {
+            constructor() {
+                this.stakingData = {
+                    USDTg: { staked: 1000, rewards: 25.50, apy: 10 },
+                    USDTgV: { staked: 500, rewards: 15.75, apy: 15 },
+                    USDTgG: { staked: 100, rewards: 45.00, apy: 20 }
+                };
+                this.init();
+            }
+
+            init() {
+                this.updateStats();
+                this.startRewardUpdates();
+            }
+
+            updateStats() {
+                const totalStaked = Object.values(this.stakingData).reduce((sum, data) => sum + data.staked, 0);
+                const totalRewards = Object.values(this.stakingData).reduce((sum, data) => sum + data.rewards, 0);
+                const avgApy = Object.values(this.stakingData).reduce((sum, data) => sum + data.apy, 0) / Object.keys(this.stakingData).length;
+
+                document.querySelector('.stat-card:nth-child(1) .stat-value').textContent = `$${totalStaked.toLocaleString()}.00`;
+                document.querySelector('.stat-card:nth-child(2) .stat-value').textContent = `$${totalRewards.toFixed(2)}`;
+                document.querySelector('.stat-card:nth-child(3) .stat-value').textContent = `${avgApy.toFixed(1)}%`;
+            }
+
+            startRewardUpdates() {
+                setInterval(() => {
+                    // Simulate reward accumulation
+                    Object.keys(this.stakingData).forEach(token => {
+                        const data = this.stakingData[token];
+                        const dailyReward = (data.staked * data.apy) / 36500; // APY to daily
+                        data.rewards += dailyReward;
+                    });
+                    this.updateStats();
+                }, 30000); // Update every 30 seconds
+            }
+        }
+
+        // Initialize staking interface
+        const stakingInterface = new StakingInterface();
+
+        // Staking functions
+        function stakeUSDTg() {
+            const amount = document.getElementById('usdtgStakeAmount').value;
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            showStakingModal('USDTg', amount, 10);
+        }
+
+        function stakeUSDTgV() {
+            const amount = document.getElementById('usdtgvStakeAmount').value;
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            showStakingModal('USDTgV', amount, 15);
+        }
+
+        function stakeUSDTgG() {
+            const amount = document.getElementById('usdtggStakeAmount').value;
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            showStakingModal('USDTgG', amount, 20);
+        }
+
+        function showStakingModal(token, amount, apy) {
+            const modal = document.getElementById('stakingModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <p>You are about to stake:</p>
+                <p><strong>${amount} ${token}</strong></p>
+                <p>APY: <strong>${apy}%</strong></p>
+                <p>Estimated daily rewards: <strong>${(amount * apy / 365).toFixed(4)} ${token}</strong></p>
+                <p>This action cannot be undone. Are you sure?</p>
+            `;
+            
+            modal.style.display = 'block';
+            window.currentStaking = { token, amount, apy };
+        }
+
+        function confirmStaking() {
+            const { token, amount, apy } = window.currentStaking;
+            
+            // Simulate staking transaction
+            alert(`Successfully staked ${amount} ${token} at ${apy}% APY!`);
+            
+            // Update staking data
+            stakingInterface.stakingData[token].staked += parseFloat(amount);
+            stakingInterface.updateStats();
+            
+            // Clear form
+            document.getElementById(`${token.toLowerCase()}StakeAmount`).value = '';
+            
+            closeModal();
+        }
+
+        function claimRewards(token) {
+            const rewards = stakingInterface.stakingData[token].rewards;
+            if (rewards <= 0) {
+                alert('No rewards to claim');
+                return;
+            }
+            
+            if (confirm(`Claim ${rewards.toFixed(4)} ${token} rewards?`)) {
+                alert(`Successfully claimed ${rewards.toFixed(4)} ${token} rewards!`);
+                stakingInterface.stakingData[token].rewards = 0;
+                stakingInterface.updateStats();
+            }
+        }
+
+        function unstakeUSDTg() {
+            unstakeToken('USDTg');
+        }
+
+        function unstakeUSDTgV() {
+            unstakeToken('USDTgV');
+        }
+
+        function unstakeUSDTgG() {
+            unstakeToken('USDTgG');
+        }
+
+        function unstakeToken(token) {
+            const staked = stakingInterface.stakingData[token].staked;
+            if (staked <= 0) {
+                alert('No tokens staked');
+                return;
+            }
+            
+            if (confirm(`Unstake all ${staked} ${token}? This will also claim any pending rewards.`)) {
+                const rewards = stakingInterface.stakingData[token].rewards;
+                alert(`Successfully unstaked ${staked} ${token} and claimed ${rewards.toFixed(4)} rewards!`);
+                stakingInterface.stakingData[token].staked = 0;
+                stakingInterface.stakingData[token].rewards = 0;
+                stakingInterface.updateStats();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('stakingModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('stakingModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

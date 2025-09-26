@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        AppChains.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Modular App-Chains
+   
+   Quantum-safe modular architecture featuring:
+   - Application-specific blockchains
+   - Shared security model
+   - Modular blockchain architecture
+   - Cross-chain communication
+   - Scalable blockchain infrastructure
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🏗️ USDTgVerse Modular App-Chains
  * =================================

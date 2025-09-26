@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgWallet iOS App
+   
+   Native iOS application for USDTgVerse ecosystem including:
+   - Wallet management and portfolio features
+   - Multi-asset support and real-time updates
+   - Secure key management and authentication
+   - Cross-chain bridge integration
+   - Development and deployment guides
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgWallet iOS App
 
 ## 📱 Native iOS Application for USDTgVerse Ecosystem

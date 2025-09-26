@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        order_book.hpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse CEX Order Book
+   
+   Centralized exchange order book featuring:
+   - Order matching engine
+   - Bid/ask price management
+   - Trade execution algorithms
+   - Market depth analysis
+   - Order book visualization
+
+ License:
+   MIT License
+==============================================
+*/
+
 #pragma once
 
 #include "../../src/common/types.hpp"

@@ -1,4 +1,5 @@
 {
+  "_comment": "==============================================\n File:        manifest.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   USDTgWallet - Quantum-Safe Web3 Wallet\n   World's first quantum-safe Web3 wallet with 256-bit security\n   \n   Chrome extension manifest configuration including:\n   - Extension metadata and permissions\n   - Content scripts and background services\n   - Web3 wallet functionality\n   - Quantum-safe security features\n\n License:\n   MIT License\n==============================================",
   "manifest_version": 3,
   "name": "USDTgWallet - Quantum-Safe Web3 Wallet",
   "version": "1.0.0",

@@ -1,13 +1,26 @@
 /*
- * USDTgVerse Blockchain Security Audit System
- * 
- * Comprehensive security testing and vulnerability assessment:
- * - Core C functions audit
- * - Memory safety validation
- * - Consensus Byzantine fault testing
- * - Network attack simulation
- * - Transaction replay protection
- * - Balance conservation verification
+==============================================
+ File:        security_audit.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Blockchain Security Audit System
+   
+   Comprehensive security testing and vulnerability assessment featuring:
+   - Core C functions audit
+   - Memory safety validation
+   - Consensus Byzantine fault testing
+   - Network attack simulation
+   - Transaction replay protection
+   - Balance conservation verification
+
+ License:
+   MIT License
+==============================================
+*/
  * - Cryptographic security validation
  */
 

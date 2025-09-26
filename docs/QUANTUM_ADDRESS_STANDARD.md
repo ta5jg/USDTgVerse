@@ -1,3 +1,27 @@
+<!--
+==============================================
+ File:        QUANTUM_ADDRESS_STANDARD.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Quantum-Safe Address Standard
+   256-bit Quantum-Resistant Address Format
+   
+   Quantum-safe address standard specification including:
+   - Address format and encoding
+   - Security specifications
+   - Implementation guidelines
+   - Validation procedures
+   - Compatibility requirements
+
+ License:
+   MIT License
+==============================================
+-->
+
 # 🔐 USDTgVerse Quantum-Safe Address Standard
 ## 256-bit Quantum-Resistant Address Format
 

@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        USDTgVerifier.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Formal Verification System
+   
+   Mathematical security proof engine featuring:
+   - Zero-bug guarantee system
+   - Enterprise-grade formal verification
+   - Smart contract security validation
+   - Mathematical proof generation
+   - Vulnerability detection and prevention
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🔬 USDTgVerse Formal Verification System
  * ======================================

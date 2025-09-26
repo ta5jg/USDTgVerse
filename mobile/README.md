@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Mobile Applications
+   
+   Native mobile wallet ecosystem documentation including:
+   - Application overview and features
+   - iOS and Android development
+   - Multi-chain bridge support
+   - OdixPay++ integration
+   - Development and deployment guides
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgVerse Mobile Applications
 
 ## 📱 Native Mobile Wallet Ecosystem

@@ -1,7 +1,25 @@
 /*
- * Perfect Architecture Demo: C Core + C++ High-Level
- * Ultra Performance + Developer Friendly
- */
+==============================================
+ File:        test_perfect_architecture.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Perfect Architecture Demo: C Core + C++ High-Level
+   
+   Architecture demonstration featuring:
+   - C core performance optimization
+   - C++ high-level interface
+   - Ultra performance testing
+   - Developer-friendly API
+   - Architecture validation
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <iostream>
 #include <string>

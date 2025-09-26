@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        VerifiableDelayFunctions.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Verifiable Delay Functions (VDFs)
+   
+   Quantum-safe time-based cryptography featuring:
+   - Unpredictable randomness generation
+   - Fair transaction ordering
+   - Verifiable Delay Functions (VDFs)
+   - Time-based cryptographic primitives
+   - Randomness generation
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * ⏰ USDTgVerse Verifiable Delay Functions (VDFs)
  * ===============================================

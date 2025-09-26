@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        PRIVACY_POLICY.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Privacy Policy - USDTgVerse Wallet
+   
+   Comprehensive privacy policy documentation including:
+   - Data collection and usage policies
+   - User privacy protection measures
+   - Legal compliance requirements
+   - Data security and protection
+   - User rights and contact information
+
+ License:
+   MIT License
+==============================================
+-->
+
 # Privacy Policy - USDTgVerse Wallet
 
 **Effective Date:** January 1, 2025  

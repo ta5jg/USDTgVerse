@@ -1,16 +1,31 @@
-/**
- * 🏛️ USDTgG - USDTgVerse Governance Token
- * =======================================
- * 
- * ⚛️ QUANTUM-SAFE GOVERNANCE TOKEN
- * 🚀 OPTIMIZED FOR USDTGVM
- * 🌍 DAO GOVERNANCE TOKEN
- * 💎 NON-STABLE TOKEN (High Value)
- * 
- * Purpose: DAO governance, protocol upgrades, treasury management
- * Supply: 100,000,000 USDTgG (100 Million)
- * Price Target: $5.00 - $20.00 USDTg
- */
+/*
+==============================================
+ File:        USDTgG.usdtg
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgG - USDTgVerse Governance Token
+   
+   Quantum-Safe Governance Token optimized for USDTGVM
+   DAO governance token (non-stable, high value)
+   
+   Purpose: DAO governance, protocol upgrades, treasury management
+   Supply: 100,000,000 USDTgG (100 Million)
+   Price Target: $5.00 - $20.00 USDTg
+   
+   Features:
+   - Quantum-safe cryptography
+   - DAO governance system
+   - Voting and proposal mechanisms
+   - Treasury management
+
+ License:
+   MIT License
+==============================================
+*/
 
 #quantum_safe
 #version "1.0"

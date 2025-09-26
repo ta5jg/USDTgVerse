@@ -1,10 +1,24 @@
-//
-//  mev_protection.h
-//  USDTgVerse MEV Protection System
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        mev_protection.h
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse MEV Protection System Header
+   
+   Header file for the MEV protection system including:
+   - Data structures and types
+   - Function declarations
+   - Constants and macros
+   - Interface definitions
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef MEV_PROTECTION_H
 #define MEV_PROTECTION_H

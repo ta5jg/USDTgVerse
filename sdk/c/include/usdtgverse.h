@@ -1,13 +1,26 @@
-/**
- * 🔧 USDTgVerse C SDK - Main Header
- * ================================
- * 
- * ⚛️ QUANTUM-SAFE BLOCKCHAIN SDK
- * 🌍 CROSS-PLATFORM COMPATIBILITY
- * 🔐 ENTERPRISE-GRADE SECURITY
- * 
- * Version: 1.0.0
- * License: MIT
+/*
+==============================================
+ File:        usdtgverse.h
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse C SDK - Main Header
+   
+   Quantum-Safe Blockchain SDK with cross-platform compatibility
+   Enterprise-grade security features including:
+   - Quantum-safe cryptography
+   - Cross-platform compatibility
+   - Enterprise security standards
+   - API definitions and interfaces
+   - Data structures and types
+
+ License:
+   MIT License
+==============================================
+*/
  * 
  * Supported Platforms:
  * - Windows (MSVC, MinGW)

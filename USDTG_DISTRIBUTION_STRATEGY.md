@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        USDTG_DISTRIBUTION_STRATEGY.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTg Distribution & AirDrop Strategy
+   
+   Comprehensive distribution and airdrop strategy including:
+   - Mint allocation and supply management
+   - Treasury reserve and operations
+   - User airdrops and growth strategies
+   - Liquidity pool management
+   - Distribution mechanisms and timelines
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTg Distribution & AirDrop Strategy
 
 ## 🏦 **MINT ALLOCATION**

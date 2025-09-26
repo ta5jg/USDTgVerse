@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        amm_engine.hpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse DEX AMM Engine
+   
+   Automated Market Maker engine featuring:
+   - Liquidity pool management
+   - Price calculation algorithms
+   - Swap execution and routing
+   - Yield farming mechanisms
+   - AMM protocol implementation
+
+ License:
+   MIT License
+==============================================
+*/
+
 #pragma once
 
 #include "../../src/common/types.hpp"

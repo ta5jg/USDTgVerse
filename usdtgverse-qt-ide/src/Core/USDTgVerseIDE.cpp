@@ -1,10 +1,25 @@
-//
-//  USDTgVerseIDE.cpp
-//  USDTgVerse IDE - Professional Qt Implementation
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        USDTgVerseIDE.cpp
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse IDE - Professional Qt Implementation
+   
+   Professional Qt-based IDE implementation featuring:
+   - Advanced code editor with syntax highlighting
+   - Integrated development environment
+   - Project management and build system
+   - Debugging and testing capabilities
+   - Plugin system and extensibility
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include "USDTgVerseIDE.h"
 #include <QApplication>

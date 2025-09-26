@@ -1,14 +1,26 @@
 /*
- * USDTgVerse Enterprise Blockchain Node
- * Pure C Implementation - Maximum Performance & Security
- * 
- * This is the main entry point for the USDTgVerse blockchain node.
- * All backend services are implemented in pure C for:
- * - Maximum performance
- * - Minimal attack surface
- * - Easy auditability
- * - Deterministic execution
- */
+==============================================
+ File:        main.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Enterprise Blockchain Node - Main Entry Point
+   Pure C Implementation for Maximum Performance & Security
+   
+   This is the main entry point for the USDTgVerse blockchain node.
+   All backend services are implemented in pure C for:
+   - Maximum performance
+   - Minimal attack surface
+   - Easy auditability
+   - Deterministic execution
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

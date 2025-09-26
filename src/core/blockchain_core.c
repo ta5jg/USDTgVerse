@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Blockchain Core - Pure C Implementation
- * Ultra-high performance, deterministic, audit-ready
- * 
- * Core Features:
- * - Native USDTg token (no contract)
- * - HotStuff BFT-PoS consensus
- * - Multi-asset support
- * - Assembly-level optimizations
- */
+==============================================
+ File:        blockchain_core.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Blockchain Core - Pure C Implementation
+   Ultra-high performance, deterministic, audit-ready
+   
+   Core Features:
+   - Native USDTg token (no contract)
+   - HotStuff BFT-PoS consensus
+   - Multi-asset support
+   - Assembly-level optimizations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdint.h>
 #include <stdlib.h>

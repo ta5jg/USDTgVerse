@@ -1,10 +1,25 @@
-//
-//  CodeEditor.h
-//  USDTgVerse IDE - Professional Code Editor
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        CodeEditor.h
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse IDE - Professional Code Editor
+   
+   Professional code editor component featuring:
+   - Advanced text editing capabilities
+   - Syntax highlighting and code completion
+   - Multi-language support
+   - Code folding and navigation
+   - Integrated debugging support
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef CODEEDITOR_H
 #define CODEEDITOR_H

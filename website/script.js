@@ -1,4 +1,25 @@
-// USDTgVerse Website JavaScript
+/*
+==============================================
+ File:        script.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Website JavaScript
+   
+   Interactive JavaScript functionality for the USDTgVerse website including:
+   - Smooth scrolling navigation
+   - Interactive animations
+   - Form handling
+   - User interface enhancements
+   - Responsive behavior
+
+ License:
+   MIT License
+==============================================
+*/
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');

@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Ethereum Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and Ethereum:
- * - ETH → USDTg (Lock & Mint)
- * - USDTg → ETH (Burn & Unlock)
- * - Multi-signature validation
- * - Time-lock security
- */
+==============================================
+ File:        eth_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Ethereum Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and Ethereum:
+   - ETH → USDTg (Lock & Mint)
+   - USDTg → ETH (Burn & Unlock)
+   - Multi-signature validation
+   - Time-lock security
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,9 +1,26 @@
-/**
- * USDTgV Utility Token Contract
- * ============================
- * 
- * Simple C-based utility token for USDTgVerse
- */
+/*
+==============================================
+ File:        USDTgV_contract.c
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgV Utility Token Contract
+   Simple C-based utility token for USDTgVerse
+   
+   Utility token implementation featuring:
+   - Token management functions
+   - Utility features and integrations
+   - Ecosystem participation
+   - Security features
+   - Performance optimizations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

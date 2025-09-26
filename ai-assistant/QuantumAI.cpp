@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        QuantumAI.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse AI-Powered Smart Contract Assistant
+   
+   Quantum-safe AI development assistant featuring:
+   - Natural language to smart contract conversion
+   - Automated vulnerability detection
+   - Code analysis and optimization
+   - AI-powered development tools
+   - Smart contract generation
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🤖 USDTgVerse AI-Powered Smart Contract Assistant
  * ================================================

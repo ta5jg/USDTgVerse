@@ -1,7 +1,25 @@
 /*
- * USDTgVerse Blockchain API Server
- * RESTful API for dApps, wallets, and explorers
- */
+==============================================
+ File:        blockchain_api.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Blockchain API Server
+   
+   RESTful API server featuring:
+   - dApps integration support
+   - Wallet connectivity
+   - Blockchain explorer functionality
+   - API endpoint management
+   - Real-time data streaming
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <iostream>
 #include <string>

@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        zk_privacy.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Zero-Knowledge Privacy Layer System
+   
+   Advanced zero-knowledge privacy system featuring:
+   - zk-SNARKs implementation
+   - Private transaction support
+   - Identity verification
+   - Data privacy protection
+   - Cryptographic proofs
+
+ License:
+   MIT License
+==============================================
+*/
+
 #include "../include/zk_privacy.h"
 #include <time.h>
 

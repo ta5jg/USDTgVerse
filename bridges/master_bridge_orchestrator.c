@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Master Bridge Orchestrator
- * Pure C Implementation
- * 
- * Coordinates ALL cross-chain bridges in the USDTgVerse ecosystem:
- * - 8 Major blockchain networks
- * - Complete multi-chain universe
- * - Optimal routing across all chains
- * - Enterprise-grade cross-chain infrastructure
- */
+==============================================
+ File:        master_bridge_orchestrator.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Master Bridge Orchestrator
+   Pure C Implementation
+   
+   Coordinates ALL cross-chain bridges in the USDTgVerse ecosystem:
+   - 8 Major blockchain networks
+   - Complete multi-chain universe
+   - Optimal routing across all chains
+   - Enterprise-grade cross-chain infrastructure
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

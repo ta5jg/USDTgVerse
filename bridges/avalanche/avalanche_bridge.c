@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Avalanche Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and Avalanche:
- * - AVAX → USDTg (Subnet integration)
- * - USDTg → AVAX (Enterprise blockchain)
- * - 1-2 second finality
- * - Subnet architecture benefits
- */
+==============================================
+ File:        avalanche_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Avalanche Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and Avalanche:
+   - AVAX → USDTg (Subnet integration)
+   - USDTg → AVAX (Enterprise blockchain)
+   - 1-2 second finality
+   - Subnet architecture benefits
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

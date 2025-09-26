@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        hardhat.config.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Hardhat Configuration for USDTgVerse
+   
+   Hardhat configuration featuring:
+   - Quantum-safe blockchain deployment
+   - Multi-network support
+   - Secure private key management
+   - Development environment setup
+   - Network configuration
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🔧 Hardhat Configuration for USDTgVerse
  * =======================================

@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        usdtgvm.h
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Virtual Machine (USDTGVM)
+   
+   World's first quantum-safe virtual machine featuring:
+   - High-performance smart contract execution
+   - Post-quantum cryptographic security
+   - C-based virtual machine architecture
+   - Quantum-safe smart contract support
+   - Superior performance optimization
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🔧 USDTgVerse Virtual Machine (USDTGVM)
  * ======================================

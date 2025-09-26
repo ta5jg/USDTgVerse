@@ -1,13 +1,27 @@
-/**
- * 🔐 QUANTUM-SAFE CRYPTOGRAPHY FOR CHROME EXTENSION
- * =================================================
- * 
- * ⚛️ QUANTUM SECURITY LEVEL: 256-bit equivalent to AES-1024
- * 🛡️ POST-QUANTUM ALGORITHMS: CRYSTALS-Dilithium + Kyber simulation
- * 🔑 QUANTUM-SAFE KEY DERIVATION: SHA-512 + BLAKE3 simulation
- * 🏠 QUANTUM-SAFE ADDRESSES: USDTg1q format with 256-bit security
- * 
- * 🌟 FEATURES:
+/*
+==============================================
+ File:        quantum-crypto.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Quantum-Safe Cryptography for Chrome Extension
+   
+   Quantum Security Level: 256-bit equivalent to AES-1024
+   Post-quantum algorithms with CRYSTALS-Dilithium + Kyber simulation
+   Quantum-safe key derivation and addresses featuring:
+   - 256-bit quantum security level
+   - Post-quantum algorithms simulation
+   - Quantum-safe key derivation
+   - Quantum-safe address generation
+   - Chrome extension integration
+
+ License:
+   MIT License
+==============================================
+*/
  * - 24-48 word quantum-safe mnemonic generation
  * - 256-bit entropy validation
  * - Quantum-safe address derivation

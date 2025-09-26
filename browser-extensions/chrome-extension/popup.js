@@ -1,12 +1,26 @@
-/**
- * 🚀 USDTGWALLET CHROME EXTENSION - POPUP CONTROLLER
- * =================================================
- * 
- * ⚛️ QUANTUM-SAFE WEB3 WALLET
- * 🔐 256-bit quantum security
- * 🌐 Multi-chain support
- * 📱 Cross-platform consistency
- */
+/*
+==============================================
+ File:        popup.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgWallet Chrome Extension - Popup Controller
+   
+   Quantum-Safe Web3 Wallet with 256-bit quantum security
+   Multi-chain support and cross-platform consistency featuring:
+   - Quantum-safe Web3 wallet
+   - 256-bit quantum security
+   - Multi-chain support
+   - Cross-platform consistency
+   - Browser extension integration
+
+ License:
+   MIT License
+==============================================
+*/
 
 class USDTgWalletPopup {
     constructor() {

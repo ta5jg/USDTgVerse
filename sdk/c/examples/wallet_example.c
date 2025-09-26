@@ -1,13 +1,25 @@
-/**
- * 🔑 USDTgVerse C SDK - Wallet Example
- * ===================================
- * 
- * This example demonstrates:
- * - Creating quantum-safe wallets
- * - Importing wallets from mnemonic
- * - Generating addresses for multiple networks
- * - Exporting private keys
- * - Validating addresses
+/*
+==============================================
+ File:        wallet_example.c
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse C SDK - Wallet Example
+   
+   Example demonstrating wallet functionality including:
+   - Creating quantum-safe wallets
+   - Importing wallets from mnemonic
+   - Generating addresses for multiple networks
+   - Exporting private keys
+   - Validating addresses
+
+ License:
+   MIT License
+==============================================
+*/
  */
 
 #include "../include/usdtgverse.h"

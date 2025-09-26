@@ -1,11 +1,26 @@
-/**
- * 🔧 USDTgVerse C SDK - Core Implementation
- * ========================================
- * 
- * ⚛️ QUANTUM-SAFE BLOCKCHAIN SDK
- * 🌍 CROSS-PLATFORM IMPLEMENTATION
- * 🔐 ENTERPRISE-GRADE SECURITY
- */
+/*
+==============================================
+ File:        usdtgverse.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse C SDK - Core Implementation
+   
+   Quantum-Safe Blockchain SDK with cross-platform implementation
+   Enterprise-grade security features including:
+   - Quantum-safe cryptography
+   - Cross-platform compatibility
+   - Enterprise security standards
+   - Performance optimizations
+   - API integration
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include "../include/usdtgverse.h"
 #include <stdio.h>

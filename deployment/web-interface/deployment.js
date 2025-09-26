@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        deployment.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Smart Contract Deployment Interface
+   
+   Smart contract deployment interface featuring:
+   - Quantum-safe deployment system
+   - Multi-chain support
+   - Enterprise security features
+   - Deployment automation
+   - Contract verification
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🚀 USDTgVerse Smart Contract Deployment Interface
  * ===============================================

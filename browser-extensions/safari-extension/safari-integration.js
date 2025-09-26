@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        safari-integration.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Safari Integration for USDTgWallet
+   
+   Safari integration featuring:
+   - Keychain integration
+   - Device synchronization
+   - AirDrop sharing
+   - Messages integration
+   - Touch ID / Face ID support
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🦄 SAFARI INTEGRATION FOR USDTGWALLET
  * =====================================

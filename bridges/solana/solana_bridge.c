@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Solana Bridge
- * Pure C Implementation
- * 
- * Enables ultra-fast bidirectional transfers between USDTgVerse and Solana:
- * - SOL → USDTg (PDA Lock & Mint)
- * - USDTg → SOL (Burn & PDA Unlock)
- * - Program Derived Addresses (PDA)
- * - 30-second confirmations
- */
+==============================================
+ File:        solana_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Solana Bridge
+   Pure C Implementation
+   
+   Enables ultra-fast bidirectional transfers between USDTgVerse and Solana:
+   - SOL → USDTg (PDA Lock & Mint)
+   - USDTg → SOL (Burn & PDA Unlock)
+   - Program Derived Addresses (PDA)
+   - 30-second confirmations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

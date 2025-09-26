@@ -1,4 +1,25 @@
-/* USDTgVerse Dashboard Styles */
+/*
+==============================================
+ File:        styles.css
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Dashboard Styles
+   
+   Professional CSS styling for the USDTgVerse dashboard including:
+   - Modern UI components
+   - Responsive design
+   - Dark/light themes
+   - Animation effects
+   - Professional color scheme
+
+ License:
+   MIT License
+==============================================
+*/
 * {
     margin: 0;
     padding: 0;

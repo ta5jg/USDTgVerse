@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        GRAFANA_MONITORING_TUTORIAL.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Grafana Monitoring Tutorial - USDTgVerse
+   
+   Comprehensive monitoring tutorial including:
+   - Access information and credentials
+   - Dashboard configuration and setup
+   - Monitoring metrics and alerts
+   - Performance analysis and optimization
+   - Troubleshooting and maintenance
+
+ License:
+   MIT License
+==============================================
+-->
+
 # 📊 Grafana Monitoring Tutorial - USDTgVerse
 
 ## 🌐 Access Information

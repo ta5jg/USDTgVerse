@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        TERMS_OF_SERVICE.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Terms of Service - USDTgVerse Wallet
+   
+   Comprehensive terms of service documentation including:
+   - Service terms and conditions
+   - User responsibilities and obligations
+   - Liability limitations and disclaimers
+   - Intellectual property rights
+   - Dispute resolution and legal framework
+
+ License:
+   MIT License
+==============================================
+-->
+
 # Terms of Service - USDTgVerse Wallet
 
 **Effective Date:** January 1, 2025  

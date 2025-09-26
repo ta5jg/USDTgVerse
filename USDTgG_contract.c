@@ -1,9 +1,26 @@
-/**
- * USDTgG Governance Token Contract
- * ===============================
- * 
- * Simple C-based governance token for USDTgVerse
- */
+/*
+==============================================
+ File:        USDTgG_contract.c
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgG Governance Token Contract
+   Simple C-based governance token for USDTgVerse
+   
+   Governance token implementation featuring:
+   - Token management functions
+   - Governance voting mechanisms
+   - DAO integration
+   - Security features
+   - Performance optimizations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

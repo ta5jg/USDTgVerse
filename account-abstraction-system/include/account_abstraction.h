@@ -1,10 +1,25 @@
-//
-//  account_abstraction.h
-//  USDTgVerse Account Abstraction System (EIP-4337)
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        account_abstraction.h
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Account Abstraction System (EIP-4337)
+   
+   Account abstraction system featuring:
+   - Smart contract wallets
+   - Gasless transactions
+   - Batch transaction processing
+   - Social recovery mechanisms
+   - Multi-signature support
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef ACCOUNT_ABSTRACTION_H
 #define ACCOUNT_ABSTRACTION_H

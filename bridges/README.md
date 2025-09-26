@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Multi-Chain Bridge System
+   
+   Multi-chain bridge system documentation including:
+   - Bridge architecture and vision
+   - Supported blockchain networks
+   - Cross-chain transfer mechanisms
+   - Security and validation procedures
+   - Development and deployment guides
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgVerse Multi-Chain Bridge System
 
 ## 🌉 Bridge Architecture

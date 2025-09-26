@@ -1,10 +1,25 @@
-//
-//  ai_contract_assistant.c
-//  USDTgVerse AI-Powered Smart Contract Assistant
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        ai_contract_assistant.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse AI-Powered Smart Contract Assistant
+   
+   Advanced AI assistant for smart contract development featuring:
+   - Code analysis and optimization
+   - Security vulnerability detection
+   - Gas optimization suggestions
+   - Automated testing generation
+   - Natural language contract interaction
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include "ai_contract_assistant.h"
 #include <stdlib.h>

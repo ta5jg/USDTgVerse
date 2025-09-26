@@ -1,13 +1,26 @@
 /*
- * USDTgVerse Bridge Orchestrator
- * Pure C Implementation
- * 
- * Master service that coordinates all cross-chain bridges:
- * - Ethereum Bridge Management
- * - TRON Bridge Management  
- * - Solana Bridge Management
- * - Cross-chain routing optimization
- * - Unified API interface
+==============================================
+ File:        bridge_orchestrator.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Bridge Orchestrator
+   Pure C Implementation
+   
+   Master service that coordinates all cross-chain bridges:
+   - Ethereum Bridge Management
+   - TRON Bridge Management  
+   - Solana Bridge Management
+   - Cross-chain routing optimization
+   - Unified API interface
+
+ License:
+   MIT License
+==============================================
+*/
  */
 
 #include <stdio.h>

@@ -1,7 +1,25 @@
 /*
- * USDTgVerse Security Audit Report Generator
- * Generates professional HTML audit reports
- */
+==============================================
+ File:        generate_audit_report.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Security Audit Report Generator
+   
+   Professional HTML audit report generator featuring:
+   - Security audit report generation
+   - HTML report formatting
+   - Audit analysis and reporting
+   - Security assessment tools
+   - Professional report templates
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <iostream>
 #include <fstream>

@@ -1,4 +1,5 @@
 {
+  "_comment": "==============================================\n File:        package.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   USDTgVerse Smart Contracts - World's First Quantum-Safe Blockchain\n   \n   Package configuration for USDTgVerse smart contracts including:\n   - Contract compilation and deployment\n   - Testing and coverage\n   - Development dependencies\n   - Build scripts and configurations\n\n License:\n   MIT License\n==============================================",
   "name": "usdtgverse-contracts",
   "version": "1.0.0",
   "description": "🚀 USDTgVerse Smart Contracts - World's First Quantum-Safe Blockchain",

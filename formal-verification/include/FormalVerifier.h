@@ -1,10 +1,25 @@
-//
-//  FormalVerifier.h
-//  USDTgVerse Formal Verification System
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        FormalVerifier.h
+ Author:      Irfan Gedik
+ Created:     25.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Formal Verification System Header
+   
+   Header file for the formal verification system including:
+   - Mathematical proof verification
+   - Contract correctness validation
+   - Security property checking
+   - Theorem proving interfaces
+   - Verification result structures
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef FORMALVERIFIER_H
 #define FORMALVERIFIER_H

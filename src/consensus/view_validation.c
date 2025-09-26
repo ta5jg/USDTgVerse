@@ -1,7 +1,26 @@
 /*
- * Consensus View Progression Validation
- * Ensures monotonic view progression for consensus safety
- */
+==============================================
+ File:        view_validation.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Consensus View Progression Validation
+   Ensures monotonic view progression for consensus safety
+   
+   Consensus validation system featuring:
+   - View progression validation
+   - Monotonic view enforcement
+   - Consensus safety guarantees
+   - Byzantine fault tolerance
+   - Performance optimizations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdint.h>
 #include <stdbool.h>

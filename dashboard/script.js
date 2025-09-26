@@ -1,4 +1,25 @@
-// USDTgVerse Dashboard JavaScript
+/*
+==============================================
+ File:        script.js
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Dashboard JavaScript
+   
+   Interactive JavaScript functionality for the USDTgVerse dashboard including:
+   - Navigation handling
+   - Real-time data updates
+   - Chart rendering
+   - User interactions
+   - API communications
+
+ License:
+   MIT License
+==============================================
+*/
 document.addEventListener('DOMContentLoaded', function() {
     // Navigation
     const navLinks = document.querySelectorAll('.nav-link');

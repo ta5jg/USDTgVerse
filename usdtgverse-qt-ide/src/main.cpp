@@ -1,10 +1,24 @@
-//
-//  main.cpp
-//  USDTgVerse IDE - Professional Qt Implementation
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        main.cpp
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse IDE - Professional Qt Implementation
+   
+   Main entry point for the Qt-based IDE featuring:
+   - Application initialization and setup
+   - Qt application framework integration
+   - IDE instance creation and execution
+   - Application lifecycle management
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <QApplication>
 #include <QStyleFactory>

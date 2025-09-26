@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        QuantumRollup.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Quantum-Safe Layer 2 Scaling
+   
+   Quantum-safe optimistic rollups featuring:
+   - 1,000,000+ TPS capability
+   - Zero-knowledge proofs with quantum safety
+   - Layer 2 scaling solutions
+   - Rollup technology implementation
+   - High-performance transaction processing
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * ⚡ USDTgVerse Quantum-Safe Layer 2 Scaling
  * =========================================

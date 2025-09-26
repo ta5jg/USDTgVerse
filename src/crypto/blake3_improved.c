@@ -1,7 +1,26 @@
 /*
- * Improved BLAKE3 Implementation for USDTgVerse
- * Better avalanche effect and cryptographic properties
- */
+==============================================
+ File:        blake3_improved.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Improved BLAKE3 Implementation for USDTgVerse
+   Better avalanche effect and cryptographic properties
+   
+   Enhanced cryptographic hash function featuring:
+   - Improved avalanche effect
+   - Better cryptographic properties
+   - Performance optimizations
+   - Security enhancements
+   - Quantum-resistant design
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdint.h>
 #include <string.h>

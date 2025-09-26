@@ -1,13 +1,26 @@
 /*
- * USDTgVerse Full Blockchain Node Demo
- * 
- * Demonstrates complete blockchain functionality:
- * - Native USDTg token
- * - Account state management
- * - Transaction processing
- * - Block production
- * - P2P networking simulation
- * - HotStuff consensus simulation
+==============================================
+ File:        blockchain_node_demo.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Full Blockchain Node Demo
+   
+   Complete blockchain functionality demonstration featuring:
+   - Native USDTg token
+   - Account state management
+   - Transaction processing
+   - Block production
+   - P2P networking simulation
+   - HotStuff consensus simulation
+
+ License:
+   MIT License
+==============================================
+*/
  */
 
 #include <iostream>

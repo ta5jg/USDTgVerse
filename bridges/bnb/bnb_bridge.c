@@ -1,13 +1,26 @@
 /*
- * USDTgVerse BNB Chain Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and BNB Chain:
- * - BNB → USDTg (Lock & Mint)
- * - USDTg → BNB (Burn & Unlock)
- * - Binance Smart Chain integration
- * - Ultra-fast 3-second confirmations
- * - Massive Binance user base access
+==============================================
+ File:        bnb_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse BNB Chain Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and BNB Chain:
+   - BNB → USDTg (Lock & Mint)
+   - USDTg → BNB (Burn & Unlock)
+   - Binance Smart Chain integration
+   - Ultra-fast 3-second confirmations
+   - Massive Binance user base access
+
+ License:
+   MIT License
+==============================================
+*/
  */
 
 #include <stdio.h>

@@ -1,4 +1,5 @@
 {
+	"_comment": "==============================================\n File:        InstallScripts.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   CMake Install Scripts Configuration\n   \n   CMake build configuration featuring:\n   - Install script management\n   - Build system configuration\n   - Parallel build settings\n   - Installation path management\n\n License:\n   MIT License\n==============================================",
 	"InstallScripts" : 
 	[
 		"/Users/irfangedik/USDTgVerse/build/cmake_install.cmake"

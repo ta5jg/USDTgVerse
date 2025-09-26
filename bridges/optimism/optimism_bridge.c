@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Optimism Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and Optimism:
- * - OP → USDTg (OP Stack integration)
- * - USDTg → OP (Superchain benefits)
- * - Optimistic rollup technology
- * - Growing ecosystem integration
- */
+==============================================
+ File:        optimism_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Optimism Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and Optimism:
+   - OP → USDTg (OP Stack integration)
+   - USDTg → OP (Superchain benefits)
+   - Optimistic rollup technology
+   - Growing ecosystem integration
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

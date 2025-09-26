@@ -1,3 +1,27 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Testnet Environment
+   World's First Quantum-Safe Blockchain Testnet
+   
+   Testnet environment documentation including:
+   - Quick start guide and prerequisites
+   - Environment setup and configuration
+   - Testing procedures and best practices
+   - Development workflow and debugging
+   - Deployment and monitoring
+
+ License:
+   MIT License
+==============================================
+-->
+
 # 🧪 USDTgVerse Testnet Environment
 **World's First Quantum-Safe Blockchain Testnet**
 

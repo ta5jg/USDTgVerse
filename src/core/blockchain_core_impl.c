@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        blockchain_core_impl.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Blockchain Core Implementation
+   
+   Implementation of core blockchain functionality including:
+   - Cryptographic hash functions
+   - Block validation logic
+   - Transaction processing
+   - Consensus mechanisms
+   - Performance optimizations
+
+ License:
+   MIT License
+==============================================
+*/
+
 #include "blockchain_core.h"
 #include <stdio.h>
 

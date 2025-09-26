@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        test_consensus.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Consensus Test
+   
+   Consensus testing framework featuring:
+   - HotStuff BFT consensus validation
+   - Consensus algorithm testing
+   - Block production testing
+   - Validator behavior testing
+   - Consensus performance testing
+
+ License:
+   MIT License
+==============================================
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>

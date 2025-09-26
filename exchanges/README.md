@@ -1,3 +1,26 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Exchange Ecosystem
+   
+   Exchange ecosystem documentation including:
+   - DEX and CEX architecture
+   - Automated market maker implementation
+   - Liquidity pool management
+   - Cross-chain swap mechanisms
+   - Trading interface development
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgVerse Exchange Ecosystem
 
 ## 🏦 Exchange Architecture

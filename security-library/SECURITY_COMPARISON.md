@@ -1,3 +1,27 @@
+<!--
+==============================================
+ File:        SECURITY_COMPARISON.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Security Comparison: USDTgVerse vs OpenZeppelin
+   Why USDTgVerse Security Library is Superior
+   
+   Comprehensive security comparison analysis including:
+   - Feature-by-feature comparison
+   - Security advantages analysis
+   - Performance benchmarks
+   - Quantum safety evaluation
+   - Implementation details
+
+ License:
+   MIT License
+==============================================
+-->
+
 # 🛡️ Security Comparison: USDTgVerse vs OpenZeppelin
 **Why USDTgVerse Security Library is Superior**
 

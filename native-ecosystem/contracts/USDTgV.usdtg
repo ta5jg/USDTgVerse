@@ -1,16 +1,31 @@
-/**
- * ⚡ USDTgV - USDTgVerse Utility Token
- * ===================================
- * 
- * ⚛️ QUANTUM-SAFE UTILITY TOKEN
- * 🚀 OPTIMIZED FOR USDTGVM
- * 🌍 ECOSYSTEM UTILITY TOKEN
- * 💰 NON-STABLE TOKEN (Volatile)
- * 
- * Purpose: General ecosystem utility, staking, rewards, fees
- * Supply: 500,000,000 USDTgV (500 Million)
- * Price Target: $0.50 - $2.00 USDTg
- */
+/*
+==============================================
+ File:        USDTgV.usdtg
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgV - USDTgVerse Utility Token
+   
+   Quantum-Safe Utility Token optimized for USDTGVM
+   Ecosystem utility token (non-stable, volatile)
+   
+   Purpose: General ecosystem utility, staking, rewards, fees
+   Supply: 500,000,000 USDTgV (500 Million)
+   Price Target: $0.50 - $2.00 USDTg
+   
+   Features:
+   - Quantum-safe cryptography
+   - Staking and rewards system
+   - Ecosystem integration
+   - Fee discounts
+
+ License:
+   MIT License
+==============================================
+*/
 
 #quantum_safe
 #version "1.0"

@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        test_state.cpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse State Test
+   
+   State testing framework featuring:
+   - Blockchain state validation
+   - State transition testing
+   - State consistency verification
+   - State performance testing
+   - State security validation
+
+ License:
+   MIT License
+==============================================
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>

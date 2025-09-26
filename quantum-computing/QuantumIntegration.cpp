@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        QuantumIntegration.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Quantum Computing Integration
+   
+   World's first quantum-enhanced blockchain featuring:
+   - Quantum computing + blockchain convergence
+   - Post-quantum cryptography implementation
+   - Quantum-enhanced consensus algorithms
+   - Quantum-safe cryptographic primitives
+   - Quantum computing integration
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * ⚛️ USDTgVerse Quantum Computing Integration
  * ==========================================

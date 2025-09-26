@@ -1,15 +1,27 @@
 /*
- * USDTgVerse P2P Network Core - Pure C Implementation
- * Ultra-high performance, enterprise-grade networking
- * 
- * Features:
- * - Noise IK encryption (libsodium)
- * - TCP + varint framing
- * - Gossip protocol
- * - Reputation system
- * - Anti-flood protection
- * - Peer discovery
- */
+==============================================
+ File:        network_core.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse P2P Network Core - Pure C Implementation
+   Ultra-high performance, enterprise-grade networking
+   
+   Advanced P2P networking system featuring:
+   - Noise IK encryption (libsodium)
+   - TCP + varint framing
+   - Gossip protocol
+   - Reputation system
+   - Anti-flood protection
+   - Peer discovery
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdint.h>
 #include <stdlib.h>

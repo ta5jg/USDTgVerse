@@ -1,10 +1,25 @@
-//
-//  liquid_staking.c
-//  USDTgVerse Liquid Staking Derivatives System
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        liquid_staking.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Liquid Staking Derivatives System
+   
+   Advanced liquid staking system featuring:
+   - stUSDTg token generation
+   - Yield farming mechanisms
+   - Validator delegation
+   - Reward distribution
+   - Liquidity provision
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include "liquid_staking.h"
 #include <stdlib.h>

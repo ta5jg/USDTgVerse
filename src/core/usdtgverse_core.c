@@ -1,13 +1,26 @@
 /*
- * USDTgVerse Pure C Backend - Ultra Performance
- * 
- * Complete blockchain implementation in pure C:
- * - Native USDTg token
- * - HotStuff BFT-PoS consensus
- * - P2P networking
- * - State management
- * - Transaction processing
- * - Block production
+==============================================
+ File:        usdtgverse_core.c
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Pure C Backend - Ultra Performance
+   
+   Complete blockchain implementation in pure C featuring:
+   - Native USDTg token
+   - HotStuff BFT-PoS consensus
+   - P2P networking
+   - State management
+   - Transaction processing
+   - Block production
+
+ License:
+   MIT License
+==============================================
+*/
  * 
  * Zero C++ overhead - Maximum performance
  */

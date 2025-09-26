@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        InstitutionalLiquidity.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Institutional Liquidity Infrastructure
+   
+   Quantum-safe institutional trading featuring:
+   - Enterprise-grade liquidity solutions
+   - Prime brokerage services
+   - Institutional trading support
+   - Large-scale liquidity management
+   - Professional trading infrastructure
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 💰 USDTgVerse Institutional Liquidity Infrastructure
  * ===================================================

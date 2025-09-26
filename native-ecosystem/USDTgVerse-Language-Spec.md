@@ -1,3 +1,27 @@
+<!--
+==============================================
+ File:        USDTgVerse-Language-Spec.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Native Language Specification
+   World's First Quantum-Safe Smart Contract Language
+   
+   Comprehensive language specification including:
+   - USDTgScript language overview
+   - Syntax and grammar definitions
+   - Quantum-safe features
+   - Compilation and execution details
+   - Security and performance characteristics
+
+ License:
+   MIT License
+==============================================
+-->
+
 # 🔧 USDTgVerse Native Language Specification
 **World's First Quantum-Safe Smart Contract Language**
 

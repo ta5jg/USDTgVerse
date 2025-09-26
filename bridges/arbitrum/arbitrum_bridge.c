@@ -1,13 +1,25 @@
 /*
- * USDTgVerse Arbitrum Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and Arbitrum:
- * - ARB → USDTg (Optimistic rollup integration)
- * - USDTg → ARB (L2 scaling benefits)
- * - DeFi TVL leader integration
- * - Low gas fees with Ethereum security
- */
+==============================================
+ File:        arbitrum_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Arbitrum Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and Arbitrum:
+   - ARB → USDTg (Optimistic rollup integration)
+   - USDTg → ARB (L2 scaling benefits)
+   - DeFi TVL leader integration
+   - Low gas fees with Ethereum security
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

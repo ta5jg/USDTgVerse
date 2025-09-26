@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        DePINInfrastructure.cpp
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse DePIN (Decentralized Physical Infrastructure)
+   
+   Quantum-safe physical infrastructure featuring:
+   - Real-world utility integration
+   - Tokenized infrastructure rewards
+   - Decentralized storage networks
+   - Physical infrastructure management
+   - Infrastructure tokenization
+
+ License:
+   MIT License
+==============================================
+*/
+
 /**
  * 🌐 USDTgVerse DePIN (Decentralized Physical Infrastructure)
  * =========================================================

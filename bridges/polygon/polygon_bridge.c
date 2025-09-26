@@ -1,13 +1,26 @@
 /*
- * USDTgVerse Polygon Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and Polygon:
- * - MATIC → USDTg (Lock & Mint)
- * - USDTg → MATIC (Burn & Unlock)
- * - Ethereum L2 scaling solution
- * - Ultra-low fees (~$0.01)
- * - Enterprise-grade adoption
+==============================================
+ File:        polygon_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Polygon Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and Polygon:
+   - MATIC → USDTg (Lock & Mint)
+   - USDTg → MATIC (Burn & Unlock)
+   - Ethereum L2 scaling solution
+   - Ultra-low fees (~$0.01)
+   - Enterprise-grade adoption
+
+ License:
+   MIT License
+==============================================
+*/
  */
 
 #include <stdio.h>

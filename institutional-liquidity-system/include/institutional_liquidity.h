@@ -1,10 +1,25 @@
-//
-//  institutional_liquidity.h
-//  USDTgVerse Institutional Liquidity Infrastructure
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        institutional_liquidity.h
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Institutional Liquidity Infrastructure
+   
+   Institutional liquidity infrastructure featuring:
+   - Large-scale liquidity management
+   - Institutional trading support
+   - Liquidity pool optimization
+   - Risk management systems
+   - Professional trading tools
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef INSTITUTIONAL_LIQUIDITY_H
 #define INSTITUTIONAL_LIQUIDITY_H

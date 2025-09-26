@@ -1,13 +1,25 @@
 /*
- * USDTgVerse TRON Bridge
- * Pure C Implementation
- * 
- * Enables bidirectional transfers between USDTgVerse and TRON:
- * - TRX → USDTg (Lock & Mint)
- * - USDTg → TRX (Burn & Unlock)
- * - TRON validator consensus
- * - Fast 3-minute confirmations
- */
+==============================================
+ File:        tron_bridge.c
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse TRON Bridge
+   Pure C Implementation
+   
+   Enables bidirectional transfers between USDTgVerse and TRON:
+   - TRX → USDTg (Lock & Mint)
+   - USDTg → TRX (Burn & Unlock)
+   - TRON validator consensus
+   - Fast 3-minute confirmations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

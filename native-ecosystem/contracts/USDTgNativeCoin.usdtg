@@ -1,14 +1,31 @@
-/**
- * 💰 USDTg Native Coin - Pure USDTgVerse Implementation
- * ===================================================
- * 
- * ⚛️ QUANTUM-SAFE NATIVE TOKEN
- * 🚀 OPTIMIZED FOR USDTGVM
- * 🌍 CROSS-CHAIN BRIDGE COMPATIBLE
- * 
- * This is the NATIVE implementation using USDTgScript language,
- * completely independent from Ethereum/Solidity ecosystem.
- */
+/*
+==============================================
+ File:        USDTgNativeCoin.usdtg
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTg Native Coin - Pure USDTgVerse Implementation
+   
+   Quantum-Safe Native Token optimized for USDTGVM
+   Cross-chain bridge compatible
+   
+   This is the NATIVE implementation using USDTgScript language,
+   completely independent from Ethereum/Solidity ecosystem.
+   
+   Features:
+   - Quantum-safe cryptography
+   - Anti-fraud measures
+   - Multi-signature security
+   - Time-locked operations
+   - Emergency controls
+
+ License:
+   MIT License
+==============================================
+*/
 
 #quantum_safe
 #version "1.0"

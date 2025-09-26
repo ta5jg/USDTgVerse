@@ -1,3 +1,27 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse - World's First Quantum-Safe Blockchain Ecosystem
+   The Ultimate Independent Blockchain Platform with Complete Enterprise Solutions
+   
+   Comprehensive documentation for the USDTgVerse ecosystem including:
+   - Project overview and features
+   - Installation and setup instructions
+   - API documentation
+   - Development guidelines
+   - Security and compliance information
+
+ License:
+   MIT License
+==============================================
+-->
+
 # ⚛️ USDTgVerse - World's First Quantum-Safe Blockchain Ecosystem
 **The Ultimate Independent Blockchain Platform with Complete Enterprise Solutions**
 

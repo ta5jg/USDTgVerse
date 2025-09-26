@@ -1,11 +1,26 @@
-/**
- * 🎨 USDTGWALLET CHROME EXTENSION STYLES
- * =====================================
- * 
- * ⚛️ QUANTUM-SAFE DESIGN SYSTEM
- * 🔐 Modern Web3 Wallet Interface
- * 🌐 Cross-platform consistency
- */
+/*
+==============================================
+ File:        styles.css
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgWallet Chrome Extension Styles
+   
+   Quantum-Safe Design System with modern Web3 wallet interface
+   Cross-platform consistency featuring:
+   - Quantum-safe design system
+   - Modern Web3 wallet interface
+   - Cross-platform consistency
+   - Responsive design
+   - Accessibility features
+
+ License:
+   MIT License
+==============================================
+*/
 
 /* 🌟 ROOT VARIABLES */
 :root {

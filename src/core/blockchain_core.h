@@ -1,7 +1,25 @@
 /*
- * USDTgVerse Blockchain Core - Pure C Header
- * Ultra-high performance, deterministic, audit-ready
- */
+==============================================
+ File:        blockchain_core.h
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Blockchain Core - Pure C Header
+   Ultra-high performance, deterministic, audit-ready
+   
+   Core blockchain functionality including:
+   - Block structure and validation
+   - Transaction processing
+   - Consensus mechanisms
+   - Cryptographic operations
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef USDTGVERSE_CORE_H
 #define USDTGVERSE_CORE_H

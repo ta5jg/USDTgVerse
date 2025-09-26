@@ -1,10 +1,25 @@
-//
-//  ComplianceSuite.h
-//  USDTgVerse Enterprise Compliance Suite
-//
-//  Created by USDTgVerse Development Team
-//  Copyright © 2024 USDTgVerse. All rights reserved.
-//
+/*
+==============================================
+ File:        ComplianceSuite.h
+ Author:      Irfan Gedik
+ Created:     25.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Enterprise Compliance Suite Header
+   
+   Header file for the enterprise compliance system including:
+   - KYC/AML compliance checks
+   - GDPR data protection
+   - SOC 2 security standards
+   - ISO 27001 compliance
+   - Audit trail management
+
+ License:
+   MIT License
+==============================================
+*/
 
 #ifndef COMPLIANCESUITE_H
 #define COMPLIANCESUITE_H

@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        usdtgwallet_sdk.hpp
+ Author:      Irfan Gedik
+ Created:     19.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Wallet SDK
+   
+   Comprehensive wallet SDK featuring:
+   - Multi-chain wallet management
+   - Transaction building and signing
+   - DEX and CEX integration
+   - Portfolio management
+   - Security and key management
+
+ License:
+   MIT License
+==============================================
+*/
+
 #pragma once
 
 #include "../src/common/types.hpp"

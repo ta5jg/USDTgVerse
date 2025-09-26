@@ -1,13 +1,26 @@
-/**
- * 🔧 USDTgScript Compiler (usdtgc)
- * ===============================
- * 
- * ⚛️ QUANTUM-SAFE SMART CONTRACT COMPILER
- * 🚀 COMPILES USDTGSCRIPT TO USDTGVM BYTECODE
- * 🌍 CROSS-CHAIN COMPATIBILITY GENERATOR
- * 
- * This compiler translates USDTgScript (.usdtg) files into
- * USDTgVM bytecode and can also generate cross-chain compatible
+/*
+==============================================
+ File:        usdtgc.c
+ Author:      Irfan Gedik
+ Created:     21.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgScript Compiler (usdtgc)
+   
+   Quantum-Safe Smart Contract Compiler that compiles USDTgScript to USDTgVM bytecode
+   Cross-chain compatibility generator featuring:
+   - USDTgScript to USDTgVM bytecode compilation
+   - Cross-chain compatibility generation
+   - Quantum-safe cryptography support
+   - Performance optimizations
+   - Security validation
+
+ License:
+   MIT License
+==============================================
+*/
  * contracts for Ethereum, BNB Chain, TRON, etc.
  */
 

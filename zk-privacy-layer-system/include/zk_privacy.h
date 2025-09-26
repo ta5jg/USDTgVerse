@@ -1,3 +1,26 @@
+/*
+==============================================
+ File:        zk_privacy.h
+ Author:      Irfan Gedik
+ Created:     26.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   Zero-Knowledge Privacy Layer System Header
+   
+   ZK privacy layer system header featuring:
+   - Zero-knowledge proof structures
+   - Privacy transaction interfaces
+   - ZK-SNARKs proof generation
+   - Privacy layer API definitions
+   - Cryptographic primitives
+
+ License:
+   MIT License
+==============================================
+*/
+
 #ifndef ZK_PRIVACY_H
 #define ZK_PRIVACY_H
 
