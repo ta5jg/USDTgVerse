@@ -256,7 +256,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                alert(`Trading ${pairName} - Redirecting to trading interface...`);
+                // Redirect to trading interface
+                window.open('../trading/trade-interface.html', '_blank');
             });
         }
     });
@@ -276,7 +277,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                alert(`Staking in ${poolName} - Redirecting to staking interface...`);
+                // Redirect to staking interface
+                window.open('../staking/stake-interface.html', '_blank');
             });
         }
     });
