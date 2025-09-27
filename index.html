@@ -930,14 +930,20 @@
                 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
                 const desktopMenu = document.getElementById('desktop-menu');
                 
-                console.log('Mobile menu elements:', { mobileMenuToggle, desktopMenu });
+                console.log('Main page mobile menu elements:', { mobileMenuToggle, desktopMenu });
                 
                 if (mobileMenuToggle && desktopMenu) {
-                    mobileMenuToggle.addEventListener('click', function(e) {
+                    // Remove any existing event listeners
+                    mobileMenuToggle.removeEventListener('click', handleMobileMenuClick);
+                    
+                    // Add new event listener
+                    mobileMenuToggle.addEventListener('click', handleMobileMenuClick);
+                    
+                    function handleMobileMenuClick(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        console.log('Hamburger menu clicked');
+                        console.log('Main page hamburger menu clicked');
                         
                         if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
                             desktopMenu.style.display = 'flex';
@@ -954,17 +960,17 @@
                             desktopMenu.style.borderTop = 'none';
                             desktopMenu.style.zIndex = '1001';
                             mobileMenuToggle.innerHTML = '✕';
-                            console.log('Mobile menu opened');
+                            console.log('Main page mobile menu opened');
                         } else {
                             desktopMenu.style.display = 'none';
                             mobileMenuToggle.innerHTML = '☰';
-                            console.log('Mobile menu closed');
+                            console.log('Main page mobile menu closed');
                         }
-                    });
+                    }
                 } else {
-                    console.log('Mobile menu elements not found');
+                    console.log('Main page mobile menu elements not found');
                 }
-            }, 100);
+            }, 200);
         }
         
         // Initialize mobile menu when DOM is ready

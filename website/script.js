@@ -22,42 +22,54 @@
 */
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle Functionality
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const desktopMenu = document.getElementById('desktop-menu');
-    
-    if (mobileMenuToggle && desktopMenu) {
-        mobileMenuToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            console.log('Website hamburger menu clicked');
-            
-            if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
-                desktopMenu.style.display = 'flex';
-                desktopMenu.style.flexDirection = 'column';
-                desktopMenu.style.position = 'absolute';
-                desktopMenu.style.top = '100%';
-                desktopMenu.style.left = '0';
-                desktopMenu.style.right = '0';
-                desktopMenu.style.background = 'rgba(0, 0, 0, 0.95)';
-                desktopMenu.style.backdropFilter = 'blur(15px)';
-                desktopMenu.style.padding = '20px';
-                desktopMenu.style.borderRadius = '0 0 12px 12px';
-                desktopMenu.style.border = '1px solid rgba(255, 255, 255, 0.1)';
-                desktopMenu.style.borderTop = 'none';
-                desktopMenu.style.zIndex = '1001';
-                mobileMenuToggle.innerHTML = '✕';
-                console.log('Website mobile menu opened');
-            } else {
-                desktopMenu.style.display = 'none';
-                mobileMenuToggle.innerHTML = '☰';
-                console.log('Website mobile menu closed');
-            }
-        });
+    function initWebsiteMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const desktopMenu = document.getElementById('desktop-menu');
+        
+        console.log('Website mobile menu elements:', { mobileMenuToggle, desktopMenu });
+        
+        if (mobileMenuToggle && desktopMenu) {
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Website hamburger menu clicked');
+                
+                if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
+                    desktopMenu.style.display = 'flex';
+                    desktopMenu.style.flexDirection = 'column';
+                    desktopMenu.style.position = 'absolute';
+                    desktopMenu.style.top = '100%';
+                    desktopMenu.style.left = '0';
+                    desktopMenu.style.right = '0';
+                    desktopMenu.style.background = 'rgba(0, 0, 0, 0.95)';
+                    desktopMenu.style.backdropFilter = 'blur(15px)';
+                    desktopMenu.style.padding = '20px';
+                    desktopMenu.style.borderRadius = '0 0 12px 12px';
+                    desktopMenu.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    desktopMenu.style.borderTop = 'none';
+                    desktopMenu.style.zIndex = '1001';
+                    mobileMenuToggle.innerHTML = '✕';
+                    console.log('Website mobile menu opened');
+                } else {
+                    desktopMenu.style.display = 'none';
+                    mobileMenuToggle.innerHTML = '☰';
+                    console.log('Website mobile menu closed');
+                }
+            });
+        } else {
+            console.log('Website mobile menu elements not found');
+        }
     }
+    
+    // Initialize website mobile menu
+    initWebsiteMobileMenu();
     
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const desktopMenu = document.getElementById('desktop-menu');
+        
         if (mobileMenuToggle && desktopMenu && 
             !mobileMenuToggle.contains(e.target) && 
             !desktopMenu.contains(e.target)) {
@@ -70,6 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle window resize
     window.addEventListener('resize', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const desktopMenu = document.getElementById('desktop-menu');
+        
         if (window.innerWidth > 1024) {
             if (desktopMenu) {
                 desktopMenu.style.display = 'flex';
@@ -250,15 +265,15 @@ document.addEventListener('DOMContentLoaded', function() {
         address.title = 'Click to copy address';
     });
 
-    // Add scroll effect for header
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-        }
-    });
+    // Remove scroll effect for header to prevent color change
+    // window.addEventListener('scroll', function() {
+    //     const header = document.querySelector('.header');
+    //     if (window.scrollY > 100) {
+    //         header.style.background = 'rgba(255, 255, 255, 0.98)';
+    //     } else {
+    //         header.style.background = 'rgba(255, 255, 255, 0.95)';
+    //     }
+    // });
 
     // Add animation for hero stats
     const stats = document.querySelectorAll('.stat-value');
