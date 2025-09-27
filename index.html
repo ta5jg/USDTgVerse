@@ -56,6 +56,13 @@
             z-index: 1000;
         }
         
+        @media (max-width: 768px) {
+            .quantum-announcement {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+        
         @keyframes glow {
             0% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.5); }
             100% { box-shadow: 0 0 30px rgba(255, 0, 102, 0.8); }
@@ -668,7 +675,7 @@
                                 <a href="dashboard/index.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📊 Live Dashboard</a>
                                 <a href="explorer/usdtgscan.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔍 Explorer</a>
                                 <a href="dapps/usdtg-transfer/index.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📱 dApp</a>
-                                <a href="wallet/index.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💳 Wallet</a>
+                                <a href="wallet/demo/wallet.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💳 Wallet</a>
                             </div>
                         </div>
                         
@@ -692,7 +699,7 @@
                                 transition: all 0.3s ease;
                                 border: 1px solid rgba(255, 255, 255, 0.1);
                             ">
-                                <a href="dev-tools/USDTgIDE-Real.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔧 USDTgScript IDE Pro</a>
+                                <a href="dev-tools/USDTgIDE.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔧 USDTgScript IDE Pro</a>
                                 <a href="universal-factory/deploy.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏭 Contract Deploy</a>
                                 <a href="audit/contract-verify.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ Contract Verify</a>
                                 <a href="oracle-network/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔮 Oracle Network</a>
@@ -778,12 +785,12 @@
                                 border: 1px solid rgba(255, 255, 255, 0.1);
                             ">
                                 <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏦 H2H System</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html#swift" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 SWIFT Protocol</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html#iso20022" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 ISO 20022</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html#fix" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">⚡ FIX Protocol</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html#ach" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 ACH Network</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html#sepa" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🇪🇺 SEPA</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html#fedwire" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏛️ Fedwire</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 SWIFT Protocol</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 ISO 20022</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">⚡ FIX Protocol</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 ACH Network</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🇪🇺 SEPA</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏛️ Fedwire</a>
                             </div>
                         </div>
                         
@@ -807,9 +814,9 @@
                                 transition: all 0.3s ease;
                                 border: 1px solid rgba(255, 255, 255, 0.1);
                             ">
-                                <a href="zk-privacy/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ ZK Privacy</a>
+                                <a href="zk-privacy-layer-system/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ ZK Privacy</a>
                                 <a href="homomorphic-encryption/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔐 Homomorphic Encryption</a>
-                                <a href="mev-protection/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ MEV Protection</a>
+                                <a href="mev-protection-system/dashboard.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🛡️ MEV Protection</a>
                             </div>
                         </div>
                         
@@ -905,7 +912,10 @@
         const desktopMenu = document.getElementById('desktop-menu');
         
         if (mobileMenuToggle && desktopMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
                     desktopMenu.style.display = 'flex';
                     desktopMenu.style.flexDirection = 'column';
@@ -919,6 +929,7 @@
                     desktopMenu.style.borderRadius = '0 0 12px 12px';
                     desktopMenu.style.border = '1px solid rgba(255, 255, 255, 0.1)';
                     desktopMenu.style.borderTop = 'none';
+                    desktopMenu.style.zIndex = '1000';
                     mobileMenuToggle.innerHTML = '✕';
                 } else {
                     desktopMenu.style.display = 'none';
