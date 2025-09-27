@@ -755,12 +755,12 @@
                                 border: 1px solid rgba(255, 255, 255, 0.1);
                             ">
                                 <a href="payment-system/interfaces/payment_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💳 Payment System</a>
-                                <a href="payment-system/interfaces/payment_interface.html#bank_wire" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏦 Bank Wire</a>
-                                <a href="payment-system/interfaces/payment_interface.html#credit_card" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💳 Credit/Debit Card</a>
-                                <a href="payment-system/interfaces/payment_interface.html#paypal" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💰 PayPal</a>
-                                <a href="payment-system/interfaces/payment_interface.html#usdtgverse_pay" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 USDTgVerse PAY</a>
-                                <a href="payment-system/interfaces/payment_interface.html#crypto" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">₿ Cryptocurrency</a>
-                                <a href="payment-system/interfaces/payment_interface.html#direct_ip" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🌐 Direct IP Payment</a>
+                                <a href="payment-system/interfaces/payment_interface.html" onclick="selectPaymentMethod('bank_wire')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏦 Bank Wire</a>
+                                <a href="payment-system/interfaces/payment_interface.html" onclick="selectPaymentMethod('credit_card')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💳 Credit/Debit Card</a>
+                                <a href="payment-system/interfaces/payment_interface.html" onclick="selectPaymentMethod('paypal')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">💰 PayPal</a>
+                                <a href="payment-system/interfaces/payment_interface.html" onclick="selectPaymentMethod('usdtgverse_pay')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 USDTgVerse PAY</a>
+                                <a href="payment-system/interfaces/payment_interface.html" onclick="selectPaymentMethod('crypto')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">₿ Cryptocurrency</a>
+                                <a href="payment-system/interfaces/payment_interface.html" onclick="selectPaymentMethod('direct_ip')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🌐 Direct IP Payment</a>
                             </div>
                         </div>
                         
@@ -785,12 +785,12 @@
                                 border: 1px solid rgba(255, 255, 255, 0.1);
                             ">
                                 <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏦 H2H System</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 SWIFT Protocol</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 ISO 20022</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">⚡ FIX Protocol</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 ACH Network</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🇪🇺 SEPA</a>
-                                <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏛️ Fedwire</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('swift')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 SWIFT Protocol</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('iso20022')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">📋 ISO 20022</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fix')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">⚡ FIX Protocol</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('ach')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🔄 ACH Network</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('sepa')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🇪🇺 SEPA</a>
+                                <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fedwire')" style="display: block; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px;">🏛️ Fedwire</a>
                             </div>
                         </div>
                         
@@ -906,6 +906,16 @@
                 console.log('🔗 Navigating to:', this.href);
             });
         });
+        
+        // Payment method selection function
+        function selectPaymentMethod(method) {
+            localStorage.setItem('selectedPaymentMethod', method);
+        }
+        
+        // H2H protocol selection function
+        function selectH2HProtocol(protocol) {
+            localStorage.setItem('selectedH2HProtocol', protocol);
+        }
         
         // Mobile Menu Toggle Functionality
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');

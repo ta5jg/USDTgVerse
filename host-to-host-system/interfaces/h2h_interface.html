@@ -959,6 +959,20 @@
 
         // Initialize H2H interface
         const h2hInterface = new H2HInterface();
+        
+        // Check for pre-selected H2H protocol from menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedProtocol = localStorage.getItem('selectedH2HProtocol');
+            if (selectedProtocol) {
+                // Find and click the corresponding protocol card
+                const protocolCard = document.querySelector(`[data-protocol="${selectedProtocol}"]`);
+                if (protocolCard) {
+                    protocolCard.click();
+                }
+                // Clear the stored protocol
+                localStorage.removeItem('selectedH2HProtocol');
+            }
+        });
 
         // Global functions for modal
         function closeModal() {

@@ -1034,6 +1034,20 @@
 
         // Initialize payment interface
         const paymentInterface = new PaymentInterface();
+        
+        // Check for pre-selected payment method from menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedMethod = localStorage.getItem('selectedPaymentMethod');
+            if (selectedMethod) {
+                // Find and click the corresponding payment method card
+                const methodCard = document.querySelector(`[data-method="${selectedMethod}"]`);
+                if (methodCard) {
+                    methodCard.click();
+                }
+                // Clear the stored method
+                localStorage.removeItem('selectedPaymentMethod');
+            }
+        });
 
         // Global functions for modal
         function closeModal() {
