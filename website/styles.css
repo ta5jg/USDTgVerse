@@ -580,13 +580,13 @@ body {
     font-weight: bold;
 }
 
-/* Comparison Section */
-.comparison-section {
+/* Specifications Section */
+.specifications-section {
     padding: 80px 0;
     background: rgba(0, 0, 0, 0.1);
 }
 
-.comparison-section h2 {
+.specifications-section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 50px;
@@ -594,38 +594,64 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.comparison-table {
-    overflow-x: auto;
-    border-radius: 15px;
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.spec-card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
-.comparison-table table {
-    width: 100%;
-    border-collapse: collapse;
+.spec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.spec-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.spec-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
     color: white;
+    text-align: center;
 }
 
-.comparison-table th,
-.comparison-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.spec-card p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.6;
 }
 
-.comparison-table th {
-    background: rgba(255, 255, 255, 0.1);
-    font-weight: bold;
-    color: white;
+.spec-card ul {
+    list-style: none;
+    padding: 0;
 }
 
-.comparison-table tr:hover {
-    background: rgba(255, 255, 255, 0.05);
+.spec-card li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
 }
 
-.comparison-table strong {
+.spec-card li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
     color: #4CAF50;
     font-weight: bold;
 }
@@ -725,16 +751,11 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .features-grid {
+    .specs-grid {
         grid-template-columns: 1fr;
     }
     
-    .comparison-table {
-        font-size: 0.9rem;
-    }
-    
-    .comparison-table th,
-    .comparison-table td {
-        padding: 10px;
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 }
