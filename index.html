@@ -73,6 +73,47 @@
             padding: 40px;
         }
         
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-container {
+                margin: 200px auto 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 250px auto 0;
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2.5em;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-container {
+                margin: 300px auto 0;
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2em;
+            }
+            
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
         .logo {
             font-size: 4em;
             font-weight: bold;
@@ -590,7 +631,19 @@
                         </a>
                     </div>
                     
-                    <div style="display: flex; gap: 15px; align-items: center; margin-left: auto;">
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobile-menu-toggle" style="
+                        display: none;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 1.5em;
+                        cursor: pointer;
+                        padding: 10px;
+                        margin-left: auto;
+                    ">☰</button>
+                    
+                    <div id="desktop-menu" style="display: flex; gap: 15px; align-items: center; margin-left: auto;">
                         <!-- Platform Mega Menu -->
                         <div class="mega-menu-item" style="position: relative;">
                             <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
@@ -779,6 +832,42 @@
                     background: rgba(255,255,255,0.2) !important;
                     transform: translateY(-2px);
                 }
+                
+                /* Mobile Menu Styles */
+                @media (max-width: 1024px) {
+                    #desktop-menu {
+                        display: none !important;
+                    }
+                    #mobile-menu-toggle {
+                        display: block !important;
+                    }
+                }
+                
+                @media (max-width: 768px) {
+                    nav {
+                        padding: 10px 0 !important;
+                    }
+                    nav div[style*="max-width: 1200px"] {
+                        padding: 0 15px !important;
+                    }
+                    nav h2 {
+                        font-size: 18px !important;
+                    }
+                    nav img {
+                        width: 30px !important;
+                        height: 30px !important;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    nav h2 {
+                        font-size: 16px !important;
+                    }
+                    nav img {
+                        width: 25px !important;
+                        height: 25px !important;
+                    }
+                }
             </style>
         `;
         
@@ -809,6 +898,62 @@
             link.addEventListener('click', function(e) {
                 console.log('🔗 Navigating to:', this.href);
             });
+        });
+        
+        // Mobile Menu Toggle Functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const desktopMenu = document.getElementById('desktop-menu');
+        
+        if (mobileMenuToggle && desktopMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
+                    desktopMenu.style.display = 'flex';
+                    desktopMenu.style.flexDirection = 'column';
+                    desktopMenu.style.position = 'absolute';
+                    desktopMenu.style.top = '100%';
+                    desktopMenu.style.left = '0';
+                    desktopMenu.style.right = '0';
+                    desktopMenu.style.background = 'rgba(0, 0, 0, 0.95)';
+                    desktopMenu.style.backdropFilter = 'blur(15px)';
+                    desktopMenu.style.padding = '20px';
+                    desktopMenu.style.borderRadius = '0 0 12px 12px';
+                    desktopMenu.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    desktopMenu.style.borderTop = 'none';
+                    mobileMenuToggle.innerHTML = '✕';
+                } else {
+                    desktopMenu.style.display = 'none';
+                    mobileMenuToggle.innerHTML = '☰';
+                }
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileMenuToggle && desktopMenu && 
+                !mobileMenuToggle.contains(e.target) && 
+                !desktopMenu.contains(e.target)) {
+                if (window.innerWidth <= 1024) {
+                    desktopMenu.style.display = 'none';
+                    mobileMenuToggle.innerHTML = '☰';
+                }
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                desktopMenu.style.display = 'flex';
+                desktopMenu.style.flexDirection = 'row';
+                desktopMenu.style.position = 'static';
+                desktopMenu.style.background = 'transparent';
+                desktopMenu.style.backdropFilter = 'none';
+                desktopMenu.style.padding = '0';
+                desktopMenu.style.borderRadius = '0';
+                desktopMenu.style.border = 'none';
+                mobileMenuToggle.innerHTML = '☰';
+            } else {
+                desktopMenu.style.display = 'none';
+            }
         });
     </script>
 </body>
