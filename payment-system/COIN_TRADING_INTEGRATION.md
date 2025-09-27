@@ -1,3 +1,31 @@
+<!--
+==============================================
+ File:        COIN_TRADING_INTEGRATION.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Payment System - Coin Trading Integration
+   
+   Comprehensive coin/token trading integration documentation including:
+   - Multi-payment method support for trading
+   - Cryptocurrency payment integration
+   - Fiat currency trading support
+   - Direct IP-to-IP trading system
+   - USDTgVerse PAY trading integration
+   - Bank wire trading support
+   - Credit/debit card trading
+   - PayPal trading integration
+   - Real-time trading analytics
+   - Quantum-safe trading security
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgVerse Payment System - Coin Trading Integration
 
 ## 🪙 Coin/Token Alım-Satım Özellikleri

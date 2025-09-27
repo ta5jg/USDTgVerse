@@ -1,3 +1,30 @@
+<!--
+==============================================
+ File:        METADATA.md
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Payment System - Metadata Documentation
+   
+   Comprehensive payment processing system documentation including:
+   - Payment gateway integration
+   - Bank wire transfer support
+   - Credit/debit card processing
+   - PayPal integration
+   - USDTgVerse PAY (OdixPay rebranded)
+   - Direct IP-to-IP server payments
+   - Quantum-safe transaction security
+   - Real-time payment tracking
+   - Cryptocurrency payment methods
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgVerse Payment System - Metadata Documentation
 
 ## 📋 Genel Bakış
