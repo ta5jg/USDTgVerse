@@ -21,6 +21,76 @@
 ==============================================
 */
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle Functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const desktopMenu = document.getElementById('desktop-menu');
+    
+    if (mobileMenuToggle && desktopMenu) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Website hamburger menu clicked');
+            
+            if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
+                desktopMenu.style.display = 'flex';
+                desktopMenu.style.flexDirection = 'column';
+                desktopMenu.style.position = 'absolute';
+                desktopMenu.style.top = '100%';
+                desktopMenu.style.left = '0';
+                desktopMenu.style.right = '0';
+                desktopMenu.style.background = 'rgba(0, 0, 0, 0.95)';
+                desktopMenu.style.backdropFilter = 'blur(15px)';
+                desktopMenu.style.padding = '20px';
+                desktopMenu.style.borderRadius = '0 0 12px 12px';
+                desktopMenu.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                desktopMenu.style.borderTop = 'none';
+                desktopMenu.style.zIndex = '1001';
+                mobileMenuToggle.innerHTML = '✕';
+                console.log('Website mobile menu opened');
+            } else {
+                desktopMenu.style.display = 'none';
+                mobileMenuToggle.innerHTML = '☰';
+                console.log('Website mobile menu closed');
+            }
+        });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mobileMenuToggle && desktopMenu && 
+            !mobileMenuToggle.contains(e.target) && 
+            !desktopMenu.contains(e.target)) {
+            if (window.innerWidth <= 1024) {
+                desktopMenu.style.display = 'none';
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1024) {
+            if (desktopMenu) {
+                desktopMenu.style.display = 'flex';
+                desktopMenu.style.flexDirection = 'row';
+                desktopMenu.style.position = 'static';
+                desktopMenu.style.background = 'transparent';
+                desktopMenu.style.backdropFilter = 'none';
+                desktopMenu.style.padding = '0';
+                desktopMenu.style.borderRadius = '0';
+                desktopMenu.style.border = 'none';
+            }
+            if (mobileMenuToggle) {
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        } else {
+            if (desktopMenu) {
+                desktopMenu.style.display = 'none';
+            }
+        }
+    });
+
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {

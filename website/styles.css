@@ -81,12 +81,34 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: auto;
+}
+
 /* Mega Menu */
 .mega-menu-container {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-left: auto;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 1024px) {
+    .mega-menu-container {
+        display: none !important;
+    }
+    .mobile-menu-toggle {
+        display: block !important;
+    }
 }
 
 .mega-menu-item {
