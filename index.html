@@ -856,6 +856,24 @@
                     }
                 }
                 
+                /* Mobile Menu Override */
+                #desktop-menu.mobile-open {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    position: fixed !important;
+                    top: 80px !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    background: rgba(0, 0, 0, 0.98) !important;
+                    backdrop-filter: blur(20px) !important;
+                    padding: 30px 20px !important;
+                    border-radius: 0 0 15px 15px !important;
+                    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+                    border-top: none !important;
+                    z-index: 9999 !important;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+                }
+                
                 @media (max-width: 768px) {
                     nav {
                         padding: 10px 0 !important;
@@ -945,27 +963,14 @@
                         
                         console.log('Main page hamburger menu clicked');
                         
-                        if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
-                            desktopMenu.style.display = 'flex';
-                            desktopMenu.style.flexDirection = 'column';
-                            desktopMenu.style.position = 'fixed';
-                            desktopMenu.style.top = '80px';
-                            desktopMenu.style.left = '0';
-                            desktopMenu.style.right = '0';
-                            desktopMenu.style.background = 'rgba(0, 0, 0, 0.98)';
-                            desktopMenu.style.backdropFilter = 'blur(20px)';
-                            desktopMenu.style.padding = '30px 20px';
-                            desktopMenu.style.borderRadius = '0 0 15px 15px';
-                            desktopMenu.style.border = '2px solid rgba(255, 255, 255, 0.2)';
-                            desktopMenu.style.borderTop = 'none';
-                            desktopMenu.style.zIndex = '9999';
-                            desktopMenu.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
-                            mobileMenuToggle.innerHTML = '✕';
-                            console.log('Main page mobile menu opened');
-                        } else {
-                            desktopMenu.style.display = 'none';
+                        if (desktopMenu.classList.contains('mobile-open')) {
+                            desktopMenu.classList.remove('mobile-open');
                             mobileMenuToggle.innerHTML = '☰';
                             console.log('Main page mobile menu closed');
+                        } else {
+                            desktopMenu.classList.add('mobile-open');
+                            mobileMenuToggle.innerHTML = '✕';
+                            console.log('Main page mobile menu opened');
                         }
                     }
                 } else {
@@ -990,7 +995,7 @@
                 !mobileMenuToggle.contains(e.target) && 
                 !desktopMenu.contains(e.target)) {
                 if (window.innerWidth <= 1024) {
-                    desktopMenu.style.display = 'none';
+                    desktopMenu.classList.remove('mobile-open');
                     mobileMenuToggle.innerHTML = '☰';
                 }
             }
@@ -1003,14 +1008,7 @@
             
             if (window.innerWidth > 1024) {
                 if (desktopMenu) {
-                    desktopMenu.style.display = 'flex';
-                    desktopMenu.style.flexDirection = 'row';
-                    desktopMenu.style.position = 'static';
-                    desktopMenu.style.background = 'transparent';
-                    desktopMenu.style.backdropFilter = 'none';
-                    desktopMenu.style.padding = '0';
-                    desktopMenu.style.borderRadius = '0';
-                    desktopMenu.style.border = 'none';
+                    desktopMenu.classList.remove('mobile-open');
                 }
                 if (mobileMenuToggle) {
                     mobileMenuToggle.innerHTML = '☰';
