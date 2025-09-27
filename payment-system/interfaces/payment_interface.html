@@ -1,0 +1,1056 @@
+<!--
+==============================================
+ File:        payment_interface.html
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Payment Interface
+   
+   Comprehensive payment processing interface featuring:
+   - Multiple payment methods (Bank Wire, Credit Card, PayPal, USDTgVerse PAY)
+   - Direct IP-to-IP server payments
+   - Real-time payment tracking
+   - Quantum-safe transaction security
+   - Mobile and web integration
+   - Advanced analytics and reporting
+
+ License:
+   MIT License
+==============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Payment System</title>
+    <link rel="icon" href="../../assets/logos/logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00D4AA 0%, #0099FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .payment-method-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .payment-method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+        }
+
+        .payment-method-card.selected {
+            border-color: #00D4AA;
+            box-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+        }
+
+        .payment-method-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .payment-method-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 8px;
+        }
+
+        .payment-method-description {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .payment-method-features {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .payment-method-features li {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .payment-method-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00D4AA;
+            font-weight: bold;
+        }
+
+        .payment-form {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+            margin-bottom: 40px;
+        }
+
+        .form-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: #0f0f23;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00D4AA;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            background: #0f0f23;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #00D4AA;
+        }
+
+        .payment-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .payment-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
+        }
+
+        .payment-button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .payment-status {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .status-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .status-value {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .status-value.success {
+            color: #00D4AA;
+        }
+
+        .status-value.error {
+            color: #FF6B6B;
+        }
+
+        .status-value.pending {
+            color: #FFA500;
+        }
+
+        .payment-analytics {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #333;
+        }
+
+        .analytics-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .analytics-item {
+            text-align: center;
+            padding: 16px;
+            background: #0f0f23;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .analytics-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00D4AA;
+            margin-bottom: 8px;
+        }
+
+        .analytics-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid #333;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .close {
+            color: #666;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="header">
+            <h1>USDTgVerse Payment System</h1>
+            <p>Secure, fast, and reliable payment processing</p>
+        </div>
+
+        <div class="payment-methods">
+            <div class="payment-method-card" data-method="bank_wire">
+                <div class="payment-method-icon">🏦</div>
+                <div class="payment-method-title">Bank Wire Transfer</div>
+                <div class="payment-method-description">Traditional bank-to-bank transfers with secure processing</div>
+                <ul class="payment-method-features">
+                    <li>Secure bank-to-bank transfer</li>
+                    <li>Low transaction fees</li>
+                    <li>International support</li>
+                    <li>SWIFT/IBAN compatibility</li>
+                </ul>
+            </div>
+
+            <div class="payment-method-card" data-method="credit_card">
+                <div class="payment-method-icon">💳</div>
+                <div class="payment-method-title">Credit Card</div>
+                <div class="payment-method-description">Visa, MasterCard, and American Express support</div>
+                <ul class="payment-method-features">
+                    <li>Visa, MasterCard, Amex</li>
+                    <li>Instant processing</li>
+                    <li>3D Secure authentication</li>
+                    <li>PCI DSS compliant</li>
+                </ul>
+            </div>
+
+            <div class="payment-method-card" data-method="debit_card">
+                <div class="payment-method-icon">🏧</div>
+                <div class="payment-method-title">Debit Card</div>
+                <div class="payment-method-description">Direct bank account debit with real-time processing</div>
+                <ul class="payment-method-features">
+                    <li>Direct bank account debit</li>
+                    <li>Real-time processing</li>
+                    <li>Lower fees than credit cards</li>
+                    <li>Instant confirmation</li>
+                </ul>
+            </div>
+
+            <div class="payment-method-card" data-method="paypal">
+                <div class="payment-method-icon">💰</div>
+                <div class="payment-method-title">PayPal</div>
+                <div class="payment-method-description">Secure PayPal integration with buyer protection</div>
+                <ul class="payment-method-features">
+                    <li>PayPal account integration</li>
+                    <li>Buyer protection</li>
+                    <li>Mobile-friendly</li>
+                    <li>International support</li>
+                </ul>
+            </div>
+
+            <div class="payment-method-card" data-method="usdtgverse_pay">
+                <div class="payment-method-icon">🔄</div>
+                <div class="payment-method-title">USDTgVerse PAY</div>
+                <div class="payment-method-description">Our proprietary payment system with quantum-safe security</div>
+                <ul class="payment-method-features">
+                    <li>Quantum-safe encryption</li>
+                    <li>Multi-currency support</li>
+                    <li>Real-time processing</li>
+                    <li>Advanced analytics</li>
+                </ul>
+            </div>
+
+            <div class="payment-method-card" data-method="direct_ip">
+                <div class="payment-method-icon">🌐</div>
+                <div class="payment-method-title">Direct IP Payment</div>
+                <div class="payment-method-description">Server-to-server direct payment processing</div>
+                <ul class="payment-method-features">
+                    <li>Direct server-to-server</li>
+                    <li>Ultra-fast processing</li>
+                    <li>Quantum-safe encryption</li>
+                    <li>Enterprise-grade security</li>
+                </ul>
+            </div>
+
+            <div class="payment-method-card" data-method="crypto">
+                <div class="payment-method-icon">₿</div>
+                <div class="payment-method-title">Cryptocurrency</div>
+                <div class="payment-method-description">Pay with Bitcoin, Ethereum, and other cryptocurrencies</div>
+                <ul class="payment-method-features">
+                    <li>BTC, ETH, BNB, TRX support</li>
+                    <li>USDT, USDC stablecoins</li>
+                    <li>USDTgVerse native tokens</li>
+                    <li>Real-time price conversion</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="payment-form" id="paymentForm" style="display: none;">
+            <div class="form-header" id="formHeader">Select Payment Method</div>
+            
+            <form id="paymentFormElement">
+                <div class="form-group">
+                    <label class="form-label">Amount</label>
+                    <input type="number" class="form-input" id="amount" placeholder="0.00" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Currency</label>
+                    <select class="form-select" id="currency" required>
+                        <optgroup label="Fiat Currencies">
+                            <option value="USD">USD (US Dollar)</option>
+                            <option value="EUR">EUR (Euro)</option>
+                            <option value="GBP">GBP (British Pound)</option>
+                            <option value="TRY">TRY (Turkish Lira)</option>
+                        </optgroup>
+                        <optgroup label="USDTgVerse Native">
+                            <option value="USDTg">USDTg (Stablecoin)</option>
+                            <option value="USDTgV">USDTgV (Utility Token)</option>
+                            <option value="USDTgG">USDTgG (Governance Token)</option>
+                        </optgroup>
+                        <optgroup label="Major Cryptocurrencies">
+                            <option value="BTC">BTC (Bitcoin)</option>
+                            <option value="ETH">ETH (Ethereum)</option>
+                            <option value="BNB">BNB (Binance Coin)</option>
+                            <option value="TRX">TRX (TRON)</option>
+                            <option value="USDT">USDT (Tether)</option>
+                            <option value="USDC">USDC (USD Coin)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-input" id="description" placeholder="Payment description" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Merchant ID</label>
+                    <input type="text" class="form-input" id="merchantId" placeholder="Merchant identifier" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Customer ID</label>
+                    <input type="text" class="form-input" id="customerId" placeholder="Customer identifier" required>
+                </div>
+
+                <!-- Bank Wire Specific Fields -->
+                <div id="bankWireFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Bank Name</label>
+                            <input type="text" class="form-input" id="bankName" placeholder="Bank name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Account Number</label>
+                            <input type="text" class="form-input" id="accountNumber" placeholder="Account number">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Routing Number</label>
+                            <input type="text" class="form-input" id="routingNumber" placeholder="Routing number">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">SWIFT Code</label>
+                            <input type="text" class="form-input" id="swiftCode" placeholder="SWIFT code">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credit/Debit Card Specific Fields -->
+                <div id="cardFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Card Number</label>
+                            <input type="text" class="form-input" id="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Card Holder Name</label>
+                            <input type="text" class="form-input" id="cardHolder" placeholder="Card holder name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Expiry Month</label>
+                            <select class="form-select" id="expiryMonth">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Expiry Year</label>
+                            <select class="form-select" id="expiryYear">
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">CVV</label>
+                        <input type="text" class="form-input" id="cvv" placeholder="123" maxlength="4">
+                    </div>
+                </div>
+
+                <!-- PayPal Specific Fields -->
+                <div id="paypalFields" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">PayPal Email</label>
+                        <input type="email" class="form-input" id="paypalEmail" placeholder="PayPal email address">
+                    </div>
+                </div>
+
+                <!-- USDTgVerse PAY Specific Fields -->
+                <div id="usdtgversePayFields" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">USDTgVerse PAY Account ID</label>
+                        <input type="text" class="form-input" id="usdtgversePayAccount" placeholder="Account ID">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Wallet Address</label>
+                        <input type="text" class="form-input" id="walletAddress" placeholder="Wallet address">
+                    </div>
+                </div>
+
+                <!-- Direct IP Specific Fields -->
+                <div id="directIpFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Server IP</label>
+                            <input type="text" class="form-input" id="serverIp" placeholder="192.168.1.100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Server Port</label>
+                            <input type="number" class="form-input" id="serverPort" placeholder="8443" value="8443">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Server Key</label>
+                        <input type="text" class="form-input" id="serverKey" placeholder="Server authentication key">
+                    </div>
+                </div>
+
+                <button type="submit" class="payment-button" id="processPayment">Process Payment</button>
+            </form>
+        </div>
+
+        <div class="payment-status" id="paymentStatus">
+            <div class="status-header">Payment Status</div>
+            <div class="status-item">
+                <span class="status-label">Transaction ID:</span>
+                <span class="status-value" id="transactionId">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Status:</span>
+                <span class="status-value" id="paymentStatusValue">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Amount:</span>
+                <span class="status-value" id="paymentAmount">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Currency:</span>
+                <span class="status-value" id="paymentCurrency">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Reference Number:</span>
+                <span class="status-value" id="referenceNumber">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Processing Time:</span>
+                <span class="status-value" id="processingTime">-</span>
+            </div>
+        </div>
+
+        <div class="payment-analytics">
+            <div class="analytics-header">Payment Analytics</div>
+            <div class="analytics-grid">
+                <div class="analytics-item">
+                    <div class="analytics-value" id="totalTransactions">0</div>
+                    <div class="analytics-label">Total Transactions</div>
+                </div>
+                <div class="analytics-item">
+                    <div class="analytics-value" id="totalVolume">$0.00</div>
+                    <div class="analytics-label">Total Volume</div>
+                </div>
+                <div class="analytics-item">
+                    <div class="analytics-value" id="successRate">0%</div>
+                    <div class="analytics-label">Success Rate</div>
+                </div>
+                <div class="analytics-item">
+                    <div class="analytics-value" id="avgProcessingTime">0ms</div>
+                    <div class="analytics-label">Avg Processing Time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for payment confirmation -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">Confirm Payment</div>
+            <div id="modalContent"></div>
+            <button class="payment-button" onclick="confirmPayment()">Confirm Payment</button>
+        </div>
+    </div>
+
+    <script>
+        // Payment Interface JavaScript
+        class PaymentInterface {
+            constructor() {
+                this.selectedMethod = null;
+                this.paymentData = {};
+                this.analytics = {
+                    totalTransactions: 0,
+                    totalVolume: 0,
+                    successfulTransactions: 0,
+                    totalProcessingTime: 0
+                };
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.updateAnalytics();
+            }
+
+            setupEventListeners() {
+                // Payment method selection
+                document.querySelectorAll('.payment-method-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        this.selectPaymentMethod(e.currentTarget.dataset.method);
+                    });
+                });
+
+                // Form submission
+                document.getElementById('paymentFormElement').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.processPayment();
+                });
+
+                // Real-time form validation
+                document.querySelectorAll('.form-input, .form-select').forEach(input => {
+                    input.addEventListener('input', () => {
+                        this.validateForm();
+                    });
+                });
+            }
+
+            selectPaymentMethod(method) {
+                // Remove previous selection
+                document.querySelectorAll('.payment-method-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+
+                // Add selection to clicked card
+                document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+
+                this.selectedMethod = method;
+                this.showPaymentForm(method);
+            }
+
+            showPaymentForm(method) {
+                const form = document.getElementById('paymentForm');
+                const header = document.getElementById('formHeader');
+                
+                // Show form
+                form.style.display = 'block';
+
+                // Update header
+                const methodNames = {
+                    'bank_wire': 'Bank Wire Transfer',
+                    'credit_card': 'Credit Card Payment',
+                    'debit_card': 'Debit Card Payment',
+                    'paypal': 'PayPal Payment',
+                    'usdtgverse_pay': 'USDTgVerse PAY',
+                    'direct_ip': 'Direct IP Payment'
+                };
+                header.textContent = methodNames[method] || 'Payment Form';
+
+                // Hide all method-specific fields
+                document.getElementById('bankWireFields').style.display = 'none';
+                document.getElementById('cardFields').style.display = 'none';
+                document.getElementById('paypalFields').style.display = 'none';
+                document.getElementById('usdtgversePayFields').style.display = 'none';
+                document.getElementById('directIpFields').style.display = 'none';
+
+                // Show relevant fields
+                switch (method) {
+                    case 'bank_wire':
+                        document.getElementById('bankWireFields').style.display = 'block';
+                        break;
+                    case 'credit_card':
+                    case 'debit_card':
+                        document.getElementById('cardFields').style.display = 'block';
+                        break;
+                    case 'paypal':
+                        document.getElementById('paypalFields').style.display = 'block';
+                        break;
+                    case 'usdtgverse_pay':
+                        document.getElementById('usdtgversePayFields').style.display = 'block';
+                        break;
+                    case 'direct_ip':
+                        document.getElementById('directIpFields').style.display = 'block';
+                        break;
+                }
+            }
+
+            validateForm() {
+                const form = document.getElementById('paymentFormElement');
+                const inputs = form.querySelectorAll('input[required], select[required]');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.style.borderColor = '#FF6B6B';
+                    } else {
+                        input.style.borderColor = '#333';
+                    }
+                });
+
+                // Method-specific validation
+                if (this.selectedMethod === 'credit_card' || this.selectedMethod === 'debit_card') {
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    if (cardNumber && !this.validateCardNumber(cardNumber)) {
+                        isValid = false;
+                        document.getElementById('cardNumber').style.borderColor = '#FF6B6B';
+                    }
+                }
+
+                if (this.selectedMethod === 'paypal') {
+                    const email = document.getElementById('paypalEmail').value;
+                    if (email && !this.validateEmail(email)) {
+                        isValid = false;
+                        document.getElementById('paypalEmail').style.borderColor = '#FF6B6B';
+                    }
+                }
+
+                document.getElementById('processPayment').disabled = !isValid;
+                return isValid;
+            }
+
+            validateCardNumber(cardNumber) {
+                // Simple Luhn algorithm validation
+                const cleaned = cardNumber.replace(/\s/g, '');
+                if (!/^\d+$/.test(cleaned)) return false;
+
+                let sum = 0;
+                let isEven = false;
+
+                for (let i = cleaned.length - 1; i >= 0; i--) {
+                    let digit = parseInt(cleaned[i]);
+
+                    if (isEven) {
+                        digit *= 2;
+                        if (digit > 9) {
+                            digit -= 9;
+                        }
+                    }
+
+                    sum += digit;
+                    isEven = !isEven;
+                }
+
+                return sum % 10 === 0;
+            }
+
+            validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            processPayment() {
+                if (!this.validateForm()) {
+                    alert('Please fill in all required fields correctly.');
+                    return;
+                }
+
+                // Collect payment data
+                this.paymentData = {
+                    method: this.selectedMethod,
+                    amount: parseFloat(document.getElementById('amount').value),
+                    currency: document.getElementById('currency').value,
+                    description: document.getElementById('description').value,
+                    merchantId: document.getElementById('merchantId').value,
+                    customerId: document.getElementById('customerId').value,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Add method-specific data
+                switch (this.selectedMethod) {
+                    case 'bank_wire':
+                        this.paymentData.bankName = document.getElementById('bankName').value;
+                        this.paymentData.accountNumber = document.getElementById('accountNumber').value;
+                        this.paymentData.routingNumber = document.getElementById('routingNumber').value;
+                        this.paymentData.swiftCode = document.getElementById('swiftCode').value;
+                        break;
+                    case 'credit_card':
+                    case 'debit_card':
+                        this.paymentData.cardNumber = document.getElementById('cardNumber').value;
+                        this.paymentData.cardHolder = document.getElementById('cardHolder').value;
+                        this.paymentData.expiryMonth = document.getElementById('expiryMonth').value;
+                        this.paymentData.expiryYear = document.getElementById('expiryYear').value;
+                        this.paymentData.cvv = document.getElementById('cvv').value;
+                        break;
+                    case 'paypal':
+                        this.paymentData.paypalEmail = document.getElementById('paypalEmail').value;
+                        break;
+                    case 'usdtgverse_pay':
+                        this.paymentData.accountId = document.getElementById('usdtgversePayAccount').value;
+                        this.paymentData.walletAddress = document.getElementById('walletAddress').value;
+                        break;
+                    case 'direct_ip':
+                        this.paymentData.serverIp = document.getElementById('serverIp').value;
+                        this.paymentData.serverPort = parseInt(document.getElementById('serverPort').value);
+                        this.paymentData.serverKey = document.getElementById('serverKey').value;
+                        break;
+                }
+
+                // Show confirmation modal
+                this.showConfirmationModal();
+            }
+
+            showConfirmationModal() {
+                const modal = document.getElementById('paymentModal');
+                const content = document.getElementById('modalContent');
+                
+                content.innerHTML = `
+                    <p><strong>Payment Method:</strong> ${this.getMethodDisplayName(this.paymentData.method)}</p>
+                    <p><strong>Amount:</strong> ${this.paymentData.amount} ${this.paymentData.currency}</p>
+                    <p><strong>Description:</strong> ${this.paymentData.description}</p>
+                    <p><strong>Merchant ID:</strong> ${this.paymentData.merchantId}</p>
+                    <p><strong>Customer ID:</strong> ${this.paymentData.customerId}</p>
+                    <p>Are you sure you want to process this payment?</p>
+                `;
+                
+                modal.style.display = 'block';
+            }
+
+            getMethodDisplayName(method) {
+                const names = {
+                    'bank_wire': 'Bank Wire Transfer',
+                    'credit_card': 'Credit Card',
+                    'debit_card': 'Debit Card',
+                    'paypal': 'PayPal',
+                    'usdtgverse_pay': 'USDTgVerse PAY',
+                    'direct_ip': 'Direct IP Payment'
+                };
+                return names[method] || method;
+            }
+
+            confirmPayment() {
+                this.closeModal();
+                this.simulatePaymentProcessing();
+            }
+
+            simulatePaymentProcessing() {
+                const startTime = Date.now();
+                
+                // Generate transaction ID
+                const transactionId = this.generateTransactionId();
+                const referenceNumber = this.generateReferenceNumber();
+                
+                // Update status
+                this.updatePaymentStatus({
+                    transactionId: transactionId,
+                    status: 'processing',
+                    amount: `${this.paymentData.amount} ${this.paymentData.currency}`,
+                    currency: this.paymentData.currency,
+                    referenceNumber: referenceNumber,
+                    processingTime: 'Processing...'
+                });
+
+                // Simulate processing delay
+                setTimeout(() => {
+                    const processingTime = Date.now() - startTime;
+                    const success = Math.random() > 0.1; // 90% success rate
+                    
+                    this.updatePaymentStatus({
+                        transactionId: transactionId,
+                        status: success ? 'completed' : 'failed',
+                        amount: `${this.paymentData.amount} ${this.paymentData.currency}`,
+                        currency: this.paymentData.currency,
+                        referenceNumber: referenceNumber,
+                        processingTime: `${processingTime}ms`
+                    });
+
+                    // Update analytics
+                    this.updateAnalytics(success, this.paymentData.amount, processingTime);
+                    
+                    // Show success/error message
+                    if (success) {
+                        alert(`Payment completed successfully!\nTransaction ID: ${transactionId}\nReference: ${referenceNumber}`);
+                    } else {
+                        alert(`Payment failed. Please try again.\nTransaction ID: ${transactionId}`);
+                    }
+                }, 2000 + Math.random() * 3000); // 2-5 seconds
+            }
+
+            updatePaymentStatus(status) {
+                document.getElementById('transactionId').textContent = status.transactionId;
+                document.getElementById('paymentStatusValue').textContent = status.status;
+                document.getElementById('paymentStatusValue').className = `status-value ${status.status}`;
+                document.getElementById('paymentAmount').textContent = status.amount;
+                document.getElementById('paymentCurrency').textContent = status.currency;
+                document.getElementById('referenceNumber').textContent = status.referenceNumber;
+                document.getElementById('processingTime').textContent = status.processingTime;
+                
+                document.getElementById('paymentStatus').style.display = 'block';
+            }
+
+            updateAnalytics(success, amount, processingTime) {
+                this.analytics.totalTransactions++;
+                this.analytics.totalVolume += amount;
+                this.analytics.totalProcessingTime += processingTime;
+                
+                if (success) {
+                    this.analytics.successfulTransactions++;
+                }
+                
+                // Update display
+                document.getElementById('totalTransactions').textContent = this.analytics.totalTransactions;
+                document.getElementById('totalVolume').textContent = `$${this.analytics.totalVolume.toFixed(2)}`;
+                document.getElementById('successRate').textContent = `${((this.analytics.successfulTransactions / this.analytics.totalTransactions) * 100).toFixed(1)}%`;
+                document.getElementById('avgProcessingTime').textContent = `${Math.round(this.analytics.totalProcessingTime / this.analytics.totalTransactions)}ms`;
+            }
+
+            generateTransactionId() {
+                return 'TXN' + Date.now() + Math.random().toString(36).substr(2, 9).toUpperCase();
+            }
+
+            generateReferenceNumber() {
+                return 'REF' + Date.now() + Math.random().toString(36).substr(2, 6).toUpperCase();
+            }
+
+            closeModal() {
+                document.getElementById('paymentModal').style.display = 'none';
+            }
+        }
+
+        // Initialize payment interface
+        const paymentInterface = new PaymentInterface();
+
+        // Global functions for modal
+        function closeModal() {
+            paymentInterface.closeModal();
+        }
+
+        function confirmPayment() {
+            paymentInterface.confirmPayment();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
