@@ -34,20 +34,83 @@
     <header class="header">
         <nav class="navbar">
             <div class="nav-brand">
-                <img src="../assets/logos/logo.png" alt="USDTgVerse" class="logo">
-                <span class="brand-text">USDTgVerse</span>
+                <a href="https://www.usdtgverse.com" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <img src="../assets/logos/logo.png" alt="USDTgVerse" class="logo">
+                    <span class="brand-text">USDTgVerse</span>
+                </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#specifications">Specifications</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#tokens">Tokens</a></li>
-                <li><a href="#dex">DEX</a></li>
-                <li><a href="#cex">CEX</a></li>
-                <li><a href="#ecosystem">Ecosystem</a></li>
-                <li><a href="#docs">Docs</a></li>
-            </ul>
+            <div class="mega-menu-container">
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">🌟 Platform</a>
+                    <div class="mega-dropdown">
+                        <a href="https://www.usdtgverse.com">🌐 Main Website</a>
+                        <a href="../dashboard/index.html">📊 Live Dashboard</a>
+                        <a href="../explorer/usdtgscan.html">🔍 Explorer</a>
+                        <a href="../dapps/usdtg-transfer/index.html">📱 dApp</a>
+                        <a href="../wallet/index.html">💳 Wallet</a>
+                    </div>
+                </div>
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">💻 Development</a>
+                    <div class="mega-dropdown">
+                        <a href="../ide-development/usdtg-ide/README.md">🛠️ USDTgVerse IDE</a>
+                        <a href="../sdk/c/include/usdtgverse.h">📚 SDK Documentation</a>
+                        <a href="../compiler/usdtgc.c">⚙️ USDTgScript Compiler</a>
+                        <a href="../formal-verification/USDTgVerifier.cpp">🔐 Formal Verification</a>
+                    </div>
+                </div>
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">💹 Trading</a>
+                    <div class="mega-dropdown">
+                        <a href="../trading/trade-interface.html">📈 Trade Interface</a>
+                        <a href="../dashboard/index.html">📊 Live Dashboard</a>
+                        <a href="../exchanges/dex/core/amm_engine.hpp">🔄 DEX</a>
+                        <a href="../exchanges/cex/core/order_book.hpp">🏦 CEX</a>
+                    </div>
+                </div>
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">💳 Payments</a>
+                    <div class="mega-dropdown">
+                        <a href="../payment-system/interfaces/payment_interface.html">💳 Payment System</a>
+                        <a href="../payment-system/gateways/bank_wire_payment.h">🏦 Bank Wire</a>
+                        <a href="../payment-system/gateways/credit_card_payment.h">💳 Credit/Debit Card</a>
+                        <a href="../payment-system/gateways/paypal_payment.h">💰 PayPal</a>
+                        <a href="../payment-system/gateways/usdtgverse_pay.h">🔄 USDTgVerse PAY</a>
+                        <a href="../payment-system/gateways/crypto_payment.h">₿ Cryptocurrency</a>
+                        <a href="../payment-system/gateways/direct_ip_payment.h">🌐 Direct IP</a>
+                    </div>
+                </div>
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">🏛️ H2H</a>
+                    <div class="mega-dropdown">
+                        <a href="../host-to-host-system/interfaces/h2h_interface.html">🏦 H2H System</a>
+                        <a href="../host-to-host-system/protocols/swift_protocol.h">📋 SWIFT</a>
+                        <a href="../host-to-host-system/protocols/iso20022_protocol.h">📋 ISO 20022</a>
+                        <a href="../host-to-host-system/protocols/fix_protocol.h">⚡ FIX</a>
+                        <a href="../host-to-host-system/protocols/ach_protocol.h">🔄 ACH</a>
+                        <a href="../host-to-host-system/protocols/sepa_protocol.h">🇪🇺 SEPA</a>
+                        <a href="../host-to-host-system/protocols/fedwire_protocol.h">🏛️ Fedwire</a>
+                    </div>
+                </div>
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">🔒 Privacy</a>
+                    <div class="mega-dropdown">
+                        <a href="../zk-privacy-layer-system/include/zk_privacy.h">🔍 Zero-Knowledge</a>
+                        <a href="../mev-protection-system/include/mev_protection.h">🛡️ MEV Protection</a>
+                        <a href="../account-abstraction-system/include/account_abstraction.h">🔐 Account Abstraction</a>
+                        <a href="../homomorphic-encryption/HomomorphicEncryption.cpp">🔒 Homomorphic Encryption</a>
+                    </div>
+                </div>
+                <div class="mega-menu-item">
+                    <a href="#" class="mega-menu-link">⚛️ Quantum</a>
+                    <div class="mega-dropdown">
+                        <a href="../quantum-computing/QuantumIntegration.cpp">⚛️ Quantum Computing</a>
+                        <a href="../vdf/VerifiableDelayFunctions.cpp">⏱️ VDF</a>
+                        <a href="../quantum-computing/QuantumIntegration.cpp">🔐 Quantum-Safe</a>
+                        <a href="../analytics/AdvancedAnalytics.cpp">📊 Quantum Analytics</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
