@@ -948,17 +948,18 @@
                         if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
                             desktopMenu.style.display = 'flex';
                             desktopMenu.style.flexDirection = 'column';
-                            desktopMenu.style.position = 'absolute';
-                            desktopMenu.style.top = '100%';
+                            desktopMenu.style.position = 'fixed';
+                            desktopMenu.style.top = '80px';
                             desktopMenu.style.left = '0';
                             desktopMenu.style.right = '0';
-                            desktopMenu.style.background = 'rgba(0, 0, 0, 0.95)';
-                            desktopMenu.style.backdropFilter = 'blur(15px)';
-                            desktopMenu.style.padding = '20px';
-                            desktopMenu.style.borderRadius = '0 0 12px 12px';
-                            desktopMenu.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                            desktopMenu.style.background = 'rgba(0, 0, 0, 0.98)';
+                            desktopMenu.style.backdropFilter = 'blur(20px)';
+                            desktopMenu.style.padding = '30px 20px';
+                            desktopMenu.style.borderRadius = '0 0 15px 15px';
+                            desktopMenu.style.border = '2px solid rgba(255, 255, 255, 0.2)';
                             desktopMenu.style.borderTop = 'none';
-                            desktopMenu.style.zIndex = '1001';
+                            desktopMenu.style.zIndex = '9999';
+                            desktopMenu.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
                             mobileMenuToggle.innerHTML = '✕';
                             console.log('Main page mobile menu opened');
                         } else {
