@@ -111,11 +111,11 @@ struct ContentView_Fixed: View {
                 }
                 .tag(0)
             
-            // OdixPay Tab
-            OdixPayView()
+            // USDTgVerse PAY Tab
+            USDTgVersePayView()
                 .tabItem {
                     Image(systemName: "creditcard.fill")
-                    Text("OdixPay++")
+                    Text("USDTgVerse PAY")
                 }
                 .tag(1)
             
