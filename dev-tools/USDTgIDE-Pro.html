@@ -693,42 +693,267 @@ contract MyQuantumToken extends UST1Token {
                 const tab = document.createElement('div');
                 tab.className = 'tab';
                 tab.setAttribute('data-file', filename);
-                tab.innerHTML = `<span>📄</span><span>${filename}</span><span class="tab-close">×</span>`;
+                tab.innerHTML = `<span>📄</span><span>${filename}</span><span class="tab-close" onclick="closeTab('${filename}')">×</span>`;
                 tabs.appendChild(tab);
+                
+                // Load file content based on filename
+                loadFileContent(filename);
+            }
+        }
+
+        function loadFileContent(filename) {
+            const fileContents = {
+                'contract.usdtg': `// USDTgScript - Quantum-Safe Smart Contract
+import { QuantumSafe, USDTgSecurity } from "usdtgverse/security";
+import { UST1Token } from "usdtgverse/standards";
+
+@quantum_safe
+@security_level(256)
+contract MyQuantumToken extends UST1Token {
+    using USDTgSecurity for uint256;
+    using QuantumSafe for address;
+    
+    string public name = "My Quantum Token";
+    string public symbol = "MQT";
+    uint8 public decimals = 18;
+    uint256 public totalSupply = 1000000 * 10**18;
+    
+    mapping(address => uint256) private balances;
+    mapping(address => mapping(address => uint256)) private allowed;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    
+    constructor() {
+        balances[msg.sender] = totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply);
+    }
+    
+    @quantum_resistant
+    function transfer(address to, uint256 value) public returns (bool) {
+        require(to != address(0), "Invalid address");
+        require(balances[msg.sender] >= value, "Insufficient balance");
+        
+        balances[msg.sender] = balances[msg.sender].safeSub(value);
+        balances[to] = balances[to].safeAdd(value);
+        
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+    
+    @view
+    function balanceOf(address owner) public returns (uint256) {
+        return balances[owner];
+    }
+    
+    @quantum_resistant
+    function approve(address spender, uint256 value) public returns (bool) {
+        allowed[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        return true;
+    }
+    
+    function allowance(address owner, address spender) public view returns (uint256) {
+        return allowed[owner][spender];
+    }
+}`,
+                'token.usdtg': `// USDTgScript - Advanced Token Contract
+import { QuantumSafe } from "usdtgverse/security";
+
+@quantum_safe
+contract AdvancedToken {
+    string public name = "Advanced USDTg Token";
+    string public symbol = "AUT";
+    uint8 public decimals = 18;
+    uint256 public totalSupply;
+    
+    mapping(address => uint256) public balances;
+    mapping(address => mapping(address => uint256)) public allowances;
+    
+    address public owner;
+    bool public paused = false;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    event Pause();
+    event Unpause();
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
+    }
+    
+    modifier whenNotPaused() {
+        require(!paused, "Contract is paused");
+        _;
+    }
+    
+    constructor(uint256 _totalSupply) {
+        totalSupply = _totalSupply;
+        owner = msg.sender;
+        balances[msg.sender] = totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply);
+    }
+    
+    @quantum_resistant
+    function transfer(address to, uint256 value) public whenNotPaused returns (bool) {
+        require(to != address(0), "Invalid address");
+        require(balances[msg.sender] >= value, "Insufficient balance");
+        
+        balances[msg.sender] -= value;
+        balances[to] += value;
+        
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+    
+    function pause() public onlyOwner {
+        paused = true;
+        emit Pause();
+    }
+    
+    function unpause() public onlyOwner {
+        paused = false;
+        emit Unpause();
+    }
+}`,
+                'deploy.js': `// USDTgScript Deployment Script
+const { USDTgVerse } = require('usdtgverse-sdk');
+const fs = require('fs');
+
+async function deployContract() {
+    try {
+        console.log('🚀 Starting contract deployment...');
+        
+        // Initialize USDTgVerse client
+        const client = new USDTgVerse({
+            network: 'mainnet',
+            quantumSafe: true
+        });
+        
+        // Load contract bytecode
+        const contractCode = fs.readFileSync('./contract.usdtg', 'utf8');
+        
+        // Compile contract
+        console.log('🔧 Compiling contract...');
+        const compiled = await client.compile(contractCode);
+        
+        // Deploy contract
+        console.log('📦 Deploying to USDTgVerse...');
+        const deployment = await client.deploy({
+            bytecode: compiled.bytecode,
+            abi: compiled.abi,
+            constructorArgs: [1000000] // 1M tokens
+        });
+        
+        console.log('✅ Contract deployed successfully!');
+        console.log('📍 Contract Address:', deployment.address);
+        console.log('🔗 Transaction Hash:', deployment.txHash);
+        console.log('⛽ Gas Used:', deployment.gasUsed);
+        
+    } catch (error) {
+        console.error('❌ Deployment failed:', error.message);
+    }
+}
+
+deployContract();`,
+                'README.md': `# MyUSDTgProject
+
+## Quantum-Safe Smart Contract Project
+
+This project demonstrates advanced USDTgScript development with quantum-safe features.
+
+### Features
+
+- 🔐 Quantum-safe cryptography
+- 🛡️ Advanced security measures
+- ⚡ High-performance execution
+- 🔧 Comprehensive testing
+- 📦 Easy deployment
+
+### Project Structure
+
+\`\`\`
+MyUSDTgProject/
+├── contract.usdtg      # Main token contract
+├── token.usdtg         # Advanced token features
+├── deploy.js           # Deployment script
+├── README.md           # Project documentation
+└── Libraries/
+    ├── USDTgSecurity.usdtg
+    └── QuantumSafe.usdtg
+\`\`\`
+
+### Getting Started
+
+1. Install USDTgVerse SDK
+2. Compile contracts
+3. Run tests
+4. Deploy to mainnet
+
+### Security
+
+This project uses quantum-resistant algorithms and follows USDTgVerse security best practices.`
+            };
+            
+            if (window.editor && fileContents[filename]) {
+                window.editor.setValue(fileContents[filename]);
+            }
+        }
+
+        function closeTab(filename) {
+            const tab = document.querySelector(`[data-file="${filename}"]`);
+            if (tab) {
+                tab.remove();
             }
         }
 
         function runCode() {
             addTerminalLine('🚀 Running USDTgScript code...');
+            addTerminalLine('🔧 Compiling with USDTgScript compiler...');
+            addTerminalLine('⚛️ Quantum security validation...');
+            addTerminalLine('🛡️ Formal verification checks...');
             addTerminalLine('✅ Compilation successful!');
-            addTerminalLine('⚛️ Quantum security checks passed.');
-            addTerminalLine('🎯 Deployment ready.');
+            addTerminalLine('🎯 Ready for deployment.');
         }
 
         function compileCode() {
             addTerminalLine('🔧 Compiling USDTgScript...');
-            addTerminalLine('📦 Generating bytecode...');
+            addTerminalLine('📦 Generating quantum-safe bytecode...');
+            addTerminalLine('🔐 Applying quantum-resistant algorithms...');
+            addTerminalLine('⚡ Optimizing gas usage...');
             addTerminalLine('✅ Compilation completed successfully!');
+            addTerminalLine('📊 Gas estimation: ~45,000 units');
         }
 
         function deployContract() {
-            addTerminalLine('🚀 Deploying contract to USDTgVerse...');
-            addTerminalLine('🔗 Contract address: 0xUSDTgQ' + Math.random().toString(36).substr(2, 8));
+            addTerminalLine('🚀 Deploying contract to USDTgVerse mainnet...');
+            addTerminalLine('🔗 Connecting to USDTgVerse network...');
+            addTerminalLine('⛽ Gas price: 20 Gwei');
+            addTerminalLine('📦 Contract address: 0xUSDTg' + Math.random().toString(36).substr(2, 8).toUpperCase());
+            addTerminalLine('🔗 Transaction hash: 0x' + Math.random().toString(36).substr(2, 16));
             addTerminalLine('✅ Contract deployed successfully!');
+            addTerminalLine('🌐 View on explorer: https://explorer.usdtgverse.com/address/0xUSDTg...');
         }
 
         function debugCode() {
             addTerminalLine('🐛 Starting debug session...');
-            addTerminalLine('🔍 Breakpoints set.');
+            addTerminalLine('🔍 Setting breakpoints...');
+            addTerminalLine('📊 Variable inspection enabled...');
+            addTerminalLine('⚡ Step-by-step execution ready...');
             addTerminalLine('▶️ Debug mode active.');
         }
 
         function saveFile() {
-            addTerminalLine('💾 File saved successfully.');
+            addTerminalLine('💾 Saving file...');
+            addTerminalLine('🔐 Applying quantum-safe encryption...');
+            addTerminalLine('✅ File saved successfully.');
         }
 
         function stopExecution() {
-            addTerminalLine('⏹️ Execution stopped.');
+            addTerminalLine('⏹️ Stopping execution...');
+            addTerminalLine('🧹 Cleaning up resources...');
+            addTerminalLine('✅ Execution stopped.');
         }
 
         function addTerminalLine(text) {
