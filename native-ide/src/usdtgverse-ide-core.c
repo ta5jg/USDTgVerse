@@ -43,8 +43,8 @@ void handle_delete_file(json_object *json);
 void handle_terminal_command(json_object *json);
 
 // WebSocket callback function
-static int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
-                             void *user, void *in, size_t len) {
+int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
+                      void *user, void *in, size_t len) {
     (void)wsi;
     (void)user;
     
