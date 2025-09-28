@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1234567890ABCDE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE0 /* ContentView.swift */; };
 		A1234567890ABCDE1 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE1 /* WalletView.swift */; };
-		A1234567890ABCDE2 /* OdixPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE2 /* OdixPayView.swift */; };
+		A1234567890ABCDE2 /* USDTgVersePayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE2 /* USDTgVersePayView.swift */; };
 		A1234567890ABCDE3 /* BridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE3 /* BridgeView.swift */; };
 		A1234567890ABCDE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE4 /* Assets.xcassets */; };
 		A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEF /* USDTgWalletApp.swift */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		B1234567890ABCDE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE1 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
-		B1234567890ABCDE2 /* OdixPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdixPayView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE2 /* USDTgVersePayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDTgVersePayView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE3 /* BridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeView.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1234567890ABCDEF /* USDTgWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDTgWalletApp.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 				B1234567890ABCDEF /* USDTgWalletApp.swift */,
 				B1234567890ABCDE0 /* ContentView.swift */,
 				B1234567890ABCDE1 /* WalletView.swift */,
-				B1234567890ABCDE2 /* OdixPayView.swift */,
+				B1234567890ABCDE2 /* USDTgVersePayView.swift */,
 				B1234567890ABCDE3 /* BridgeView.swift */,
 				B1234567890ABCDE4 /* Assets.xcassets */,
 			);
@@ -156,7 +156,7 @@
 				A1234567890ABCDE1 /* WalletView.swift in Sources */,
 				B2B1D6632E7EEC6100F3CC9F /* MultiWalletManager.swift in Sources */,
 				B2B1D6422E7EA4E300F3CC9F /* BlockchainConnector.swift in Sources */,
-				A1234567890ABCDE2 /* OdixPayView.swift in Sources */,
+				A1234567890ABCDE2 /* USDTgVersePayView.swift in Sources */,
 				A1234567890ABCDE3 /* BridgeView.swift in Sources */,
 				A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */,
 			);
