@@ -74,15 +74,29 @@ class WalletManager: ObservableObject {
     }
     
     private func loadAssets() {
+        // Load assets with real-time prices from TokenPriceService
+        let priceService = TokenPriceService()
+        
         assets = [
-            WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: usdtgBalance, price: 1.00),
-            WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.10, price: 1.00),
-            WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.00),
-            WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2456.78),
-            WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 635.45),
-            WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 142.33),
-            WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.087),
-            WalletAsset(symbol: "MATIC", name: "Polygon", balance: 8750.0, price: 0.87)
+            WalletAsset(symbol: "USDTg", name: "USDTgVerse Native Coin", balance: usdtgBalance, price: priceService.getPrice(for: "USDTg")),
+            WalletAsset(symbol: "USDTgV", name: "USDTgVerse Utility Token", balance: 0.0, price: priceService.getPrice(for: "USDTgV")),
+            WalletAsset(symbol: "USDTgG", name: "USDTgVerse Governance Token", balance: 0.0, price: priceService.getPrice(for: "USDTgG")),
+            WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.10, price: priceService.getPrice(for: "USDT")),
+            WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: priceService.getPrice(for: "USDC")),
+            WalletAsset(symbol: "BTC", name: "Bitcoin", balance: 0.025, price: priceService.getPrice(for: "BTC")),
+            WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: priceService.getPrice(for: "ETH")),
+            WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: priceService.getPrice(for: "BNB")),
+            WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: priceService.getPrice(for: "SOL")),
+            WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: priceService.getPrice(for: "TRX")),
+            WalletAsset(symbol: "MATIC", name: "Polygon", balance: 8750.0, price: priceService.getPrice(for: "MATIC")),
+            WalletAsset(symbol: "AVAX", name: "Avalanche", balance: 0.0, price: priceService.getPrice(for: "AVAX")),
+            WalletAsset(symbol: "ADA", name: "Cardano", balance: 0.0, price: priceService.getPrice(for: "ADA")),
+            WalletAsset(symbol: "DOT", name: "Polkadot", balance: 0.0, price: priceService.getPrice(for: "DOT")),
+            WalletAsset(symbol: "LINK", name: "Chainlink", balance: 0.0, price: priceService.getPrice(for: "LINK")),
+            WalletAsset(symbol: "UNI", name: "Uniswap", balance: 0.0, price: priceService.getPrice(for: "UNI")),
+            WalletAsset(symbol: "LTC", name: "Litecoin", balance: 0.0, price: priceService.getPrice(for: "LTC")),
+            WalletAsset(symbol: "XRP", name: "Ripple", balance: 0.0, price: priceService.getPrice(for: "XRP")),
+            WalletAsset(symbol: "DOGE", name: "Dogecoin", balance: 0.0, price: priceService.getPrice(for: "DOGE"))
         ]
     }
     

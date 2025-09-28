@@ -26,12 +26,21 @@ struct WalletData: Codable, Identifiable {
         self.mnemonic = mnemonic
         self.createdAt = Date()
         self.balance = 10.0 // 10 USDTg welcome bonus for new wallets
+        // Initialize with real-time prices from TokenPriceService
+        let priceService = TokenPriceService()
+        
         self.tokens = [
-            WalletToken(symbol: "USDTg", name: "USDTg", balance: 10.0, price: 1.0, isNative: true),
-            WalletToken(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0, isNative: false),
-            WalletToken(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0, isNative: false),
-            WalletToken(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85, isNative: false),
-            WalletToken(symbol: "BTC", name: "Bitcoin", balance: 0.0, price: 45000.0, isNative: false)
+            WalletToken(symbol: "USDTg", name: "USDTgVerse Native Coin", balance: 10.0, price: priceService.getPrice(for: "USDTg"), isNative: true),
+            WalletToken(symbol: "USDTgV", name: "USDTgVerse Utility Token", balance: 0.0, price: priceService.getPrice(for: "USDTgV"), isNative: true),
+            WalletToken(symbol: "USDTgG", name: "USDTgVerse Governance Token", balance: 0.0, price: priceService.getPrice(for: "USDTgG"), isNative: true),
+            WalletToken(symbol: "USDT", name: "Tether USD", balance: 0.0, price: priceService.getPrice(for: "USDT"), isNative: false),
+            WalletToken(symbol: "USDC", name: "USD Coin", balance: 0.0, price: priceService.getPrice(for: "USDC"), isNative: false),
+            WalletToken(symbol: "BTC", name: "Bitcoin", balance: 0.0, price: priceService.getPrice(for: "BTC"), isNative: false),
+            WalletToken(symbol: "ETH", name: "Ethereum", balance: 0.0, price: priceService.getPrice(for: "ETH"), isNative: false),
+            WalletToken(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: priceService.getPrice(for: "BNB"), isNative: false),
+            WalletToken(symbol: "SOL", name: "Solana", balance: 0.0, price: priceService.getPrice(for: "SOL"), isNative: false),
+            WalletToken(symbol: "TRX", name: "TRON", balance: 0.0, price: priceService.getPrice(for: "TRX"), isNative: false),
+            WalletToken(symbol: "MATIC", name: "Polygon", balance: 0.0, price: priceService.getPrice(for: "MATIC"), isNative: false)
         ]
     }
     
