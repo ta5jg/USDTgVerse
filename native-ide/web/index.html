@@ -430,13 +430,34 @@
             });
         });
 
-        // WebSocket connection - DEMO MODE
+        // WebSocket connection - REAL BACKEND
         function connectWebSocket() {
-            // Demo mode - simulate connection
-            isConnected = true;
-            updateConnectionStatus(true);
-            addTerminalLine('✅ Connected to USDTgVerse IDE Core (Demo Mode)');
-            addTerminalLine('🔧 C Backend integration coming soon');
+            ws = new WebSocket('ws://usdtgverse.com:8082');
+            
+            ws.onopen = function() {
+                isConnected = true;
+                updateConnectionStatus(true);
+                addTerminalLine('✅ Connected to USDTgVerse IDE Core');
+                addTerminalLine('🔧 C Backend active - Full functionality enabled');
+            };
+            
+            ws.onmessage = function(event) {
+                handleWebSocketMessage(JSON.parse(event.data));
+            };
+            
+            ws.onclose = function() {
+                isConnected = false;
+                updateConnectionStatus(false);
+                addTerminalLine('❌ Disconnected from IDE Core');
+                
+                // Reconnect after 3 seconds
+                setTimeout(connectWebSocket, 3000);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                addTerminalLine('❌ WebSocket connection error');
+            };
         }
 
         // Handle WebSocket messages
@@ -605,31 +626,52 @@
 
         // IDE functions
             function runCode() {
-                addTerminalLine('▶️ Running USDTgScript code...');
-                addTerminalLine('✅ Code executed successfully');
-                addTerminalLine('📊 Gas used: 21,000');
-                addTerminalLine('⏱️ Execution time: 0.003s');
+                if (isConnected) {
+                    ws.send(JSON.stringify({
+                        type: 'run',
+                        file: currentFile
+                    }));
+                    addTerminalLine('▶️ Running USDTgScript code...');
+                } else {
+                    addTerminalLine('❌ Not connected to IDE Core');
+                }
             }
 
             function compileCode() {
-                addTerminalLine('🔧 Compiling USDTgScript...');
-                addTerminalLine('✅ Compilation successful');
-                addTerminalLine('📦 Contract size: 2.4 KB');
-                addTerminalLine('🔒 Quantum-safe encryption applied');
+                if (isConnected) {
+                    ws.send(JSON.stringify({
+                        type: 'compile',
+                        file: currentFile
+                    }));
+                    addTerminalLine('🔧 Compiling USDTgScript...');
+                } else {
+                    addTerminalLine('❌ Not connected to IDE Core');
+                }
             }
 
             function deployContract() {
-                addTerminalLine('☁️ Deploying contract to USDTgVerse...');
-                addTerminalLine('✅ Contract deployed successfully');
-                addTerminalLine('📍 Address: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6');
-                addTerminalLine('🔗 Transaction: 0x8f2a55949038a9610f50fb23b5883af3b4ec0a3b0a8bcaf61c6cc33062be074a1');
+                if (isConnected) {
+                    ws.send(JSON.stringify({
+                        type: 'deploy',
+                        file: currentFile
+                    }));
+                    addTerminalLine('☁️ Deploying contract to USDTgVerse...');
+                } else {
+                    addTerminalLine('❌ Not connected to IDE Core');
+                }
             }
 
             function saveFile() {
-                if (editor) {
+                if (isConnected && editor) {
                     const content = editor.getValue();
+                    ws.send(JSON.stringify({
+                        type: 'save_file',
+                        file: currentFile,
+                        content: content
+                    }));
                     addTerminalLine(`💾 Saving ${currentFile}...`);
-                    addTerminalLine('✅ File saved successfully');
+                } else {
+                    addTerminalLine('❌ Not connected to IDE Core');
                 }
             }
 
