@@ -17,6 +17,10 @@ static ide_context_t g_ide_ctx = {0};
 // WebSocket context
 static struct lws_context *g_ws_context = NULL;
 
+// Forward declaration for websocket_callback
+int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
+                      void *user, void *in, size_t len);
+
 // WebSocket protocols
 static struct lws_protocols websocket_protocols[] = {
     {
