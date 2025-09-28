@@ -261,6 +261,7 @@ int ide_init(ide_context_t *ctx) {
     info.protocols = websocket_protocols;
     info.gid = -1;
     info.uid = -1;
+    info.options = LWS_SERVER_OPTION_VALIDATE_UTF8;
     
     g_ws_context = lws_create_context(&info);
     if (!g_ws_context) {
