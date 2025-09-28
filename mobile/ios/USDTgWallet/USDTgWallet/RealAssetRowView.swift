@@ -12,6 +12,7 @@ struct RealAssetRowView: View {
     let asset: WalletAsset
     @StateObject private var logoService = TokenLogoService()
     @StateObject private var priceService = TokenPriceService()
+    @State private var logoImage: UIImage?
     
     var body: some View {
         HStack(spacing: 16) {
@@ -47,7 +48,8 @@ struct RealAssetRowView: View {
                     .fontWeight(.medium)
                     .foregroundColor(.primary)
                 
-                Text(asset.formattedValue)
+                // Show individual token price, not total value
+                Text("\(priceService.getFormattedPrice(for: asset.symbol)) each")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -65,6 +67,9 @@ struct RealAssetRowView: View {
                     lineWidth: 1
                 )
         )
+        .onAppear {
+            loadTokenLogo()
+        }
     }
     
     private var tokenLogoView: some View {
@@ -73,19 +78,39 @@ struct RealAssetRowView: View {
                 .fill(logoService.getLogoColor(for: asset.symbol))
                 .frame(width: 40, height: 40)
             
-            if asset.symbol.hasPrefix("USDTg") {
-                // USDTgVerse Native Token Logos
-                Text(asset.symbol == "USDTg" ? "USDTg" : 
-                     asset.symbol == "USDTgV" ? "V" : "G")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.white)
+            if let logoImage = logoImage {
+                Image(uiImage: logoImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 32, height: 32)
+                    .clipShape(Circle())
             } else {
-                // External Token Logos
-                Image(systemName: logoService.getLogo(for: asset.symbol))
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(.white)
+                // Fallback to SF Symbols
+                if asset.symbol.hasPrefix("USDTg") {
+                    Text(asset.symbol == "USDTg" ? "USDTg" : 
+                         asset.symbol == "USDTgV" ? "V" : "G")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.white)
+                } else {
+                    Image(systemName: logoService.getLogo(for: asset.symbol))
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
+                }
             }
         }
+    }
+    
+    private func loadTokenLogo() {
+        let logoURL = priceService.getLogoURL(for: asset.symbol)
+        guard !logoURL.isEmpty, let url = URL(string: logoURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, let image = UIImage(data: data) else { return }
+            
+            DispatchQueue.main.async {
+                self.logoImage = image
+            }
+        }.resume()
     }
 }
 

@@ -26,6 +26,21 @@ class TokenPriceService: ObservableObject {
         "USDTgG": "USDTgVerse Governance Token"
     ]
     
+    // MARK: - Token Logo URLs
+    private let tokenLogoURLs: [String: String] = [
+        "USDTg": "https://usdtgverse.com/assets/logos/logo.png",
+        "USDTgV": "https://usdtgverse.com/assets/logos/USDTgV-logo.png",
+        "USDTgG": "https://usdtgverse.com/assets/logos/USDTgG-logo.png",
+        "USDT": "https://cryptologos.cc/logos/tether-usdt-logo.png",
+        "USDC": "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
+        "BTC": "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+        "ETH": "https://cryptologos.cc/logos/ethereum-eth-logo.png",
+        "BNB": "https://cryptologos.cc/logos/bnb-bnb-logo.png",
+        "SOL": "https://cryptologos.cc/logos/solana-sol-logo.png",
+        "TRX": "https://cryptologos.cc/logos/tron-trx-logo.png",
+        "MATIC": "https://cryptologos.cc/logos/polygon-matic-logo.png"
+    ]
+    
     // MARK: - External Tokens
     private let externalTokens = [
         "USDT": "tether",
@@ -184,6 +199,10 @@ class TokenPriceService: ObservableObject {
         } else {
             return String(format: "$%.8f", price)
         }
+    }
+    
+    func getLogoURL(for symbol: String) -> String {
+        return tokenLogoURLs[symbol] ?? ""
     }
     
     // MARK: - Cache Management
