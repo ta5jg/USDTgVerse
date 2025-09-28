@@ -9,7 +9,7 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -O2 -g
-LDFLAGS = -lwebsockets -lpthread -ljson-c -lm
+LDFLAGS = -lwebsockets -lpthread -ljson-c -lm -lcrypto -lssl
 
 # Source files
 SOURCES = src/usdtgverse-ide-core.c \

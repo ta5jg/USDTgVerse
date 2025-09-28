@@ -116,23 +116,7 @@ time_t file_get_mtime(const char *file_path) {
     return 0;
 }
 
-// Create directory
-int create_directory(const char *path) {
-    if (!path) {
-        log_error("Invalid path for create_directory");
-        return -1;
-    }
-    
-    if (mkdir(path, 0755) != 0) {
-        if (errno != EEXIST) {
-            log_error("Failed to create directory");
-            return -1;
-        }
-    }
-    
-    log_info("Directory created successfully");
-    return 0;
-}
+// create_directory function is implemented in ide-utils.c
 
 // Get file size
 long file_get_size(const char *file_path) {

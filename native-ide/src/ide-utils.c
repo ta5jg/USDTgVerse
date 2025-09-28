@@ -14,6 +14,8 @@
 #include <sys/time.h>
 #include <pthread.h>
 #include <stdarg.h>
+#include <ctype.h>
+#include <sys/stat.h>
 
 // Logging mutex
 static pthread_mutex_t g_log_mutex = PTHREAD_MUTEX_INITIALIZER;
