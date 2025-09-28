@@ -16,6 +16,10 @@
 static struct lws_context *g_ws_context = NULL;
 static struct lws *g_ws_connection = NULL;
 
+// Forward declaration for websocket_callback
+int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
+                      void *user, void *in, size_t len);
+
 // WebSocket protocols
 static struct lws_protocols websocket_protocols[] = {
     {
@@ -31,8 +35,8 @@ static struct lws_protocols websocket_protocols[] = {
 };
 
 // WebSocket callback function
-static int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
-                             void *user, void *in, size_t len) {
+int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
+                      void *user, void *in, size_t len) {
     (void)user;
     
     switch (reason) {
@@ -59,6 +63,17 @@ static int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
     }
     return 0;
 }
+
+// Forward declarations for handler functions
+void handle_save_file(json_object *json);
+void handle_load_file(json_object *json);
+void handle_compile(json_object *json);
+void handle_run(json_object *json);
+void handle_get_files(json_object *json);
+void handle_create_file(json_object *json);
+void handle_delete_file(json_object *json);
+void handle_terminal_command(json_object *json);
+void handle_ping(json_object *json);
 
 // Handle WebSocket messages
 void handle_websocket_message(const char *message, size_t len) {
