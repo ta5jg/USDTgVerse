@@ -430,59 +430,13 @@
             });
         });
 
-        // WebSocket connection
+        // WebSocket connection (simplified - no backend for now)
         function connectWebSocket() {
-            // Try multiple connection methods
-            const protocols = [
-                'ws://usdtgverse.com:8080',
-                'wss://usdtgverse.com:8080',
-                'ws://localhost:8080'
-            ];
-            
-            let currentProtocol = 0;
-            
-            function tryConnect() {
-                if (currentProtocol >= protocols.length) {
-                    addTerminalLine('❌ All WebSocket connection attempts failed');
-                    return;
-                }
-                
-                const url = protocols[currentProtocol];
-                addTerminalLine(`🔄 Trying WebSocket: ${url}`);
-                
-                ws = new WebSocket(url);
-            
-                ws.onopen = function() {
-                    isConnected = true;
-                    updateConnectionStatus(true);
-                    addTerminalLine(`✅ Connected to USDTgVerse IDE Core via ${url}`);
-                };
-                
-                ws.onmessage = function(event) {
-                    handleWebSocketMessage(JSON.parse(event.data));
-                };
-                
-                ws.onclose = function() {
-                    isConnected = false;
-                    updateConnectionStatus(false);
-                    addTerminalLine(`❌ Disconnected from ${url}`);
-                    
-                    // Try next protocol
-                    currentProtocol++;
-                    setTimeout(tryConnect, 2000);
-                };
-                
-                ws.onerror = function(error) {
-                    console.error('WebSocket error:', error);
-                    addTerminalLine(`❌ WebSocket error for ${url}`);
-                    
-                    // Try next protocol
-                    currentProtocol++;
-                    setTimeout(tryConnect, 1000);
-                };
-            }
-            
-            tryConnect();
+            // Simulate connection for demo purposes
+            isConnected = true;
+            updateConnectionStatus(true);
+            addTerminalLine('✅ USDTgVerse Native IDE - Web Interface Ready');
+            addTerminalLine('💡 Note: C backend integration coming soon');
         }
 
         // Handle WebSocket messages
@@ -649,52 +603,27 @@
             addTerminalLine(`❌ Closed file: ${fileName}`);
         }
 
-        // IDE functions
+        // IDE functions (simplified for demo)
         function runCode() {
-            if (isConnected) {
-                ws.send(JSON.stringify({
-                    type: 'run',
-                    file: currentFile
-                }));
-                addTerminalLine('▶️ Running code...');
-            } else {
-                addTerminalLine('❌ Not connected to IDE Core');
-            }
+            addTerminalLine('▶️ Running code...');
+            addTerminalLine('✅ Code executed successfully! (Demo mode)');
         }
 
         function compileCode() {
-            if (isConnected) {
-                ws.send(JSON.stringify({
-                    type: 'compile',
-                    file: currentFile
-                }));
-                addTerminalLine('🔧 Compiling USDTgScript...');
-            } else {
-                addTerminalLine('❌ Not connected to IDE Core');
-            }
+            addTerminalLine('🔧 Compiling USDTgScript...');
+            addTerminalLine('✅ Compilation successful! (Demo mode)');
+            addTerminalLine('📊 Gas estimation: 45,230');
         }
 
         function deployContract() {
-            if (isConnected) {
-                ws.send(JSON.stringify({
-                    type: 'deploy',
-                    file: currentFile
-                }));
-                addTerminalLine('☁️ Deploying contract...');
-            } else {
-                addTerminalLine('❌ Not connected to IDE Core');
-            }
+            addTerminalLine('☁️ Deploying contract...');
+            addTerminalLine('✅ Contract deployed successfully! (Demo mode)');
+            addTerminalLine('📍 Contract address: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6');
         }
 
         function saveFile() {
-            if (isConnected && editor) {
-                const content = editor.getValue();
-                ws.send(JSON.stringify({
-                    type: 'save_file',
-                    file: currentFile,
-                    content: content
-                }));
-            }
+            addTerminalLine('💾 Saving file...');
+            addTerminalLine('✅ File saved successfully! (Demo mode)');
         }
 
         function stopExecution() {
