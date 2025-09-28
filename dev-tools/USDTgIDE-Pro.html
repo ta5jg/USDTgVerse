@@ -2211,16 +2211,16 @@
                 </div>
 
                 <!-- Tabs -->
-                <div class="tabs">
-                    <div class="tab active">
+                <div class="tabs" id="tabsContainer">
+                    <div class="tab active" data-file="contract.usdtg" onclick="switchTab(this)">
                         <span>📄</span>
                         <span>contract.usdtg</span>
-                        <span class="tab-close">×</span>
+                        <span class="tab-close" onclick="closeTab(this, event)">×</span>
                     </div>
-                    <div class="tab">
+                    <div class="tab" data-file="token.usdtg" onclick="switchTab(this)">
                         <span>📄</span>
                         <span>token.usdtg</span>
-                        <span class="tab-close">×</span>
+                        <span class="tab-close" onclick="closeTab(this, event)">×</span>
                     </div>
                 </div>
 
@@ -3327,27 +3327,45 @@ contract DAOGovernance {
         <!-- Bottom Panel -->
         <div class="bottom-panel">
             <div class="panel-tabs">
-                <div class="panel-tab active">🖥️ Terminal</div>
-                <div class="panel-tab">🔍 Problems</div>
-                <div class="panel-tab">📊 Output</div>
-                <div class="panel-tab">🐛 Debug Console</div>
+                <div class="panel-tab active" onclick="switchPanelTab(this, 'terminal')">🖥️ Terminal</div>
+                <div class="panel-tab" onclick="switchPanelTab(this, 'problems')">🔍 Problems</div>
+                <div class="panel-tab" onclick="switchPanelTab(this, 'output')">📊 Output</div>
+                <div class="panel-tab" onclick="switchPanelTab(this, 'debug')">🐛 Debug Console</div>
             </div>
-            <div class="terminal">
-                <div class="terminal-line">
-                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
-                    <span>Welcome to USDTgScript IDE Pro!</span>
+            <div class="panel-content">
+                <div class="terminal active" id="terminal">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                        <span>Welcome to USDTgScript IDE Pro!</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                        <span>Quantum-safe development environment ready.</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                        <span>Type 'help' for available commands.</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
+                        <span style="animation: blink 1s infinite;">_</span>
+                    </div>
                 </div>
-                <div class="terminal-line">
-                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
-                    <span>Quantum-safe development environment ready.</span>
+                <div class="problems" id="problems" style="display: none;">
+                    <div class="problem-item error">
+                        <span class="problem-icon">❌</span>
+                        <span class="problem-message">No problems found</span>
+                    </div>
                 </div>
-                <div class="terminal-line">
-                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
-                    <span>Type 'help' for available commands.</span>
+                <div class="output" id="output" style="display: none;">
+                    <div class="output-line">USDTgScript IDE Pro v1.0.0</div>
+                    <div class="output-line">Monaco Editor loaded successfully</div>
+                    <div class="output-line">All systems ready</div>
                 </div>
-                <div class="terminal-line">
-                    <span class="terminal-prompt">usdtg@quantum:~/project$</span> 
-                    <span style="animation: blink 1s infinite;">_</span>
+                <div class="debug-console" id="debug" style="display: none;">
+                    <div class="debug-line">Debug console ready</div>
+                    <div class="debug-line">Breakpoints: 0</div>
+                    <div class="debug-line">Variables: 0</div>
                 </div>
             </div>
         </div>
@@ -5266,6 +5284,254 @@ Please be more specific about what you'd like help with, or use one of the sugge
             }
         `;
         document.head.appendChild(style);
+
+        // Tab Management Functions
+        function switchTab(tabElement) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            tabElement.classList.add('active');
+            
+            // Update editor content based on selected file
+            const fileName = tabElement.getAttribute('data-file');
+            updateEditorContent(fileName);
+            
+            addTerminalLine(`📄 Switched to file: ${fileName}`);
+        }
+
+        function closeTab(closeButton, event) {
+            event.stopPropagation();
+            const tab = closeButton.parentElement;
+            const fileName = tab.getAttribute('data-file');
+            
+            // Don't close if it's the last tab
+            const allTabs = document.querySelectorAll('.tab');
+            if (allTabs.length <= 1) {
+                addTerminalLine(`❌ Cannot close the last tab`);
+                return;
+            }
+            
+            // Remove the tab
+            tab.remove();
+            
+            // If closed tab was active, activate another tab
+            if (tab.classList.contains('active')) {
+                const remainingTabs = document.querySelectorAll('.tab');
+                if (remainingTabs.length > 0) {
+                    switchTab(remainingTabs[0]);
+                }
+            }
+            
+            addTerminalLine(`❌ Closed file: ${fileName}`);
+        }
+
+        function updateEditorContent(fileName) {
+            if (!editor) return;
+            
+            const fileContents = {
+                'contract.usdtg': `// USDTgScript - Quantum-Safe Smart Contract
+import "QuantumSafe.usdtg";
+import "USDTgSecurity.usdtg";
+
+@quantum_safe
+@security_level(256)
+contract MyQuantumToken extends UST1Token {
+    // Public variables
+    string public name = "My Quantum Token";
+    string public symbol = "MQT";
+    uint8 public decimals = 18;
+    uint256 public totalSupply = 1000000 * 10**18;
+    
+    // Private mappings
+    mapping(address => uint256) private balances;
+    mapping(address => mapping(address => uint256)) private allowed;
+    
+    // Events
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    
+    // Constructor
+    constructor() {
+        balances[msg.sender] = totalSupply;
+    }
+    
+    // Quantum-safe transfer function
+    @quantum_resistant
+    function transfer(address to, uint256 amount) public returns (bool) {
+        require(balances[msg.sender] >= amount, "Insufficient balance");
+        require(to != address(0), "Invalid recipient");
+        
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+        
+        emit Transfer(msg.sender, to, amount);
+        return true;
+    }
+    
+    // Quantum-safe approval function
+    @quantum_resistant
+    function approve(address spender, uint256 amount) public returns (bool) {
+        allowed[msg.sender][spender] = amount;
+        emit Approval(msg.sender, spender, amount);
+        return true;
+    }
+    
+    // Get balance function
+    function balanceOf(address account) public view returns (uint256) {
+        return balances[account];
+    }
+    
+    // Get allowance function
+    function allowance(address owner, address spender) public view returns (uint256) {
+        return allowed[owner][spender];
+    }
+}`,
+                'token.usdtg': `// USDTgScript - Advanced Token Contract
+import "QuantumSafe.usdtg";
+import "USDTgSecurity.usdtg";
+
+@quantum_safe
+@security_level(512)
+contract AdvancedToken extends UST1Token {
+    string public name = "Advanced USDTg Token";
+    string public symbol = "AUT";
+    uint8 public decimals = 18;
+    uint256 public totalSupply = 5000000 * 10**18;
+    
+    mapping(address => uint256) private balances;
+    mapping(address => mapping(address => uint256)) private allowances;
+    mapping(address => bool) private isBlacklisted;
+    
+    address public owner;
+    bool public paused = false;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    event Paused(address account);
+    event Unpaused(address account);
+    event Blacklisted(address account);
+    event Unblacklisted(address account);
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
+    }
+    
+    modifier whenNotPaused() {
+        require(!paused, "Contract is paused");
+        _;
+    }
+    
+    modifier notBlacklisted(address account) {
+        require(!isBlacklisted[account], "Account is blacklisted");
+        _;
+    }
+    
+    constructor() {
+        owner = msg.sender;
+        balances[msg.sender] = totalSupply;
+    }
+    
+    @quantum_resistant
+    function transfer(address to, uint256 amount) 
+        public 
+        whenNotPaused 
+        notBlacklisted(msg.sender) 
+        notBlacklisted(to) 
+        returns (bool) 
+    {
+        require(balances[msg.sender] >= amount, "Insufficient balance");
+        require(to != address(0), "Invalid recipient");
+        
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+        
+        emit Transfer(msg.sender, to, amount);
+        return true;
+    }
+    
+    function pause() public onlyOwner {
+        paused = true;
+        emit Paused(msg.sender);
+    }
+    
+    function unpause() public onlyOwner {
+        paused = false;
+        emit Unpaused(msg.sender);
+    }
+    
+    function blacklist(address account) public onlyOwner {
+        isBlacklisted[account] = true;
+        emit Blacklisted(account);
+    }
+    
+    function unblacklist(address account) public onlyOwner {
+        isBlacklisted[account] = false;
+        emit Unblacklisted(account);
+    }
+}`
+            };
+            
+            const content = fileContents[fileName] || `// File: ${fileName}\n// Content not available`;
+            editor.setValue(content);
+        }
+
+        // Panel Tab Management
+        function switchPanelTab(tabElement, panelId) {
+            // Remove active class from all panel tabs
+            document.querySelectorAll('.panel-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            tabElement.classList.add('active');
+            
+            // Hide all panel contents
+            document.querySelectorAll('.panel-content > div').forEach(panel => {
+                panel.style.display = 'none';
+                panel.classList.remove('active');
+            });
+            
+            // Show selected panel
+            const selectedPanel = document.getElementById(panelId);
+            if (selectedPanel) {
+                selectedPanel.style.display = 'block';
+                selectedPanel.classList.add('active');
+            }
+            
+            addTerminalLine(`🔄 Switched to ${panelId} panel`);
+        }
+
+        // Core IDE Functions
+        function runCode() {
+            addTerminalLine('▶️ Running code...');
+            addTerminalLine('✅ Code executed successfully!');
+        }
+
+        function compileCode() {
+            addTerminalLine('🔧 Compiling USDTgScript...');
+            addTerminalLine('✅ Compilation successful!');
+            addTerminalLine('📊 Gas estimation: 45,230');
+        }
+
+        function deployContract() {
+            addTerminalLine('☁️ Deploying contract to USDTgVerse...');
+            addTerminalLine('✅ Contract deployed successfully!');
+            addTerminalLine('📍 Contract address: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6');
+        }
+
+        function saveFile() {
+            addTerminalLine('💾 Saving file...');
+            addTerminalLine('✅ File saved successfully!');
+        }
+
+        function stopExecution() {
+            addTerminalLine('⏹️ Stopping execution...');
+            addTerminalLine('✅ Execution stopped!');
+        }
 
         // Load settings on initialization
         loadSettings();
