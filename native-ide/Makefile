@@ -1,13 +1,11 @@
-/*
- * USDTgVerse Native IDE - Makefile
- * 
- * Created: 28.09.2025
- * Last Update: 28.09.2025
- * 
- * Description: Build system for USDTgVerse Native C IDE with Web App frontend
- * Author: USDTgVerse Development Team
- * License: MIT
- */
+# USDTgVerse Native IDE - Makefile
+# 
+# Created: 28.09.2025
+# Last Update: 28.09.2025
+# 
+# Description: Build system for USDTgVerse Native C IDE with Web App frontend
+# Author: USDTgVerse Development Team
+# License: MIT
 
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -O2 -g
