@@ -24,13 +24,30 @@ static struct lws_protocols websocket_protocols[] = {
         websocket_callback,
         0,
         1024,
+        0,
+        NULL,
+        0
     },
-    { NULL, NULL, 0, 0 }
+    { NULL, NULL, 0, 0, 0, NULL, 0 }
 };
+
+// Forward declarations
+void handle_websocket_message(const char *message, size_t len);
+void handle_save_file(json_object *json);
+void handle_load_file(json_object *json);
+void handle_compile(json_object *json);
+void handle_run(json_object *json);
+void handle_get_files(json_object *json);
+void handle_create_file(json_object *json);
+void handle_delete_file(json_object *json);
+void handle_terminal_command(json_object *json);
 
 // WebSocket callback function
 static int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
                              void *user, void *in, size_t len) {
+    (void)wsi;
+    (void)user;
+    
     switch (reason) {
         case LWS_CALLBACK_ESTABLISHED:
             log_info("WebSocket connection established");
@@ -52,6 +69,8 @@ static int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
 
 // Handle WebSocket messages
 void handle_websocket_message(const char *message, size_t len) {
+    (void)len;
+    
     json_object *json = json_tokener_parse(message);
     if (!json) {
         log_error("Failed to parse JSON message");
@@ -161,6 +180,7 @@ void handle_run(json_object *json) {
 
 // Handle get files request
 void handle_get_files(json_object *json) {
+    (void)json;
     // Implementation for getting project files
     websocket_send_message("{\"type\":\"files_list\",\"files\":[]}");
 }
@@ -290,6 +310,9 @@ void websocket_send_message(const char *message) {
 
 // Main function
 int main(int argc, char *argv[]) {
+    (void)argc;
+    (void)argv;
+    
     printf("🚀 %s v%s\n", IDE_NAME, IDE_VERSION);
     printf("⚛️ Quantum-safe development environment\n");
     printf("🌐 WebSocket server on port %d\n", WEBSOCKET_PORT);
