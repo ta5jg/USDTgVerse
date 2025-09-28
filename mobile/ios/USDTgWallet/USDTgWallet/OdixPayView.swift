@@ -1,5 +1,5 @@
 //
-//  OdixPayView.swift
+//  USDTgVersePayView.swift
 //  USDTgWallet
 //
 //  Created by USDTgVerse Team on 2025-09-19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum OdixPayFeature: String, CaseIterable {
+enum USDTgVersePayFeature: String, CaseIterable {
     case corporateCards = "Corporate Cards"
     case expenseManagement = "Expense Management"
     case treasury = "Treasury & Banking"
@@ -48,8 +48,8 @@ enum OdixPayFeature: String, CaseIterable {
     }
 }
 
-struct OdixPayView: View {
-    @State private var selectedFeature: OdixPayFeature?
+struct USDTgVersePayView: View {
+    @State private var selectedFeature: USDTgVersePayFeature?
     
     var body: some View {
         NavigationView {
@@ -62,30 +62,30 @@ struct OdixPayView: View {
                 
                 Spacer()
             }
-            .navigationTitle("OdixPay++")
+            .navigationTitle("USDTgVerse PAY")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
     
     private var headerView: some View {
         VStack(spacing: 16) {
-            // OdixPay++ Logo
+            // USDTgVerse PAY Logo
             VStack(spacing: 8) {
                 Circle()
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .frame(width: 80, height: 80)
                     .overlay(
-                        Text("O++")
-                            .font(.title)
+                        Text("USDTg")
+                            .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                     )
                 
-                Text("OdixPay++")
+                Text("USDTgVerse PAY")
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text("Enterprise Payment Solutions")
+                Text("Quantum-Safe Payment Solutions")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -109,7 +109,7 @@ struct OdixPayView: View {
                 GridItem(.flexible()),
                 GridItem(.flexible())
             ], spacing: 16) {
-                ForEach(OdixPayFeature.allCases, id: \.self) { feature in
+                ForEach(USDTgVersePayFeature.allCases, id: \.self) { feature in
                     FeatureCard(feature: feature) {
                         selectedFeature = feature
                     }
@@ -149,7 +149,7 @@ struct StatCard: View {
 }
 
 struct FeatureCard: View {
-    let feature: OdixPayFeature
+    let feature: USDTgVersePayFeature
     let action: () -> Void
     
     var body: some View {
@@ -179,7 +179,7 @@ struct FeatureCard: View {
 }
 
 struct FeatureDetailView: View {
-    let feature: OdixPayFeature
+    let feature: USDTgVersePayFeature
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -281,12 +281,12 @@ struct FeatureDetailView: View {
     }
 }
 
-extension OdixPayFeature: Identifiable {
+extension USDTgVersePayFeature: Identifiable {
     var id: String { rawValue }
 }
 
-struct OdixPayView_Previews: PreviewProvider {
+struct USDTgVersePayView_Previews: PreviewProvider {
     static var previews: some View {
-        OdixPayView()
+        USDTgVersePayView()
     }
 }

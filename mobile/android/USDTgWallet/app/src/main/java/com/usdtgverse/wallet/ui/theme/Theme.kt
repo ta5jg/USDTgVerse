@@ -127,7 +127,7 @@ object USDTgColors {
     val Avalanche = Color(0xFFE84142)
     val Optimism = Color(0xFFFF0420)
     
-    // OdixPay feature colors
+    // USDTgVerse PAY feature colors
     val CorporateCards = Color(0xFF2196F3)
     val ExpenseManagement = Color(0xFF4CAF50)
     val Treasury = Color(0xFF673AB7)

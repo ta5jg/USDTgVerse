@@ -439,10 +439,10 @@ struct WalletView: View {
             
             QuickActionButton(
                 icon: "creditcard.circle.fill",
-                title: "OdixPay",
-                color: .purple
+                title: "USDTgVerse PAY",
+                color: .green
             ) {
-                // Navigate to OdixPay
+                // Navigate to USDTgVerse PAY
             }
         }
     }
