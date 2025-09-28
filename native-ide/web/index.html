@@ -432,31 +432,57 @@
 
         // WebSocket connection
         function connectWebSocket() {
-            ws = new WebSocket('ws://usdtgverse.com:8080');
+            // Try multiple connection methods
+            const protocols = [
+                'ws://usdtgverse.com:8080',
+                'wss://usdtgverse.com:8080',
+                'ws://localhost:8080'
+            ];
             
-            ws.onopen = function() {
-                isConnected = true;
-                updateConnectionStatus(true);
-                addTerminalLine('✅ Connected to USDTgVerse IDE Core');
-            };
+            let currentProtocol = 0;
             
-            ws.onmessage = function(event) {
-                handleWebSocketMessage(JSON.parse(event.data));
-            };
-            
-            ws.onclose = function() {
-                isConnected = false;
-                updateConnectionStatus(false);
-                addTerminalLine('❌ Disconnected from IDE Core');
+            function tryConnect() {
+                if (currentProtocol >= protocols.length) {
+                    addTerminalLine('❌ All WebSocket connection attempts failed');
+                    return;
+                }
                 
-                // Reconnect after 3 seconds
-                setTimeout(connectWebSocket, 3000);
-            };
+                const url = protocols[currentProtocol];
+                addTerminalLine(`🔄 Trying WebSocket: ${url}`);
+                
+                ws = new WebSocket(url);
             
-            ws.onerror = function(error) {
-                console.error('WebSocket error:', error);
-                addTerminalLine('❌ WebSocket connection error');
-            };
+                ws.onopen = function() {
+                    isConnected = true;
+                    updateConnectionStatus(true);
+                    addTerminalLine(`✅ Connected to USDTgVerse IDE Core via ${url}`);
+                };
+                
+                ws.onmessage = function(event) {
+                    handleWebSocketMessage(JSON.parse(event.data));
+                };
+                
+                ws.onclose = function() {
+                    isConnected = false;
+                    updateConnectionStatus(false);
+                    addTerminalLine(`❌ Disconnected from ${url}`);
+                    
+                    // Try next protocol
+                    currentProtocol++;
+                    setTimeout(tryConnect, 2000);
+                };
+                
+                ws.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                    addTerminalLine(`❌ WebSocket error for ${url}`);
+                    
+                    // Try next protocol
+                    currentProtocol++;
+                    setTimeout(tryConnect, 1000);
+                };
+            }
+            
+            tryConnect();
         }
 
         // Handle WebSocket messages
