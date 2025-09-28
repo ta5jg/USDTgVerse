@@ -26,7 +26,7 @@
 // IDE Configuration
 #define IDE_VERSION "1.0.0"
 #define IDE_NAME "USDTgVerse Native IDE"
-#define WEBSOCKET_PORT 8080
+#define WEBSOCKET_PORT 8081
 #define WEB_SERVER_PORT 8000
 #define MAX_FILE_SIZE 1024 * 1024  // 1MB
 #define MAX_PROJECT_PATH 256

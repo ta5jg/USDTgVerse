@@ -430,13 +430,33 @@
             });
         });
 
-        // WebSocket connection (simplified - no backend for now)
+        // WebSocket connection
         function connectWebSocket() {
-            // Simulate connection for demo purposes
-            isConnected = true;
-            updateConnectionStatus(true);
-            addTerminalLine('✅ USDTgVerse Native IDE - Web Interface Ready');
-            addTerminalLine('💡 Note: C backend integration coming soon');
+            ws = new WebSocket('ws://usdtgverse.com:8081');
+            
+            ws.onopen = function() {
+                isConnected = true;
+                updateConnectionStatus(true);
+                addTerminalLine('✅ Connected to USDTgVerse IDE Core');
+            };
+            
+            ws.onmessage = function(event) {
+                handleWebSocketMessage(JSON.parse(event.data));
+            };
+            
+            ws.onclose = function() {
+                isConnected = false;
+                updateConnectionStatus(false);
+                addTerminalLine('❌ Disconnected from IDE Core');
+                
+                // Reconnect after 3 seconds
+                setTimeout(connectWebSocket, 3000);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                addTerminalLine('❌ WebSocket connection error');
+            };
         }
 
         // Handle WebSocket messages
@@ -603,27 +623,52 @@
             addTerminalLine(`❌ Closed file: ${fileName}`);
         }
 
-        // IDE functions (simplified for demo)
+        // IDE functions
         function runCode() {
-            addTerminalLine('▶️ Running code...');
-            addTerminalLine('✅ Code executed successfully! (Demo mode)');
+            if (isConnected) {
+                ws.send(JSON.stringify({
+                    type: 'run',
+                    file: currentFile
+                }));
+                addTerminalLine('▶️ Running code...');
+            } else {
+                addTerminalLine('❌ Not connected to IDE Core');
+            }
         }
 
         function compileCode() {
-            addTerminalLine('🔧 Compiling USDTgScript...');
-            addTerminalLine('✅ Compilation successful! (Demo mode)');
-            addTerminalLine('📊 Gas estimation: 45,230');
+            if (isConnected) {
+                ws.send(JSON.stringify({
+                    type: 'compile',
+                    file: currentFile
+                }));
+                addTerminalLine('🔧 Compiling USDTgScript...');
+            } else {
+                addTerminalLine('❌ Not connected to IDE Core');
+            }
         }
 
         function deployContract() {
-            addTerminalLine('☁️ Deploying contract...');
-            addTerminalLine('✅ Contract deployed successfully! (Demo mode)');
-            addTerminalLine('📍 Contract address: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6');
+            if (isConnected) {
+                ws.send(JSON.stringify({
+                    type: 'deploy',
+                    file: currentFile
+                }));
+                addTerminalLine('☁️ Deploying contract...');
+            } else {
+                addTerminalLine('❌ Not connected to IDE Core');
+            }
         }
 
         function saveFile() {
-            addTerminalLine('💾 Saving file...');
-            addTerminalLine('✅ File saved successfully! (Demo mode)');
+            if (isConnected && editor) {
+                const content = editor.getValue();
+                ws.send(JSON.stringify({
+                    type: 'save_file',
+                    file: currentFile,
+                    content: content
+                }));
+            }
         }
 
         function stopExecution() {
