@@ -16,53 +16,11 @@
 static struct lws_context *g_ws_context = NULL;
 static struct lws *g_ws_connection = NULL;
 
-// Forward declaration for websocket_callback
-int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
-                      void *user, void *in, size_t len);
+// websocket_callback is implemented in usdtgverse-ide-core.c
 
-// WebSocket protocols
-static struct lws_protocols websocket_protocols[] = {
-    {
-        "usdtgverse-ide",
-        websocket_callback,
-        0,
-        1024,
-        0,
-        NULL,
-        0
-    },
-    { NULL, NULL, 0, 0, 0, NULL, 0 }
-};
+// WebSocket protocols are defined in usdtgverse-ide-core.c
 
-// WebSocket callback function
-int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
-                      void *user, void *in, size_t len) {
-    (void)user;
-    
-    switch (reason) {
-        case LWS_CALLBACK_ESTABLISHED:
-            log_info("WebSocket connection established");
-            g_ws_connection = wsi;
-            break;
-            
-        case LWS_CALLBACK_RECEIVE:
-            handle_websocket_message((char*)in, len);
-            break;
-            
-        case LWS_CALLBACK_CLOSED:
-            log_info("WebSocket connection closed");
-            g_ws_connection = NULL;
-            break;
-            
-        case LWS_CALLBACK_SERVER_WRITEABLE:
-            // Handle writeable callback
-            break;
-            
-        default:
-            break;
-    }
-    return 0;
-}
+// websocket_callback function is implemented in usdtgverse-ide-core.c
 
 // Forward declarations for handler functions
 void handle_save_file(json_object *json);
@@ -86,19 +44,9 @@ void handle_ping(json_object *json);
 
 // Initialize WebSocket server
 int websocket_init(int port) {
-    struct lws_context_creation_info info = {0};
-    info.port = port;
-    info.protocols = websocket_protocols;
-    info.gid = -1;
-    info.uid = -1;
-    
-    g_ws_context = lws_create_context(&info);
-    if (!g_ws_context) {
-        log_error("Failed to create WebSocket context");
-        return -1;
-    }
-    
-    log_info("WebSocket server initialized");
+    (void)port;
+    // WebSocket initialization is handled in usdtgverse-ide-core.c
+    log_info("WebSocket server initialization delegated to core");
     return 0;
 }
 
