@@ -31,14 +31,14 @@ class TokenPriceService: ObservableObject {
         "USDTg": "https://usdtgverse.com/assets/logos/logo.png",
         "USDTgV": "https://usdtgverse.com/assets/logos/USDTgV-logo.png",
         "USDTgG": "https://usdtgverse.com/assets/logos/USDTgG-logo.png",
-        "USDT": "https://cryptologos.cc/logos/tether-usdt-logo.png",
-        "USDC": "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
-        "BTC": "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
-        "ETH": "https://cryptologos.cc/logos/ethereum-eth-logo.png",
-        "BNB": "https://cryptologos.cc/logos/bnb-bnb-logo.png",
-        "SOL": "https://cryptologos.cc/logos/solana-sol-logo.png",
-        "TRX": "https://cryptologos.cc/logos/tron-trx-logo.png",
-        "MATIC": "https://cryptologos.cc/logos/polygon-matic-logo.png"
+        "USDT": "https://assets.coingecko.com/coins/images/325/large/Tether.png",
+        "USDC": "https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png",
+        "BTC": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+        "ETH": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+        "BNB": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png",
+        "SOL": "https://assets.coingecko.com/coins/images/4128/large/solana.png",
+        "TRX": "https://assets.coingecko.com/coins/images/1094/large/tron-logo.png",
+        "MATIC": "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png"
     ]
     
     // MARK: - External Tokens
