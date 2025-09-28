@@ -16,6 +16,8 @@
 		B2B1D63D2E7EA4E300F3CC9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2B1D6362E7EA4E300F3CC9F /* Preview Assets.xcassets */; };
 		B2B1D6422E7EA4E300F3CC9F /* BlockchainConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1D6332E7EA4E300F3CC9F /* BlockchainConnector.swift */; };
 		B2B1D6632E7EEC6100F3CC9F /* MultiWalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */; };
+		A1234567890ABCDE5 /* TokenPriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE5 /* TokenPriceService.swift */; };
+		A1234567890ABCDE6 /* RealAssetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE6 /* RealAssetRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		B2B1D6332E7EA4E300F3CC9F /* BlockchainConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainConnector.swift; sourceTree = "<group>"; };
 		B2B1D6362E7EA4E300F3CC9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiWalletManager.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE5 /* TokenPriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPriceService.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE6 /* RealAssetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealAssetRowView.swift; sourceTree = "<group>"; };
 		C1234567890ABCDEF /* USDTgWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USDTgWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,8 @@
 				B1234567890ABCDE2 /* USDTgVersePayView.swift */,
 				B1234567890ABCDE3 /* BridgeView.swift */,
 				B1234567890ABCDE4 /* Assets.xcassets */,
+				B1234567890ABCDE5 /* TokenPriceService.swift */,
+				B1234567890ABCDE6 /* RealAssetRowView.swift */,
 			);
 			path = USDTgWallet;
 			sourceTree = "<group>";
@@ -158,6 +164,8 @@
 				B2B1D6422E7EA4E300F3CC9F /* BlockchainConnector.swift in Sources */,
 				A1234567890ABCDE2 /* USDTgVersePayView.swift in Sources */,
 				A1234567890ABCDE3 /* BridgeView.swift in Sources */,
+				A1234567890ABCDE5 /* TokenPriceService.swift in Sources */,
+				A1234567890ABCDE6 /* RealAssetRowView.swift in Sources */,
 				A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
