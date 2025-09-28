@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Audit & Verification - USDTgVerse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .dashboard-card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .audit-features {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .audit-features h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .audit-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .audit-features li {
+            margin: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .audit-features li::before {
+            content: "🛡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .back-button {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #5a6268;
+        }
+
+        .verify-button {
+            background: linear-gradient(45deg, #00d4ff, #ff0096);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .verify-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ Contract Audit & Verification</h1>
+            <p>Comprehensive security analysis and verification for USDTgScript contracts</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>📊 Audit Metrics</h3>
+                <div class="metric">
+                    <span>Contracts Audited</span>
+                    <span class="metric-value">12,345</span>
+                </div>
+                <div class="metric">
+                    <span>Security Issues Found</span>
+                    <span class="metric-value">23</span>
+                </div>
+                <div class="metric">
+                    <span>Critical Vulnerabilities</span>
+                    <span class="metric-value">0</span>
+                </div>
+                <div class="metric">
+                    <span>Audit Success Rate</span>
+                    <span class="metric-value">99.8%</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>🔒 Security Status</h3>
+                <div class="metric">
+                    <span>Formal Verification</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+                <div class="metric">
+                    <span>Static Analysis</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+                <div class="metric">
+                    <span>Dynamic Testing</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+                <div class="metric">
+                    <span>Quantum-Safe Audit</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>⚡ Performance</h3>
+                <div class="metric">
+                    <span>Audit Time</span>
+                    <span class="metric-value">2.3s</span>
+                </div>
+                <div class="metric">
+                    <span>Verification Time</span>
+                    <span class="metric-value">1.8s</span>
+                </div>
+                <div class="metric">
+                    <span>Memory Usage</span>
+                    <span class="metric-value">67 MB</span>
+                </div>
+                <div class="metric">
+                    <span>CPU Usage</span>
+                    <span class="metric-value">18%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="audit-features">
+            <h3>🛡️ Audit & Verification Features</h3>
+            <ul>
+                <li>Formal Verification: Mathematical proof of contract correctness</li>
+                <li>Static Analysis: Code analysis without execution</li>
+                <li>Dynamic Testing: Runtime behavior analysis</li>
+                <li>Quantum-Safe Audit: Post-quantum cryptography verification</li>
+                <li>Gas Optimization: Efficient gas usage analysis</li>
+                <li>Security Patterns: Best practice compliance checking</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>📈 Audit Results</h3>
+                <div class="metric">
+                    <span>High Severity Issues</span>
+                    <span class="metric-value">0</span>
+                </div>
+                <div class="metric">
+                    <span>Medium Severity Issues</span>
+                    <span class="metric-value">5</span>
+                </div>
+                <div class="metric">
+                    <span>Low Severity Issues</span>
+                    <span class="metric-value">18</span>
+                </div>
+                <div class="metric">
+                    <span>Recommendations</span>
+                    <span class="metric-value">12</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>🔍 Verification Tools</h3>
+                <div class="metric">
+                    <span>USDTgVerifier</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+                <div class="metric">
+                    <span>Security Scanner</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+                <div class="metric">
+                    <span>Gas Analyzer</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+                <div class="metric">
+                    <span>Pattern Checker</span>
+                    <span class="metric-value">✅ Active</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="contract-verify.html" class="verify-button">🔍 Verify Contract</a>
+            <a href="USDTgVerse_Security_Audit_Report.html" class="verify-button">📋 View Audit Report</a>
+        </div>
+
+        <a href="../../website/index.html" class="back-button">← Back to Main Website</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse SDK Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .doc-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .doc-section h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .back-button {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #5a6268;
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .api-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .api-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 USDTgVerse SDK Documentation</h1>
+            <p>Complete guide to USDTgVerse Software Development Kit</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>🚀 Getting Started</h2>
+            <p>The USDTgVerse SDK provides a comprehensive set of tools and libraries for building applications on the USDTgVerse blockchain. This documentation covers everything you need to know to get started.</p>
+            
+            <h3>Installation</h3>
+            <div class="code-block">
+# Clone the SDK repository
+git clone https://github.com/usdtgverse/sdk.git
+cd sdk
+
+# Build the SDK
+make build
+
+# Install dependencies
+make install
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🔧 Core Components</h2>
+            <div class="api-grid">
+                <div class="api-card">
+                    <h3>🔗 Blockchain Client</h3>
+                    <p>Connect to USDTgVerse network and interact with smart contracts</p>
+                </div>
+                <div class="api-card">
+                    <h3>🔐 Quantum-Safe Crypto</h3>
+                    <p>Post-quantum cryptography for secure transactions</p>
+                </div>
+                <div class="api-card">
+                    <h3>📝 Smart Contract Tools</h3>
+                    <p>Deploy and interact with USDTgScript contracts</p>
+                </div>
+                <div class="api-card">
+                    <h3>💳 Wallet Integration</h3>
+                    <p>Secure wallet management and transaction signing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>💻 Basic Usage</h2>
+            <h3>Connecting to the Network</h3>
+            <div class="code-block">
+#include "usdtgverse.h"
+
+int main() {
+    // Initialize USDTgVerse client
+    USDTgVerseClient* client = usdtgverse_client_new();
+    
+    // Connect to mainnet
+    if (usdtgverse_client_connect(client, "mainnet") != 0) {
+        printf("Failed to connect to USDTgVerse network\n");
+        return 1;
+    }
+    
+    printf("Connected to USDTgVerse network\n");
+    
+    // Clean up
+    usdtgverse_client_free(client);
+    return 0;
+}
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🔒 Quantum-Safe Features</h2>
+            <p>USDTgVerse SDK includes built-in quantum-safe cryptography:</p>
+            <ul>
+                <li>CRYSTALS-Dilithium for digital signatures</li>
+                <li>CRYSTALS-Kyber for key encapsulation</li>
+                <li>256-bit post-quantum security</li>
+                <li>NIST-approved algorithms</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>📖 API Reference</h2>
+            <h3>Core Functions</h3>
+            <div class="code-block">
+// Client management
+USDTgVerseClient* usdtgverse_client_new();
+int usdtgverse_client_connect(USDTgVerseClient* client, const char* network);
+void usdtgverse_client_free(USDTgVerseClient* client);
+
+// Transaction functions
+int usdtgverse_send_transaction(USDTgVerseClient* client, 
+                               const char* to, 
+                               const char* amount);
+int usdtgverse_deploy_contract(USDTgVerseClient* client, 
+                              const char* bytecode);
+
+// Quantum-safe functions
+int usdtgverse_quantum_sign(USDTgVerseClient* client, 
+                           const char* message, 
+                           char* signature);
+int usdtgverse_quantum_verify(USDTgVerseClient* client, 
+                             const char* message, 
+                             const char* signature);
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🛠️ Development Tools</h2>
+            <p>The SDK includes various development tools:</p>
+            <ul>
+                <li>USDTgScript Compiler</li>
+                <li>Contract Deployment Tools</li>
+                <li>Testing Framework</li>
+                <li>Debugging Utilities</li>
+                <li>Performance Profiler</li>
+            </ul>
+        </div>
+
+        <a href="../website/index.html" class="back-button">← Back to Main Website</a>
+    </div>
+</body>
+</html>
