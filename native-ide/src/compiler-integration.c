@@ -12,6 +12,7 @@
 #include "../include/ide-core.h"
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 // Compile USDTgScript file
 int compile_usdtgscript(const char *file_path, compile_info_t *info) {

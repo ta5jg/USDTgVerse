@@ -23,13 +23,18 @@ static struct lws_protocols websocket_protocols[] = {
         websocket_callback,
         0,
         1024,
+        0,
+        NULL,
+        0
     },
-    { NULL, NULL, 0, 0 }
+    { NULL, NULL, 0, 0, 0, NULL, 0 }
 };
 
 // WebSocket callback function
 static int websocket_callback(struct lws *wsi, enum lws_callback_reasons reason,
                              void *user, void *in, size_t len) {
+    (void)user;
+    
     switch (reason) {
         case LWS_CALLBACK_ESTABLISHED:
             log_info("WebSocket connection established");
@@ -178,6 +183,7 @@ void handle_run(json_object *json) {
 
 // Handle get files request
 void handle_get_files(json_object *json) {
+    (void)json;
     // Implementation for getting project files
     websocket_send_message("{\"type\":\"files_list\",\"files\":[]}");
 }
@@ -229,7 +235,10 @@ void handle_terminal_command(json_object *json) {
 
 // Handle ping request
 void handle_ping(json_object *json) {
-    websocket_send_message("{\"type\":\"pong\",\"timestamp\":\"%s\"}", get_timestamp());
+    (void)json;
+    char response[256];
+    snprintf(response, sizeof(response), "{\"type\":\"pong\",\"timestamp\":\"%s\"}", get_timestamp());
+    websocket_send_message(response);
 }
 
 // Initialize WebSocket server
