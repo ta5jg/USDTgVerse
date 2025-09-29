@@ -294,6 +294,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 20);
     });
 
+    // Mega Menu Functionality
+    function initWebsiteMegaMenu() {
+        const megaMenuItems = document.querySelectorAll('.mega-menu-item');
+        
+        megaMenuItems.forEach(item => {
+            const link = item.querySelector('a');
+            const dropdown = item.querySelector('.mega-dropdown');
+            
+            if (link && dropdown) {
+                // Remove existing event listeners
+                link.removeEventListener('mouseenter', showDropdown);
+                link.removeEventListener('mouseleave', hideDropdown);
+                dropdown.removeEventListener('mouseenter', showDropdown);
+                dropdown.removeEventListener('mouseleave', hideDropdown);
+                
+                // Add new event listeners
+                link.addEventListener('mouseenter', showDropdown);
+                link.addEventListener('mouseleave', hideDropdown);
+                dropdown.addEventListener('mouseenter', showDropdown);
+                dropdown.addEventListener('mouseleave', hideDropdown);
+                
+                function showDropdown() {
+                    dropdown.style.opacity = '1';
+                    dropdown.style.visibility = 'visible';
+                    dropdown.style.transform = 'translateY(0)';
+                }
+                
+                function hideDropdown() {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.visibility = 'hidden';
+                    dropdown.style.transform = 'translateY(-10px)';
+                }
+            }
+        });
+    }
+    
+    // Initialize mega menu
+    initWebsiteMegaMenu();
+
     console.log('USDTgVerse Website Loaded Successfully!');
     console.log('🚀 USDTgVerse Enterprise Blockchain Ecosystem');
     console.log('📍 Network: usdtgverse-mainnet-1');
