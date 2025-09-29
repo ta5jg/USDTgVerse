@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Professional Margin Trading</title>
+    <link rel="stylesheet" href="../styles/advanced_trading.css">
+    <link rel="icon" type="image/png" href="../../../assets/logos/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="trading-header">
+        <div class="header-container">
+            <div class="brand-section">
+                <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
+                <div class="brand-info">
+                    <h1 class="brand-name">USDTgVerse Margin Trading</h1>
+                    <span class="brand-subtitle">Professional Leveraged Trading</span>
+                </div>
+            </div>
+            
+            <div class="account-info">
+                <div class="risk-metrics">
+                    <div class="metric">
+                        <span class="metric-label">Margin Ratio:</span>
+                        <span class="metric-value risk-high">285%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Initial Margin:</span>
+                        <span class="metric-value">$2.1M</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Available:</span>
+                        <span class="metric-value available">$3.8M</span>
+                    </div>
+                </div>
+                
+                <div class="account-actions">
+                    <button class="btn-risk-manager">⚠️ Risk Manager</button>
+                    <button class="btn-settings">⚙️ Settings</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="trading-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item active"><a href="#" class="nav-link">📊 Dashboard</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">💱 Trading</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">📈 Positions</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">🔥 Orders</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">🏦 History</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">💹 Analytics</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">⚠️ Risk</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="trading-main">
+        <!-- Trading Interface -->
+        <section class="trading-interface">
+            <div class="interface-grid">
+                <!-- Order Panel -->
+                <div class="order-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Margin Orders</h3>
+                        <div class="panel-controls">
+                            <select class="trading-mode">
+                                <option>Long Position</option>
+                                <option>Short Position</option>
+                                <option>Auto Reduce</option>
+                                <option>Smart Auto</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="order-form">
+                        <div class="form-group">
+                            <label class="form-label">Trading Pair</label>
+                            <div class="pair-selector">
+                                <img src="../../../assets/logos/logo.png" alt="BTC" class="asset-icon">
+                                <select class="form-select">
+                                    <option>BTC/USDTg (3x)</option>
+                                    <option>ETH/USDTg (5x)</option>
+                                    <option>USDTgV/USDTg (2x)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="leverage-control">
+                            <label class="form-label">Leverage</label>
+                            <div class="leverage-slider">
+                                <input type="range" min="1" max="100" value="3" class="slider" id="leverageSlider">
+                                <div class="leverage-display">
+                                    <span class="current-leverage">3x</span>
+                                    <span class="max-leverage">Max: 100x</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Position Size</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-input" placeholder="0.000000" id="positionSize">
+                                    <span class="input-suffix">BTC</span>
+                                </div>
+                                <div class="size-options">
+                                    <button class="size-btn" data-percent="25">25%</button>
+                                    <button class="size-btn" data-percent="50">50%</button>
+                                    <button class="size-btn" data-percent="75">75%</button>
+                                    <button class="size-btn" data-percent="100">100%</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class=" Form-label">Margin Amount</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-input read-only" placeholder="0.00" id="marginAmount">
+                                    <span class="input-suffix">USDTg</span>
+                                </div>
+                                <div class="margin-efficiency">
+                                    <span>Efficiency: 67%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="risk-controls">
+                            <div class="risk-item">
+                                <label class="risk-label">Stop Loss</label>
+                                <input type="number" class="risk-input" placeholder="0.00%" id="stopLoss">
+                            </div>
+                            <div class="risk-item">
+                                <label class="risk-label">Take Profit</label>
+                                <input type="number" class="risk-input" placeholder="0.00%" id="takeProfit">
+                            </div>
+                        </div>
+                        
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span class="summary-label">Liquidation Price:</span>
+                                <span class="summary-value danger">$42,500.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Estimated Fee:</span>
+                                <span class="summary-value">$156.32</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Return at +10%:</span>
+                                <span class="summary-value profit">$210,000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-actions">
+                            <button class="btn-long">🚀 Long BTC</button>
+                            <button class="btn-short">📉 Short BTC</button>
+                            <button class="btn-market">⚡ Market Order</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Data -->
+                <div class="market-data">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Real-Time Market</h3>
+                        <div class="market-tabs">
+                            <button class="tab-btn active">Depth</button>
+                            <button class="tab-btn">Candles</button>
+                            <button class="tab-btn">Flow</button>
+                        </div>
+                    </div>
+                    
+                    <div class="market-chart">
+                        <canvas id="priceChart" width="400" height="300"></canvas>
+                    </div>
+                    
+                    <div class="current-price">
+                        <div class="price-info">
+                            <span class="asset">BTC/USDTg</span>
+                            <span class="price">$67,245.32</span>
+                            <span class="change positive">+2.34%</span>
+                        </div>
+                        <div class="price-details">
+                            <div class="detail-item">
+                                <span class="detail-label">24h High:</span>
+                                <span class="detail-value">$68,500.00</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">24h Low:</span>
+                                <span class="detail-value">$65,200.00</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">24h Volume:</span>
+                                <span class="detail-value">$2.4B</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Positions Overview -->
+        <section class="positions-overview">
+            <div class="section-header">
+                <h2 class="section-title">Active Positions</h2>
+                <div class="section-actions">
+                    <button class="btn-add-position">+ New Position</button>
+                    <button class="btn-auto-close">🔒 Auto Close</button>
+                </div>
+            </div>
+
+            <div class="positions-grid">
+                <div class="position-card long">
+                    <div class="position-header">
+                        <div class="position-info">
+                            <span class="position-type">Long</span>
+                            <span class="position-pair">BTC/USDTg</span>
+                            <span class="position-leverage">5x</span>
+                        </div>
+                        <div class="position-status">
+                            <span class="status-profit">+$42,350</span>
+                            <span class="pnl-percent profit">+12.4%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="position-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Size:</span>
+                            <span class="detail-value">0.67 BTC</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Entry:</span>
+                            <span class="detail-value">$59,680</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Current:</span>
+                            <span class="detail-value">$67,045</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Liquidation:</span>
+                            <span class="detail-value danger">$47,744</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Time:</span>
+                            <span class="detail-value">2d 14h</span>
+                        </div>
+                    </div>
+                    
+                    <div class="position-actions">
+                        <button class="btn-partial-close">Partial Close</button>
+                        <button class="btn-modify">Modify</button>
+                        <button class="btn-full-close">Full Close</button>
+                    </div>
+                </div>
+
+                <div class="position-card short">
+                    <div class="position-header">
+                        <div class="position-info">
+                            <span class="position-type short">Short</span>
+                            <span class="position-pair">ETH/USDTg</span>
+                            <span class="position-leverage">3x</span>
+                        </div>
+                        <div class="position-status">
+                            <span class="status-loss">-$8,250</span>
+                            <span class="pnl-percent loss">-7.8%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="position-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Size:</span>
+                            <span class="detail-value">5.23 ETH</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Entry:</span>
+                            <span class="detail-value">$2,450</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Current:</span>
+                            <span class="detail-value">$2,642</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Liquidation:</span>
+                            <span class="detail-value danger">$3,267</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Time:</span>
+                            <span class="detail-value">1d 8h</span>
+                        </div>
+                    </div>
+                    
+                    <div class="position-actions">
+                        <button class="btn-partial-close">Partial Close</button>
+                        <button class="btn-modify">Modify</button>
+                        <button class="btn-full-close">Full Close</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Management -->
+        <section class="risk-management">
+            <div class="section-header">
+                <h2 class="section-title">Risk Management</h2>
+                <button class="btn-risk-alert">🚨 Risk Alert</button>
+            </div>
+
+            <div class="risk-grid">
+                <div class="risk-widget">
+                    <h3 class="widget-title">Portfolio Risk</h3>
+                    <div class="risk-gauge">
+                        <canvas id="riskGauge" width="200" height="150"></canvas>
+                    </div>
+                    <div class="risk-details">
+                        <div class="risk-item">
+                            <span class="risk-label">VaR (95%):</span>
+                            <span class="risk-value">-$125,000</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-label">CVaR:</span>
+                            <span class="risk-value">-$185,000</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-label">Max Drawdown:</span>
+                            <span class="risk-value">15.2%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-widget">
+                    <h3 class="widget-title">Margin Health</h3>
+                    <div class="margin-health">
+                        <div class="health-bar">
+                            <div class="health-fill warning" style="width: 72%"></div>
+                        </div>
+                        <div class="health-label">72% Margin Used</div>
+                        <div class="margin-details">
+                            <div class="margin-item">
+                                <span class="margin-label">Initial Margin:</span>
+                                <span class="margin-value">$2,100,000</span>
+                            </div>
+                            <div class="margin-item">
+                                <span class="margin-label">Maintenance Margin:</span>
+                                <span class="margin-value">$1,575,000</span>
+                            </div>
+                            <div class="margin-item">
+                                <span class="margin-label">Available Margin:</span>
+                                <span class="margin-value positive">$875,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-widget">
+                    <h3 class="widget-title">Auto-Management</h3>
+                    <div class="auto-settings">
+                        <div class="setting-item">
+                            <label class="setting-label">Auto DCA</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Auto Stop Loss</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Auto Trailing Stop</label>
+                            <input type="checkbox" class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Emergency Close All</label>
+                            <input type="checkbox" class="setting-toggle emergency">
+                        </div>
+                        <button class="btn-save-settings">Save Protection Settings</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Dashboard -->
+        <section class="analytics-dashboard">
+            <div class="section-header">
+                <h2 class="section-title">Performance Analytics</h2>
+                <div class="analytics-controls">
+                    <select class="analytics-period">
+                        <option>24 Hours</option>
+                        <option>7 Days</option>
+                        <option>30 Days</option>
+                        <option selected>90 Days</option>
+                        <option>1 Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="chart-container">
+                    <h3 class="chart-title">P&L Evolution</h3>
+                    <canvas id="pnlChart" width="600" height="300"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Leverage Usage</h3>
+                    <canvas id="leverageChart" width="400" height="200"></canvas>
+                </div>
+
+                <div class="performance-stats">
+                    <h3 class="stats-title">Performance Metrics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Total P&L</div>
+                            <div class="metric-value positive">+$234,567</div>
+                            <div class="metric-change positive">+27.3%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Win Rate</div>
+                            <div class="metric-value">67.2%</div>
+                            <div class="metric-change positive">+5.1%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Average Leverage</div>
+                            <div class="metric-value">4.2x</div>
+                            <div class="metric-change negative">+0.8x</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Sharpe Ratio</div>
+                            <div class="metric-value">2.35</div>
+                            <div class="metric-change positive">+0.42</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="trading-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="footer-title">Risk Disclosures</h4>
+                <p class="footer-text">
+                    Margin trading involves substantial risk and is for sophisticated traders only. 
+                    High leverage increases both profits and losses. Past performance does not guarantee future results.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Need Help?</h4>
+                <div class="support-links">
+                    <a href="#">📚 Margin Guide</a>
+                    <a href="#">⚡ Quick Tutorial</a>
+                    <a href="#">💬 Live Support</a>
+                    <a href="#">📞 Emergency Line</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Account Status</h4>
+                <div class="account-status">
+                    <div class="status-item online">✅ Trading Active</div>
+                    <div class="status-item online">✅ Margin Enabled</div>
+                    <div class="status-item warning">⚠️ Risk Monitoring</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                © 2025 USDTgVerse Margin Trading Platform. 
+                <span class="warning-text">High Risk Trading Environment</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../scripts/margin_trading.js"></script>
+</body>
+</html>
