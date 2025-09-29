@@ -412,37 +412,75 @@ struct WalletView: View {
     }
     
     private var quickActionsView: some View {
-        HStack(spacing: 20) {
-            QuickActionButton(
-                icon: "arrow.up.circle.fill",
-                title: "Send",
-                color: .red
-            ) {
-                showingSendView = true
+        VStack(spacing: 15) {
+            // Primary Actions Row
+            HStack(spacing: 20) {
+                QuickActionButton(
+                    icon: "arrow.up.circle.fill",
+                    title: "Send",
+                    color: .red
+                ) {
+                    showingSendView = true
+                }
+                
+                QuickActionButton(
+                    icon: "arrow.down.circle.fill",
+                    title: "Receive",
+                    color: .green
+                ) {
+                    showingReceiveView = true
+                }
+                
+                QuickActionButton(
+                    icon: "arrow.left.arrow.right.circle.fill",
+                    title: "Swap",
+                    color: .blue
+                ) {
+                    showingSwapView = true
+                }
+                
+                QuickActionButton(
+                    icon: "creditcard.circle.fill",
+                    title: "USDTgVerse PAY",
+                    color: .green
+                ) {
+                    // Navigate to USDTgVerse PAY
+                }
             }
             
-            QuickActionButton(
-                icon: "arrow.down.circle.fill",
-                title: "Receive",
-                color: .green
-            ) {
-                showingReceiveView = true
-            }
-            
-            QuickActionButton(
-                icon: "arrow.left.arrow.right.circle.fill",
-                title: "Swap",
-                color: .blue
-            ) {
-                showingSwapView = true
-            }
-            
-            QuickActionButton(
-                icon: "creditcard.circle.fill",
-                title: "USDTgVerse PAY",
-                color: .green
-            ) {
-                // Navigate to USDTgVerse PAY
+            // Enterprise Features Row
+            HStack(spacing: 20) {
+                QuickActionButton(
+                    icon: "person.3.fill",
+                    title: "Membership",
+                    color: .purple
+                ) {
+                    // Navigate to Membership Portal
+                }
+                
+                QuickActionButton(
+                    icon: "chart.line.uptrend.xyaxis",
+                    title: "Margin Trading",
+                    color: .orange
+                ) {
+                    // Navigate to Margin Trading
+                }
+                
+                QuickActionButton(
+                    icon: "doc.on.doc.fill",
+                    title: "Copy Trading",
+                    color: .cyan
+                ) {
+                    // Navigate to Copy Trading
+                }
+                
+                QuickActionButton(
+                    icon: "building.columns.fill",
+                    title: "Custody",
+                    color: .yellow
+                ) {
+                    // Navigate to Custody Services
+                }
             }
         }
     }
