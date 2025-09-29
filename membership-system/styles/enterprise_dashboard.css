@@ -15,13 +15,17 @@
 ==============================================
 */
 
-/* Reset & Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Bootstrap Customizations */
+:root {
+    --bs-primary: #667eea;
+    --bs-secondary: #764ba2;
+    --bs-success: #28a745;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-info: #17a2b8;
 }
 
+/* Custom Styles */
 body {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
