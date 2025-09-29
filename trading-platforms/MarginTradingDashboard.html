@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Margin Trading Dashboard</title>
+    <link rel="stylesheet" href="../styles/margin_trading.css">
+    <link rel="icon" type="image/png" href="../assets/logos/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="trading-header">
+        <div class="header-container">
+            <div class="brand-section">
+                <img src="../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
+                <div class="brand-info">
+                    <h1 class="brand-name">USDTgVerse Margin Trading</h1>
+                    <span class="brand-subtitle">Professional Trading Platform</span>
+                </div>
+            </div>
+            
+            <div class="account-section">
+                <div class="account-info">
+                    <div class="account-tier">Professional Member</div>
+                    <div class="account-balance">$125,430 USDTg</div>
+                </div>
+                <div class="account-actions">
+                    <button class="btn-notification">🔔</button>
+                    <button class="btn-profile">👤</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="trading-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">📊 Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">💱 Spot Trading</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">⚡ Margin Trading</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">📈 Futures</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">🏦 OTC Desk</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">📊 Analytics</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="trading-main">
+        <div class="trading-container">
+            <!-- Trading Grid -->
+            <div class="trading-grid">
+                <!-- Market Overview -->
+                <div class="market-overview">
+                    <div class="section-header">
+                        <h2 class="section-title">Market Overview</h2>
+                        <div class="market-filters">
+                            <select class="filter-select">
+                                <option>All Markets</option>
+                                <option>USDTg Pairs</option>
+                                <option>Major Pairs</option>
+                                <option>DeFi Tokens</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="market-list">
+                        <div class="market-item">
+                            <div class="market-pair">
+                                <span class="base-currency">USDTg</span>
+                                <span class="quote-currency">/USDT</span>
+                            </div>
+                            <div class="market-price">$1.00</div>
+                            <div class="market-change positive">+0.12%</div>
+                            <div class="market-volume">$2.5M</div>
+                        </div>
+                        
+                        <div class="market-item">
+                            <div class="market-pair">
+                                <span class="base-currency">USDTgV</span>
+                                <span class="quote-currency">/USDTg</span>
+                            </div>
+                            <div class="market-price">$0.52</div>
+                            <div class="market-change negative">-1.45%</div>
+                            <div class="market-volume">$1.8M</div>
+                        </div>
+                        
+                        <div class="market-item">
+                            <div class="market-pair">
+                                <span class="base-currency">USDTgG</span>
+                                <span class="quote-currency">/USDTg</span>
+                            </div>
+                            <div class="market-price">$4.95</div>
+                            <div class="market-change positive">+2.31%</div>
+                            <div class="market-volume">$3.2M</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Chart -->
+                <div class="trading-chart">
+                    <div class="chart-header">
+                        <h3 class="chart-title">USDTgV/USDTg</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active">1D</button>
+                            <button class="chart-btn">1W</button>
+                            <button class="chart-btn">1M</button>
+                            <button class="chart-btn">3M</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-placeholder">
+                            <div class="chart-message">
+                                📈 Real-time Trading Chart
+                                <br>
+                                <small>Advanced charting with technical indicators</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Panel -->
+                <div class="trading-panel">
+                    <div class="panel-tabs">
+                        <button class="tab-btn active">Market</button>
+                        <button class="tab-btn">Limit</button>
+                        <button class="tab-btn">Stop</button>
+                    </div>
+                    
+                    <div class="trading-form">
+                        <div class="form-group">
+                            <label class="form-label">Order Type</label>
+                            <select class="form-select">
+                                <option>Buy</option>
+                                <option>Sell</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Amount</label>
+                            <input type="number" class="form-input" placeholder="0.00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-input" placeholder="0.00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Leverage</label>
+                            <select class="form-select">
+                                <option>1x</option>
+                                <option>2x</option>
+                                <option>3x</option>
+                                <option>5x</option>
+                                <option>10x</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-summary">
+                            <div class="summary-row">
+                                <span>Total</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Fee</span>
+                                <span>$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-buy">Buy USDTgV</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Summary -->
+            <div class="account-summary">
+                <div class="summary-card">
+                    <h3 class="card-title">Account Balance</h3>
+                    <div class="balance-item">
+                        <span class="balance-label">Total Balance</span>
+                        <span class="balance-value">$125,430.00</span>
+                    </div>
+                    <div class="balance-item">
+                        <span class="balance-label">Available</span>
+                        <span class="balance-value">$98,250.00</span>
+                    </div>
+                    <div class="balance-item">
+                        <span class="balance-label">In Orders</span>
+                        <span class="balance-value">$27,180.00</span>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <h3 class="card-title">Open Positions</h3>
+                    <div class="position-item">
+                        <div class="position-pair">USDTgV/USDTg</div>
+                        <div class="position-side buy">Long</div>
+                        <div class="position-size">1,000 USDTgV</div>
+                        <div class="position-pnl positive">+$125.50</div>
+                    </div>
+                    <div class="position-item">
+                        <div class="position-pair">USDTgG/USDTg</div>
+                        <div class="position-side sell">Short</div>
+                        <div class="position-size">500 USDTgG</div>
+                        <div class="position-pnl negative">-$45.20</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <h3 class="card-title">Recent Orders</h3>
+                    <div class="order-item">
+                        <div class="order-pair">USDTgV/USDTg</div>
+                        <div class="order-type buy">Buy</div>
+                        <div class="order-status filled">Filled</div>
+                        <div class="order-amount">1,000 USDTgV</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-pair">USDTgG/USDTg</div>
+                        <div class="order-type sell">Sell</div>
+                        <div class="order-status pending">Pending</div>
+                        <div class="order-amount">500 USDTgG</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Trading Dashboard JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart controls
+            const chartBtns = document.querySelectorAll('.chart-btn');
+            chartBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    chartBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Panel tabs
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Market item clicks
+            const marketItems = document.querySelectorAll('.market-item');
+            marketItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    marketItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Custody Services Dashboard</title>
+    <link rel="stylesheet" href="../styles/custody_services.css">
+    <link rel="icon" type="image/png" href="../assets/logos/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="custody-header">
+        <div class="header-container">
+            <div class="brand-section">
+                <img src="../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
+                <div class="brand-info">
+                    <h1 class="brand-name">USDTgVerse Custody Services</h1>
+                    <span class="brand-subtitle">Institutional-Grade Security</span>
+                </div>
+            </div>
+            
+            <div class="account-section">
+                <div class="account-info">
+                    <div class="account-tier">Institutional Client</div>
+                    <div class="account-balance">$2,450,000 USDTg</div>
+                </div>
+                <div class="account-actions">
+                    <button class="btn-notification">🔔</button>
+                    <button class="btn-profile">👤</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="custody-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">🏦 Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">💼 Vaults</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">🔐 Security</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">📊 Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">⚙️ Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="custody-main">
+        <div class="custody-container">
+            <!-- Security Overview -->
+            <div class="security-overview">
+                <div class="security-card">
+                    <div class="security-icon">🔒</div>
+                    <h3 class="security-title">Cold Storage</h3>
+                    <div class="security-value">$1,850,000</div>
+                    <div class="security-percentage">75.5%</div>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">🌡️</div>
+                    <h3 class="security-title">Warm Storage</h3>
+                    <div class="security-value">$450,000</div>
+                    <div class="security-percentage">18.4%</div>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">⚡</div>
+                    <h3 class="security-title">Hot Storage</h3>
+                    <div class="security-value">$150,000</div>
+                    <div class="security-percentage">6.1%</div>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">🛡️</div>
+                    <h3 class="security-title">Insurance</h3>
+                    <div class="security-value">$2,500,000</div>
+                    <div class="security-percentage">102%</div>
+                </div>
+            </div>
+
+            <!-- Vault Management -->
+            <div class="vault-management">
+                <div class="section-header">
+                    <h2 class="section-title">Vault Management</h2>
+                    <button class="btn-primary">Create New Vault</button>
+                </div>
+                
+                <div class="vaults-grid">
+                    <div class="vault-card">
+                        <div class="vault-header">
+                            <h3 class="vault-name">Primary Cold Vault</h3>
+                            <div class="vault-status active">Active</div>
+                        </div>
+                        
+                        <div class="vault-details">
+                            <div class="vault-detail">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Switzerland</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Type</span>
+                                <span class="detail-value">Multi-Sig Cold</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Balance</span>
+                                <span class="detail-value">$1,250,000</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Last Access</span>
+                                <span class="detail-value">2 days ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vault-actions">
+                            <button class="btn-action">View Details</button>
+                            <button class="btn-action">Transfer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vault-card">
+                        <div class="vault-header">
+                            <h3 class="vault-name">Trading Vault</h3>
+                            <div class="vault-status active">Active</div>
+                        </div>
+                        
+                        <div class="vault-details">
+                            <div class="vault-detail">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Singapore</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Type</span>
+                                <span class="detail-value">Warm Storage</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Balance</span>
+                                <span class="detail-value">$450,000</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Last Access</span>
+                                <span class="detail-value">1 hour ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vault-actions">
+                            <button class="btn-action">View Details</button>
+                            <button class="btn-action">Transfer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vault-card">
+                        <div class="vault-header">
+                            <h3 class="vault-name">Backup Vault</h3>
+                            <div class="vault-status standby">Standby</div>
+                        </div>
+                        
+                        <div class="vault-details">
+                            <div class="vault-detail">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Cayman Islands</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Type</span>
+                                <span class="detail-value">Cold Storage</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Balance</span>
+                                <span class="detail-value">$600,000</span>
+                            </div>
+                            <div class="vault-detail">
+                                <span class="detail-label">Last Access</span>
+                                <span class="detail-value">1 week ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vault-actions">
+                            <button class="btn-action">View Details</button>
+                            <button class="btn-action">Activate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Monitoring -->
+            <div class="security-monitoring">
+                <div class="section-header">
+                    <h2 class="section-title">Security Monitoring</h2>
+                    <div class="security-status">
+                        <div class="status-indicator secure"></div>
+                        <span class="status-text">All Systems Secure</span>
+                    </div>
+                </div>
+                
+                <div class="monitoring-grid">
+                    <div class="monitor-card">
+                        <h3 class="monitor-title">Access Logs</h3>
+                        <div class="monitor-content">
+                            <div class="log-entry">
+                                <div class="log-time">14:32:15</div>
+                                <div class="log-action">Vault Access</div>
+                                <div class="log-user">Admin User</div>
+                                <div class="log-status success">Success</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="log-time">12:15:42</div>
+                                <div class="log-action">Transfer Initiated</div>
+                                <div class="log-user">Trading Bot</div>
+                                <div class="log-status success">Success</div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="log-time">09:45:33</div>
+                                <div class="log-action">Security Check</div>
+                                <div class="log-user">System</div>
+                                <div class="log-status success">Success</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="monitor-card">
+                        <h3 class="monitor-title">Threat Detection</h3>
+                        <div class="monitor-content">
+                            <div class="threat-level low">
+                                <div class="threat-icon">🟢</div>
+                                <div class="threat-info">
+                                    <div class="threat-title">Low Risk</div>
+                                    <div class="threat-description">No active threats detected</div>
+                                </div>
+                            </div>
+                            <div class="threat-stats">
+                                <div class="threat-stat">
+                                    <span class="stat-label">Blocked Attempts</span>
+                                    <span class="stat-value">0</span>
+                                </div>
+                                <div class="threat-stat">
+                                    <span class="stat-label">Last Scan</span>
+                                    <span class="stat-value">2 min ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="monitor-card">
+                        <h3 class="monitor-title">Compliance Status</h3>
+                        <div class="monitor-content">
+                            <div class="compliance-item">
+                                <div class="compliance-name">SOC 2 Type II</div>
+                                <div class="compliance-status certified">Certified</div>
+                            </div>
+                            <div class="compliance-item">
+                                <div class="compliance-name">ISO 27001</div>
+                                <div class="compliance-status certified">Certified</div>
+                            </div>
+                            <div class="compliance-item">
+                                <div class="compliance-name">PCI DSS</div>
+                                <div class="compliance-status certified">Certified</div>
+                            </div>
+                            <div class="compliance-item">
+                                <div class="compliance-name">GDPR</div>
+                                <div class="compliance-status compliant">Compliant</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asset Allocation -->
+            <div class="asset-allocation">
+                <div class="section-header">
+                    <h2 class="section-title">Asset Allocation</h2>
+                    <div class="allocation-filters">
+                        <select class="filter-select">
+                            <option>All Assets</option>
+                            <option>USDTg</option>
+                            <option>USDTgV</option>
+                            <option>USDTgG</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="allocation-grid">
+                    <div class="allocation-chart">
+                        <div class="chart-placeholder">
+                            <div class="chart-message">
+                                📊 Asset Allocation Chart
+                                <br>
+                                <small>Visual representation of asset distribution</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="allocation-table">
+                        <div class="table-header">
+                            <div class="table-cell">Asset</div>
+                            <div class="table-cell">Amount</div>
+                            <div class="table-cell">Value</div>
+                            <div class="table-cell">%</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <div class="asset-info">
+                                    <div class="asset-icon">🪙</div>
+                                    <span class="asset-name">USDTg</span>
+                                </div>
+                            </div>
+                            <div class="table-cell">1,500,000</div>
+                            <div class="table-cell">$1,500,000</div>
+                            <div class="table-cell">61.2%</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <div class="asset-info">
+                                    <div class="asset-icon">💎</div>
+                                    <span class="asset-name">USDTgV</span>
+                                </div>
+                            </div>
+                            <div class="table-cell">500,000</div>
+                            <div class="table-cell">$260,000</div>
+                            <div class="table-cell">10.6%</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <div class="asset-info">
+                                    <div class="asset-icon">🚀</div>
+                                    <span class="asset-name">USDTgG</span>
+                                </div>
+                            </div>
+                            <div class="table-cell">100,000</div>
+                            <div class="table-cell">$495,000</div>
+                            <div class="table-cell">20.2%</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <div class="asset-info">
+                                    <div class="asset-icon">💰</div>
+                                    <span class="asset-name">USDT</span>
+                                </div>
+                            </div>
+                            <div class="table-cell">195,000</div>
+                            <div class="table-cell">$195,000</div>
+                            <div class="table-cell">8.0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Custody Services Dashboard JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vault actions
+            const vaultActions = document.querySelectorAll('.vault-actions .btn-action');
+            vaultActions.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.textContent.toLowerCase();
+                    if (action === 'activate') {
+                        if (confirm('Are you sure you want to activate this vault?')) {
+                            this.textContent = 'Activating...';
+                            this.style.background = '#6c757d';
+                            setTimeout(() => {
+                                this.textContent = 'Active';
+                                this.style.background = '#28a745';
+                            }, 2000);
+                        }
+                    } else if (action === 'transfer') {
+                        // Simulate transfer action
+                        this.textContent = 'Processing...';
+                        this.style.background = '#6c757d';
+                        setTimeout(() => {
+                            this.textContent = 'Transfer';
+                            this.style.background = '#667eea';
+                        }, 2000);
+                    }
+                });
+            });
+            
+            // Security status updates
+            const statusIndicator = document.querySelector('.status-indicator');
+            const statusText = document.querySelector('.status-text');
+            
+            // Simulate real-time security updates
+            setInterval(() => {
+                const threats = Math.random();
+                if (threats < 0.1) {
+                    statusIndicator.className = 'status-indicator warning';
+                    statusText.textContent = 'Minor Threat Detected';
+                } else if (threats < 0.05) {
+                    statusIndicator.className = 'status-indicator danger';
+                    statusText.textContent = 'High Risk Alert';
+                } else {
+                    statusIndicator.className = 'status-indicator secure';
+                    statusText.textContent = 'All Systems Secure';
+                }
+            }, 10000);
+            
+            // Asset allocation chart simulation
+            const chartPlaceholder = document.querySelector('.chart-placeholder');
+            if (chartPlaceholder) {
+                chartPlaceholder.addEventListener('click', function() {
+                    this.innerHTML = `
+                        <div class="chart-message">
+                            📈 Loading Chart...
+                            <br>
+                            <small>Real-time asset allocation visualization</small>
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        this.innerHTML = `
+                            <div class="chart-message">
+                                📊 Asset Allocation Chart
+                                <br>
+                                <small>Visual representation of asset distribution</small>
+                            </div>
+                        `;
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

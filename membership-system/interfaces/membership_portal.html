@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Membership Portal</title>
+    <link rel="stylesheet" href="../styles/membership_styles.css">
+    <link rel="icon" type="image/png" href="../../assets/logos/logo.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../../assets/logos/logo.png" alt="USDTgVerse" class="nav-logo">
+                <span class="nav-title">USDTgVerse</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="../../index.html" class="nav-link">Home</a>
+                <a href="#tiers" class="nav-link">Membership Tiers</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#kyc" class="nav-link">KYC Process</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn-secondary">Login</button>
+                <button class="btn-primary">Get Started</button>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Enterprise Membership Portal</h1>
+                <p class="hero-subtitle">
+                    Join the most exclusive blockchain ecosystem with quantum-safe trading, 
+                    institutional-grade security, and premium services.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">$2.5B+</div>
+                        <div class="stat-label">Total Volume</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">50K+</div>
+                        <div class="stat-label">Active Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <button class="btn-primary btn-large">Start Application</button>
+                    <button class="btn-secondary btn-large">View Tiers</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Tiers -->
+    <section id="tiers" class="tiers-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Membership Tiers</h2>
+                <p class="section-subtitle">Choose the perfect tier for your trading needs</p>
+            </div>
+            
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3 class="tier-name">Individual</h3>
+                        <div class="tier-price">Free</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>Basic trading features</li>
+                            <li>Standard support</li>
+                            <li>Basic KYC verification</li>
+                            <li>Limited API access</li>
+                        </ul>
+                    </div>
+                    <button class="btn-secondary">Get Started</button>
+                </div>
+                
+                <div class="tier-card featured">
+                    <div class="tier-badge">Most Popular</div>
+                    <div class="tier-header">
+                        <h3 class="tier-name">Professional</h3>
+                        <div class="tier-price">$99/month</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>Advanced trading tools</li>
+                            <li>Priority support</li>
+                            <li>Enhanced KYC</li>
+                            <li>Full API access</li>
+                            <li>Margin trading</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Choose Plan</button>
+                </div>
+                
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3 class="tier-name">Corporate</h3>
+                        <div class="tier-price">$499/month</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>Enterprise features</li>
+                            <li>Dedicated support</li>
+                            <li>Full KYC/AML</li>
+                            <li>Custom API</li>
+                            <li>OTC trading</li>
+                            <li>Prime brokerage</li>
+                        </ul>
+                    </div>
+                    <button class="btn-secondary">Contact Sales</button>
+                </div>
+                
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3 class="tier-name">Institutional</h3>
+                        <div class="tier-price">Custom</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>White-label solutions</li>
+                            <li>24/7 dedicated support</li>
+                            <li>Full compliance suite</li>
+                            <li>Custom integrations</li>
+                            <li>Dark pools</li>
+                            <li>Institutional custody</li>
+                        </ul>
+                    </div>
+                    <button class="btn-secondary">Contact Sales</button>
+                </div>
+                
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3 class="tier-name">VIP</h3>
+                        <div class="tier-price">$2,999/month</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>All enterprise features</li>
+                            <li>Personal account manager</li>
+                            <li>Exclusive events</li>
+                            <li>Early access to features</li>
+                            <li>Custom trading algorithms</li>
+                            <li>Premium analytics</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Apply Now</button>
+                </div>
+                
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3 class="tier-name">Partner</h3>
+                        <div class="tier-price">Revenue Share</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>Revenue sharing program</li>
+                            <li>Co-marketing opportunities</li>
+                            <li>Technical integration support</li>
+                            <li>Joint development</li>
+                            <li>Global expansion support</li>
+                            <li>Strategic partnership</li>
+                        </ul>
+                    </div>
+                    <button class="btn-secondary">Become Partner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Enterprise Features</h2>
+                <p class="section-subtitle">Powerful tools for professional traders and institutions</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Quantum-Safe Security</h3>
+                    <p class="feature-description">
+                        Advanced cryptographic protection against quantum computing threats
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">High-Performance Trading</h3>
+                    <p class="feature-description">
+                        Sub-millisecond execution with 99.9% uptime guarantee
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏦</div>
+                    <h3 class="feature-title">Prime Brokerage</h3>
+                    <p class="feature-description">
+                        Institutional-grade services with competitive rates
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Advanced Analytics</h3>
+                    <p class="feature-description">
+                        Real-time market data and sophisticated trading tools
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Global Access</h3>
+                    <p class="feature-description">
+                        Trade across multiple markets with unified interface
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Compliance Suite</h3>
+                    <p class="feature-description">
+                        Full KYC/AML compliance with regulatory reporting
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KYC Process -->
+    <section id="kyc" class="kyc-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">KYC/AML Process</h2>
+                <p class="section-subtitle">Secure and efficient verification process</p>
+            </div>
+            
+            <div class="kyc-steps">
+                <div class="kyc-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Basic Information</h3>
+                    <p class="step-description">
+                        Provide personal or corporate information and documentation
+                    </p>
+                </div>
+                
+                <div class="kyc-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Identity Verification</h3>
+                    <p class="step-description">
+                        Upload government-issued ID and complete biometric verification
+                    </p>
+                </div>
+                
+                <div class="kyc-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Address Verification</h3>
+                    <p class="step-description">
+                        Provide proof of address and complete liveness detection
+                    </p>
+                </div>
+                
+                <div class="kyc-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Compliance Check</h3>
+                    <p class="step-description">
+                        Automated PEP and sanctions screening with manual review
+                    </p>
+                </div>
+                
+                <div class="kyc-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Approval</h3>
+                    <p class="step-description">
+                        Receive membership approval and access to premium features
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Join USDTgVerse?</h2>
+                <p class="cta-subtitle">
+                    Start your application today and unlock the power of quantum-safe trading
+                </p>
+                
+                <div class="cta-stats">
+                    <div class="cta-stat">
+                        <div class="cta-stat-value">24/7</div>
+                        <div class="cta-stat-label">Support</div>
+                    </div>
+                    <div class="cta-stat">
+                        <div class="cta-stat-value">99.9%</div>
+                        <div class="cta-stat-label">Uptime</div>
+                    </div>
+                    <div class="cta-stat">
+                        <div class="cta-stat-value">$2.5B+</div>
+                        <div class="cta-stat-label">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="cta-actions">
+                    <button class="btn-primary btn-large">Start Application</button>
+                    <button class="btn-secondary btn-large">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>USDTgVerse</h4>
+                    <p>Enterprise Blockchain Ecosystem</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../dashboard/index.html">Dashboard</a></li>
+                        <li><a href="../../website/index.html">Website</a></li>
+                        <li><a href="#tiers">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Status Page</a></li>
+                        <li><a href="#">API Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2024 USDTgVerse. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
