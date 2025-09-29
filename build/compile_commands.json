@@ -1,6 +1,5 @@
 [
 {
-  "_comment": "==============================================\n File:        compile_commands.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   Compile Commands Database\n   \n   Compilation database featuring:\n   - Build command tracking\n   - Compiler flags and options\n   - Source file mapping\n   - Build system integration\n\n License:\n   MIT License\n==============================================",
   "directory": "/Users/irfangedik/USDTgVerse/build",
   "command": "/usr/bin/clang  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -g -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgverse.dir/src/main.c.o -c /Users/irfangedik/USDTgVerse/src/main.c",
   "file": "/Users/irfangedik/USDTgVerse/src/main.c",
