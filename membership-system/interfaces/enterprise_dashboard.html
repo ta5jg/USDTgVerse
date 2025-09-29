@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Enterprise Dashboard</title>
+    <link rel="stylesheet" href="../styles/enterprise_dashboard.css">
+    <link rel="icon" type="image/png" href="../../assets/logos/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="brand-section">
+                <img src="../../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
+                <div class="brand-info">
+                    <h1 class="brand-name">USDTgVerse Enterprise</h1>
+                    <span class="brand-subtitle">Quantum-Safe Trading Platform</span>
+                </div>
+            </div>
+            
+            <div class="account-section">
+                <div class="account-info">
+                    <div class="account-tier">VIP Member</div>
+                    <div class="account-balance">$45,230,000 USDTg</div>
+                </div>
+                <div class="account-actions">
+                    <button class="btn-notification">🔔</button>
+                    <button class="btn-profile">👤</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">📊 Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">💱 Trading</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="#">Spot Trading</a></li>
+                        <li><a href="#">Margin Trading</a></li>
+                        <li><a href="#">Futures Trading</a></li>
+                        <li><a href="#">OTC Desk</a></li>
+                        <li><a href="#">Dark Pools</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">🏛️ Prime Services</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="#">Prime Brokerage</a></li>
+                        <li><a href="#">Securities Lending</a></li>
+                        <li><a href="#">Financing Solutions</a></li>
+                        <li><a href="#">Custody Services</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">🔒 Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">📈 Analytics</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">⚙️ Settings</a>
+                </li>
+            </ul>
+            
+            <div class="nav-quick-actions">
+                <button class="btn-quick">🚨 Emergency</button>
+                <button class="btn-quick">📞 Connect</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-main">
+        <!-- Dashboard Overview Cards -->
+        <section class="dashboard-overview">
+            <div class="overview-grid">
+                <!-- Portfolio Value Card -->
+                <div class="overview-card portfolio-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Portfolio Value</h3>
+                        <span class="card-subtitle">Total Assets</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="main-metric">$45,230,000</div>
+                        <div class="metric-change positive">+$2,340,000 (+5.47%)</div>
+                        <div class="metric-period">24h change</div>
+                    </div>
+                    <div class="card-chart">
+                        <canvas id="portfolioChart" width="300" height="100"></canvas>
+                    </div>
+                </div>
+
+                <!-- Active Positions Card -->
+                <div class="overview-card positions-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Positions</h3>
+                        <span class="card-subtitle">Open Orders</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="main-metric">12</div>
+                        <div class="metrics-row">
+                            <div class="metric-item">
+                                <div class="metric-value">8</div>
+                                <div class="metric-label">Long</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">4</div>
+                                <div class="metric-label">Short</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Daily P&L Card -->
+                <div class="overview-card pnl-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Daily P&L</h3>
+                        <span class="card-subtitle">Realized & Unrealized</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="main-metric positive">+$234,000</div>
+                        <div class="metrics-row">
+                            <div class="metric-item">
+                                <div class="metric-value positive">+$189K</div>
+                                <div class="metric-label">Realized</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value positive">+$45K</div>
+                                <div class="metric-label">Unrealized</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-percentage positive">+0.52%</div>
+                </div>
+
+                <!-- Trading Volume Card -->
+                <div class="overview-card volume-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Trading Volume</h3>
+                        <span class="card-subtitle">30-day rolling</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="main-metric">$8.7M</div>
+                        <div class="metric-change positive">+15.3%</div>
+                        <div class="metric-period">vs. last month</div>
+                    </div>
+                    <div class="volume-breakdown">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Spot</span>
+                            <span class="breakdown-value">$6.2M</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">OTC</span>
+                            <span class="breakdown-value">$2.5M</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trading Interface Section -->
+        <section class="trading-section">
+            <div class="section-header">
+                <h2 class="section-title">Professional Trading</h2>
+                <div class="section-actions">
+                    <button class="btn-primary">Place Order</button>
+                    <button class="btn-secondary">View Orders</button>
+                </div>
+            </div>
+
+            <div class="trading-grid">
+                <!-- Advanced Order Panel -->
+                <div class="order-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Advanced Order Panel</h3>
+                        <div class="panel-controls">
+                            <select class="panel-select">
+                                <option>Market Order</option>
+                                <option>Limit Order</option>
+                                <option>Stop Order</option>
+                                <option>Stop-Limit Order</option>
+                                <option>TWAP</option>
+                                <option>Iceberg</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="order-form">
+                        <div class="form-group">
+                            <label class="form-label">Trading Pair</label>
+                            <select class="form-select">
+                                <option>BTC/USDTg</option>
+                                <option>ETH/USDTg</option>
+                                <option>USDTgV/USDTg</option>
+                                <option>USDTgG/USDTg</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-input" placeholder="0.000000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                <input type="number" class="form-input" placeholder="0.00">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Order Duration</label>
+                            <select class="form-select">
+                                <option>Good Till Cancel (GTC)</option>
+                                <option>Immediate Or Cancel (IOC)</option>
+                                <option>Fill Or Kill (FOK)</option>
+                                <option>Day Order</option>
+                            </select>
+                        </div>
+                        
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span class="summary-label">Estimated Cost:</span>
+                                <span class="summary-value">$0.00 USDTg</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Available Balance:</span>
+                                <span class="summary-value">$45,230,000 USDTg</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-buy">Buy BTC/USDTg</button>
+                        <button class="btn-sell">Sell BTC/USDTg</button>
+                    </div>
+                </div>
+
+                <!-- Market Data -->
+                <div class="market-data">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Real-Time Market Data</h3>
+                        <div class="market-status online">🟢 Live</div>
+                    </div>
+                    
+                    <div class="market-tabs">
+                        <div class="tab active">Order Book</div>
+                        <div class="tab">Last Trades</div>
+                        <div class="tab">Market Depth</div>
+                    </div>
+                    
+                    <div class="orderbook">
+                        <div class="orderbook-side">
+                            <div class="side-header sell-header">SELL ORDERS</div>
+                            <div class="orderbook-orders">
+                                <div class="orderbook-row">
+                                    <span class="order-price">$67,250.50</span>
+                                    <span class="order-quantity">123.45</span>
+                                    <span class="order-total">$8.3M</span>
+                                </div>
+                                <div class="orderbook-row">
+                                    <span class="order-price">$67,245.25</span>
+                                    <span class="order-quantity">89.12</span>
+                                    <span class="order-total">$6.0M</span>
+                                </div>
+                                <div class="orderbook-row">
+                                    <span class="order-price">$67,230.00</span>
+                                    <span class="order-quantity">156.78</span>
+                                    <span class="order-total">$10.5M</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="orderbook-spread">
+                            <div class="spread-info">
+                                <span class="spread-label">Spread:</span>
+                                <span class="spread-value">$5.25 (0.008%)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="orderbook-side">
+                            <div class="side-header buy-header">BUY ORDERS</div>
+                            <div class="orderbook-orders">
+                                <div class="orderbook-row">
+                                    <span class="order-price">$67,240.00</span>
+                                    <span class="order-quantity">95.23</span>
+                                    <span class="order-total">$6.4M</span>
+                                </div>
+                                <div class="orderbook-row">
+                                    <span class="order-price">$67,235.75</span>
+                                    <span class="order-quantity">134.67</span>
+                                    <span class="order-total">$9.1M</span>
+                                </div>
+                                <div class="orderbook-row">
+                                    <span class="order-price">$67,220.00</span>
+                                    <span class="order-quantity">201.45</span>
+                                    <span class="order-total">$13.5M</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio & Positions -->
+        <section class="portfolio-section">
+            <div class="section-header">
+                <h2 class="section-title">Portfolio Overview</h2>
+                <div class="section-filters">
+                    <select class="filter-select">
+                        <option>All Assets</option>
+                        <option>Spot Holdings</option>
+                        <option>Margin Positions</option>
+                        <option>Futures Positions</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="portfolio-table-container">
+                <table class="portfolio-table">
+                    <thead>
+                        <tr>
+                            <th>Asset</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Average Price</th>
+                            <th>Market Price</th>
+                            <th>P&L</th>
+                            <th>P&L %</th>
+                            <th>Value</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="position-row">
+                            <td class="asset-cell">
+                                <div class="asset-info">
+                                    <img src="../../assets/logos/logo.png" alt="USDTg" class="asset-icon">
+                                    <span class="asset-name">USDTg</span>
+                                </div>
+                            </td>
+                            <td class="type-cell">
+                                <span class="type-badge spot">Spot</span>
+                            </td>
+                            <td class="quantity-cell">45,230,000</td>
+                            <td class="avg-price-cell">$1.0000</td>
+                            <td class="market-price-cell">$1.0000</td>
+                            <td class="pnl-cell">$0</td>
+                            <td class="pnl-percent-cell">0.00%</td>
+                            <td class="value-cell">$45,230,000</td>
+                            <td class="actions-cell">
+                                <button class="btn-action-small">Trade</button>
+                            </td>
+                        </tr>
+                        <tr class="position-row">
+                            <td class="asset-cell">
+                                <div class="asset-info">
+                                    <div class="asset-icon">₿</div>
+                                    <span class="asset-name">BTC</span>
+                                </div>
+                            </td>
+                            <td class="pair-cell">
+                                <span class="type-badge spot">Spot</span>
+                            </td>
+                            <td class="quantity-cell">67.45</td>
+                            <td class="avg-price-cell">$42,500.00</td>
+                            <td class="market-price-cell">$67,245.25</td>
+                            <td class="pnl-cell positive">+$1,670,000</td>
+                            <td class="pnl-percent-cell positive">+58.21%</td>
+                            <td class="value-cell">$4,535,687</td>
+                            <td class="actions-cell">
+                                <button class="btn-action-small">Trade</button>
+                                <button class="btn-action-small">Close</button>
+                            </td>
+                        </tr>
+                        <tr class="position-row">
+                            <td class="asset-cell">
+                                <div class="asset-info">
+                                    <div class="asset-icon">Ξ</div>
+                                    <span class="asset-name">ETH</span>
+                                </div>
+                            </td>
+                            <td class="type-cell">
+                                <span class="type-badge margin">Margin Long</span>
+                            </td>
+                            <td class="quantity-cell">1,234.56</td>
+                            <td class="avg-price-cell">$1,800.00</td>
+                            <td class="market-price-cell">$2,345.67</td>
+                            <td class="pnl-cell positive">+$673,000</td>
+                            <td class="pnl-percent-cell positive">+30.27%</td>
+                            <td class="value-cell">$2,894,123</td>
+                            <td class="actions-cell">
+                                <button class="btn-action-small">Trade</button>
+                                <button class="btn-action-small">Close</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Recent Transactions -->
+        <section class="transactions-section">
+            <div class="section-header">
+                <h2 class="section-title">Recent Transactions</h2>
+                <button class="btn-text">View All</button>
+            </div>
+
+            <div class="transactions-list">
+                <div class="transaction-item">
+                    <div class="transaction-type buy">BUY</div>
+                    <div class="transaction-details">
+                        <div class="transaction-pair">BTC/USDTg</div>
+                        <div class="transaction-info">
+                            <span class="quantity">10.50 BTC</span> at 
+                            <span class="price">$67,240.00</span>
+                        </div>
+                    </div>
+                    <div class="transaction-meta">
+                        <div class="transaction-value">$705,000</div>
+                        <div class="transaction-time">2 min ago</div>
+                    </div>
+                    <div class="transaction-status">
+                        <span class="status-badge completed">Completed</span>
+                    </div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-type sell">SELL</div>
+                    <div class="transaction-details">
+                        <div class="transaction-pair">ETH/USDTg</div>
+                        <div class="transaction-info">
+                            <span class="quantity">500.00 ETH</span> at 
+                            <span class="price">$2,340.00</span>
+                        </div>
+                    </div>
+                    <div class="transaction-meta">
+                        <div class="transaction-value">$1,170,000</div>
+                        <div class="transaction-time">25 min ago</div>
+                    </div>
+                    <div class="transaction-status">
+                        <span class="status-badge completed">Completed</span>
+                    </div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-type deposit">DEPOSIT</div>
+                    <div class="transaction-details">
+                        <div class="transaction-asset">USDTg</div>
+                        <div class="transaction-info">
+                            Bank transfer deposit
+                        </div>
+                    </div>
+                    <div class="transaction-meta">
+                        <div class="transaction-value">+$2,500,000</div>
+                        <div class="transaction-time">1 hour ago</div>
+                    </div>
+                    <div class="transaction-status">
+                        <span class="status-badge completed">Completed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="footer-title">Market Status</h4>
+                <div class="market-status-indicators">
+                    <div class="status-indicator active">Spot Markets</div>
+                    <div class="status-indicator active">Margin Trading</div>
+                    <div class="status-indicator active">OTC Trading</div>
+                    <div class="status-indicator active">Prime Services</div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Quick Access</h4>
+                <div class="quick-links">
+                    <a href="#" class="quick-link">Risk Management</a>
+                    <a href="#" class="quick-link">Settlement Reports</a>
+                    <a href="#" class="quick-link">API Documentation</a>
+                    <a href="#" class="quick-link">Support Portal</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Support</h4>
+                <div class="support-info">
+                    <div class="support-item">
+                        <span class="support-label">Dedicated Support:</span>
+                        <span class="support-value">+1-855-USDTG-VIP</span>
+                    </div>
+                    <div class="support-item">
+                        <span class="support-label">Email:</span>
+                        <span class="support-value">vip-support@usdtgverse.com</span>
+                    </div>
+                    <div class="support-item">
+                        <span class="support-label">Available:</span>
+                        <span class="support-value">24/7/365</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                © 2025 USDTgVerse Enterprise Platform. All rights reserved.
+                <span class="security-notice">🔒 Quantum-Safe Encryption Active</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../scripts/enterprise_dashboard.js"></script>
+</body>
+</html>
