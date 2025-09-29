@@ -27,436 +27,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Token Dashboard - Live Prices & Trading</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff6b00, #ff0066);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.8;
-        }
-        
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #ff6b00;
-        }
-        
-        .stat-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .stat-change {
-            font-size: 1.1em;
-            opacity: 0.8;
-        }
-        
-        .positive {
-            color: #00ff88;
-        }
-        
-        .negative {
-            color: #ff4444;
-        }
-        
-        .tokens-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .token-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .token-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .token-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .token-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 20px;
-            background: linear-gradient(45deg, #ff6b00, #ff0066);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        
-        .token-info h3 {
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-        
-        .token-symbol {
-            font-size: 1.2em;
-            opacity: 0.8;
-        }
-        
-        .token-price {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #ff6b00;
-        }
-        
-        .token-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .detail-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .detail-label {
-            font-size: 0.9em;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-        
-        .detail-value {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        
-        .trading-pairs {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .trading-pairs h2 {
-            font-size: 2em;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #ff6b00;
-        }
-        
-        .pair-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .pair-card {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-        }
-        
-        .pair-name {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        
-        .pair-price {
-            font-size: 2em;
-            color: #ff6b00;
-            margin-bottom: 10px;
-        }
-        
-        .pair-liquidity {
-            font-size: 1.1em;
-            opacity: 0.8;
-        }
-        
-        .refresh-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(45deg, #ff6b00, #ff0066);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .refresh-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #00ff88;
-            margin-right: 10px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        .last-updated {
-            text-align: center;
-            margin-top: 30px;
-            opacity: 0.8;
-            font-size: 0.9em;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="header">
-        <div class="logo">USDTgVerse</div>
-        <div class="subtitle">Live Token Dashboard - Real-Time Prices & Trading</div>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans">
+    <div class="bg-black/80 p-5 text-center backdrop-blur-lg">
+        <div class="text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent mb-3">USDTgVerse</div>
+        <div class="text-xl opacity-80">Live Token Dashboard - Real-Time Prices & Trading</div>
     </div>
     
-    <div class="main-container">
+    <div class="max-w-7xl mx-auto p-10">
         <!-- Ecosystem Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-title">Total Market Cap</div>
-                <div class="stat-value" id="totalMarketCap">$1.75B</div>
-                <div class="stat-change positive">+0.00% (24h)</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="text-xl font-bold mb-4 text-orange-500">Total Market Cap</div>
+                <div class="text-4xl font-bold mb-3" id="totalMarketCap">$1.75B</div>
+                <div class="text-lg opacity-80 text-green-400">+0.00% (24h)</div>
             </div>
             
-            <div class="stat-card">
-                <div class="stat-title">Active Tokens</div>
-                <div class="stat-value" id="activeTokens">3</div>
-                <div class="stat-change">All systems operational</div>
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="text-xl font-bold mb-4 text-orange-500">Active Tokens</div>
+                <div class="text-4xl font-bold mb-3" id="activeTokens">3</div>
+                <div class="text-lg opacity-80">All systems operational</div>
             </div>
             
-            <div class="stat-card">
-                <div class="stat-title">Trading Pairs</div>
-                <div class="stat-value" id="tradingPairs">5</div>
-                <div class="stat-change">DEX + CEX active</div>
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="text-xl font-bold mb-4 text-orange-500">Trading Pairs</div>
+                <div class="text-4xl font-bold mb-3" id="tradingPairs">5</div>
+                <div class="text-lg opacity-80">DEX + CEX active</div>
             </div>
             
-            <div class="stat-card">
-                <div class="stat-title">Security Score</div>
-                <div class="stat-value" id="securityScore">95%</div>
-                <div class="stat-change positive">Quantum-safe</div>
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="text-xl font-bold mb-4 text-orange-500">Security Score</div>
+                <div class="text-4xl font-bold mb-3" id="securityScore">95%</div>
+                <div class="text-lg opacity-80 text-green-400">Quantum-safe</div>
             </div>
         </div>
         
         <!-- Token Cards -->
-        <div class="tokens-grid">
-            <div class="token-card">
-                <div class="token-header">
-                    <div class="token-logo">USDTg</div>
-                    <div class="token-info">
-                        <h3>USDTgVerse Native Coin</h3>
-                        <div class="token-symbol">USDTg</div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="flex items-center mb-5">
+                    <div class="w-16 h-16 rounded-full mr-5 bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center text-2xl font-bold">USDTg</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">USDTgVerse Native Coin</h3>
+                        <div class="text-lg opacity-80">USDTg</div>
                     </div>
                 </div>
-                <div class="token-price" id="usdtgPrice">$1.00</div>
-                <div class="stat-change positive">+0.00% (24h)</div>
-                <div class="token-details">
-                    <div class="detail-item">
-                        <div class="detail-label">Market Cap</div>
-                        <div class="detail-value" id="usdtgMarketCap">$1.00B</div>
+                <div class="text-5xl font-bold mb-3 text-orange-500" id="usdtgPrice">$1.00</div>
+                <div class="text-lg text-green-400 mb-5">+0.00% (24h)</div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Market Cap</div>
+                        <div class="text-lg font-bold" id="usdtgMarketCap">$1.00B</div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Volume (24h)</div>
-                        <div class="detail-value" id="usdtgVolume">$0</div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Volume (24h)</div>
+                        <div class="text-lg font-bold" id="usdtgVolume">$0</div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Supply</div>
-                        <div class="detail-value" id="usdtgSupply">1.00B</div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Supply</div>
+                        <div class="text-lg font-bold" id="usdtgSupply">1.00B</div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Type</div>
-                        <div class="detail-value">Stablecoin</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="token-card">
-                <div class="token-header">
-                    <div class="token-logo">USDTgV</div>
-                    <div class="token-info">
-                        <h3>USDTgV Utility Token</h3>
-                        <div class="token-symbol">USDTgV</div>
-                    </div>
-                </div>
-                <div class="token-price" id="usdtgvPrice">$0.50</div>
-                <div class="stat-change positive">+0.00% (24h)</div>
-                <div class="token-details">
-                    <div class="detail-item">
-                        <div class="detail-label">Market Cap</div>
-                        <div class="detail-value" id="usdtgvMarketCap">$250M</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Volume (24h)</div>
-                        <div class="detail-value" id="usdtgvVolume">$0</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Supply</div>
-                        <div class="detail-value" id="usdtgvSupply">500M</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Staking APY</div>
-                        <div class="detail-value">10%</div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Type</div>
+                        <div class="text-lg font-bold">Stablecoin</div>
                     </div>
                 </div>
             </div>
             
-            <div class="token-card">
-                <div class="token-header">
-                    <div class="token-logo">USDTgG</div>
-                    <div class="token-info">
-                        <h3>USDTgG Governance Token</h3>
-                        <div class="token-symbol">USDTgG</div>
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="flex items-center mb-5">
+                    <div class="w-16 h-16 rounded-full mr-5 bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center text-2xl font-bold">USDTgV</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">USDTgV Utility Token</h3>
+                        <div class="text-lg opacity-80">USDTgV</div>
                     </div>
                 </div>
-                <div class="token-price" id="usdtggPrice">$5.00</div>
-                <div class="stat-change positive">+0.00% (24h)</div>
-                <div class="token-details">
-                    <div class="detail-item">
-                        <div class="detail-label">Market Cap</div>
-                        <div class="detail-value" id="usdtggMarketCap">$500M</div>
+                <div class="text-5xl font-bold mb-3 text-orange-500" id="usdtgvPrice">$0.50</div>
+                <div class="text-lg text-green-400 mb-5">+0.00% (24h)</div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Market Cap</div>
+                        <div class="text-lg font-bold" id="usdtgvMarketCap">$250M</div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Volume (24h)</div>
-                        <div class="detail-value" id="usdtggVolume">$0</div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Volume (24h)</div>
+                        <div class="text-lg font-bold" id="usdtgvVolume">$0</div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Supply</div>
-                        <div class="detail-value" id="usdtggSupply">100M</div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Supply</div>
+                        <div class="text-lg font-bold" id="usdtgvSupply">500M</div>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Voting Power</div>
-                        <div class="detail-value">Active</div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Staking APY</div>
+                        <div class="text-lg font-bold">10%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 transition-transform duration-300 hover:-translate-y-2">
+                <div class="flex items-center mb-5">
+                    <div class="w-16 h-16 rounded-full mr-5 bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center text-2xl font-bold">USDTgG</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">USDTgG Governance Token</h3>
+                        <div class="text-lg opacity-80">USDTgG</div>
+                    </div>
+                </div>
+                <div class="text-5xl font-bold mb-3 text-orange-500" id="usdtggPrice">$5.00</div>
+                <div class="text-lg text-green-400 mb-5">+0.00% (24h)</div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Market Cap</div>
+                        <div class="text-lg font-bold" id="usdtggMarketCap">$500M</div>
+                    </div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Volume (24h)</div>
+                        <div class="text-lg font-bold" id="usdtggVolume">$0</div>
+                    </div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Supply</div>
+                        <div class="text-lg font-bold" id="usdtggSupply">100M</div>
+                    </div>
+                    <div class="bg-black/30 p-4 rounded-xl">
+                        <div class="text-sm opacity-80 mb-1">Voting Power</div>
+                        <div class="text-lg font-bold">Active</div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Trading Pairs -->
-        <div class="trading-pairs">
-            <h2>🔄 Trading Pairs</h2>
-            <div class="pair-grid">
-                <div class="pair-card">
-                    <div class="pair-name">USDTg/USDTgV</div>
-                    <div class="pair-price" id="pair1Price">0.5</div>
-                    <div class="pair-liquidity">Liquidity: $2M</div>
+        <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-lg border border-white/20 mb-10">
+            <h2 class="text-3xl font-bold mb-8 text-center text-orange-500">🔄 Trading Pairs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-black/30 p-6 rounded-2xl text-center">
+                    <div class="text-xl font-bold mb-4">USDTg/USDTgV</div>
+                    <div class="text-3xl text-orange-500 mb-3" id="pair1Price">0.5</div>
+                    <div class="text-lg opacity-80">Liquidity: $2M</div>
                 </div>
                 
-                <div class="pair-card">
-                    <div class="pair-name">USDTg/USDTgG</div>
-                    <div class="pair-price" id="pair2Price">5.0</div>
-                    <div class="pair-liquidity">Liquidity: $2M</div>
+                <div class="bg-black/30 p-6 rounded-2xl text-center">
+                    <div class="text-xl font-bold mb-4">USDTg/USDTgG</div>
+                    <div class="text-3xl text-orange-500 mb-3" id="pair2Price">5.0</div>
+                    <div class="text-lg opacity-80">Liquidity: $2M</div>
                 </div>
                 
-                <div class="pair-card">
-                    <div class="pair-name">USDTg/USDT</div>
-                    <div class="pair-price" id="pair3Price">1.0</div>
-                    <div class="pair-liquidity">Liquidity: $10M</div>
+                <div class="bg-black/30 p-6 rounded-2xl text-center">
+                    <div class="text-xl font-bold mb-4">USDTg/USDT</div>
+                    <div class="text-3xl text-orange-500 mb-3" id="pair3Price">1.0</div>
+                    <div class="text-lg opacity-80">Liquidity: $10M</div>
                 </div>
                 
-                <div class="pair-card">
-                    <div class="pair-name">USDTgV/USDT</div>
-                    <div class="pair-price" id="pair4Price">0.5</div>
-                    <div class="pair-liquidity">Liquidity: $5M</div>
+                <div class="bg-black/30 p-6 rounded-2xl text-center">
+                    <div class="text-xl font-bold mb-4">USDTgV/USDT</div>
+                    <div class="text-3xl text-orange-500 mb-3" id="pair4Price">0.5</div>
+                    <div class="text-lg opacity-80">Liquidity: $5M</div>
                 </div>
                 
-                <div class="pair-card">
-                    <div class="pair-name">USDTgG/USDT</div>
-                    <div class="pair-price" id="pair5Price">5.0</div>
-                    <div class="pair-liquidity">Liquidity: $2M</div>
+                <div class="bg-black/30 p-6 rounded-2xl text-center">
+                    <div class="text-xl font-bold mb-4">USDTgG/USDT</div>
+                    <div class="text-3xl text-orange-500 mb-3" id="pair5Price">5.0</div>
+                    <div class="text-lg opacity-80">Liquidity: $2M</div>
                 </div>
             </div>
         </div>
         
-        <div class="last-updated">
-            <span class="status-indicator"></span>
+        <div class="text-center mt-8 opacity-80 text-sm">
+            <span class="inline-block w-3 h-3 rounded-full bg-green-400 mr-3 animate-pulse"></span>
             Last updated: <span id="lastUpdated">Loading...</span>
         </div>
     </div>
     
-    <button class="refresh-btn" onclick="refreshData()">🔄 Refresh</button>
+    <button class="fixed bottom-8 right-8 bg-gradient-to-r from-orange-500 to-pink-500 text-white border-none rounded-full px-6 py-4 text-lg cursor-pointer transition-transform duration-300 hover:scale-110" onclick="refreshData()">🔄 Refresh</button>
     
     <script>
         // Load token data from deployment
@@ -524,7 +283,5 @@
         });
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
