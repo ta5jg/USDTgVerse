@@ -4,176 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Institutional Custody Services</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../styles/institutional_services.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="icon" type="image/png" href="../../../assets/logos/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <header class="custody-header">
-        <div class="header-container">
-            <div class="brand-section">
-                <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
-                <div class="brand-info">
-                    <h1 class="brand-name">USDTgVerse Institutional Custody</h1>
-                    <span class="brand-subtitle">Bank-Grade Security & Compliance</span>
+    <header class="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h1 class="text-2xl font-bold">USDTgVerse Institutional Custody</h1>
+                        <span class="text-blue-200">Bank-Grade Security & Compliance</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="custody-metrics">
-                <div class="metric">
-                    <div class="metric-value">$47.3B</div>
-                    <div class="metric-label">Assets Under Custody</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">99.999%</div>
-                    <div class="metric-label">Security Uptime</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">SOC 2</div>
-                    <div class="metric-label">Compliance Cert</div>
+                
+                <div class="flex space-x-8">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">$47.3B</div>
+                        <div class="text-sm text-blue-200">Assets Under Custody</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">99.999%</div>
+                        <div class="text-sm text-blue-200">Security Uptime</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">SOC 2</div>
+                        <div class="text-sm text-blue-200">Compliance Cert</div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="custody-nav">
-        <div class="nav-container">
-            <ul class="nav-menu">
-                <li class="nav-item active"><a href="#" class="nav-link">🏦 Custody Overview</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">🔐 Security</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">📊 Assets</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">🔍 Audits</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">💼 Securities Lending</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">📈 Reporting</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">⚙️ Settings</a></li>
-            </ul>
-            
-            <div class="nav-actions">
-                <button class="btn-emergency">🚨 Emergency</button>
-                <button class="btn-compliance">📋 Compliance</button>
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <ul class="flex space-x-8">
+                    <li><a href="#" class="text-blue-600 font-medium border-b-2 border-blue-600 pb-1">🏦 Custody Overview</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">🔐 Security</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">📊 Assets</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">🔍 Audits</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">💼 Securities Lending</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">📈 Reporting</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">⚙️ Settings</a></li>
+                </ul>
+                
+                <div class="flex space-x-3">
+                    <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">🚨 Emergency</button>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">📋 Compliance</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="custody-main">
+    <main class="py-8">
         <!-- Custody Overview -->
-        <section class="custody-overview">
-            <div class="overview-grid">
+        <section class="max-w-7xl mx-auto px-4 mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Total Assets Card -->
-                <div class="overview-card total-assets">
-                    <div class="card-header">
-                        <h3 class="card-title">Total Assets Under Custody</h3>
-                        <span class="card-subtitle">All Client Assets</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Total Assets Under Custody</h3>
+                        <span class="text-gray-600">All Client Assets</span>
                     </div>
-                    <div class="card-content">
-                        <div class="main-metric">$47,329,456,789</div>
-                        <div class="metric-change positive">+$2,847,231,567 (+6.40%)</div>
-                        <div class="metric-period">30-day change</div>
+                    <div class="mb-4">
+                        <div class="text-3xl font-bold text-green-600">$47,329,456,789</div>
+                        <div class="text-green-600 font-medium">+$2,847,231,567 (+6.40%)</div>
+                        <div class="text-sm text-gray-600">30-day change</div>
                     </div>
-                    <div class="asset-breakdown">
-                        <div class="asset-type">
-                            <span class="asset-name">Cryptocurrency:</span>
-                            <span class="asset-percentage">67.3%</span>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Cryptocurrency:</span>
+                            <span class="font-medium">67.3%</span>
                         </div>
-                        <div class="asset-type">
-                            <span class="asset-name">Tokenized Assets:</span>
-                            <span class="asset-percentage">22.8%</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tokenized Assets:</span>
+                            <span class="font-medium">22.8%</span>
                         </div>
-                        <div class="asset-type">
-                            <span class="asset-name">Stablecoins:</span>
-                            <span class="asset-percentage">9.9%</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Stablecoins:</span>
+                            <span class="font-medium">9.9%</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Client Portfolio Card -->
-                <div class="overview-card client-portfolio">
-                    <div class="card-header">
-                        <h3 class="card-title">Active Clients</h3>
-                        <span class="card-subtitle">Institutional Accounts</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Active Clients</h3>
+                        <span class="text-gray-600">Institutional Accounts</span>
                     </div>
-                    <div class="card-content">
-                        <div class="main-metric">1,847</div>
-                        <div class="client-breakdown">
-                            <div class="client-type">
-                                <span class="client-label">Hedge Funds:</span>
-                                <span class="client-count">623</span>
+                    <div class="mb-4">
+                        <div class="text-3xl font-bold text-blue-600">1,847</div>
+                        <div class="space-y-2 mt-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Hedge Funds:</span>
+                                <span class="font-medium">623</span>
                             </div>
-                            <div class="client-type">
-                                <span class="client-label">Family Offices:</span>
-                                <span class="client-count">445</span>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Family Offices:</span>
+                                <span class="font-medium">445</span>
                             </div>
-                            <div class="client-type">
-                                <span class="client-label">Pension Funds:</span>
-                                <span class="client-count">334</span>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Pension Funds:</span>
+                                <span class="font-medium">334</span>
                             </div>
-                            <div class="client-type">
-                                <span class="client-label">Corporate:</span>
-                                <span class="client-count">445</span>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Corporate:</span>
+                                <span class="font-medium">445</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Security Status Card -->
-                <div class="overview-card security-status">
-                    <div class="card-header">
-                        <h3 class="card-title">Security Status</h3>
-                        <span class="card-subtitle">Real-Time Monitoring</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Security Status</h3>
+                        <span class="text-gray-600">Real-Time Monitoring</span>
                     </div>
-                    <div class="card-content">
-                        <div class="security-indicators">
-                            <div class="indicator online">
-                                <span class="indicator-icon">🟢</span>
-                                <span class="indicator-label">HSMs Active</span>
-                            </div>
-                            <div class="indicator online">
-                                <span class="indicator-icon">🟢</span>
-                                <span class="indicator-label">Quantum Security</span>
-                            </div>
-                            <div class="indicator online">
-                                <span class="indicator-icon">🟢</span>
-                                <span class="indicator-label">Backup Systems</span>
-                            </div>
-                            <div class="indicator warning">
-                                <span class="indicator-icon">🟡</span>
-                                <span class="indicator-label">Review Pending</span>
-                            </div>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">🟢</span>
+                            <span class="text-gray-700">HSMs Active</span>
                         </div>
-                        <div class="security-score">
-                            <span class="score-label">Security Score:</span>
-                            <span class="score-value">98.7/100</span>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">🟢</span>
+                            <span class="text-gray-700">Quantum Security</span>
                         </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">🟢</span>
+                            <span class="text-gray-700">Backup Systems</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-yellow-500">🟡</span>
+                            <span class="text-gray-700">Review Pending</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Security Score:</span>
+                        <span class="text-2xl font-bold text-green-600">98.7/100</span>
                     </div>
                 </div>
 
                 <!-- Revenue Card -->
-                <div class="overview-card revenue-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Monthly Revenue</h3>
-                        <span class="card-subtitle">Custody Services</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Monthly Revenue</h3>
+                        <span class="text-gray-600">Custody Services</span>
                     </div>
-                    <div class="card-content">
-                        <div class="main-metric">$14,732,568</div>
-                        <div class="revenue-breakdown">
-                            <div class="revenue-item">
-                                <span class="revenue-label">Custody Fees:</span>
-                                <span class="revenue-value">$8,945,231</span>
+                    <div class="mb-4">
+                        <div class="text-3xl font-bold text-green-600">$14,732,568</div>
+                        <div class="space-y-2 mt-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Custody Fees:</span>
+                                <span class="font-medium">$8,945,231</span>
                             </div>
-                            <div class="revenue-item">
-                                <span class="revenue-label">Securities Lending:</span>
-                                <span class="revenue-value">$4,234,567</span>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Securities Lending:</span>
+                                <span class="font-medium">$4,234,567</span>
                             </div>
-                            <div class="revenue-item">
-                                <span class="revenue-label">Prime Services:</span>
-                                <span class="revenue-value">$1,552,770</span>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Prime Services:</span>
+                                <span class="font-medium">$1,552,770</span>
                             </div>
                         </div>
                     </div>
@@ -182,319 +197,347 @@
         </section>
 
         <!-- Security Infrastructure -->
-        <section class="security-infrastructure">
-            <div class="section-header">
-                <h2 class="section-title">🔒 Quantum-Safe Security Infrastructure</h2>
-                <button class="btn-security-audit">🔍 Security Audit</button>
+        <section class="max-w-7xl mx-auto px-4 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">🔒 Quantum-Safe Security Infrastructure</h2>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">🔍 Security Audit</button>
             </div>
 
-            <div class="security-grid">
-                <div class="security-card hardware-security">
-                    <h3 class="security-title">Hardware Security Modules (HSMs)</h3>
-                    <div class="security-stats">
-                        <div class="stat">
-                            <span class="stat-label">Active HSMs:</span>
-                            <span class="stat-value">47</span>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Hardware Security Modules (HSMs)</h3>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Active HSMs:</span>
+                            <span class="font-medium">47</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Geographic Spread:</span>
-                            <span class="stat-value">12 Countries</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Geographic Spread:</span>
+                            <span class="font-medium">12 Countries</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Redundancy:</span>
-                            <span class="stat-value">3x Backup</span>
-                        </div>
-                    </div>
-                    <div class="security-features">
-                        <div class="feature">✅ Quantum-Safe Encryption</div>
-                        <div class="feature">✅ Air-Gapped Systems</div>
-                        <div class="feature">✅ Multi-Signature Protection</div>
-                        <div class="feature">✅ 24/7 Security Monitoring</div>
-                    </div>
-                </div>
-
-                <div class="security-card cold-storage">
-                    <h3 class="security-title">Cold Storage Vaults</h3>
-                    <div class="security-stats">
-                        <div class="stat">
-                            <span class="stat-label">Cold Storage Ratio:</span>
-                            <span class="stat-value">95.2%</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">Maximum Security:</span>
-                            <span class="stat-value">Military Grade</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">Instantiation Time:</span>
-                            <span class="stat-value">< 2 Hours</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Redundancy:</span>
+                            <span class="font-medium">3x Backup</span>
                         </div>
                     </div>
-                    <div class="security-features">
-                        <div class="feature">✅ Physical Security Vaults</div>
-                        <div class="feature">✅ Biometric Access Control</div>
-                        <div class="feature">✅ Time-Delayed Access</div>
-                        <div class="feature">✅ Emergency Destruction</div>
+                    <div class="space-y-2">
+                        <div class="text-sm text-green-600">✅ Quantum-Safe Encryption</div>
+                        <div class="text-sm text-green-600">✅ Air-Gapped Systems</div>
+                        <div class="text-sm text-green-600">✅ Multi-Signature Protection</div>
+                        <div class="text-sm text-green-600">✅ 24/7 Security Monitoring</div>
                     </div>
                 </div>
 
-                <div class="security-card insurance">
-                    <h3 class="security-title">Insurance & Compliance</h3>
-                    <div class="security-stats">
-                        <div class="stat">
-                            <span class="stat-label">Insurance Coverage:</span>
-                            <span class="stat-value">$10B+</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Cold Storage Vaults</h3>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Cold Storage Ratio:</span>
+                            <span class="font-medium">95.2%</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Regulatory Jurisdictions:</span>
-                            <span class="stat-value">35+ Countries</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Maximum Security:</span>
+                            <span class="font-medium">Military Grade</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Audit Frequency:</span>
-                            <span class="stat-value">Quarterly</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Instantiation Time:</span>
+                            <span class="font-medium">< 2 Hours</span>
                         </div>
                     </div>
-                    <div class="security-features">
-                        <div class="feature">✅ SOC 2 Type II</div>
-                        <div class="feature">✅ ISO 27001 Compliant</div>
-                        <div class="feature">✅ GDPR Certified</div>
-                        <div class="feature">✅ Lloyd's of London</div>
+                    <div class="space-y-2">
+                        <div class="text-sm text-green-600">✅ Physical Security Vaults</div>
+                        <div class="text-sm text-green-600">✅ Biometric Access Control</div>
+                        <div class="text-sm text-green-600">✅ Time-Delayed Access</div>
+                        <div class="text-sm text-green-600">✅ Emergency Destruction</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Insurance & Compliance</h3>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Insurance Coverage:</span>
+                            <span class="font-medium">$10B+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Regulatory Jurisdictions:</span>
+                            <span class="font-medium">35+ Countries</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Audit Frequency:</span>
+                            <span class="font-medium">Quarterly</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-sm text-green-600">✅ SOC 2 Type II</div>
+                        <div class="text-sm text-green-600">✅ ISO 27001 Compliant</div>
+                        <div class="text-sm text-green-600">✅ GDPR Certified</div>
+                        <div class="text-sm text-green-600">✅ Lloyd's of London</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Assets Management -->
-        <section class="assets-management">
-            <div class="section-header">
-                <h2 class="section-title">📊 Assets Under Management</h2>
-                <div class="section-actions">
-                    <button class="btn-add-asset">+ Add New Asset</button>
-                    <button class="btn-export-report">📊 Export Report</button>
+        <section class="max-w-7xl mx-auto px-4 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">📊 Assets Under Management</h2>
+                <div class="flex space-x-3">
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">+ Add New Asset</button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">📊 Export Report</button>
                 </div>
             </div>
 
-            <div class="assets-table-container">
-                <table class="assets-table">
-                    <thead>
-                        <tr>
-                            <th>Asset</th>
-                            <th>Type</th>
-                            <th>Custody Amount</th>
-                            <th>Cold Storage %</th>
-                            <th>Insurance Value</th>
-                            <th>Client Count</th>
-                            <th>Management Fees</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="asset-row">
-                            <td class="asset-cell">
-                                <div class="asset-info">
-                                    <img src="../../../assets/logos/logo.png" alt="USDTg" class="asset-icon">
-                                    <span class="asset-name">USDTg</span>
-                                </div>
-                            </td>
-                            <td class="type-cell">
-                                <span class="type-badge stablecoin">Stablecoin</span>
-                            </td>
-                            <td class="amount-cell">$23,450,000,000</td>
-                            <td class="storage-cell">
-                                <div class="storage-bar">
-                                    <div class="storage-fill" style="width: 97%"></div>
-                                </div>
-                                <span class="storage-percent">97%</span>
-                            </td>
-                            <td class="insurance-cell">$23,450,000,000</td>
-                            <td class="clients-cell">1,234</td>
-                            <td class="fees-cell">0.15% annual</td>
-                            <td class="actions-cell">
-                                <button class="btn-action">Manage</button>
-                            </td>
-                        </tr>
-                        <tr class="asset-row">
-                            <td class="asset-cell">
-                                <div class="asset-info">
-                                    <div class="asset-icon">₿</div>
-                                    <span class="asset-name">BTC</span>
-                                </div>
-                            </td>
-                            <td class="type-cell">
-                                <span class="type-badge cryptocurrency">Cryptocurrency</span>
-                            </td>
-                            <td class="amount-cell">$18,720,000,000</td>
-                            <td class="storage-cell">
-                                <div class="storage-bar">
-                                    <div class="storage-fill" style="width: 99%"></div>
-                                </div>
-                                <span class="storage-percent">99%</span>
-                            </td>
-                            <td class="insurance-cell">$18,720,000,000</td>
-                            <td class="clients-cell">892</td>
-                            <td class="fees-cell">0.25% annual</td>
-                            <td class="actions-cell">
-                                <button class="btn-action">Manage</button>
-                            </td>
-                        </tr>
-                        <tr class="asset-row">
-                            <td class="asset-cell">
-                                <div class="asset-info">
-                                    <div class="asset-icon">Ξ</div>
-                                    <span class="asset-name">ETH</span>
-                                </div>
-                            </td>
-                            <td class="type-cell">
-                                <span class="type-badge cryptocurrency">Cryptocurrency</span>
-                            </td>
-                            <td class="amount-cell">$7,850,000,000</td>
-                            <td class="storage-cell">
-                                <div class="storage-bar">
-                                    <div class="storage-fill" style="width: 96%"></div>
-                                </div>
-                                <span class="storage-percent">96%</span>
-                            </td>
-                            <td class="insurance-cell">$7,850,000,000</td>
-                            <td class="clients-cell">567</td>
-                            <td class="fees-cell">0.30% annual</td>
-                            <td class="actions-cell">
-                                <button class="btn-action">Manage</button>
-                            </td>
-                        </tr>
-                        <tr class="asset-row">
-                            <td class="asset-cell">
-                                <div class="asset-info">
-                                    <div class="asset-icon">🏢</div>
-                                    <span class="asset-name">TOKENIZED_REAL_ESTATE</span>
-                                </div>
-                            </td>
-                            <td class="type-cell">
-                                <span class="type-badge tokenized">Tokenized Asset</span>
-                            </td>
-                            <td class="amount-cell">$2,100,000,000</td>
-                            <td class="storage-cell">
-                                <div class="storage-bar">
-                                    <div class="storage-fill" style="width: 94%"></div>
-                                </div>
-                                <span class="storage-percent">94%</span>
-                            </td>
-                            <td class="insurance-cell">$2,100,000,000</td>
-                            <td class="clients-cell">234</td>
-                            <td class="fees-cell">0.50% annual</td>
-                            <td class="actions-cell">
-                                <button class="btn-action">Manage</button>
-                            </td>
-                        </tr>
-                        <tr class="asset-row">
-                            <td class="asset-cell">
-                                <div class="asset-info">
-                                    <div class="asset-icon">🏭</div>
-                                    <span class="asset-name">CORPORATE_BONDS</span>
-                                </div>
-                            </td>
-                            <td class="type-cell">
-                                <span class="type-badge securities">Securities</span>
-                            </td>
-                            <td class="amount-cell">$987,500,000</td>
-                            <td class="storage-cell">
-                                <div class="storage-bar">
-                                    <div class="storage-fill" style="width: 98%"></div>
-                                </div>
-                                <span class="storage-percent">98%</span>
-                            </td>
-                            <td class="insurance-cell">$987,500,000</td>
-                            <td class="clients-cell">178</td>
-                            <td class="fees-cell">0.35% annual</td>
-                            <td class="actions-cell">
-                                <button class="btn-action">Manage</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asset</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Custody Amount</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cold Storage %</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Insurance Value</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client Count</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Management Fees</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img src="../../../assets/logos/logo.png" alt="USDTg" class="w-8 h-8 rounded-full mr-3">
+                                        <span class="font-medium text-gray-900">USDTg</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Stablecoin</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$23,450,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                            <div class="bg-green-600 h-2 rounded-full" style="width: 97%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">97%</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$23,450,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,234</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.15% annual</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">Manage</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-orange-600 font-bold">₿</span>
+                                        </div>
+                                        <span class="font-medium text-gray-900">BTC</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">Cryptocurrency</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$18,720,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                            <div class="bg-green-600 h-2 rounded-full" style="width: 99%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">99%</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$18,720,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">892</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.25% annual</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">Manage</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-purple-600 font-bold">Ξ</span>
+                                        </div>
+                                        <span class="font-medium text-gray-900">ETH</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">Cryptocurrency</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$7,850,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                            <div class="bg-green-600 h-2 rounded-full" style="width: 96%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">96%</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$7,850,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">567</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.30% annual</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">Manage</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-indigo-600">🏢</span>
+                                        </div>
+                                        <span class="font-medium text-gray-900">TOKENIZED_REAL_ESTATE</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Tokenized Asset</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$2,100,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                            <div class="bg-green-600 h-2 rounded-full" style="width: 94%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">94%</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$2,100,000,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">234</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.50% annual</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">Manage</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-gray-600">🏭</span>
+                                        </div>
+                                        <span class="font-medium text-gray-900">CORPORATE_BONDS</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs font-medium">Securities</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$987,500,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                            <div class="bg-green-600 h-2 rounded-full" style="width: 98%"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600">98%</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$987,500,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">178</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.35% annual</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">Manage</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
         <!-- Securities Lending -->
-        <section class="securities-lending">
-            <div class="section-header">
-                <h2 class="section-title">💼 Securities Lending Program</h2>
-                <button class="btn-configure-lending">⚙️ Configure Program</button>
+        <section class="max-w-7xl mx-auto px-4 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">💼 Securities Lending Program</h2>
+                <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">⚙️ Configure Program</button>
             </div>
 
-            <div class="lending-grid">
-                <div class="lending-card">
-                    <h3 class="lending-title">Program Overview</h3>
-                    <div class="lending-stats">
-                        <div class="stat">
-                            <span class="stat-label">Lending Revenue (MTD):</span>
-                            <span class="stat-value">$4,234,567</span>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Program Overview</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lending Revenue (MTD):</span>
+                            <span class="font-medium text-green-600">$4,234,567</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Active Loan Agreements:</span>
-                            <span class="stat-value">1,247</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Active Loan Agreements:</span>
+                            <span class="font-medium">1,247</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Average Loan Duration:</span>
-                            <span class="stat-value">23 days</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Average Loan Duration:</span>
+                            <span class="font-medium">23 days</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Default Rate:</span>
-                            <span class="stat-value">0.02%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lending-card">
-                    <h3 class="lending-title">Top Lent Assets</h3>
-                    <div class="lending-assets">
-                        <div class="lending-asset">
-                            <span class="asset-name">BTC</span>
-                            <div class="asset-bar">
-                                <div class="asset-fill" style="width: 85%"></div>
-                            </div>
-                            <span class="asset-value">$3.2B lent</span>
-                        </div>
-                        <div class="lending-asset">
-                            <span class="asset-name">USDTg</span>
-                            <div class="asset-bar">
-                                <div class="asset-fill" style="width: 75%"></div>
-                            </div>
-                            <span class="asset-value">$1.8B lent</span>
-                        </div>
-                        <div class="lending-asset">
-                            <span class="asset-name">ETH</span>
-                            <div class="asset-bar">
-                                <div class="asset-fill" style="width: 65%"></div>
-                            </div>
-                            <span class="asset-value">$1.1B lent</span>
-                        </div>
-                        <div class="lending-asset">
-                            <span class="asset-name">Tokenized Assets</span>
-                            <div class="asset-bar">
-                                <div class="asset-fill" style="width: 45%"></div>
-                            </div>
-                            <span class="asset-value">$567M lent</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Default Rate:</span>
+                            <span class="font-medium text-green-600">0.02%</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="lending-card">
-                    <h3 class="lending-title">Lending Regulations</h3>
-                    <div class="regulations">
-                        <div class="regulation">
-                            <span class="regulation-label">Minimum Collateralization:</span>
-                            <span class="regulation-value">105%</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Top Lent Assets</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">BTC</span>
+                            <div class="flex-1 mx-4">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600">$3.2B lent</span>
                         </div>
-                        <div class="regulation">
-                            <span class="regulation-label">Maximum Loan Duration:</span>
-                            <span class="regulation-value">365 days</span>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">USDTg</span>
+                            <div class="flex-1 mx-4">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600">$1.8B lent</span>
                         </div>
-                        <div class="regulation">
-                            <span class="regulation-label">Interest Rate Range:</span>
-                            <span class="regulation-value">2.5% - 18.5% APY</span>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">ETH</span>
+                            <div class="flex-1 mx-4">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600">$1.1B lent</span>
                         </div>
-                        <div class="regulation">
-                            <span class="regulation-label">Auto-Liquidation Threshold:</span>
-                            <span class="regulation-value">103%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Tokenized Assets</span>
+                            <div class="flex-1 mx-4">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600">$567M lent</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Lending Regulations</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Minimum Collateralization:</span>
+                            <span class="font-medium">105%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Maximum Loan Duration:</span>
+                            <span class="font-medium">365 days</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Interest Rate Range:</span>
+                            <span class="font-medium">2.5% - 18.5% APY</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Auto-Liquidation Threshold:</span>
+                            <span class="font-medium">103%</span>
                         </div>
                     </div>
                 </div>
@@ -502,86 +545,94 @@
         </section>
 
         <!-- Compliance Reporting -->
-        <section class="compliance-reporting">
-            <div class="section-header">
-                <h2 class="section-title">📋 Compliance & Reporting</h2>
-                <div class="section-actions">
-                    <button class="btn-generate-report">📊 Generate Report</button>
-                    <button class="btn-exporter-audit">🔍 Export for Audit</button>
+        <section class="max-w-7xl mx-auto px-4 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">📋 Compliance & Reporting</h2>
+                <div class="flex space-x-3">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">📊 Generate Report</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">🔍 Export for Audit</button>
                 </div>
             </div>
 
-            <div class="compliance-grid">
-                <div class="compliance-card">
-                    <h3 class="compliance-title">Regulatory Compliance</h3>
-                    <div class="compliance-list">
-                        <div class="compliance-item compliant">
-                            <span class="status-icon">✅</span>
-                            <span class="compliance-text">SOC 2 Type II Certification</span>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Regulatory Compliance</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✅</span>
+                            <span class="text-gray-700">SOC 2 Type II Certification</span>
                         </div>
-                        <div class="compliance-item compliant">
-                            <span class="status-icon">✅</span>
-                            <span class="compliance-text">ISO 27001 Information Security</span>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✅</span>
+                            <span class="text-gray-700">ISO 27001 Information Security</span>
                         </div>
-                        <div class="compliance-item compliant">
-                            <span class="status-icon">✅</span>
-                            <span class="compliance-text">GDPR Data Protection Compliance</span>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✅</span>
+                            <span class="text-gray-700">GDPR Data Protection Compliance</span>
                         </div>
-                        <div class="compliance-item compliant">
-                            <span class="status-icon">✅</span>
-                            <span class="compliance-text">PCI DSS Level 1 Compliance</span>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✅</span>
+                            <span class="text-gray-700">PCI DSS Level 1 Compliance</span>
                         </div>
-                        <div class="compliance-item compliant">
-                            <span class="status-icon">✅</span>
-                            <span class="compliance-text">MiFID II Investment Services</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="compliance-card">
-                    <h3 class="compliance-title">Quarterly Reports</h3>
-                    <div class="reports-list">
-                        <div class="report-item">
-                            <span class="report-quarter">Q4 2025</span>
-                            <span class="report-status completed">Completed</span>
-                            <button class="btn-view-report">View</button>
-                        </div>
-                        <div class="report-item">
-                            <span class="report-quarter">Q3 2025</span>
-                            <span class="report-status completed">Completed</span>
-                            <button class="btn-view-report">View</button>
-                        </div>
-                        <div class="report-item">
-                            <span class="report-quarter">Q2 2025</span>
-                            <span class="report-status completed">Completed</span>
-                            <button class="btn-view-report">View</button>
-                        </div>
-                        <div class="report-item">
-                            <span class="report-quarter">Q1 2025</span>
-                            <span class="report-status completed">Completed</span>
-                            <button class="btn-view-report">View</button>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✅</span>
+                            <span class="text-gray-700">MiFID II Investment Services</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="compliance-card">
-                    <h3 class="compliance-title">Risk Management</h3>
-                    <div class="risk-metrics">
-                        <div class="risk-metric">
-                            <span class="risk-label">Counterparty Risk Score:</span>
-                            <span class="risk-value low">2.3/10</span>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Quarterly Reports</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Q4 2025</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Completed</span>
+                                <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">View</button>
+                            </div>
                         </div>
-                        <div class="risk-metric">
-                            <span class="risk-label">Operational Risk:</span>
-                            <span class="risk-value low">1.8/10</span>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Q3 2025</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Completed</span>
+                                <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">View</button>
+                            </div>
                         </div>
-                        <div class="risk-metric">
-                            <span class="risk-label">Credit Risk:</span>
-                            <span class="risk-value low">1.5/10</span>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Q2 2025</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Completed</span>
+                                <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">View</button>
+                            </div>
                         </div>
-                        <div class="risk-metric">
-                            <span class="risk-label">Liquidity Risk:</span>
-                            <span class="risk-value medium">4.1/10</span>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Q1 2025</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Completed</span>
+                                <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Risk Management</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Counterparty Risk Score:</span>
+                            <span class="font-medium text-green-600">2.3/10</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Operational Risk:</span>
+                            <span class="font-medium text-green-600">1.8/10</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Credit Risk:</span>
+                            <span class="font-medium text-green-600">1.5/10</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Liquidity Risk:</span>
+                            <span class="font-medium text-yellow-600">4.1/10</span>
                         </div>
                     </div>
                 </div>
@@ -590,59 +641,58 @@
     </main>
 
     <!-- Footer -->
-    <footer class="custody-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 class="footer-title">🔒 Security First</h4>
-                <div class="security-highlights">
-                    <div class="highlight-item">✅ Military-Grade Encryption</div>
-                    <div class="highlight-item">✅ Quantum-Safe Cryptography</div>
-                    <div class="highlight-item">✅ Air-Gapped Cold Storage</div>
-                    <div class="highlight-item">✅ Comprehensive Insurance</div>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">🔒 Security First</h4>
+                    <div class="space-y-2">
+                        <div class="text-sm">✅ Military-Grade Encryption</div>
+                        <div class="text-sm">✅ Quantum-Safe Cryptography</div>
+                        <div class="text-sm">✅ Air-Gapped Cold Storage</div>
+                        <div class="text-sm">✅ Comprehensive Insurance</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">📞 Enterprise Support</h4>
+                    <div class="space-y-2">
+                        <div class="text-sm">
+                            <span class="text-gray-400">Institutional Hotline:</span>
+                            <span class="ml-2">+1-855-USDTG-CUSTODY</span>
+                        </div>
+                        <div class="text-sm">
+                            <span class="text-gray-400">24/7 Security:</span>
+                            <span class="ml-2">security@usdtgverse.com</span>
+                        </div>
+                        <div class="text-sm">
+                            <span class="text-gray-400">Emergency Contact:</span>
+                            <span class="ml-2">emergency@usdtgverse.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">📋 Quick Access</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-sm hover:text-blue-400 transition-colors">📊 Monthly Report</a>
+                        <a href="#" class="block text-sm hover:text-blue-400 transition-colors">🔍 Security Audit</a>
+                        <a href="#" class="block text-sm hover:text-blue-400 transition-colors">📋 Compliance Docs</a>
+                        <a href="#" class="block text-sm hover:text-blue-400 transition-colors">💰 Fee Calculator</a>
+                    </div>
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4 class="footer-title">📞 Enterprise Support</h4>
-                <div class="support-info">
-                    <div class="support-item">
-                        <span class="support-label">Institutional Hotline:</span>
-                        <span class="support-value">+1-855-USDTG-CUSTODY</span>
-                    </div>
-                    <div class="support-item">
-                        <span class="support-label">24/7 Security:</span>
-                        <span class="support-value">security@usdtgverse.com</span>
-                    </div>
-                    <div class="support-item">
-                        <span class="support-label">Emergency Contact:</span>
-                        <span class="support-value">emergency@usdtgverse.com</span>
-                    </div>
-                </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-sm text-gray-400">
+                    © 2025 USDTgVerse Institutional Custody Services.
+                    <span class="ml-2">🔒 Bank-Grade Security. Insured up to $10B.</span>
+                </p>
             </div>
-            
-            <div class="footer-section">
-                <h4 class="footer-title">📋 Quick Access</h4>
-                <div class="quick-links">
-                    <a href="#">📊 Monthly Report</a>
-                    <a href="#">🔍 Security Audit</a>
-                    <a href="#">📋 Compliance Docs</a>
-                    <a href="#">💰 Fee Calculator</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p class="footer-copyright">
-                © 2025 USDTgVerse Institutional Custody Services.
-                <span class="security-notice">🔒 Bank-Grade Security. Insured up to $10B.</span>
-            </p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="../scripts/custody_services.js"></script>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
