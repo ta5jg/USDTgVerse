@@ -623,16 +623,8 @@
     
     <script>
         // MEGA MENU Navigation
-        // Load navigation component
-        fetch('components/navigation-main.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navigation-placeholder').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error loading navigation:', error);
-                // Fallback to inline navigation
-                document.getElementById('navigation-placeholder').innerHTML = `
+        // MEGA MENU Navigation
+        document.getElementById('navigation-placeholder').innerHTML = `
             <nav style="
                 background: rgba(0, 0, 0, 0.9) !important;
                 backdrop-filter: blur(10px);

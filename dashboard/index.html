@@ -468,15 +468,68 @@
     <script src="script.js"></script>
     
     <script>
-        // Load navigation component
-        fetch('../components/navigation-dashboard.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navigation-placeholder').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error loading navigation:', error);
-            });
+        // Dashboard Navigation
+        document.getElementById('navigation-placeholder').innerHTML = `
+            <nav style="
+                background: rgba(0, 0, 0, 0.9) !important;
+                backdrop-filter: blur(10px);
+                padding: 10px 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+                transition: background 0.3s ease;
+            ">
+                <div style="
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                ">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <a href="/" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                            <img src="../assets/logos/logo.png" alt="USDTgVerse Logo" style="
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                border: 2px solid rgba(255, 255, 255, 0.2);
+                                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                                transition: all 0.3s ease;
+                            ">
+                            <h2 style="
+                                font-size: 20px;
+                                font-weight: bold;
+                                color: white;
+                                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                                transition: all 0.3s ease;
+                            ">USDTgVerse Dashboard</h2>
+                        </a>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <a href="/" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🏠 Home
+                        </a>
+                        <a href="/dashboard/" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px; background: rgba(255,255,255,0.1);">
+                            📊 Dashboard
+                        </a>
+                        <a href="/exchanges/web/dex.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🔄 DEX
+                        </a>
+                        <a href="/exchanges/web/cex.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🏪 CEX
+                        </a>
+                        <a href="/wallet/demo/wallet.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            💳 Wallet
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        `;
     </script>
 </body>
 </html>
