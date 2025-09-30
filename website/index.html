@@ -50,114 +50,8 @@
     <link rel="icon" type="image/png" href="../assets/logos/logo.png">
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-brand">
-                <a href="https://www.usdtgverse.com" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-                    <img src="../assets/logos/logo.png" alt="USDTgVerse" class="logo">
-                    <span class="brand-text">USDTgVerse</span>
-                </a>
-            </div>
-            
-            <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
-                ☰
-            </button>
-            
-            <div class="mega-menu-container" id="desktop-menu">
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">🌟 Platform</a>
-                    <div class="mega-dropdown">
-                        <a href="https://www.usdtgverse.com">🌐 Main Website</a>
-                        <a href="../dashboard/index.html">📊 Live Dashboard</a>
-                        <a href="../explorer/usdtgscan.html">🔍 Explorer</a>
-                        <a href="../dapps/usdtg-transfer/index.html">📱 dApp</a>
-                        <a href="../wallet/demo/wallet.html">💳 Wallet</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">💻 Development</a>
-                    <div class="mega-dropdown">
-                        <a href="../dev-tools/USDTgIDE.html">🛠️ USDTgVerse IDE</a>
-                        <a href="../sdk/documentation.html">📚 SDK Documentation</a>
-                        <a href="../native-ecosystem/compiler/ide.html">⚙️ USDTgScript Compiler</a>
-                        <a href="../formal-verification/dashboard.html">🔐 Formal Verification</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">💹 Trading</a>
-                    <div class="mega-dropdown">
-                        <a href="../trading/trade-interface.html">📈 Trade Interface</a>
-                        <a href="../dashboard/index.html">📊 Live Dashboard</a>
-                        <a href="../dashboard/index.html#dex">🔄 DEX (Live)</a>
-                        <a href="../dashboard/index.html#cex">🏦 CEX (Live)</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">💳 Payments</a>
-                    <div class="mega-dropdown">
-                        <a href="../payment-system/interfaces/payment_interface.html">💳 Payment System</a>
-                        <a href="../payment-system/gateways/bank_wire_payment.h">🏦 Bank Wire</a>
-                        <a href="../payment-system/gateways/credit_card_payment.h">💳 Credit/Debit Card</a>
-                        <a href="../payment-system/gateways/paypal_payment.h">💰 PayPal</a>
-                        <a href="../payment-system/gateways/usdtgverse_pay.h">🔄 USDTgVerse PAY</a>
-                        <a href="../payment-system/gateways/crypto_payment.h">₿ Cryptocurrency</a>
-                        <a href="../payment-system/gateways/direct_ip_payment.h">🌐 Direct IP</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">🏛️ H2H</a>
-                    <div class="mega-dropdown">
-                        <a href="../host-to-host-system/interfaces/h2h_interface.html">🏦 H2H System</a>
-                        <a href="../host-to-host-system/protocols/swift_protocol.h">📋 SWIFT</a>
-                        <a href="../host-to-host-system/protocols/iso20022_protocol.h">📋 ISO 20022</a>
-                        <a href="../host-to-host-system/protocols/fix_protocol.h">⚡ FIX</a>
-                        <a href="../host-to-host-system/protocols/ach_protocol.h">🔄 ACH</a>
-                        <a href="../host-to-host-system/protocols/sepa_protocol.h">🇪🇺 SEPA</a>
-                        <a href="../host-to-host-system/protocols/fedwire_protocol.h">🏛️ Fedwire</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">🔒 Privacy</a>
-                    <div class="mega-dropdown">
-                        <a href="../zk-privacy-layer-system/dashboard.html">🔍 Zero-Knowledge</a>
-                        <a href="../mev-protection-system/dashboard.html">🛡️ MEV Protection</a>
-                        <a href="../account-abstraction-system/dashboard.html">🔐 Account Abstraction</a>
-                        <a href="../homomorphic-encryption/dashboard.html">🔒 Homomorphic Encryption</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">🏢 Enterprise</a>
-                    <div class="mega-dropdown">
-                        <a href="../membership-system/interfaces/membership_portal.html">👥 Membership Portal</a>
-                        <a href="../membership-system/interfaces/enterprise_dashboard.html">🏢 Enterprise Dashboard</a>
-                        <a href="../trading-platforms/MarginTradingDashboard.html">💰 Margin Trading</a>
-                        <a href="../trading-platforms/CopyTradingPlatform.html">📈 Copy Trading</a>
-                        <a href="../institutional-services/CustodyServicesDashboard.html">🏦 Custody Services</a>
-                        <a href="../api-docs/v1/MembershipAPI.html">📚 Enterprise API</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">💰 Revenue</a>
-                    <div class="mega-dropdown">
-                        <a href="../revenue-systems/referral/AffiliateProgram.html">🎯 Affiliate Program</a>
-                        <a href="../revenue-systems/referral/AffiliateProgram.html#calculator">🧮 Earnings Calculator</a>
-                        <a href="../revenue-systems/referral/AffiliateProgram.html#campaigns">📊 Campaign Tools</a>
-                        <a href="../revenue-systems/referral/AffiliateProgram.html#leaderboard">🏆 Leaderboard</a>
-                    </div>
-                </div>
-                <div class="mega-menu-item">
-                    <a href="#" class="mega-menu-link">⚛️ Quantum</a>
-                    <div class="mega-dropdown">
-                        <a href="../quantum-computing/QuantumIntegration.cpp">⚛️ Quantum Computing</a>
-                        <a href="../vdf/VerifiableDelayFunctions.cpp">⏱️ VDF</a>
-                        <a href="../quantum-computing/QuantumIntegration.cpp">🔐 Quantum-Safe</a>
-                        <a href="../analytics/AdvancedAnalytics.cpp">📊 Quantum Analytics</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Include Navigation -->
+    <div id="navigation-placeholder"></div>
 
     <main>
         <!-- Hero Section -->
@@ -695,5 +589,416 @@
 
     
     <script src="script.js"></script>
+    
+    <script>
+        // MEGA MENU Navigation - Same as main page
+        document.getElementById('navigation-placeholder').innerHTML = `
+            <nav style="
+                background: rgba(0, 0, 0, 0.9) !important;
+                backdrop-filter: blur(10px);
+                padding: 15px 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+                transition: background 0.3s ease;
+            ">
+                <div style="
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    display: flex;
+                    align-items: center;
+                ">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <a href="https://www.usdtgverse.com" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                            <img src="../assets/logos/logo.png" alt="USDTgVerse Logo" style="
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                border: 2px solid rgba(255, 255, 255, 0.2);
+                                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                                transition: all 0.3s ease;
+                            ">
+                            <h2 style="
+                                font-size: 24px;
+                                font-weight: bold;
+                                color: white;
+                                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                                transition: all 0.3s ease;
+                            ">USDTgVerse</h2>
+                        </a>
+                    </div>
+                    <button id="mobile-menu-toggle" style="
+                        display: none;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 1.5em;
+                        cursor: pointer;
+                        padding: 10px;
+                        margin-left: auto;
+                    ">☰</button>
+                    <div id="desktop-menu" style="display: flex; gap: 15px; align-items: center; margin-left: auto;">
+                        <!-- Products Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🚀 Products
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 800px;
+                                border-radius: 12px;
+                                padding: 20px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                                    <!-- Column 1: Core Platform -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #667eea; padding-bottom: 5px;">🌟 Core Platform</h3>
+                                        <a href="../dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📊 Dashboard</div>
+                                            <div style="font-size: 12px; color: #666;">Real-time trading and analytics</div>
+                                        </a>
+                                        <a href="../exchanges/web/dex.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔄 DEX</div>
+                                            <div style="font-size: 12px; color: #666;">Decentralized exchange platform</div>
+                                        </a>
+                                        <a href="../exchanges/web/cex.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏪 CEX</div>
+                                            <div style="font-size: 12px; color: #666;">Centralized exchange platform</div>
+                                        </a>
+                                    </div>
+                                    <!-- Column 2: Development Tools -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #764ba2; padding-bottom: 5px;">🛠️ Development</h3>
+                                        <a href="../ide-development/USDTgVerseIDE.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💻 USDTgVerse IDE</div>
+                                            <div style="font-size: 12px; color: #666;">Smart contract development</div>
+                                        </a>
+                                        <a href="../dev-tools/USDTgIDE.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔧 Dev Tools</div>
+                                            <div style="font-size: 12px; color: #666;">Development utilities</div>
+                                        </a>
+                                        <a href="../sdk/documentation.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📚 SDK Docs</div>
+                                            <div style="font-size: 12px; color: #666;">API documentation</div>
+                                        </a>
+                                    </div>
+                                    <!-- Column 3: Enterprise Solutions -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #00d4ff; padding-bottom: 5px;">🏢 Enterprise</h3>
+                                        <a href="../membership-system/interfaces/membership_portal.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">👥 Membership</div>
+                                            <div style="font-size: 12px; color: #666;">User management system</div>
+                                        </a>
+                                        <a href="../institutional-services/CustodyServicesDashboard.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏦 Custody</div>
+                                            <div style="font-size: 12px; color: #666;">Institutional services</div>
+                                        </a>
+                                        <a href="../revenue-systems/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💰 Revenue</div>
+                                            <div style="font-size: 12px; color: #666;">Revenue management</div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                                    <a href="../dashboard/index.html" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block;">View All Products →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Platform Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🌟 Platform
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🌐 Main Website</a>
+                                <a href="../dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📊 Live Dashboard</a>
+                                <a href="../explorer/usdtgscan.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔍 Explorer</a>
+                                <a href="../dapps/usdtg-transfer/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📱 dApp</a>
+                                <a href="../wallet/demo/wallet.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Wallet</a>
+                            </div>
+                        </div>
+                        <!-- Payments Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                💳 Payments
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 280px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="../payment-system/interfaces/payment_interface.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Payment System</a>
+                                <a href="../payment-system/gateways/bank_wire_payment.h" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🏦 Bank Wire</a>
+                                <a href="../payment-system/gateways/credit_card_payment.h" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Credit/Debit Card</a>
+                                <a href="../payment-system/gateways/paypal_payment.h" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💰 PayPal</a>
+                                <a href="../payment-system/gateways/usdtgverse_pay.h" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔄 USDTgVerse PAY</a>
+                                <a href="../payment-system/gateways/crypto_payment.h" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">₿ Cryptocurrency</a>
+                                <a href="../payment-system/gateways/direct_ip_payment.h" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🌐 Direct IP</a>
+                            </div>
+                        </div>
+                        <!-- H2H Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🏦 H2H
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 280px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🏦 H2H System</a>
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('swift')" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📋 SWIFT Protocol</a>
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('iso20022')" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📋 ISO 20022</a>
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fix')" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">⚡ FIX Protocol</a>
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('ach')" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔄 ACH Network</a>
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('sepa')" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🇪🇺 SEPA</a>
+                                <a href="../host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fedwire')" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🏛️ Fedwire</a>
+                            </div>
+                        </div>
+                        <!-- Privacy Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🔒 Privacy
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="../zk-privacy-layer-system/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🛡️ ZK Privacy</a>
+                                <a href="../homomorphic-encryption/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔐 Homomorphic Encryption</a>
+                                <a href="../mev-protection-system/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🛡️ MEV Protection</a>
+                            </div>
+                        </div>
+                        <!-- Enterprise Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🏢 Enterprise
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 280px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="../membership-system/interfaces/membership_portal.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">👥 Membership Portal</a>
+                                <a href="../membership-system/interfaces/enterprise_dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🏢 Enterprise Dashboard</a>
+                                <a href="../trading-platforms/MarginTradingDashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💰 Margin Trading</a>
+                                <a href="../trading-platforms/CopyTradingPlatform.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📈 Copy Trading</a>
+                                <a href="../institutional-services/CustodyServicesDashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🏦 Custody Services</a>
+                                <a href="../api-docs/v1/MembershipAPI.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📚 Enterprise API</a>
+                            </div>
+                        </div>
+                        <!-- Revenue Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                💰 Revenue
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="../revenue-systems/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📈 Revenue Dashboard</a>
+                                <a href="../revenue-systems/affiliate/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🤝 Affiliate Program</a>
+                                <a href="../revenue-systems/white-label/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🏷️ White-Label Solutions</a>
+                            </div>
+                        </div>
+                        <!-- Quantum Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="../website/quantum-safe.html" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                ⚛️ Quantum
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <style>
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.5; }
+                    100% { opacity: 1; }
+                }
+                nav a:hover {
+                    background: rgba(255,255,255,0.2) !important;
+                    transform: translateY(-2px);
+                }
+                /* Mobile Menu Styles */
+                @media (max-width: 1024px) {
+                    #desktop-menu {
+                        display: none !important;
+                    }
+                    #mobile-menu-toggle {
+                        display: block !important;
+                    }
+                }
+                /* Mobile Menu Override */
+                #desktop-menu.mobile-open {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    position: fixed !important;
+                    top: 80px !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    background: rgba(0, 0, 0, 0.98) !important;
+                    backdrop-filter: blur(20px) !important;
+                    padding: 30px 20px !important;
+                    border-radius: 0 0 15px 15px !important;
+                    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+                    border-top: none !important;
+                    z-index: 9999 !important;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+                }
+                @media (max-width: 768px) {
+                    nav {
+                        padding: 10px 0 !important;
+                    }
+                    nav div[style*="max-width: 1200px"] {
+                        padding: 0 15px !important;
+                    }
+                    nav h2 {
+                        font-size: 18px !important;
+                    }
+                    nav img {
+                        width: 30px !important;
+                        height: 30px !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    nav h2 {
+                        font-size: 16px !important;
+                    }
+                    nav img {
+                        width: 25px !important;
+                        height: 25px !important;
+                    }
+                }
+            </style>
+        `;
+        
+        // Mega Menu JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const megaMenuItems = document.querySelectorAll('.mega-menu-item');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const desktopMenu = document.getElementById('desktop-menu');
+            
+            // Desktop mega menu functionality
+            megaMenuItems.forEach(item => {
+                const link = item.querySelector('a');
+                const dropdown = item.querySelector('.mega-dropdown');
+                
+                if (dropdown) {
+                    item.addEventListener('mouseenter', () => {
+                        dropdown.style.opacity = '1';
+                        dropdown.style.visibility = 'visible';
+                        dropdown.style.transform = 'translateY(0)';
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                        dropdown.style.opacity = '0';
+                        dropdown.style.visibility = 'hidden';
+                        dropdown.style.transform = 'translateY(-10px)';
+                    });
+                }
+            });
+            
+            // Mobile menu toggle
+            if (mobileMenuToggle && desktopMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    desktopMenu.classList.toggle('mobile-open');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
