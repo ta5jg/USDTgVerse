@@ -45,6 +45,7 @@
             }
         }
     </script>
+    <script src="api/price-service.js"></script>
     <style>
         * {
             margin: 0;
@@ -483,15 +484,15 @@
                     <div class="status-label">Security Score</div>
                 </div>
                 <div class="status-item">
-                    <div class="status-value">$1.00</div>
+                    <div class="status-value" id="usdtg-price">$1.00</div>
                     <div class="status-label">USDTg Price</div>
                 </div>
                 <div class="status-item">
-                    <div class="status-value">$0.50</div>
+                    <div class="status-value" id="usdtgv-price">$0.50</div>
                     <div class="status-label">USDTgV Price</div>
                 </div>
                 <div class="status-item">
-                    <div class="status-value">$5.00</div>
+                    <div class="status-value" id="usdtgg-price">$5.00</div>
                     <div class="status-label">USDTgG Price</div>
                 </div>
                 <div class="status-item">
@@ -1155,6 +1156,46 @@
         } else {
             initMegaMenu();
         }
+    </script>
+    
+    <script>
+        // Real-time price updates
+        async function updatePrices() {
+            try {
+                const priceService = window.USDTgVersePriceService;
+                if (!priceService) return;
+                
+                const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG']);
+                
+                // Update USDTg price
+                const usdtgElement = document.getElementById('usdtg-price');
+                if (usdtgElement && prices.USDTg) {
+                    usdtgElement.textContent = `$${prices.USDTg.price.toFixed(2)}`;
+                }
+                
+                // Update USDTgV price
+                const usdtgvElement = document.getElementById('usdtgv-price');
+                if (usdtgvElement && prices.USDTgV) {
+                    usdtgvElement.textContent = `$${prices.USDTgV.price.toFixed(2)}`;
+                }
+                
+                // Update USDTgG price
+                const usdtggElement = document.getElementById('usdtgg-price');
+                if (usdtggElement && prices.USDTgG) {
+                    usdtggElement.textContent = `$${prices.USDTgG.price.toFixed(2)}`;
+                }
+            } catch (error) {
+                console.error('Error updating prices:', error);
+            }
+        }
+        
+        // Listen for price update events
+        window.addEventListener('usdtgverse-price-update', updatePrices);
+        
+        // Initial price update
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updatePrices, 1000);
+        });
     </script>
     
 </body>

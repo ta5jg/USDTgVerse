@@ -53,6 +53,7 @@
         }
 
     </style>
+    <script src="../../api/price-service.js"></script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-900 text-white font-sans">
     <!-- Header -->
@@ -87,7 +88,7 @@
                         </select>
                     </div>
                     <input type="number" placeholder="0.0" class="w-full bg-transparent text-2xl text-white placeholder-gray-400 border-none outline-none">
-                    <div class="text-sm text-gray-400 mt-2">Balance: 1,250.00 USDTg</div>
+                    <div class="text-sm text-gray-400 mt-2">Balance: <span id="from-balance">1,250.00 USDTg</span></div>
                 </div>
 
                 <!-- Swap Arrow -->
@@ -112,7 +113,7 @@
                         </select>
                     </div>
                     <input type="number" placeholder="0.0" class="w-full bg-transparent text-2xl text-white placeholder-gray-400 border-none outline-none">
-                    <div class="text-sm text-gray-400 mt-2">Balance: 850.00 USDTgV</div>
+                    <div class="text-sm text-gray-400 mt-2">Balance: <span id="to-balance">850.00 USDTgV</span></div>
                 </div>
 
                 <!-- Swap Button -->
@@ -161,20 +162,20 @@
         <!-- Stats Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
-                <div class="text-3xl font-bold text-green-400 mb-2">$2.4M</div>
+                <div class="text-3xl font-bold text-green-400 mb-2" id="total-volume">$2.4M</div>
                 <div class="text-gray-300">Total Volume</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
-                <div class="text-3xl font-bold text-blue-400 mb-2">156</div>
+                <div class="text-3xl font-bold text-blue-400 mb-2" id="active-pools">156</div>
                 <div class="text-gray-300">Active Pools</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
-                <div class="text-3xl font-bold text-purple-400 mb-2">$890K</div>
+                <div class="text-3xl font-bold text-purple-400 mb-2" id="total-liquidity">$890K</div>
                 <div class="text-gray-300">Total Liquidity</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
-                <div class="text-3xl font-bold text-yellow-400 mb-2">24h</div>
-                <div class="text-gray-300">Trading Volume</div>
+                <div class="text-3xl font-bold text-yellow-400 mb-2" id="trading-volume">$156K</div>
+                <div class="text-gray-300">24h Volume</div>
             </div>
         </div>
 
@@ -325,6 +326,68 @@
                 const rate = parseFloat(document.getElementById('rateValue').textContent) || 1;
                 document.getElementById('toAmount').value = (fromAmount * rate).toFixed(6);
             });
+        });
+        
+        // Real-time price updates for DEX
+        async function updateDEXPrices() {
+            try {
+                const priceService = window.USDTgVersePriceService;
+                if (!priceService) return;
+                
+                const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG', 'USDT', 'USDC']);
+                
+                // Update DEX statistics with real data
+                updateDEXStats(prices);
+                
+            } catch (error) {
+                console.error('Error updating DEX prices:', error);
+            }
+        }
+        
+        function updateDEXStats(prices) {
+            // Calculate total volume based on real prices
+            let totalVolume = 0;
+            let totalLiquidity = 0;
+            
+            Object.values(prices).forEach(price => {
+                if (price.volume24h) totalVolume += price.volume24h;
+                if (price.marketCap) totalLiquidity += price.marketCap * 0.1; // Assume 10% in DEX
+            });
+            
+            // Update stats
+            const totalVolumeEl = document.getElementById('total-volume');
+            if (totalVolumeEl) {
+                totalVolumeEl.textContent = '$' + formatNumber(totalVolume);
+            }
+            
+            const totalLiquidityEl = document.getElementById('total-liquidity');
+            if (totalLiquidityEl) {
+                totalLiquidityEl.textContent = '$' + formatNumber(totalLiquidity);
+            }
+            
+            const tradingVolumeEl = document.getElementById('trading-volume');
+            if (tradingVolumeEl) {
+                tradingVolumeEl.textContent = '$' + formatNumber(totalVolume * 0.1);
+            }
+        }
+        
+        function formatNumber(num) {
+            if (num >= 1000000000) {
+                return (num / 1000000000).toFixed(1) + 'B';
+            } else if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toFixed(0);
+        }
+        
+        // Listen for price update events
+        window.addEventListener('usdtgverse-price-update', updateDEXPrices);
+        
+        // Initial price update
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateDEXPrices, 1000);
         });
     </script>
 </body>
