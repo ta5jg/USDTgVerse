@@ -101,6 +101,7 @@ body {
     flex: 1;
     margin-left: 250px;
     padding: 2rem;
+    margin-top: 80px;
 }
 
 .dashboard-header {
@@ -704,6 +705,7 @@ th {
     .main-content {
         margin-left: 0;
         padding: 1rem;
+        margin-top: 80px;
     }
     
     .dashboard-header {
