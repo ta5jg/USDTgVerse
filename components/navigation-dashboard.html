@@ -1,0 +1,103 @@
+<!--
+==============================================
+ File:        navigation-dashboard.html
+ Author:      Irfan Gedik
+ Created:     30.09.2025
+ Last Update: 30.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Dashboard Navigation Component
+   
+   Specialized navigation for dashboard pages featuring:
+   - Compact design for dashboard layout
+   - Quick access to main sections
+   - Consistent branding
+
+ License:
+   MIT License
+==============================================
+-->
+
+<nav style="
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+">
+    <div style="
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    ">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="/" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                <img src="../assets/logos/logo.png" alt="USDTgVerse Logo" style="
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    border: 2px solid rgba(255, 255, 255, 0.2);
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                    transition: all 0.3s ease;
+                ">
+                <h2 style="
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                    transition: all 0.3s ease;
+                ">USDTgVerse Dashboard</h2>
+            </a>
+        </div>
+        
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="/" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                🏠 Home
+            </a>
+            <a href="/dashboard/" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px; background: rgba(255,255,255,0.1);">
+                📊 Dashboard
+            </a>
+            <a href="/exchanges/web/dex.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                🔄 DEX
+            </a>
+            <a href="/exchanges/web/cex.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                🏪 CEX
+            </a>
+            <a href="/wallet/demo/wallet.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                💳 Wallet
+            </a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    nav a:hover {
+        background: rgba(255,255,255,0.2) !important;
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        nav div[style*="max-width: 1200px"] {
+            padding: 0 15px !important;
+        }
+        nav h2 {
+            font-size: 16px !important;
+        }
+        nav img {
+            width: 30px !important;
+            height: 30px !important;
+        }
+        nav div[style*="display: flex; gap: 15px"] {
+            display: none !important;
+        }
+    }
+</style>
