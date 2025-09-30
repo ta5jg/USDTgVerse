@@ -1,0 +1,254 @@
+<!--
+==============================================
+ File:        index.html
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse White-Label Solutions
+   
+   Enterprise white-label solutions featuring:
+   - Custom branded platforms
+   - API integration services
+   - Dedicated infrastructure
+   - 24/7 technical support
+   - Compliance and security
+
+ License:
+   MIT License
+==============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse White-Label Solutions</title>
+    <link rel="icon" href="../../../assets/logos/logo.png" type="image/png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary font-sans text-gray-800">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-800 to-pink-600 text-white py-8 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-6 lg:mb-0">
+                    <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="h-16 w-16">
+                    <div>
+                        <h1 class="text-3xl font-bold">USDTgVerse White-Label Solutions</h1>
+                        <span class="text-lg text-purple-200">Enterprise Custom Solutions</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">$12.4M</div>
+                        <div class="text-sm text-purple-200">White-Label Revenue</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">47</div>
+                        <div class="text-sm text-purple-200">Enterprise Clients</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-400">$264K</div>
+                        <div class="text-sm text-purple-200">Avg Client Value</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">99.9%</div>
+                        <div class="text-sm text-purple-200">Uptime SLA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white/10 backdrop-blur-lg sticky top-0 z-50 p-5">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">🏷️ White-Label Solutions</div>
+            <nav class="flex space-x-5">
+                <a href="../index.html" class="text-white no-underline px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">← Back to Revenue</a>
+                <a href="../affiliate/index.html" class="text-white no-underline px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">Affiliate Program →</a>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Solutions Overview -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">🏦</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Banking Solutions</h3>
+                    <p class="text-gray-300 mb-4">Complete digital banking platform with your branding</p>
+                    <ul class="text-left text-sm text-gray-300 space-y-2">
+                        <li>• Account management</li>
+                        <li>• Payment processing</li>
+                        <li>• Compliance tools</li>
+                        <li>• Risk management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">💱</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Exchange Solutions</h3>
+                    <p class="text-gray-300 mb-4">Full-featured cryptocurrency exchange platform</p>
+                    <ul class="text-left text-sm text-gray-300 space-y-2">
+                        <li>• Trading engine</li>
+                        <li>• Order management</li>
+                        <li>• Wallet integration</li>
+                        <li>• Security features</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">🔐</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Wallet Solutions</h3>
+                    <p class="text-gray-300 mb-4">Secure multi-currency wallet platform</p>
+                    <ul class="text-left text-sm text-gray-300 space-y-2">
+                        <li>• Multi-chain support</li>
+                        <li>• DeFi integration</li>
+                        <li>• Staking features</li>
+                        <li>• Mobile apps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mb-8">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">White-Label Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl mb-4">🎨</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Custom Branding</h3>
+                    <p class="text-sm text-gray-300">Complete brand customization with your logo, colors, and design</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl mb-4">🔧</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">API Integration</h3>
+                    <p class="text-sm text-gray-300">RESTful APIs for seamless integration with your existing systems</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl mb-4">🛡️</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Security & Compliance</h3>
+                    <p class="text-sm text-gray-300">Enterprise-grade security with regulatory compliance</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl mb-4">📱</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Multi-Platform</h3>
+                    <p class="text-sm text-gray-300">Web, mobile, and desktop applications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mb-8">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Pricing Plans</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <h3 class="text-xl font-bold text-white mb-4">Starter</h3>
+                    <div class="text-3xl font-bold text-purple-400 mb-4">$50K/month</div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>• Basic platform setup</li>
+                        <li>• Standard branding</li>
+                        <li>• Email support</li>
+                        <li>• 99.5% uptime SLA</li>
+                    </ul>
+                    <button class="w-full mt-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">Get Started</button>
+                </div>
+
+                <div class="bg-white/5 rounded-2xl p-6 border border-purple-400 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-400 text-white px-4 py-1 rounded-full text-sm">Popular</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Professional</h3>
+                    <div class="text-3xl font-bold text-purple-400 mb-4">$150K/month</div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>• Advanced platform features</li>
+                        <li>• Custom branding</li>
+                        <li>• Priority support</li>
+                        <li>• 99.9% uptime SLA</li>
+                        <li>• API access</li>
+                    </ul>
+                    <button class="w-full mt-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">Get Started</button>
+                </div>
+
+                <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <h3 class="text-xl font-bold text-white mb-4">Enterprise</h3>
+                    <div class="text-3xl font-bold text-purple-400 mb-4">Custom</div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>• Fully customized solution</li>
+                        <li>• Dedicated infrastructure</li>
+                        <li>• 24/7 dedicated support</li>
+                        <li>• 99.99% uptime SLA</li>
+                        <li>• Custom integrations</li>
+                    </ul>
+                    <button class="w-full mt-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Client Success Stories -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Client Success Stories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white/5 rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">CB</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white">CryptoBank Pro</h3>
+                            <p class="text-sm text-gray-400">Digital Banking Platform</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">"USDTgVerse white-label solution helped us launch our digital banking platform in just 3 months. The custom branding and API integration were seamless."</p>
+                    <div class="text-sm text-gray-400">- CEO, CryptoBank Pro</div>
+                </div>
+
+                <div class="bg-white/5 rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">DE</div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white">DeFi Exchange</h3>
+                            <p class="text-sm text-gray-400">Cryptocurrency Exchange</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">"The white-label exchange solution provided us with enterprise-grade security and compliance features. Our users love the seamless trading experience."</p>
+                    <div class="text-sm text-gray-400">- CTO, DeFi Exchange</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/20 backdrop-blur-lg p-8 text-center mt-12">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-gray-300">&copy; 2024 USDTgVerse. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

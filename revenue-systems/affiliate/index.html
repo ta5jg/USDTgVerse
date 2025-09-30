@@ -1,0 +1,263 @@
+<!--
+==============================================
+ File:        index.html
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Affiliate Program Dashboard
+   
+   Professional affiliate program management system featuring:
+   - Commission tracking and payouts
+   - Performance analytics
+   - Marketing tools and resources
+   - Partner management
+   - Revenue optimization
+
+ License:
+   MIT License
+==============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Affiliate Program</title>
+    <link rel="icon" href="../../../assets/logos/logo.png" type="image/png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary font-sans text-gray-800">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-800 to-emerald-600 text-white py-8 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-6 lg:mb-0">
+                    <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="h-16 w-16">
+                    <div>
+                        <h1 class="text-3xl font-bold">USDTgVerse Affiliate Program</h1>
+                        <span class="text-lg text-green-200">Earn Up To 50% Commission</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">$18.7M</div>
+                        <div class="text-sm text-green-200">Total Payouts</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">89K</div>
+                        <div class="text-sm text-green-200">Active Affiliates</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-400">$2,150</div>
+                        <div class="text-sm text-green-200">Avg Monthly Earnings</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">12.8%</div>
+                        <div class="text-sm text-green-200">Conversion Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white/10 backdrop-blur-lg sticky top-0 z-50 p-5">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">🤝 Affiliate Program</div>
+            <nav class="flex space-x-5">
+                <a href="../index.html" class="text-white no-underline px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">← Back to Revenue</a>
+                <a href="../referral/AffiliateProgram.html" class="text-white no-underline px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">Referral System →</a>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Program Overview -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                <h2 class="text-2xl font-bold text-white mb-6">Program Benefits</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <span class="text-gray-300">Up to 50% commission on trading fees</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <span class="text-gray-300">Recurring commissions for lifetime</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <span class="text-gray-300">Real-time earnings tracking</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <span class="text-gray-300">Marketing materials and tools</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <span class="text-gray-300">Dedicated account manager</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <span class="text-gray-300">Priority support and training</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                <h2 class="text-2xl font-bold text-white mb-6">Commission Structure</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                        <span class="text-gray-300">Trading Fees</span>
+                        <span class="text-green-400 font-bold">50%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                        <span class="text-gray-300">Subscription Fees</span>
+                        <span class="text-green-400 font-bold">30%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                        <span class="text-gray-300">Service Fees</span>
+                        <span class="text-green-400 font-bold">25%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                        <span class="text-gray-300">Referral Bonuses</span>
+                        <span class="text-green-400 font-bold">$500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Analytics -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mb-8">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Performance Analytics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-400 mb-2">$847K</div>
+                    <div class="text-sm text-gray-300">Monthly Revenue</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">$254K</div>
+                    <div class="text-sm text-gray-300">Commission Payouts</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">1,247</div>
+                    <div class="text-sm text-gray-300">New Signups</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2">94.2%</div>
+                    <div class="text-sm text-gray-300">Retention Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Affiliates -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mb-8">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Top Performing Affiliates</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-white">
+                    <thead>
+                        <tr class="border-b border-white/20">
+                            <th class="text-left py-3 px-4">Affiliate</th>
+                            <th class="text-left py-3 px-4">Revenue</th>
+                            <th class="text-left py-3 px-4">Commission</th>
+                            <th class="text-left py-3 px-4">Referrals</th>
+                            <th class="text-left py-3 px-4">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-white/10">
+                            <td class="py-3 px-4">CryptoMaster Pro</td>
+                            <td class="py-3 px-4">$124K</td>
+                            <td class="py-3 px-4">$37K</td>
+                            <td class="py-3 px-4">847</td>
+                            <td class="py-3 px-4"><span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span></td>
+                        </tr>
+                        <tr class="border-b border-white/10">
+                            <td class="py-3 px-4">Blockchain Solutions</td>
+                            <td class="py-3 px-4">$98K</td>
+                            <td class="py-3 px-4">$29K</td>
+                            <td class="py-3 px-4">623</td>
+                            <td class="py-3 px-4"><span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span></td>
+                        </tr>
+                        <tr class="border-b border-white/10">
+                            <td class="py-3 px-4">DeFi Partners</td>
+                            <td class="py-3 px-4">$76K</td>
+                            <td class="py-3 px-4">$23K</td>
+                            <td class="py-3 px-4">491</td>
+                            <td class="py-3 px-4"><span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span></td>
+                        </tr>
+                        <tr class="border-b border-white/10">
+                            <td class="py-3 px-4">Enterprise Group</td>
+                            <td class="py-3 px-4">$65K</td>
+                            <td class="py-3 px-4">$20K</td>
+                            <td class="py-3 px-4">389</td>
+                            <td class="py-3 px-4"><span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Marketing Tools -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Analytics Dashboard</h3>
+                    <p class="text-gray-300 mb-4">Track your performance with real-time analytics</p>
+                    <button class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">Access Dashboard</button>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Marketing Materials</h3>
+                    <p class="text-gray-300 mb-4">Download banners, logos, and promotional content</p>
+                    <button class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">Download Assets</button>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Campaign Tools</h3>
+                    <p class="text-gray-300 mb-4">Create and manage your marketing campaigns</p>
+                    <button class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">Create Campaign</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/20 backdrop-blur-lg p-8 text-center mt-12">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-gray-300">&copy; 2024 USDTgVerse. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
