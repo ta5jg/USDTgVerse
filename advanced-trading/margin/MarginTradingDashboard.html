@@ -4,45 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Professional Margin Trading</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="../styles/advanced_trading.css">
     <link rel="icon" type="image/png" href="../../../assets/logos/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white font-sans">
     <!-- Header -->
-    <header class="trading-header">
-        <div class="header-container">
-            <div class="brand-section">
-                <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
+    <header class="bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center space-x-4">
+                <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="h-12 w-12">
                 <div class="brand-info">
-                    <h1 class="brand-name">USDTgVerse Margin Trading</h1>
-                    <span class="brand-subtitle">Professional Leveraged Trading</span>
+                    <h1 class="text-2xl font-bold text-white">USDTgVerse Margin Trading</h1>
+                    <span class="text-sm text-gray-300">Professional Leveraged Trading</span>
                 </div>
             </div>
             
-            <div class="account-info">
-                <div class="risk-metrics">
-                    <div class="metric">
-                        <span class="metric-label">Margin Ratio:</span>
-                        <span class="metric-value risk-high">285%</span>
+            <div class="flex items-center space-x-6">
+                <div class="flex space-x-4">
+                    <div class="text-center">
+                        <span class="text-center-label">Margin Ratio:</span>
+                        <span class="text-center-value text-red-400">285%</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">Initial Margin:</span>
-                        <span class="metric-value">$2.1M</span>
+                    <div class="text-center">
+                        <span class="text-center-label">Initial Margin:</span>
+                        <span class="text-center-value">$2.1M</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">Available:</span>
-                        <span class="metric-value available">$3.8M</span>
+                    <div class="text-center">
+                        <span class="text-center-label">Available:</span>
+                        <span class="text-center-value text-green-400">$3.8M</span>
                     </div>
                 </div>
                 
-                <div class="account-actions">
-                    <button class="btn-risk-manager">⚠️ Risk Manager</button>
-                    <button class="btn-settings">⚙️ Settings</button>
+                <div class="flex space-x-2">
+                    <button class="bg-orange-500 text-white px-4 py-2 border-0 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 hover:bg-orange-600">⚠️ Risk Manager</button>
+                    <button class="bg-gray-600 text-white px-4 py-2 border-0 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 hover:bg-gray-700">⚙️ Settings</button>
                 </div>
             </div>
         </div>
@@ -64,14 +78,14 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="trading-main">
+    <p-5 class="trading-p-5">
         <!-- Trading Interface -->
         <section class="trading-interface">
             <div class="interface-grid">
                 <!-- Order Panel -->
                 <div class="order-panel">
                     <div class="panel-header">
-                        <h3 class="panel-title">Margin Orders</h3>
+                        <h3 class="text-xl font-semibold text-white mb-4">Margin Orders</h3>
                         <div class="panel-controls">
                             <select class="trading-mode">
                                 <option>Long Position</option>
@@ -170,7 +184,7 @@
                 <!-- Market Data -->
                 <div class="market-data">
                     <div class="panel-header">
-                        <h3 class="panel-title">Real-Time Market</h3>
+                        <h3 class="text-xl font-semibold text-white mb-4">Real-Time Market</h3>
                         <div class="market-tabs">
                             <button class="tab-btn active">Depth</button>
                             <button class="tab-btn">Candles</button>
@@ -412,46 +426,46 @@
 
                 <div class="performance-stats">
                     <h3 class="stats-title">Performance Metrics</h3>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Total P&L</div>
-                            <div class="metric-value positive">+$234,567</div>
-                            <div class="metric-change positive">+27.3%</div>
+                    <div class="text-centers-grid">
+                        <div class="text-center-card">
+                            <div class="text-center-label">Total P&L</div>
+                            <div class="text-center-value positive">+$234,567</div>
+                            <div class="text-center-change positive">+27.3%</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Win Rate</div>
-                            <div class="metric-value">67.2%</div>
-                            <div class="metric-change positive">+5.1%</div>
+                        <div class="text-center-card">
+                            <div class="text-center-label">Win Rate</div>
+                            <div class="text-center-value">67.2%</div>
+                            <div class="text-center-change positive">+5.1%</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Average Leverage</div>
-                            <div class="metric-value">4.2x</div>
-                            <div class="metric-change negative">+0.8x</div>
+                        <div class="text-center-card">
+                            <div class="text-center-label">Average Leverage</div>
+                            <div class="text-center-value">4.2x</div>
+                            <div class="text-center-change negative">+0.8x</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Sharpe Ratio</div>
-                            <div class="metric-value">2.35</div>
-                            <div class="metric-change positive">+0.42</div>
+                        <div class="text-center-card">
+                            <div class="text-center-label">Sharpe Ratio</div>
+                            <div class="text-center-value">2.35</div>
+                            <div class="text-center-change positive">+0.42</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
+    </p-5>
 
     <!-- Footer -->
-    <footer class="trading-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 class="footer-title">Risk Disclosures</h4>
-                <p class="footer-text">
+    <bg-black/20 backdrop-blur-lg p-8 text-center class="trading-bg-black/20 backdrop-blur-lg p-8 text-center">
+        <div class="bg-black/20 backdrop-blur-lg p-8 text-center-content">
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
+                <h4 class="bg-black/20 backdrop-blur-lg p-8 text-center-title">Risk Disclosures</h4>
+                <p class="bg-black/20 backdrop-blur-lg p-8 text-center-text">
                     Margin trading involves substantial risk and is for sophisticated traders only. 
                     High leverage increases both profits and losses. Past performance does not guarantee future results.
                 </p>
             </div>
             
-            <div class="footer-section">
-                <h4 class="footer-title">Need Help?</h4>
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
+                <h4 class="bg-black/20 backdrop-blur-lg p-8 text-center-title">Need Help?</h4>
                 <div class="support-links">
                     <a href="#">📚 Margin Guide</a>
                     <a href="#">⚡ Quick Tutorial</a>
@@ -460,8 +474,8 @@
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4 class="footer-title">Account Status</h4>
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
+                <h4 class="bg-black/20 backdrop-blur-lg p-8 text-center-title">Account Status</h4>
                 <div class="account-status">
                     <div class="status-item online">✅ Trading Active</div>
                     <div class="status-item online">✅ Margin Enabled</div>
@@ -470,18 +484,16 @@
             </div>
         </div>
         
-        <div class="footer-bottom">
-            <p class="footer-copyright">
+        <div class="bg-black/20 backdrop-blur-lg p-8 text-center-bottom">
+            <p class="bg-black/20 backdrop-blur-lg p-8 text-center-copyright">
                 © 2025 USDTgVerse Margin Trading Platform. 
                 <span class="warning-text">High Risk Trading Environment</span>
             </p>
         </div>
-    </footer>
+    </bg-black/20 backdrop-blur-lg p-8 text-center>
 
     <!-- Scripts -->
     <script src="../scripts/margin_trading.js"></script>
     
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

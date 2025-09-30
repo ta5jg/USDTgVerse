@@ -4,57 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Copy Trading Platform</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="../styles/social_trading.css">
     <link rel="icon" type="image/png" href="../../../assets/logos/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white font-sans">
     <!-- Header -->
-    <header class="copy-trading-header">
-        <div class="header-container">
-            <div class="brand-section">
-                <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="brand-logo">
+    <header class="bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center space-x-4">
+                <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="h-12 w-12">
                 <div class="brand-info">
-                    <h1 class="brand-name">USDTgVerse Copy Trading</h1>
-                    <span class="brand-subtitle">Social Trading Revolution</span>
+                    <h1 class="text-2xl font-bold text-white">USDTgVerse Copy Trading</h1>
+                    <span class="text-sm text-gray-300">Social Trading Revolution</span>
                 </div>
             </div>
             
-            <div class="header-stats">
-                <div class="stat">
-                    <div class="stat-value">1.2M+</div>
-                    <div class="stat-label">Copy Traders</div>
+            <div class="flex space-x-6">
+                <div class="text-center">
+                    <div class="text-center-value">1.2M+</div>
+                    <div class="text-center-label">Copy Traders</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-value">247K</div>
-                    <div class="stat-label">Expert Traders</div>
+                <div class="text-center">
+                    <div class="text-center-value">247K</div>
+                    <div class="text-center-label">Expert Traders</div>
                 </div>
-                <div class="stat-value profit">$2.8B</div>
-                    <div class="stat-label">Copied Profits</div>
+                <div class="text-center-value text-green-400">$2.8B</div>
+                    <div class="text-center-label">Copied Profits</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-value">89.3%</div>
-                    <div class="stat-label">Success Rate</div>
+                <div class="text-center">
+                    <div class="text-center-value">89.3%</div>
+                    <div class="text-center-label">Success Rate</div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="copy-trading-nav">
-        <div class="nav-container">
-            <ul class="nav-menu">
-                <li class="nav-item active"><a href="#" class="nav-link">🏆 Top Experts</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">📊 My Copied Trades</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">👥 My Portfolio</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">🗓️ Performance</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">💰 Earnings</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">⚙️ Settings</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">📚 Learn Copy Trading</a></li>
+    <nav class="bg-black/20 backdrop-blur-lg p-5">
+        <div class="max-w-7xl mx-auto">
+            <ul class="flex space-x-6">
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10 active"><a href="#" class="nav-link">🏆 Top Experts</a></li>
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10"><a href="#" class="nav-link">📊 My Copied Trades</a></li>
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10"><a href="#" class="nav-link">👥 My Portfolio</a></li>
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10"><a href="#" class="nav-link">🗓️ Performance</a></li>
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10"><a href="#" class="nav-link">💰 Earnings</a></li>
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10"><a href="#" class="nav-link">⚙️ Settings</a></li>
+                <li class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10"><a href="#" class="nav-link">📚 Learn Copy Trading</a></li>
             </ul>
             
             <div class="nav-actions">
@@ -65,7 +79,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="copy-trading-main">
+    <p-5 class="copy-trading-p-5">
         <!-- Hero Section -->
         <section class="copy-hero">
             <div class="hero-content">
@@ -80,18 +94,18 @@
                 </div>
             </div>
             
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <div class="stat-value">15.3%</div>
-                    <div class="stat-label">Avg Monthly Return</div>
+            <div class="hero-text-centers">
+                <div class="text-center-card">
+                    <div class="text-center-value">15.3%</div>
+                    <div class="text-center-label">Avg Monthly Return</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">12x</div>
-                    <div class="stat-label">Better Than HODL</div>
+                <div class="text-center-card">
+                    <div class="text-center-value">12x</div>
+                    <div class="text-center-label">Better Than HODL</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">3 Minutes</div>
-                    <div class="stat-label">Setup Time</div>
+                <div class="text-center-card">
+                    <div class="text-center-value">3 Minutes</div>
+                    <div class="text-center-label">Setup Time</div>
                 </div>
             </div>
         </section>
@@ -129,7 +143,7 @@
                             <h3 class="expert-name">CryptoWizard 🧙‍♂️</h3>
                             <div class="expert-details">
                                 <span class="expert-title">Scalping Master</span>
-                                <div class="expert-stats">
+                                <div class="expert-text-centers">
                                     <span class="followers">847K Followers</span>
                                     <span class="copiers">23.5K Copiers</span>
                                 </div>
@@ -145,12 +159,12 @@
                         <div class="performance-metrics">
                             <div class="metric">
                                 <span class="metric-label">Total Return:</span>
-                                <span class="metric-value profit">+312.7%</span>
+                                <span class="metric-value text-green-400">+312.7%</span>
                                 <span class="metric-period">(12 months)</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-label">Monthly Avg:</span>
-                                <span class="metric-value profit">+24.8%</span>
+                                <span class="metric-value text-green-400">+24.8%</span>
                                 <span class="metric-change positive">+5.2% vs last month</span>
                             </div>
                             <div class="metric">
@@ -204,7 +218,7 @@
                             <h3 class="expert-name">DeFi Professor 📚</h3>
                             <div class="expert-details">
                                 <span class="expert-title">Yield Farming Specialist</span>
-                                <div class="expert-stats">
+                                <div class="expert-text-centers">
                                     <span class="followers">452K Followers</span>
                                     <span class="copiers">15.8K Copiers</span>
                                 </div>
@@ -220,12 +234,12 @@
                         <div class="performance-metrics">
                             <div class="metric">
                                 <span class="metric-label">Total Return:</span>
-                                <span class="metric-value profit">+287.3%</span>
+                                <span class="metric-value text-green-400">+287.3%</span>
                                 <span class="metric-period">(12 months)</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-label">Monthly Avg:</span>
-                                <span class="metric-value profit">+21.4%</span>
+                                <span class="metric-value text-green-400">+21.4%</span>
                                 <span class="metric-change positive">+2.8% vs last month</span>
                             </div>
                             <div class="metric">
@@ -273,7 +287,7 @@
                             <h3 class="expert-name">SwingMaster 📊</h3>
                             <div class">
                                 <span class="expert-title">Market Cycle Expert</span>
-                                <div class="expert-stats">
+                                <div class="expert-text-centers">
                                     <span class="followers">238K Followers</span>
                                     <span class="copiers">8.9K Copiers</span>
                                 </div>
@@ -289,12 +303,12 @@
                         <div class="performance-metrics">
                             <div class="metric">
                                 <span class="metric-label">Total Return:</span>
-                                <span class="metric-value profit">+198.7%</span>
+                                <span class="metric-value text-green-400">+198.7%</span>
                                 <span class="metric-period">(12 months)</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-label">Monthly Avg:</span>
-                                <span class="metric-value profit">+14.2%</span>
+                                <span class="metric-value text-green-400">+14.2%</span>
                                 <span class="metric-change positive">+1.3% vs last month</span>
                             </div>
                             <div class="metric">
@@ -350,7 +364,7 @@
                             </div>
                             <div class="expert-details">
                                 <h4 class="expert-name" id="selectedExpertName">Expert Name</h4>
-                                <div class="expert-stats" id="selectedExpertStats">Stats</div>
+                                <div class="expert-text-centers" id="selectedExpertStats">Stats</div>
                             </div>
                         </div>
                         
@@ -432,7 +446,7 @@
                                 </div>
                                 <div class="summary-row">
                                     <span class="summary-label">Expected Monthly Return:</span>
-                                    <span class="summary-value profit" id="summaryReturn">-</span>
+                                    <span class="summary-value text-green-400" id="summaryReturn">-</span>
                                 </div>
                             </div>
                         </div>
@@ -452,18 +466,18 @@
         <section class="my-copy-portfolio">
             <div class="section-header">
                 <h2 class="section-title">📊 My Copy Portfolio</h2>
-                <div class="portfolio-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">Total Copied:</span>
-                        <span class="stat-value positive">+$45,670</span>
+                <div class="portfolio-text-centers">
+                    <div class="text-center-item">
+                        <span class="text-center-label">Total Copied:</span>
+                        <span class="text-center-value positive">+$45,670</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Active Copy:</span>
-                        <span class="stat-value">3 Expert</span>
+                    <div class="text-center-item">
+                        <span class="text-center-label">Active Copy:</span>
+                        <span class="text-center-value">3 Expert</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Success Rate:</span>
-                        <span class="stat-value">94.2%</span>
+                    <div class="text-center-item">
+                        <span class="text-center-label">Success Rate:</span>
+                        <span class="text-center-value">94.2%</span>
                     </div>
                 </div>
             </div>
@@ -565,7 +579,7 @@
                     <div class="input-group">
                         <label class="input-label">Expert Fees</label>
                         <input type="number" class="calculator-input" value="20" id="calcFees">
-                        <span class="input-suffix">% of profits</span>
+                        <span class="input-suffix">% of text-green-400s</span>
                     </div>
                 </div>
 
@@ -574,12 +588,12 @@
                     
                     <div class="result-card">
                         <div class="result-label">Expected Profit</div>
-                        <div class="result-value profit" id="calcExpectedProfit">$31,200</div>
+                        <div class="result-value text-green-400" id="calcExpectedProfit">$31,200</div>
                     </div>
                     
                     <div class="result-card">
                         <div class="result-label">After Expert Fees</div>
-                        <div class="result-value profit" id="calcNetProfit">$24,960</div>
+                        <div class="result-value text-green-400" id="calcNetProfit">$24,960</div>
                     </div>
                     
                    <｜tool▁sep｜>div class="result-card">
@@ -589,7 +603,7 @@
                     
                     <div class="result-card">
                         <div class="result-label">Annualized ROI</div>
-                        <div class="result-value profit" id="calcROI">249.6%</div>
+                        <div class="result-value text-green-400" id="calcROI">249.6%</div>
                     </div>
                     
                     <div class="risk-warning">
@@ -602,14 +616,14 @@
                 </div>
             </div>
         </section>
-    </main>
+    </p-5>
 
     <!-- Footer -->
-    <footer class="copy-trading-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 class="footer-title">🚀 Start Copy Trading</h4>
-                <div class="footer-links">
+    <bg-black/20 backdrop-blur-lg p-8 text-center class="copy-trading-bg-black/20 backdrop-blur-lg p-8 text-center">
+        <div class="bg-black/20 backdrop-blur-lg p-8 text-center-content">
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
+                <h4 class="bg-black/20 backdrop-blur-lg p-8 text-center-title">🚀 Start Copy Trading</h4>
+                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-links">
                     <a href="#">📚 Beginner's Guide</a>
                     <a href="#">🎯 Strategy Guide</a>
                     <a href="#">💰 Risk Management</a>
@@ -617,9 +631,9 @@
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4 class="footer-title">💡 Expert Support</h4>
-                <div class="footer-info">
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
+                <h4 class="bg-black/20 backdrop-blur-lg p-8 text-center-title">💡 Expert Support</h4>
+                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-info">
                     <div class="info-item">
                         <span class="info-label">24/7 Support:</span>
                         <span class="info-value">copy-support@usdtgverse.com</span>
@@ -631,9 +645,9 @@
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4 class="footer-title">📈 Tools & Resources</h4>
-                <div class="footer-tools">
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
+                <h4 class="bg-black/20 backdrop-blur-lg p-8 text-center-title">📈 Tools & Resources</h4>
+                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-tools">
                     <a href="#">🔮 Copy Wizard</a>
                     <a href="#">📈 Strategy Builder</a>
                     <a href="#">⚡ Quick Setup</a>
@@ -642,19 +656,17 @@
             </div>
         </div>
         
-        <div class="footer-bottom">
-            <p class="footer-copyright">
+        <div class="bg-black/20 backdrop-blur-lg p-8 text-center-bottom">
+            <p class="bg-black/20 backdrop-blur-lg p-8 text-center-copyright">
                 © 2025 USDTgVerse Copy Trading Platform.
                 <span class="disclaimer">Copy trading involves risk. Past performance doesn't guarantee future results.</span>
             </p>
         </div>
-    </footer>
+    </bg-black/20 backdrop-blur-lg p-8 text-center>
 
     <!-- Scripts -->
     <script src="../scripts/copy_trading.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

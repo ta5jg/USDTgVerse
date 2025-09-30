@@ -4,117 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Referral & Affiliate Program</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../styles/revenue_optimization.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="icon" type="image/png" href="../../../assets/logos/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary font-sans text-gray-800">
     <!-- Header -->
-    <header class="affiliate-header">
-        <div class="header-container">
-            <div class="brand-section">
-                <img src="../../../asset/logos/logo.png" alt="USDTgVerse" class="brand-logo">
-                <div class="brand-info">
-                    <h1 class="brand-name">USDTgVerse Affiliate Program</h1>
-                    <span class="brand-subtitle">Earn Up To $50,000 Per Quarter</span>
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-8 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-6 lg:mb-0">
+                    <img src="../../../assets/logos/logo.png" alt="USDTgVerse" class="h-16 w-16">
+                    <div>
+                        <h1 class="text-3xl font-bold">USDTgVerse Affiliate Program</h1>
+                        <span class="text-lg text-blue-200">Earn Up To $50,000 Per Quarter</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="affiliate-stats">
-                <div class="stat">
-                    <div class="stat-value">$24.7M</div>
-                    <div class="stat-label">Total Payouts</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">127K</div>
-                    <div class="stat-label">Active Affiliates</div>
-                </div>
-                <div class="stat">
-<span class="stat-value profit">$2,850</div>
-                    <div class="stat-label">Avg Monthly Earnings</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">15.3%</div>
-                    <div class="stat-label">Conversion Rate</div>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">$24.7M</div>
+                        <div class="text-sm text-blue-200">Total Payouts</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">127K</div>
+                        <div class="text-sm text-blue-200">Active Affiliates</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-400">$2,850</div>
+                        <div class="text-sm text-blue-200">Avg Monthly Earnings</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-usdtg-accent">15.3%</div>
+                        <div class="text-sm text-blue-200">Conversion Rate</div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="affiliate-nav">
-        <div class="nav-container">
-            <ul class="nav-menu">
-                <li class="nav-item active"><a href="#" class="nav-link">💰 Earnings Dashboard</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">🎯 Campaign Tools</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">📊 Reporting</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">🛠️ Marketing Materials</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">💼 Partner Resources</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">🏆 Leaderboard</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">⚙️ Settings</a></li>
-            </ul>
-            
-            <div class="nav-actions">
-                <button class="btn-create-campaign">🚀 Create Campaign</button>
-                <button class="btn-invite-friends">👥 Invite Friends</button>
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between py-4">
+                <ul class="flex flex-wrap justify-center lg:justify-start space-x-6 mb-4 lg:mb-0">
+                    <li><a href="#" class="text-blue-600 font-semibold hover:text-blue-800">💰 Earnings Dashboard</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600">🎯 Campaign Tools</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600">📊 Reporting</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600">🛠️ Marketing Materials</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600">💼 Partner Resources</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600">🏆 Leaderboard</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600">⚙️ Settings</a></li>
+                </ul>
+                
+                <div class="flex space-x-4">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">🚀 Create Campaign</button>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">👥 Invite Friends</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="affiliate-main">
+    <main class="max-w-7xl mx-auto px-4 py-8">
         <!-- Hero Section -->
-        <section class="affiliate-hero">
-            <div class="hero-content">
-                <h2 class="hero-title">Turn Your Network Into Recurring Revenue</h2>
-                <p class="hero-subtitle">
-                    Earn up to 50% commission on trading fees, membership subscriptions, and service fees. 
-                    Build passive income with the world's most advanced cryptocurrency ecosystem.
-                </p>
-                <div class="hero-features">
-                    <div class="feature-item">
-                        <span class="feature-icon">💰</span>
-                        <span class="feature-text">Up to 50% Revenue Sharing</span>
-                    </div>
-                    <div class="feature-item">
-<span class="feature-icon">🔄</span>
-                        <span class="feature-text">Recurring Commissions Forever</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">🎁</span>
-                        <span class="feature-text">$500 Welcome Bonus</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">📈</span>
-                        <span class="feature-text">Real-Time Earnings Tracking</span>
-                    </div>
-                </div>
-                <div class="hero-actions">
-                    <button class="btn-join-program">🎯 Join Program</button>
-                    <button class="btn-calc-earnings">🧮 Calculate Earnings</button>
-                </div>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="earnings-preview">
-                    <div class="preview-card">
-                        <div class="card-title">Your Projected Earnings</div>
-                        <div class="earnings-chart">
-                            <canvas id="earningsPreview" width="300" height="200"></canvas>
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Turn Your Network Into Recurring Revenue</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Earn up to 50% commission on trading fees, membership subscriptions, and service fees. 
+                        Build passive income with the world's most advanced cryptocurrency ecosystem.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">💰</span>
+                            <span class="text-gray-700">Up to 50% Revenue Sharing</span>
                         </div>
-                        <div class="earnings-summary">
-                            <div class="summary-item">
-                                <span class="summary-label">Monthly:</span>
-                                <span class="summary-value profit">$8,500</span>
-                            </div>
-                            <div class="summary-item">
-                                <span class="summary-label">Yearly:</span>
-                                <span class="summary-value profit">$102,000</span>
-                            </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">🔄</span>
+                            <span class="text-gray-700">Recurring Commissions Forever</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">🎁</span>
+                            <span class="text-gray-700">$500 Welcome Bonus</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">📈</span>
+                            <span class="text-gray-700">Real-Time Earnings Tracking</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">🎯 Join Program</button>
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">🧮 Calculate Earnings</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6">
+                    <div class="text-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Your Projected Earnings</h3>
+                    </div>
+                    <div class="mb-4">
+                        <canvas id="earningsPreview" width="300" height="200"></canvas>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Monthly:</span>
+                            <span class="text-2xl font-bold text-green-600">$8,500</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Yearly:</span>
+                            <span class="text-2xl font-bold text-green-600">$102,000</span>
                         </div>
                     </div>
                 </div>
@@ -122,170 +139,129 @@
         </section>
 
         <!-- Commission Structure -->
-        <section class="commission-structure">
-            <div class="section-header">
-                <h2 class="section-title">💵 Commission Structure</h2>
-                <span class="section-subtitle">Competitive commissions across all products</span>
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">💵 Commission Structure</h2>
+                <span class="text-gray-600">Competitive commissions across all products</span>
             </div>
 
-            <div class="commission-tiers">
-                <div class="tier-card starter">
-                    <div class="tier-header">
-                        <h3 class="tier-title">Bronze Tier</h3>
-                        <div class="tier-requirements">$0 - $9,999 Referrals/Month</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Bronze Tier</h3>
+                        <div class="text-gray-600">$0 - $9,999 Referrals/Month</div>
                     </div>
-                    <div class="tier-commissions">
-                        <div class="commission-item">
-                            <span class="commission-product">Trading Fees</span>
-                            <span class="commission-rate">20%</span>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Trading Fees</span>
+                            <span class="font-bold text-blue-600">20%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Membership</span>
-                            <span class="commission-rate">25%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Membership</span>
+                            <span class="font-bold text-blue-600">25%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Margin Fees</span>
-                            <span class="commission-rate">15%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Margin Fees</span>
+                            <span class="font-bold text-blue-600">15%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">OTC Trades</span>
-                            <span class="commission-rate">10%</span>
-                        </div>
-                    </div>
-                    <div class="tier-bonuses">
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🎁</span>
-                            <span class="bonus-text">$100 Welcome Bonus</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">📊</span>
-                            <span class="bonus-text">Basic Analytics</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">OTC Trades</span>
+                            <span class="font-bold text-blue-600">10%</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="tier-card professional popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="tier-header">
-                        <h3 class="tier-title">Silver Tier</h3>
-                        <div class="tier-requirements">$10,000 - $99,999 Referrals/Month</div>
-                    </div>
-                    <div class="tier-commissions">
-                        <div class="commission-item">
-                            <span class="commission-product">Trading Fees</span>
-                            <span class="commission-rate">30%</span>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">🎁</span>
+                            <span class="text-gray-700">$100 Welcome Bonus</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Membership</span>
-                            <span class="commission-rate">35%</span>
-                        </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Margin Fees</span>
-                            <span class="commission-rate">25%</span>
-                        </div>
-                        <div class="commission-item">
-                            <span class="commission-product">OTC Trades</span>
-                            <span class="commission-rate">20%</span>
-                        </div>
-                    </div>
-                    <div class="tier-bonuses">
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🎁</span>
-                            <span class="bonus-text">$500 Welcome Bonus</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">📊</span>
-                            <span class="bonus-text">Advanced Analytics</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🛠️</span>
-                            <span class="bonus-text">Custom Landing Pages</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">📊</span>
+                            <span class="text-gray-700">Basic Analytics</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="tier-card enterprise">
-                    <div class="tier-header">
-                        <h3 class="tier-title">Gold Tier</h3>
-                        <div class="tier-requirements">$100,000+ Referrals/Month</div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-300 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
                     </div>
-                    <div class="tier-commissions">
-                        <div class="commission-item">
-                            <span class="commission-product">Trading Fees</span>
-                            <span class="commission-rate">40%</span>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Silver Tier</h3>
+                        <div class="text-gray-600">$10,000 - $99,999 Referrals/Month</div>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Trading Fees</span>
+                            <span class="font-bold text-blue-600">30%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Membership</span>
-                            <span class="commission-rate">45%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Membership</span>
+                            <span class="font-bold text-blue-600">35%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Margin Fees</span>
-                            <span class="commission-rate">35%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Margin Fees</span>
+                            <span class="font-bold text-blue-600">25%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">OTC Trades</span>
-                            <span class="commission-rate">30%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">OTC Trades</span>
+                            <span class="font-bold text-blue-600">20%</span>
                         </div>
                     </div>
-                    <div class="tier-bonuses">
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🎁</span>
-                            <span class="bonus-text">$2,000 Welcome Bonus</span>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">🎁</span>
+                            <span class="text-gray-700">$500 Welcome Bonus</span>
                         </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">📊</span>
-                            <span class="bonus-text">Enterprise Analytics</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">📊</span>
+                            <span class="text-gray-700">Advanced Analytics</span>
                         </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🛠️</span>
-                            <span class="bonus-text">API Integration</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">👤</span>
-                            <span class="bonus-text">Dedicated Account Manager</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">🛠️</span>
+                            <span class="text-gray-700">Custom Landing Pages</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="tier-card partner">
-                    <div class="tier-header">
-                        <h3 class="tier-title">Platinum Tier</h3>
-                        <div class="tier-requirements">$1M+ Monthly Volume</div>
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl p-6 border-2 border-yellow-300">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Gold Tier</h3>
+                        <div class="text-gray-600">$100,000+ Referrals/Month</div>
                     </div>
-                    <div class="tier-commissions">
-                        <div class="commission-item">
-                            <span class="commission-product">Trading Fees</span>
-                            <span class="commission-rate">50%</span>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Trading Fees</span>
+                            <span class="font-bold text-yellow-600">40%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Membership</span>
-                            <span class="commission-rate">50%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Membership</span>
+                            <span class="font-bold text-yellow-600">45%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">Margin Fees</span>
-                            <span class="commission-rate">50%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Margin Fees</span>
+                            <span class="font-bold text-yellow-600">35%</span>
                         </div>
-                        <div class="commission-item">
-                            <span class="commission-product">OTC Trades</span>
-                            <span class="commission-rate">50%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">OTC Trades</span>
+                            <span class="font-bold text-yellow-600">30%</span>
                         </div>
                     </div>
-                    <div class="tier-bonuses">
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🎁</span>
-                            <span class="bonus-text">$10,000 Welcome Bonus</span>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">🎁</span>
+                            <span class="text-gray-700">$2,000 Welcome Bonus</span>
                         </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">📊</span>
-                            <span class="bonus-text">White-Label Solutions</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">📊</span>
+                            <span class="text-gray-700">Enterprise Analytics</span>
                         </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">🛠️</span>
-                            <span class="bonus-text">Custom Features</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">🛠️</span>
+                            <span class="text-gray-700">API Integration</span>
                         </div>
-                        <div class="bonus-item">
-                            <span class="bonus-icon">👥</span>
-                            <span class="bonus-text">Partner Training Program</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl">👤</span>
+                            <span class="text-gray-700">Dedicated Account Manager</span>
                         </div>
                     </div>
                 </div>
@@ -293,111 +269,98 @@
         </section>
 
         <!-- Performance Dashboard -->
-        <section class="performance-dashboard">
-            <div class="section-header">
-                <h2 class="section-title">📈 Performance Dashboard</h2>
-                <div class="dashboard-controls">
-                    <select class="period-select">
-                        <option>Today</option>
-                        <option>7 Days</option>
-                        <option selected>30 Days</option>
-                        <option>90 Days</option>
-                        <option>All Time</option>
-                    </select>
-                </div>
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 lg:mb-0">📈 Performance Dashboard</h2>
+                <select class="bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Today</option>
+                    <option>7 Days</option>
+                    <option selected>30 Days</option>
+                    <option>90 Days</option>
+                    <option>All Time</option>
+                </select>
             </div>
 
-            <div class="dashboard-grid">
-                <div class="metric-card total-earnings">
-                    <div class="card-header">
-                        <h3 class="card-title">Total Earnings</h3>
-                        <span class="card-period">Last 30 Days</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Total Earnings</h3>
+                        <span class="text-sm text-gray-600">Last 30 Days</span>
                     </div>
-                    <div class="card-content">
-                        <div class="main-metric">$14,250</div>
-                        <div class="metric-change positive">+$2,840 (+24.9%)</div>
-                        <div class="chart-container">
-                            <canvas id="earningsChart" width="300" height="100"></canvas>
+                    <div class="text-3xl font-bold text-green-600 mb-2">$14,250</div>
+                    <div class="text-sm text-green-600">+$2,840 (+24.9%)</div>
+                    <div class="mt-4">
+                        <canvas id="earningsChart" width="300" height="100"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Referrals</h3>
+                        <span class="text-sm text-gray-600">Active & Converted</span>
+                    </div>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">347</div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Active:</span>
+                            <span class="font-semibold">289</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Converted:</span>
+                            <span class="font-semibold">58</span>
+                        </div>
+                        <div class="flex justify-between pt-2 border-t border-gray-200">
+                            <span class="text-gray-600">Conversion Rate:</span>
+                            <span class="font-semibold text-green-600">16.7%</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="metric-card referrals">
-                    <div class="card-header">
-                        <h3 class="card-title">Referrals</h3>
-                        <span class="card-period">Active & Converted</span>
+                <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Commission Breakdown</h3>
+                        <span class="text-sm text-gray-600">Revenue Sources</span>
                     </div>
-                    <div class="card-content">
-                        <div class="main-metric">347</div>
-                        <div class="referral-breakdown">
-                            <div class="breakdown-item">
-                                <span class="breakdown-label">Active:</span>
-                                <span class="breakdown-value">289</span>
-                            </div>
-                            <div class="breakdown-item">
-                                {{breakdown-label">Converted:</span>
-                                <span class="breakdown-value">58</span>
-                            </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Trading Fees:</span>
+                            <span class="font-semibold">$8,450 (59.3%)</span>
                         </div>
-                        <div class="conversion-rate">
-                            <span class="rate-label">Conversion Rate:</span>
-                            <span class="rate-value">16.7%</span>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Membership:</span>
+                            <span class="font-semibold">$3,250 (22.8%)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Margin Fees:</span>
+                            <span class="font-semibold">$1,890 (13.3%)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">OTC Trades:</span>
+                            <span class="font-semibold">$660 (4.6%)</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="metric-card commission-breakdown">
-                    <div class="card-header">
-                        <h3 class="card-title">Commission Breakdown</h3>
-                        <span class="card-period">Revenue Sources</span>
-                    </div>
-                    <div class="card-content">
-                        <div class="commission-sources">
-                            <div class="source-item">
-                                <span class="source-name">Trading Fees:</span>
-                                <span class="source-amount">$8,450</span>
-                                <span class="source-percentage">(59.3%)</span>
-                            </div>
-                            <div class="source-item">
-                                <span class="source-name">Membership:</span>
-                                <span class="source-amount">$3,250</span>
-                                <span class="source-percentage">(22.8%)</span>
-                            </div>
-                            <div class="source-item">
-                                <span class="source-name">Margin Fees:</span>
-                                <span class="source-amount">$1,890</span>
-                                <span class="source-percentage">(13.3%)</span>
-                            </div>
-                            <div class="source-item">
-                                <span class="source-name">OTC Trades:</span>
-                                <span class="source-amount">$660</span>
-                                <span class="source-percentage">(4.6%)</span>
-                            </div>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="commissionChart" width="200" height="150"></canvas>
-                        </div>
+                    <div>
+                        <canvas id="commissionChart" width="200" height="150"></canvas>
                     </div>
                 </div>
 
-                <div class="metric-card tier-progress">
-                    <div class="card-header">
-                        <h3 class="card-title">Tier Progress</h3>
-                        <span class="card-period">Monthly Requirements</span>
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl p-6 border border-yellow-200">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Tier Progress</h3>
+                        <span class="text-sm text-gray-600">Monthly Requirements</span>
                     </div>
-                    <div class="card-content">
-                        <div class="current-tier">Current: Silver Tier</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 73%"></div>
+                    <div class="text-lg font-semibold text-gray-800 mb-4">Current: Silver Tier</div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
+                        <div class="bg-yellow-500 h-3 rounded-full" style="width: 73%"></div>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Progress to Gold:</span>
+                            <span class="font-semibold">73%</span>
                         </div>
-                        <div class="progress-info">
-                            <span class="progress-label">Progress to Gold:</span>
-                            <span class="progress-value">73% ($73,000 / $100,000)</span>
-                        </div>
-                        <div class="tier-benefits">
-                            <div class="benefit">+40% Trading Fees</div>
-                            <div class="benefit">+45% Membership Commissions</div>
-                            <div class="benefit">+35% Margin Fees</div>
+                        <div class="flex justify-between">
+                            <span>Remaining:</span>
+                            <span class="font-semibold">$27,000</span>
                         </div>
                     </div>
                 </div>
@@ -405,245 +368,323 @@
         </section>
 
         <!-- Marketing Tools -->
-        <section class="marketing-tools">
-            <div class="section-header">
-                <h2 class="section-title">🛠️ Marketing Tools & Materials</h2>
-                <button class="btn-generate-link">🔗 Generate Referral Link</button>
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 lg:mb-0">🛠️ Marketing Tools & Materials</h2>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">🔗 Generate Referral Link</button>
             </div>
 
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3 class="tool-title">🎯 Campaign Builder</h3>
-                    <div class="tool-description">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">🎯 Campaign Builder</h3>
+                    <p class="text-gray-600 mb-4">
                         Create targeted campaigns with custom landing pages, 
                         tracking codes, and conversion optimization.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Custom Landing Pages</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">A/B Testing</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Geographic Targeting</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Real-time Tracking</span>
+                        </div>
                     </div>
-                    <div class="tool-features">
-                        <div class="feature-item">✅ Custom Landing Pages</div>
-                        <div class="feature-item">✅ A/B Testing</div>
-                        <div class="feature-item">✅ Geographic Targeting</div>
-                        <div class="feature-item">✅ Real-time Tracking</div>
-                    </div>
-                    <button class="btn-use-tool">🚀 Build Campaign</button>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors">🚀 Build Campaign</button>
                 </div>
 
-                <div class="tool-card">
-                    <h3 class="tool-title">📱 Social Media Kit</h3>
-                    <div class="tool-description">
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">📱 Social Media Kit</h3>
+                    <p class="text-gray-600 mb-4">
                         Professional graphics, videos, and templates 
                         for Twitter, LinkedIn, Facebook, Instagram.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Ready-to-use Graphics</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Video Ads (15-30s)</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Copy Templates</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Brand Guidelines</span>
+                        </div>
                     </div>
-                    <div class="tool-features">
-                        <div class="feature-item">✅ Ready-to-use Graphics</div>
-                        <div class="feature-item">✅ Video Ads (15-30s)</div>
-                        <div class="feature-item">✅ Copy Templates</div>
-                        <div class="feature-item">✅ Brand Guidelines</div>
-                    </div>
-                    <button class="btn-use-tool">🎨 Download Kit</button>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors">🎨 Download Kit</button>
                 </div>
 
-                <div class="tool-card">
-                    <h3 class="tool-title">📧 Email Templates</h3>
-                    <div class="tool-description">
+                <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">📧 Email Templates</h3>
+                    <p class="text-gray-600 mb-4">
                         Professional email sequences for onboarding, 
                         follow-ups, and conversion optimization.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Welcome Series</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Follow-up Sequences</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Newsletter Templates</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Mobile Optimized</span>
+                        </div>
                     </div>
-                    <div class="tool-features">
-                        <div class="feature-item">✅ Welcome Series</div>
-                        <div class="feature-item">✅ Follow-up Sequences</div>
-                        <div class="feature-item">✅ Newsletter Templates</div>
-                        <div class="feature-item">✅ Mobile Optimized</div>
-                    </div>
-                    <button class="btn-use-tool">✉️ Use Templates</button>
+                    <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors">✉️ Use Templates</button>
                 </div>
 
-                <div class="tool-card">
-                    <h3 class="tool-title">🎤 Content Library</h3>
-                    <div class="tool-description">
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl p-6 border border-yellow-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">🎤 Content Library</h3>
+                    <p class="text-gray-600 mb-4">
                         Educational content, webinars, whitepapers, 
                         and case studies for content marketing.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Educational Videos</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Industry Reports</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Webinar Recordings</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✅</span>
+                            <span class="text-sm text-gray-700">Case Studies</span>
+                        </div>
                     </div>
-                    <div class="tool-features">
-                        <div class="feature-item">✅ Educational Videos</div>
-                        <div class="feature-item">✅ Industry Reports</div>
-                        <div class="feature-item">✅ Webinar Recordings</div>
-                        <div class="feature-item">✅ Case Studies</div>
-                    </div>
-                    <button class="btn-use-tool">📚 Access Library</button>
+                    <button class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors">📚 Access Library</button>
                 </div>
             </div>
         </section>
 
         <!-- Top Performers -->
-        <section class="top-performers">
-            <div class="section-header">
-                <h2 class="section-title">🏆 Top Affiliates</h2>
-                <button class="btn-view-all">View All Rankings</button>
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 lg:mb-0">🏆 Top Affiliates</h2>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">View All Rankings</button>
             </div>
 
-            <div class="leaderboard">
-                <div class="leaderboard-header">
-                    <div class="rank-column">Rank</div>
-                    <div class="affiliate-column">Affiliate</div>
-                    <div class="referrals-column">Referrals</div>
-                    <div class="earnings-column">Monthly Earnings</div>
-                    <div class="tier-column">Tier</div>
-                </div>
-
-                <div class="leaderboard-item top-1">
-                    <div class="rank-badge">1st</div>
-                    <div class="affiliate-info">
-                        <span class="affiliate-name">CryptoInfluencer_21</span>
-                        <span class="affiliate-specialty">YouTube Influencer</span>
-                    </div>
-                    <div class="referrals-count">2,847</div>
-                    <div class="earnings-amount">$47,250</div>
-                    <div class="tier-status platinum">Platinum</div>
-                </div>
-
-                <div class="leaderboard-item top-2">
-                    <div class="rank-badge">2nd</div>
-                    <div class="affiliate-info">
-                        <span class="affiliate-name">TradingGuru_Pro</span>
-                        <span class="affiliate-specialty">Educational Platform</span>
-                    </div>
-                    <div class="referrals-count">1,923</div>
-                    <div class="earnings-amount">$38,750</div>
-                    <div class="tier-status gold">Gold</div>
-                </div>
-
-                <div class="leaderboard-item top-3">
-                    <div class="rank-badge">3rd</div>
-                    <div class="affiliate-info">
-                        <span class="affiliate-name">FintechInsider</span>
-                        <span class="affiliate-specialty">Industry Newsletter</span>
-                    </div>
-                    <div class="referrals-count">1,456</div>
-                    <div class="earnings-amount">$29,340</div>
-                    <div class="tier-status gold">Gold</div>
-                </div>
-
-                <div class="leaderboard-item">
-                    <div class="rank-badge">4th</div>
-                    <div class="affiliate-info">
-                        <span class="affiliate-name">BlockchainBlogger</span>
-                        <span class="affiliate-specialty">Content Creator</span>
-                    </div>
-                    <div class="referrals-count">1,198</div>
-                    <div class="earnings-amount">$24,100</div>
-                    <div class="tier-status silver">Silver</div>
-                </div>
-
-                <div class="leaderboard-item">
-                    <div class="rank-badge">5th</div>
-                    <div class="affiliate-info">
-                        <span class="affiliate-name">DeFiEducator</span>
-                        <span class="affiliate-specialty">Podcast Host</span>
-                    </div>
-                    <div class="referrals-count">987</div>
-                    <div class="earnings-amount">$19,870</div>
-                    <div class="tier-status silver">Silver</div>
-                </div>
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">Rank</th>
+                            <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">Affiliate</th>
+                            <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">Referrals</th>
+                            <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">Monthly Earnings</th>
+                            <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">Tier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-50">
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">1st</span>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">CryptoInfluencer_21</div>
+                                    <div class="text-sm text-gray-600">YouTube Influencer</div>
+                                </div>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold">2,847</td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold text-green-600">$47,250</td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Platinum</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">2nd</span>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">TradingGuru_Pro</div>
+                                    <div class="text-sm text-gray-600">Educational Platform</div>
+                                </div>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold">1,923</td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold text-green-600">$38,750</td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Gold</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">3rd</span>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">FintechInsider</div>
+                                    <div class="text-sm text-gray-600">Industry Newsletter</div>
+                                </div>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold">1,456</td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold text-green-600">$29,340</td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Gold</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">4th</span>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">BlockchainBlogger</div>
+                                    <div class="text-sm text-gray-600">Content Creator</div>
+                                </div>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold">1,198</td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold text-green-600">$24,100</td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Silver</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">5th</span>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">DeFiEducator</div>
+                                    <div class="text-sm text-gray-600">Podcast Host</div>
+                                </div>
+                            </td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold">987</td>
+                            <td class="border-b border-gray-100 px-4 py-3 font-semibold text-green-600">$19,870</td>
+                            <td class="border-b border-gray-100 px-4 py-3">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Silver</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
         <!-- Earnings Calculator -->
-        <section class="earnings-calculator">
-            <div class="section-header">
-                <h2 class="section-title">🧮 Earnings Calculator</h2>
-                <span class="section-subtitle">Project your potential earnings</span>
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">🧮 Earnings Calculator</h2>
+                <span class="text-gray-600">Project your potential earnings</span>
             </div>
 
-            <div class="calculator-grid">
-                <div class="calculator-inputs">
-                    <h3 class="calculator-title">Input Parameters</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Input Parameters</h3>
                     
-                    <div class="input-group">
-                        <label class="input-label">Monthly Referrals</label>
-                        <input type="number" class="calculator-input" value="100" id="calcReferrals">
-                        <span class="input-suffix">people/month</span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label">Conversion Rate</label>
-                        <input type="number" class="calculator-input" value="15" id="calcConvRate">
-                        <span class="input-suffix">%</span</span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label">Average Trade Size</label>
-                        <input type="number" class="calculator-input" value="2500" id="calcTradeSize">
-                        <span class="input-suffix">USDTg</span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label">Trading Frequency</label>
-                        <select class="calculator-select" id="calcFrequency">
-                            <option value="1">1 trade/month</option>
-                            <option value="5" selected>5 trades/month</option>
-                            <option value="10">10 trades/month</option>
-                            <option value="20">20 trades/month</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label">Your Tier</label>
-                        <select class="calculator-select" id="calcTier">
-                            <option value="0.2">Bronze (20%)</option>
-                            <option value="0.3" selected>Silver (30%)</option>
-                            <option value="0.4">Gold (40%)</option>
-                            <option value="0.5">Platinum (50%)</option>
-                        </select>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Referrals</label>
+                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="100" id="calcReferrals">
+                            <span class="text-sm text-gray-500">people/month</span>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Conversion Rate</label>
+                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="15" id="calcConvRate">
+                            <span class="text-sm text-gray-500">%</span>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Average Trade Size</label>
+                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="2500" id="calcTradeSize">
+                            <span class="text-sm text-gray-500">USDTg</span>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Trading Frequency</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="calcFrequency">
+                                <option value="1">1 trade/month</option>
+                                <option value="5" selected>5 trades/month</option>
+                                <option value="10">10 trades/month</option>
+                                <option value="20">20 trades/month</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Tier</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="calcTier">
+                                <option value="0.2">Bronze (20%)</option>
+                                <option value="0.3" selected>Silver (30%)</option>
+                                <option value="0.4">Gold (40%)</option>
+                                <option value="0.5">Platinum (50%)</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="calculator-results">
-                    <h3 class="calculator-title">Projected Earnings</h3>
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Projected Earnings</h3>
                     
-                    <div class="result-card monthly">
-                        <div class="result-label">Monthly Commission</div>
-                        <div class="result-value profit" id="calcMonthlyEarnings">$5,625</div>
-                        <div class="result-breakdown">
-                            <span>From trading fees</span>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="text-sm text-gray-600">Monthly Commission</div>
+                            <div class="text-2xl font-bold text-green-600" id="calcMonthlyEarnings">$5,625</div>
+                            <div class="text-xs text-gray-500">From trading fees</div>
                         </div>
-                    </div>
-                    
-                    <div class="result-card yearly">
-                        <div class="result-label">Annual Commission</div>
-                        <div class="result-value profit" id="calcYearlyEarnings">$67,500</div>
-                        <div class="result-breakdown">
-                            <span>Before tax</span>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="text-sm text-gray-600">Annual Commission</div>
+                            <div class="text-2xl font-bold text-green-600" id="calcYearlyEarnings">$67,500</div>
+                            <div class="text-xs text-gray-500">Before tax</div>
                         </div>
-                    </div>
-                    
-                    <div class="result-card additional">
-                        <div class="result-label">Additional Revenue</div>
-                        <div class="result-value profit" id="calcAdditionalRevenue">$28,125</div>
-                        <div class="result-breakdown">
-                            <span>Membership + Margin fees</span>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="text-sm text-gray-600">Additional Revenue</div>
+                            <div class="text-2xl font-bold text-green-600" id="calcAdditionalRevenue">$28,125</div>
+                            <div class="text-xs text-gray-500">Membership + Margin fees</div>
                         </div>
-                    </div>
-                    
-                    <div class="result-card total">
-                        <div class="result-label">Total Annual Income</div>
-                        <div class="result-value profit" id="calcTotalIncome">$95,625</div>
-                        <div class="result-breakdown">
-                            <span>Potential earnings</span>
+                        
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg p-4">
+                            <div class="text-sm text-green-100">Total Annual Income</div>
+                            <div class="text-3xl font-bold" id="calcTotalIncome">$95,625</div>
+                            <div class="text-xs text-green-100">Potential earnings</div>
                         </div>
-                    </div>
-                    
-                    <div class="earnings-timeline">
-                        <div class="timeline-item">
-                            <span class="timeline-period">3 months:</span>
-                            <span class="timeline-amount">$23,906</span>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-period">6 months:</span>
-                            <span class="timeline-amount">$47,813</span>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-period">1 year:</span>
-                            <span class="timeline-amount">$95,625</span>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 mb-3">Earnings Timeline</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">3 months:</span>
+                                    <span class="font-semibold text-green-600">$23,906</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">6 months:</span>
+                                    <span class="font-semibold text-green-600">$47,813</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">1 year:</span>
+                                    <span class="font-semibold text-green-600">$95,625</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -652,58 +693,54 @@
     </main>
 
     <!-- Footer -->
-    <footer class="affiliate-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 class="footer-title">🚀 Success Stories</h4>
-                <div class="success-stats">
-                    <div class="success-item">127K Active Affiliates</div>
-                    <div class="success-item">$24.7M Total Payouts</div>
-                    <div class="success-item">15.3% Avg Conversion</div>
-                    <div class="success-item">94% Satisfaction Rate</div>
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">🚀 Success Stories</h4>
+                    <div class="space-y-2">
+                        <div class="text-gray-300">127K Active Affiliates</div>
+                        <div class="text-gray-300">$24.7M Total Payouts</div>
+                        <div class="text-gray-300">15.3% Avg Conversion</div>
+                        <div class="text-gray-300">94% Satisfaction Rate</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4">📞 Support & Resources</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-gray-300 hover:text-white transition-colors">📚 Affiliate Guide</a>
+                        <a href="#" class="block text-gray-300 hover:text-white transition-colors">🎯 Marketing Tips</a>
+                        <a href="#" class="block text-gray-300 hover:text-white transition-colors">💰 Payment Info</a>
+                        <a href="#" class="block text-gray-300 hover:text-white transition-colors">📊 Analytics Help</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4">🎁 Special Offers</h4>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">New Affiliate Bonus:</span>
+                            <span class="text-green-400 font-semibold">$500 USDTg</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Quarterly Bonus:</span>
+                            <span class="text-green-400 font-semibold">Up to $10K</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4 class="footer-title">📞 Support & Resources</h4>
-                <div class="support-links">
-                    <a href="#">📚 Affiliate Guide</a>
-                    <a href="#">🎯 Marketing Tips</a>
-                    <a href="#">💰 Payment Info</a>
-                    <a href="#">📊 Analytics Help</a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4 class="footer-title">🎁 Special Offers</h4>
-                <div class="offers">
-                    <div class="offer-item">
-                        <span class="offer-label">New Affiliate Bonus:</span>
-                        <span class="offer-value">$500 USDTg</span>
-                    </div>
-                    <div class="offer-item">
-                        <span class="offer-label">Quarterly Bonus:</span>
-                        <span class="offer-value">Up to $10K</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p class="footer-copyright">
-                © 2025 USDTgVerse Affiliate Program.
-                <span class="legal-disclaimer">
-                    Terms apply. Earn commission on qualifying referrals. 
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2025 USDTgVerse Affiliate Program. Terms apply. Earn commission on qualifying referrals. 
                     See Terms & Conditions for full details.
-                </span>
-            </p>
+                </p>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="../scripts/affiliate_program.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -28,10 +28,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🚀 USDTgVerse Contract Deployment Center</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         :root {
             --primary: #00d4ff;
@@ -60,7 +74,7 @@
             overflow-x: hidden;
         }
 
-        .quantum-bg {
+        .fixed inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-50 {
             position: fixed;
             top: 0;
             left: 0;
@@ -78,7 +92,7 @@
             100% { opacity: 0.2; }
         }
 
-        .header {
+        .bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5 {
             background: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
@@ -88,13 +102,13 @@
             border-bottom: 1px solid rgba(0, 212, 255, 0.3);
         }
 
-        .container {
+        .max-w-6xl mx-auto {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        .header-content {
+        .bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -102,7 +116,7 @@
             gap: 1rem;
         }
 
-        .logo {
+        .text-2xl font-bold text-usdtg-accent {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -144,16 +158,16 @@
             50% { opacity: 0.5; }
         }
 
-        .main-content {
+        .p-5-content {
             padding: 3rem 0;
         }
 
-        .hero {
+        .text-center py-20 {
             text-align: center;
             margin-bottom: 4rem;
         }
 
-        .hero h1 {
+        .text-center py-20 h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             background: var(--quantum);
@@ -162,7 +176,7 @@
             background-clip: text;
         }
 
-        .hero p {
+        .text-center py-20 p {
             font-size: 1.2rem;
             opacity: 0.8;
             max-width: 600px;
@@ -191,7 +205,7 @@
             border-color: var(--primary);
         }
 
-        .card-header {
+        .card-bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5 {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -391,7 +405,7 @@
             font-size: 0.9rem;
         }
 
-        .footer {
+        .bg-black/20 backdrop-blur-lg p-8 text-center {
             background: rgba(26, 26, 46, 0.95);
             padding: 2rem 0;
             text-align: center;
@@ -399,7 +413,7 @@
             margin-top: 4rem;
         }
 
-        .footer-content {
+        .bg-black/20 backdrop-blur-lg p-8 text-center-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -407,25 +421,25 @@
             gap: 1rem;
         }
 
-        .footer-links {
+        .bg-black/20 backdrop-blur-lg p-8 text-center-links {
             display: flex;
             gap: 2rem;
         }
 
-        .footer-links a {
+        .bg-black/20 backdrop-blur-lg p-8 text-center-links a {
             color: var(--light);
             text-decoration: none;
             opacity: 0.8;
             transition: opacity 0.3s ease;
         }
 
-        .footer-links a:hover {
+        .bg-black/20 backdrop-blur-lg p-8 text-center-links a:hover {
             opacity: 1;
             color: var(--primary);
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
+            .text-center py-20 h1 {
                 font-size: 2rem;
             }
             
@@ -437,20 +451,20 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .footer-content {
+            .bg-black/20 backdrop-blur-lg p-8 text-center-content {
                 flex-direction: column;
                 text-align: center;
             }
         }
     </style>
 </head>
-<body>
-    <div class="quantum-bg"></div>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white font-sans">
+    <div class="fixed inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-50"></div>
     
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
+    <bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5 class="bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5-content">
+                <div class="text-2xl font-bold text-usdtg-accent">
                     <span>⚛️</span>
                     <span>USDTgVerse Deployment Center</span>
                 </div>
@@ -462,11 +476,11 @@
                 </div>
             </div>
         </div>
-    </header>
+    </bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5>
 
-    <main class="main-content">
-        <div class="container">
-            <div class="hero">
+    <p-5 class="p-5-content">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center py-20">
                 <h1>🚀 Smart Contract Deployment</h1>
                 <p>Deploy your quantum-safe smart contracts to USDTgVerse and 8 major blockchain networks with enterprise-grade security and performance.</p>
             </div>
@@ -493,7 +507,7 @@
             <div class="deployment-grid">
                 <!-- USDTg Native Coin Deployment -->
                 <div class="deployment-card">
-                    <div class="card-header">
+                    <div class="card-bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
                         <div class="card-icon">💰</div>
                         <div>
                             <div class="card-title">USDTg Native Coin</div>
@@ -560,7 +574,7 @@
 
                 <!-- Custom Contract Deployment -->
                 <div class="deployment-card">
-                    <div class="card-header">
+                    <div class="card-bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
                         <div class="card-icon">📝</div>
                         <div>
                             <div class="card-title">Custom Contract</div>
@@ -634,7 +648,7 @@
 
                 <!-- Contract Templates -->
                 <div class="deployment-card">
-                    <div class="card-header">
+                    <div class="card-bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
                         <div class="card-icon">📚</div>
                         <div>
                             <div class="card-title">Contract Templates</div>
@@ -669,7 +683,7 @@
 
                 <!-- Gas Calculator -->
                 <div class="deployment-card">
-                    <div class="card-header">
+                    <div class="card-bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5">
                         <div class="card-icon">⛽</div>
                         <div>
                             <div class="card-title">Gas Calculator</div>
@@ -708,15 +722,15 @@
                 </div>
             </div>
         </div>
-    </main>
+    </p-5>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+    <bg-black/20 backdrop-blur-lg p-8 text-center class="bg-black/20 backdrop-blur-lg p-8 text-center">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-content">
                 <div>
                     <p>&copy; 2024 USDTgVerse. World's First Quantum-Safe Blockchain.</p>
                 </div>
-                <div class="footer-links">
+                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-links">
                     <a href="https://usdtgverse.com">Home</a>
                     <a href="https://docs.usdtgverse.com">Documentation</a>
                     <a href="https://explorer.usdtgverse.com">Explorer</a>
@@ -724,11 +738,9 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </bg-black/20 backdrop-blur-lg p-8 text-center>
 
     <script src="deployment.js"></script>
     
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

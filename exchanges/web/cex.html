@@ -27,22 +27,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgCEX - Centralized Exchange</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            min-height: 100vh;
-            color: white;
         }
 
         .header {
@@ -375,173 +382,172 @@
         }
     </style>
 </head>
-<body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">🏪 USDTgCEX</div>
-            <div class="nav-links">
-                <a href="/" onclick="goBack()">← Back</a>
-                <a href="/">🏠 Home</a>
-                <a href="../website/index.html">🌟 Website</a>
-                <a href="../explorer/usdtgscan.html">🔍 Explorer</a>
-                <a href="dex.html">🔄 DEX</a>
-                <a href="../audit/USDTgVerse_Security_Audit_Report_FIXED.html">🔒 Audit</a>
-            </div>
+<body class="min-h-screen bg-gradient-to-br from-slate-800 to-slate-900 text-white font-sans">
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 p-5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-red-400">🏪 USDTgCEX</div>
+            <nav class="flex space-x-5">
+                <a href="../index.html" class="text-white no-underline px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">← Back to Main</a>
+                <a href="dex.html" class="text-white no-underline px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">DEX →</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <div class="container">
-        <div class="trading-interface">
+    <div class="max-w-7xl mx-auto p-5">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 h-screen">
             <!-- Market Panel -->
-            <div class="market-panel">
-                <div class="panel-title">📊 Markets</div>
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20">
+                <h2 class="text-xl font-bold mb-4 text-red-400">📊 Markets</h2>
                 
-                <div class="market-item active" onclick="selectMarket('USDTG/USD')">
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('USDTG/USD')">
                     <div>
-                        <div class="market-pair">USDTg/USD</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $2.4M</div>
+                        <div class="font-semibold">USDTg/USD</div>
+                        <div class="text-sm text-gray-400">Vol: $2.4M</div>
                     </div>
                     <div>
-                        <div class="market-price price-up">$1.0001</div>
-                        <div style="font-size: 0.8em; color: #2ecc71;">+0.01%</div>
+                        <div class="text-green-400 font-semibold">$1.0001</div>
+                        <div class="text-sm text-green-400">+0.01%</div>
                     </div>
                 </div>
                 
-                <div class="market-item" onclick="selectMarket('USDTG/ETH')">
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('USDTG/ETH')">
                     <div>
-                        <div class="market-pair">USDTg/ETH</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $1.8M</div>
+                        <div class="font-semibold">USDTg/ETH</div>
+                        <div class="text-sm text-gray-400">Vol: $1.8M</div>
                     </div>
                     <div>
-                        <div class="market-price price-down">0.0004</div>
-                        <div style="font-size: 0.8em; color: #e74c3c;">-0.05%</div>
-                    </div>
-                </div>
-                
-                <div class="market-item" onclick="selectMarket('USDTG/USDT')">
-                    <div>
-                        <div class="market-pair">USDTg/USDT</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $12.4M</div>
-                    </div>
-                    <div>
-                        <div class="market-price price-up">1.0001</div>
-                        <div style="font-size: 0.8em; color: #2ecc71;">+0.01%</div>
+                        <div class="text-red-400 font-semibold">0.0004</div>
+                        <div class="text-sm text-red-400">-0.05%</div>
                     </div>
                 </div>
                 
-                <div class="market-item" onclick="selectMarket('USDTG/USDC')">
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('USDTG/USDT')">
                     <div>
-                        <div class="market-pair">USDTg/USDC</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $8.9M</div>
+                        <div class="font-semibold">USDTg/USDT</div>
+                        <div class="text-sm text-gray-400">Vol: $12.4M</div>
                     </div>
                     <div>
-                        <div class="market-price price-up">1.0002</div>
-                        <div style="font-size: 0.8em; color: #2ecc71;">+0.02%</div>
-                    </div>
-                </div>
-                
-                <div class="market-item" onclick="selectMarket('USDT/USDC')">
-                    <div>
-                        <div class="market-pair">USDT/USDC</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $34.2M</div>
-                    </div>
-                    <div>
-                        <div class="market-price price-up">1.0001</div>
-                        <div style="font-size: 0.8em; color: #2ecc71;">+0.01%</div>
+                        <div class="text-green-400 font-semibold">1.0001</div>
+                        <div class="text-sm text-green-400">+0.01%</div>
                     </div>
                 </div>
                 
-                <div class="market-item" onclick="selectMarket('USDTG/TRX')">
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('USDTG/USDC')">
                     <div>
-                        <div class="market-pair">USDTg/TRX</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $956K</div>
+                        <div class="font-semibold">USDTg/USDC</div>
+                        <div class="text-sm text-gray-400">Vol: $8.9M</div>
                     </div>
                     <div>
-                        <div class="market-price price-up">10.52</div>
-                        <div style="font-size: 0.8em; color: #2ecc71;">+0.12%</div>
+                        <div class="text-green-400 font-semibold">1.0002</div>
+                        <div class="text-sm text-green-400">+0.02%</div>
                     </div>
                 </div>
                 
-                <div class="market-item" onclick="selectMarket('ETH/USD')">
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('USDT/USDC')">
                     <div>
-                        <div class="market-pair">ETH/USD</div>
-                        <div style="font-size: 0.8em; color: rgba(255,255,255,0.6);">Vol: $45M</div>
+                        <div class="font-semibold">USDT/USDC</div>
+                        <div class="text-sm text-gray-400">Vol: $34.2M</div>
                     </div>
                     <div>
-                        <div class="market-price price-up">$2,485</div>
-                        <div style="font-size: 0.8em; color: #2ecc71;">+2.34%</div>
+                        <div class="text-green-400 font-semibold">1.0001</div>
+                        <div class="text-sm text-green-400">+0.01%</div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('USDTG/TRX')">
+                    <div>
+                        <div class="font-semibold">USDTg/TRX</div>
+                        <div class="text-sm text-gray-400">Vol: $956K</div>
+                    </div>
+                    <div>
+                        <div class="text-green-400 font-semibold">10.52</div>
+                        <div class="text-sm text-green-400">+0.12%</div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg cursor-pointer hover:bg-white/20 transition-all duration-300 mb-2" onclick="selectMarket('ETH/USD')">
+                    <div>
+                        <div class="font-semibold">ETH/USD</div>
+                        <div class="text-sm text-gray-400">Vol: $45M</div>
+                    </div>
+                    <div>
+                        <div class="text-green-400 font-semibold">$2,485</div>
+                        <div class="text-sm text-green-400">+2.34%</div>
                     </div>
                 </div>
             </div>
 
             <!-- Chart & Order Book Panel -->
-            <div class="chart-panel">
-                <div class="panel-title">📈 USDTg/USD - $1.0001 (+0.01%)</div>
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20">
+                <h2 class="text-xl font-bold mb-4 text-blue-400">📈 USDTg/USD - $1.0001 (+0.01%)</h2>
                 
-                <div class="chart-controls">
-                    <button class="chart-btn active">1m</button>
-                    <button class="chart-btn">5m</button>
-                    <button class="chart-btn">15m</button>
-                    <button class="chart-btn">1h</button>
-                    <button class="chart-btn">4h</button>
-                    <button class="chart-btn">1d</button>
+                <div class="flex space-x-2 mb-4">
+                    <button class="px-3 py-1 bg-blue-600 text-white rounded-lg text-sm">1m</button>
+                    <button class="px-3 py-1 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20">5m</button>
+                    <button class="px-3 py-1 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20">15m</button>
+                    <button class="px-3 py-1 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20">1h</button>
+                    <button class="px-3 py-1 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20">4h</button>
+                    <button class="px-3 py-1 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20">1d</button>
                 </div>
                 
-                <div class="chart-container">
-                    <div class="chart-placeholder">📊 Real-time Trading Chart<br><small>TradingView integration ready</small></div>
+                <div class="bg-black/30 rounded-lg p-8 mb-6 text-center">
+                    <div class="text-2xl mb-2">📊</div>
+                    <div class="text-lg">Real-time Trading Chart</div>
+                    <div class="text-sm text-gray-400">TradingView integration ready</div>
                 </div>
                 
-                <div class="panel-title">📖 Order Book</div>
-                <div class="order-book">
-                    <div class="order-book-header">
+                <h3 class="text-lg font-bold mb-4 text-blue-400">📖 Order Book</h3>
+                <div class="space-y-2 max-h-64 overflow-y-auto">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-gray-400 pb-2 border-b border-white/20">
                         <div>Price (USD)</div>
                         <div>Amount (USDTg)</div>
                         <div>Total</div>
                     </div>
                     
                     <!-- Asks (Sell Orders) -->
-                    <div class="order-row ask-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-red-400">
                         <div>1.0005</div>
                         <div>25,000</div>
                         <div>25,012.5</div>
                     </div>
-                    <div class="order-row ask-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-red-400">
                         <div>1.0004</div>
                         <div>50,000</div>
                         <div>50,020</div>
                     </div>
-                    <div class="order-row ask-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-red-400">
                         <div>1.0003</div>
                         <div>75,000</div>
                         <div>75,022.5</div>
                     </div>
-                    <div class="order-row ask-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-red-400">
                         <div>1.0002</div>
                         <div>100,000</div>
                         <div>100,020</div>
                     </div>
                     
-                    <div class="spread-row">
+                    <div class="bg-white/10 rounded-lg p-3 text-center text-sm font-semibold my-2">
                         Spread: $0.0001 (0.01%)
                     </div>
                     
                     <!-- Bids (Buy Orders) -->
-                    <div class="order-row bid-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-green-400">
                         <div>1.0001</div>
                         <div>80,000</div>
                         <div>80,008</div>
                     </div>
-                    <div class="order-row bid-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-green-400">
                         <div>1.0000</div>
                         <div>120,000</div>
                         <div>120,000</div>
                     </div>
-                    <div class="order-row bid-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-green-400">
                         <div>0.9999</div>
                         <div>90,000</div>
                         <div>89,991</div>
                     </div>
-                    <div class="order-row bid-row">
+                    <div class="grid grid-cols-3 gap-4 text-sm text-green-400">
                         <div>0.9998</div>
                         <div>60,000</div>
                         <div>59,988</div>
@@ -550,78 +556,80 @@
             </div>
 
             <!-- Trading Panel -->
-            <div class="trading-panel">
-                <div class="panel-title">💰 Trade USDTg/USD</div>
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20">
+                <h2 class="text-xl font-bold mb-4 text-green-400">💰 Trade USDTg/USD</h2>
                 
-                <div class="trading-tabs">
-                    <button class="tab-btn active" onclick="switchTab('buy')">Buy USDTg</button>
-                    <button class="tab-btn" onclick="switchTab('sell')">Sell USDTg</button>
+                <div class="flex mb-4">
+                    <button class="flex-1 px-4 py-2 bg-green-600 text-white rounded-l-lg font-semibold" onclick="switchTab('buy')">Buy USDTg</button>
+                    <button class="flex-1 px-4 py-2 bg-white/10 text-white rounded-r-lg font-semibold hover:bg-white/20" onclick="switchTab('sell')">Sell USDTg</button>
                 </div>
                 
-                <div class="order-form">
-                    <div class="order-type-buttons">
-                        <button class="order-type-btn active" onclick="setOrderType('limit')">Limit</button>
-                        <button class="order-type-btn" onclick="setOrderType('market')">Market</button>
-                        <button class="order-type-btn" onclick="setOrderType('stop')">Stop</button>
+                <div class="space-y-4">
+                    <div class="flex space-x-2">
+                        <button class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm" onclick="setOrderType('limit')">Limit</button>
+                        <button class="flex-1 px-3 py-2 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20" onclick="setOrderType('market')">Market</button>
+                        <button class="flex-1 px-3 py-2 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20" onclick="setOrderType('stop')">Stop</button>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label">Price (USD)</label>
-                        <input type="number" class="form-input" id="orderPrice" value="1.0001" step="0.0001">
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2">Price (USD)</label>
+                        <input type="number" class="w-full bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white" id="orderPrice" value="1.0001" step="0.0001">
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label">Amount (USDTg)</label>
-                        <input type="number" class="form-input" id="orderAmount" placeholder="0.00" step="0.01">
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2">Amount (USDTg)</label>
+                        <input type="number" class="w-full bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white" id="orderAmount" placeholder="0.00" step="0.01">
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label">Total (USD)</label>
-                        <input type="number" class="form-input" id="orderTotal" placeholder="0.00" readonly>
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2">Total (USD)</label>
+                        <input type="number" class="w-full bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white" id="orderTotal" placeholder="0.00" readonly>
                     </div>
                     
-                    <div style="margin-bottom: 15px; font-size: 0.9em; color: rgba(255,255,255,0.7);">
-                        Available: <span id="availableBalance">10,000.00 USD</span>
+                    <div class="text-sm text-gray-400 mb-4">
+                        Available: <span id="availableBalance" class="text-white">10,000.00 USD</span>
                     </div>
                     
-                    <button class="buy-button" id="buyButton" onclick="placeBuyOrder()">
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-colors" id="buyButton" onclick="placeBuyOrder()">
                         🛒 Buy USDTg
                     </button>
                     
-                    <button class="sell-button" id="sellButton" onclick="placeSellOrder()" style="display: none;">
+                    <button class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-colors hidden" id="sellButton" onclick="placeSellOrder()">
                         💸 Sell USDTg
                     </button>
                 </div>
                 
-                <div class="orders-section">
-                    <div class="panel-title">📋 Open Orders</div>
-                    <table class="orders-table">
-                        <thead>
-                            <tr>
-                                <th>Pair</th>
-                                <th>Side</th>
-                                <th>Amount</th>
-                                <th>Price</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="openOrdersBody">
-                            <tr>
-                                <td>USDTg/USD</td>
-                                <td style="color: #2ecc71;">Buy</td>
-                                <td>1,000</td>
-                                <td>$0.9995</td>
-                                <td><button class="cancel-btn" onclick="cancelOrder('order1')">Cancel</button></td>
-                            </tr>
-                            <tr>
-                                <td>USDTg/USD</td>
-                                <td style="color: #e74c3c;">Sell</td>
-                                <td>500</td>
-                                <td>$1.0010</td>
-                                <td><button class="cancel-btn" onclick="cancelOrder('order2')">Cancel</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="mt-6">
+                    <h3 class="text-lg font-bold mb-4 text-blue-400">📋 Open Orders</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-white/20">
+                                    <th class="text-left py-2">Pair</th>
+                                    <th class="text-left py-2">Side</th>
+                                    <th class="text-left py-2">Amount</th>
+                                    <th class="text-left py-2">Price</th>
+                                    <th class="text-left py-2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="openOrdersBody">
+                                <tr class="border-b border-white/10">
+                                    <td class="py-2">USDTg/USD</td>
+                                    <td class="py-2 text-green-400">Buy</td>
+                                    <td class="py-2">1,000</td>
+                                    <td class="py-2">$0.9995</td>
+                                    <td class="py-2"><button class="px-3 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700" onclick="cancelOrder('order1')">Cancel</button></td>
+                                </tr>
+                                <tr class="border-b border-white/10">
+                                    <td class="py-2">USDTg/USD</td>
+                                    <td class="py-2 text-red-400">Sell</td>
+                                    <td class="py-2">500</td>
+                                    <td class="py-2">$1.0010</td>
+                                    <td class="py-2"><button class="px-3 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700" onclick="cancelOrder('order2')">Cancel</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -792,7 +800,5 @@
         console.log('📊 Real-time order book streaming');
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

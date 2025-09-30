@@ -27,11 +27,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgScript IDE - Professional Development Environment</title>
-    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="icon" href="../assets/text-xl font-bold text-usdtg-accents/text-xl font-bold text-usdtg-accent.png" type="image/png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -46,7 +60,7 @@
             min-height: 100vh;
         }
 
-        .nav-bar {
+        .fixed top-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg px-8 py-4 z-50 border-b border-white/10 {
             position: fixed;
             top: 0;
             left: 0;
@@ -58,7 +72,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-content {
+        .flex justify-between items-center max-w-6xl mx-auto {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -66,13 +80,13 @@
             margin: 0 auto;
         }
 
-        .logo {
+        .text-xl font-bold text-usdtg-accent {
             font-size: 1.5rem;
             font-weight: bold;
             color: #00d4ff;
         }
 
-        .nav-link {
+        .text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-usdtg-accent/10 hover:text-usdtg-accent {
             color: #ffffff;
             text-decoration: none;
             padding: 0.5rem 1rem;
@@ -80,7 +94,7 @@
             transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
+        .text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-usdtg-accent/10 hover:text-usdtg-accent:hover {
             background: rgba(0, 212, 255, 0.1);
             color: #00d4ff;
         }
@@ -90,7 +104,7 @@
             padding: 2rem;
         }
 
-        .hero-section {
+        .text-center py-20-section {
             text-align: center;
             padding: 4rem 0;
             background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 150, 0.1));
@@ -98,7 +112,7 @@
             margin-bottom: 3rem;
         }
 
-        .hero-title {
+        .text-center py-20-title {
             font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #00d4ff, #ff0096);
@@ -106,7 +120,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-subtitle {
+        .text-center py-20-subtitle {
             font-size: 1.2rem;
             opacity: 0.8;
             margin-bottom: 2rem;
@@ -170,14 +184,14 @@
         .function { color: #dcdcaa; }
         .type { color: #4ec9b0; }
 
-        .features-grid {
+        .grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .feature-card {
+        .bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 2rem;
@@ -185,17 +199,17 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .feature-card:hover {
+        .bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
-        .feature-icon {
+        .text-4xl mb-4 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .feature-title {
+        .text-xl font-semibold mb-2 text-white {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: #00d4ff;
@@ -226,11 +240,11 @@
         }
 
         @media (max-width: 768px) {
-            .hero-title {
+            .text-center py-20-title {
                 font-size: 2rem;
             }
             
-            .features-grid {
+            .grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -240,21 +254,21 @@
         }
     </style>
 </head>
-<body>
-    <nav class="nav-bar">
-        <div class="nav-content">
-            <div class="logo">🔧 USDTgScript IDE</div>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white font-sans">
+    <nav class="fixed top-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg px-8 py-4 z-50 border-b border-white/10">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <div class="text-xl font-bold text-usdtg-accent">🔧 USDTgScript IDE</div>
             <div>
-                <a href="../index.html" class="nav-link">← Back to Dashboard</a>
-                <a href="../website/quantum-safe.html" class="nav-link">⚛️ Quantum Security</a>
+                <a href="../index.html" class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-usdtg-accent/10 hover:text-usdtg-accent">← Back to Dashboard</a>
+                <a href="../website/quantum-safe.html" class="text-white no-underline px-4 py-2 rounded-lg transition-all duration-300 hover:bg-usdtg-accent/10 hover:text-usdtg-accent">⚛️ Quantum Security</a>
             </div>
         </div>
     </nav>
 
     <div class="main-container">
-        <div class="hero-section">
-            <h1 class="hero-title">🔧 USDTgScript IDE</h1>
-            <p class="hero-subtitle">Professional Development Environment for Quantum-Safe Smart Contracts</p>
+        <div class="text-center py-20-section">
+            <h1 class="text-center py-20-title">🔧 USDTgScript IDE</h1>
+            <p class="text-center py-20-subtitle">Professional Development Environment for Quantum-Safe Smart Contracts</p>
             <p>Build, debug, and deploy USDTgScript contracts with our advanced IDE featuring AI assistance and quantum security</p>
         </div>
 
@@ -318,52 +332,52 @@
             </div>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3 class="feature-title">AI-Powered Coding</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20-grid">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">🤖</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">AI-Powered Coding</h3>
                 <p>Natural language to USDTgScript conversion with intelligent code suggestions and automatic optimization.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <h3 class="feature-title">Advanced Debugging</h3>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">🔍</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">Advanced Debugging</h3>
                 <p>Step-through debugging, breakpoints, variable inspection, and real-time contract state monitoring.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🧪</div>
-                <h3 class="feature-title">Integrated Testing</h3>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">🧪</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">Integrated Testing</h3>
                 <p>Built-in testing framework with automated test generation and comprehensive coverage analysis.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">⚛️</div>
-                <h3 class="feature-title">Quantum Security</h3>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">⚛️</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">Quantum Security</h3>
                 <p>Built-in quantum-safe cryptography with automatic security vulnerability detection and prevention.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3 class="feature-title">One-Click Deploy</h3>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">🚀</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">One-Click Deploy</h3>
                 <p>Deploy to USDTgVerse mainnet, testnet, or other chains with a single click. Multi-chain support included.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 class="feature-title">Performance Analytics</h3>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">📊</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">Performance Analytics</h3>
                 <p>Real-time gas usage analysis, performance optimization suggestions, and contract efficiency metrics.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🔗</div>
-                <h3 class="feature-title">Version Control</h3>
-                <p>Integrated Git support with collaborative development features and automated backup to GitHub.</p>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">🔗</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">Version Control</h3>
+                <p>Integrated Git support with collaborative development grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 and automated backup to GitHub.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3 class="feature-title">Smart Documentation</h3>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                <div class="text-4xl mb-4">📚</div>
+                <h3 class="text-xl font-semibold mb-2 text-white">Smart Documentation</h3>
                 <p>Auto-generated documentation, inline help, and comprehensive USDTgScript language reference.</p>
             </div>
         </div>
@@ -405,7 +419,7 @@
             console.log('🔧 USDTgScript IDE initialized');
             
             // Add some interactive effects
-            document.querySelectorAll('.feature-card').forEach(card => {
+            document.querySelectorAll('.bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20').forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.style.borderColor = '#00d4ff';
                 });
@@ -417,7 +431,5 @@
         });
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

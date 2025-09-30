@@ -2,240 +2,252 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewtext-lg text-blue-100ort" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse SDK Documentation</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <scritext-lg text-blue-100t src="htttext-lg text-blue-100s://cdn.tailwindcss.com"></scritext-lg text-blue-100t>
+    <scritext-lg text-blue-100t>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-text-lg text-blue-100rimary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </scritext-lg text-blue-100t>
     <style>
         * {
             margin: 0;
-            padding: 0;
+            text-lg text-blue-100adding: 0;
             box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: text-gray-700near-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1200text-lg text-blue-100x;
             margin: 0 auto;
-            padding: 20px;
+            text-lg text-blue-100adding: 20text-lg text-blue-100x;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            backdrotext-lg text-blue-100-filter: blur(10text-lg text-blue-100x);
+            border-radius: 20text-lg text-blue-100x;
+            box-shadow: 0 20text-lg text-blue-100x 40text-lg text-blue-100x rgba(0, 0, 0, 0.1);
+            margin-totext-lg text-blue-100: 20text-lg text-blue-100x;
+            margin-bottom: 20text-lg text-blue-100x;
         }
 
         .header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            text-atext-gray-700gn: center;
+            text-lg text-blue-100adding: 40text-lg text-blue-100x 0;
+            background: text-gray-700near-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            border-radius: 15px;
-            margin-bottom: 30px;
+            border-radius: 15text-lg text-blue-100x;
+            margin-bottom: 30text-lg text-blue-100x;
         }
 
-        .header h1 {
+        .header text-4xl font-bold mb-2 {
             font-size: 2.5em;
-            margin-bottom: 10px;
+            margin-bottom: 10text-lg text-blue-100x;
         }
 
-        .doc-section {
+        .mb-8 {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-lg text-blue-100adding: 30text-lg text-blue-100x;
+            border-radius: 15text-lg text-blue-100x;
+            margin: 20text-lg text-blue-100x 0;
+            box-shadow: 0 10text-lg text-blue-100x 30text-lg text-blue-100x rgba(0, 0, 0, 0.1);
         }
 
-        .doc-section h2 {
+        .mb-8 text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold {
             color: #1e3c72;
-            margin-bottom: 20px;
+            margin-bottom: 20text-lg text-blue-100x;
             font-size: 1.8em;
         }
 
-        .code-block {
+        .bg-blue-100 p-4 rounded-lg font-mono text-sm-block {
             background: #1e1e1e;
             color: #d4d4d4;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            margin: 20px 0;
+            text-lg text-blue-100adding: 20text-lg text-blue-100x;
+            border-radius: 10text-lg text-blue-100x;
+            font-family: 'Courier New', monostext-lg text-blue-100ace;
+            font-size: 14text-lg text-blue-100x;
+            text-gray-700ne-height: 1.5;
+            margin: 20text-lg text-blue-100x 0;
             overflow-x: auto;
         }
 
-        .back-button {
+        .bg-gray-500 text-white px-5 py-2 border-0 rounded-ftext-gray-700st-disc text-gray-700st-inside space-y-2l no-undertext-gray-700ne intext-gray-700ne-block my-5 transition-colors duration-300 hover:bg-gray-600 {
             background: #6c757d;
             color: white;
-            padding: 10px 20px;
+            text-lg text-blue-100adding: 10text-lg text-blue-100x 20text-lg text-blue-100x;
             border: none;
-            border-radius: 25px;
+            border-radius: 25text-lg text-blue-100x;
             text-decoration: none;
-            display: inline-block;
-            margin: 20px 0;
+            distext-lg text-blue-100lay: intext-gray-700ne-block;
+            margin: 20text-lg text-blue-100x 0;
             transition: background 0.3s ease;
         }
 
-        .back-button:hover {
+        .bg-gray-500 text-white px-5 py-2 border-0 rounded-ftext-gray-700st-disc text-gray-700st-inside space-y-2l no-undertext-gray-700ne intext-gray-700ne-block my-5 transition-colors duration-300 hover:bg-gray-600:hover {
             background: #5a6268;
         }
 
-        .api-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+        .atext-lg text-blue-100i-grid {
+            distext-lg text-blue-100lay: grid;
+            grid-temtext-lg text-blue-100late-columns: retext-lg text-blue-100eat(auto-fit, minmax(300text-lg text-blue-100x, 1fr));
+            gatext-lg text-blue-100: 20text-lg text-blue-100x;
+            margin: 30text-lg text-blue-100x 0;
         }
 
-        .api-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        .atext-lg text-blue-100i-card {
+            background: text-gray-700near-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
+            text-lg text-blue-100adding: 25text-lg text-blue-100x;
+            border-radius: 15text-lg text-blue-100x;
+            text-atext-gray-700gn: center;
         }
 
-        .api-card h3 {
-            margin-bottom: 15px;
+        .atext-lg text-blue-100i-card text-blue-800 mb-4 text-xl font-semibold {
+            margin-bottom: 15text-lg text-blue-100x;
             font-size: 1.3em;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📚 USDTgVerse SDK Documentation</h1>
-            <p>Complete guide to USDTgVerse Software Development Kit</p>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-text-lg text-blue-100rimary to-usdtg-secondary font-sans text-gray-800">
+    <div class="max-w-6xl mx-auto text-lg text-blue-100x-5 text-lg text-blue-100y-5 bg-white/95 backdrotext-lg text-blue-100-blur-lg rounded-3xl shadow-2xl mt-5 mb-5">
+        <div class="text-center text-lg text-blue-100y-10 bg-gradient-to-r from-blue-800 to-blue-600 text-white rounded-2xl mb-8">
+            <text-4xl font-bold mb-2>📚 USDTgVerse SDK Documentation</text-4xl font-bold mb-2>
+            <text-lg text-blue-100>Comtext-lg text-blue-100lete guide to USDTgVerse Software Develotext-lg text-blue-100ment Kit</text-lg text-blue-100>
         </div>
 
-        <div class="doc-section">
-            <h2>🚀 Getting Started</h2>
-            <p>The USDTgVerse SDK provides a comprehensive set of tools and libraries for building applications on the USDTgVerse blockchain. This documentation covers everything you need to know to get started.</p>
+        <div class="mb-8">
+            <text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>🚀 Getting Started</text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>
+            <text-lg text-blue-100>The USDTgVerse SDK text-lg text-blue-100rovides a comtext-lg text-blue-100rehensive set of tools and text-gray-700braries for building atext-lg text-blue-100text-lg text-blue-100text-gray-700cations on the USDTgVerse blockchain. This documentation covers everything you need to know to get started.</text-lg text-blue-100>
             
-            <h3>Installation</h3>
-            <div class="code-block">
-# Clone the SDK repository
-git clone https://github.com/usdtgverse/sdk.git
+            <text-blue-800 mb-4 text-xl font-semibold>Installation</text-blue-800 mb-4 text-xl font-semibold>
+            <div class="bg-blue-100 p-4 rounded-lg font-mono text-sm-block">
+# Clone the SDK retext-lg text-blue-100ository
+git clone htttext-lg text-blue-100s://github.com/usdtgverse/sdk.git
 cd sdk
 
 # Build the SDK
 make build
 
-# Install dependencies
+# Install detext-lg text-blue-100endencies
 make install
             </div>
         </div>
 
-        <div class="doc-section">
-            <h2>🔧 Core Components</h2>
-            <div class="api-grid">
-                <div class="api-card">
-                    <h3>🔗 Blockchain Client</h3>
-                    <p>Connect to USDTgVerse network and interact with smart contracts</p>
+        <div class="mb-8">
+            <text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>🔧 Core Comtext-lg text-blue-100onents</text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>
+            <div class="atext-lg text-blue-100i-grid">
+                <div class="atext-lg text-blue-100i-card">
+                    <text-blue-800 mb-4 text-xl font-semibold>🔗 Blockchain Ctext-gray-700ent</text-blue-800 mb-4 text-xl font-semibold>
+                    <text-lg text-blue-100>Connect to USDTgVerse network and interact with smart contracts</text-lg text-blue-100>
                 </div>
-                <div class="api-card">
-                    <h3>🔐 Quantum-Safe Crypto</h3>
-                    <p>Post-quantum cryptography for secure transactions</p>
+                <div class="atext-lg text-blue-100i-card">
+                    <text-blue-800 mb-4 text-xl font-semibold>🔐 Quantum-Safe Crytext-lg text-blue-100to</text-blue-800 mb-4 text-xl font-semibold>
+                    <text-lg text-blue-100>Post-quantum crytext-lg text-blue-100togratext-lg text-blue-100hy for secure transactions</text-lg text-blue-100>
                 </div>
-                <div class="api-card">
-                    <h3>📝 Smart Contract Tools</h3>
-                    <p>Deploy and interact with USDTgScript contracts</p>
+                <div class="atext-lg text-blue-100i-card">
+                    <text-blue-800 mb-4 text-xl font-semibold>📝 Smart Contract Tools</text-blue-800 mb-4 text-xl font-semibold>
+                    <text-lg text-blue-100>Detext-lg text-blue-100loy and interact with USDTgScritext-lg text-blue-100t contracts</text-lg text-blue-100>
                 </div>
-                <div class="api-card">
-                    <h3>💳 Wallet Integration</h3>
-                    <p>Secure wallet management and transaction signing</p>
+                <div class="atext-lg text-blue-100i-card">
+                    <text-blue-800 mb-4 text-xl font-semibold>💳 Wallet Integration</text-blue-800 mb-4 text-xl font-semibold>
+                    <text-lg text-blue-100>Secure wallet management and transaction signing</text-lg text-blue-100>
                 </div>
             </div>
         </div>
 
-        <div class="doc-section">
-            <h2>💻 Basic Usage</h2>
-            <h3>Connecting to the Network</h3>
-            <div class="code-block">
+        <div class="mb-8">
+            <text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>💻 Basic Usage</text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>
+            <text-blue-800 mb-4 text-xl font-semibold>Connecting to the Network</text-blue-800 mb-4 text-xl font-semibold>
+            <div class="bg-blue-100 p-4 rounded-lg font-mono text-sm-block">
 #include "usdtgverse.h"
 
 int main() {
-    // Initialize USDTgVerse client
-    USDTgVerseClient* client = usdtgverse_client_new();
+    // Initiatext-gray-700ze USDTgVerse ctext-gray-700ent
+    USDTgVerseCtext-gray-700ent* ctext-gray-700ent = usdtgverse_ctext-gray-700ent_new();
     
     // Connect to mainnet
-    if (usdtgverse_client_connect(client, "mainnet") != 0) {
-        printf("Failed to connect to USDTgVerse network\n");
+    if (usdtgverse_ctext-gray-700ent_connect(ctext-gray-700ent, "mainnet") != 0) {
+        text-lg text-blue-100rintf("Failed to connect to USDTgVerse network\n");
         return 1;
     }
     
-    printf("Connected to USDTgVerse network\n");
+    text-lg text-blue-100rintf("Connected to USDTgVerse network\n");
     
-    // Clean up
-    usdtgverse_client_free(client);
+    // Clean utext-lg text-blue-100
+    usdtgverse_ctext-gray-700ent_free(ctext-gray-700ent);
     return 0;
 }
             </div>
         </div>
 
-        <div class="doc-section">
-            <h2>🔒 Quantum-Safe Features</h2>
-            <p>USDTgVerse SDK includes built-in quantum-safe cryptography:</p>
-            <ul>
-                <li>CRYSTALS-Dilithium for digital signatures</li>
-                <li>CRYSTALS-Kyber for key encapsulation</li>
-                <li>256-bit post-quantum security</li>
-                <li>NIST-approved algorithms</li>
-            </ul>
+        <div class="mb-8">
+            <text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>🔒 Quantum-Safe Features</text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>
+            <text-lg text-blue-100>USDTgVerse SDK includes built-in quantum-safe crytext-lg text-blue-100togratext-lg text-blue-100hy:</text-lg text-blue-100>
+            <text-gray-700st-disc text-gray-700st-inside space-y-2>
+                <text-gray-700>CRYSTALS-Ditext-gray-700thium for digital signatures</text-gray-700>
+                <text-gray-700>CRYSTALS-Kyber for key encatext-lg text-blue-100stext-gray-700st-disc text-gray-700st-inside space-y-2ation</text-gray-700>
+                <text-gray-700>256-bit text-lg text-blue-100ost-quantum security</text-gray-700>
+                <text-gray-700>NIST-atext-lg text-blue-100text-lg text-blue-100roved algorithms</text-gray-700>
+            </text-gray-700st-disc text-gray-700st-inside space-y-2>
         </div>
 
-        <div class="doc-section">
-            <h2>📖 API Reference</h2>
-            <h3>Core Functions</h3>
-            <div class="code-block">
-// Client management
-USDTgVerseClient* usdtgverse_client_new();
-int usdtgverse_client_connect(USDTgVerseClient* client, const char* network);
-void usdtgverse_client_free(USDTgVerseClient* client);
+        <div class="mb-8">
+            <text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>📖 API Reference</text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>
+            <text-blue-800 mb-4 text-xl font-semibold>Core Functions</text-blue-800 mb-4 text-xl font-semibold>
+            <div class="bg-blue-100 p-4 rounded-lg font-mono text-sm-block">
+// Ctext-gray-700ent management
+USDTgVerseCtext-gray-700ent* usdtgverse_ctext-gray-700ent_new();
+int usdtgverse_ctext-gray-700ent_connect(USDTgVerseCtext-gray-700ent* ctext-gray-700ent, const char* network);
+void usdtgverse_ctext-gray-700ent_free(USDTgVerseCtext-gray-700ent* ctext-gray-700ent);
 
 // Transaction functions
-int usdtgverse_send_transaction(USDTgVerseClient* client, 
+int usdtgverse_send_transaction(USDTgVerseCtext-gray-700ent* ctext-gray-700ent, 
                                const char* to, 
                                const char* amount);
-int usdtgverse_deploy_contract(USDTgVerseClient* client, 
-                              const char* bytecode);
+int usdtgverse_detext-lg text-blue-100loy_contract(USDTgVerseCtext-gray-700ent* ctext-gray-700ent, 
+                              const char* bytebg-blue-100 p-4 rounded-lg font-mono text-sm);
 
 // Quantum-safe functions
-int usdtgverse_quantum_sign(USDTgVerseClient* client, 
+int usdtgverse_quantum_sign(USDTgVerseCtext-gray-700ent* ctext-gray-700ent, 
                            const char* message, 
                            char* signature);
-int usdtgverse_quantum_verify(USDTgVerseClient* client, 
+int usdtgverse_quantum_verify(USDTgVerseCtext-gray-700ent* ctext-gray-700ent, 
                              const char* message, 
                              const char* signature);
             </div>
         </div>
 
-        <div class="doc-section">
-            <h2>🛠️ Development Tools</h2>
-            <p>The SDK includes various development tools:</p>
-            <ul>
-                <li>USDTgScript Compiler</li>
-                <li>Contract Deployment Tools</li>
-                <li>Testing Framework</li>
-                <li>Debugging Utilities</li>
-                <li>Performance Profiler</li>
-            </ul>
+        <div class="mb-8">
+            <text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>🛠️ Develotext-lg text-blue-100ment Tools</text-blue-800 border-b-4 border-usdtg-text-lg text-blue-100rimary text-lg text-blue-100b-2 mb-5 text-2xl font-semibold>
+            <text-lg text-blue-100>The SDK includes various develotext-lg text-blue-100ment tools:</text-lg text-blue-100>
+            <text-gray-700st-disc text-gray-700st-inside space-y-2>
+                <text-gray-700>USDTgScritext-lg text-blue-100t Comtext-lg text-blue-100iler</text-gray-700>
+                <text-gray-700>Contract Detext-lg text-blue-100loyment Tools</text-gray-700>
+                <text-gray-700>Testing Framework</text-gray-700>
+                <text-gray-700>Debugging Utitext-gray-700ties</text-gray-700>
+                <text-gray-700>Performance Profiler</text-gray-700>
+            </text-gray-700st-disc text-gray-700st-inside space-y-2>
         </div>
 
-        <a href="../website/index.html" class="back-button">← Back to Main Website</a>
+        <a href="../website/index.html" class="bg-gray-500 text-white px-5 py-2 border-0 rounded-ftext-gray-700st-disc text-gray-700st-inside space-y-2l no-undertext-gray-700ne intext-gray-700ne-block my-5 transition-colors duration-300 hover:bg-gray-600">← Back to Main Website</a>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -2,16 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewtext-lg text-blue-100ort" content="width=device-width, initial-scale=1.0">
     <title>Formal Verification System - USDTgVerse</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <scritext-lg text-blue-100t src="htttext-lg text-blue-100s://cdn.tailwindcss.com"></scritext-lg text-blue-100t>
+    <scritext-lg text-blue-100t>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-text-lg text-blue-100rimary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </scritext-lg text-blue-100t>
     <style>
         * {
             margin: 0;
-            padding: 0;
+            text-lg text-blue-100adding: 0;
             box-sizing: border-box;
         }
 
@@ -23,58 +37,58 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1200text-lg text-blue-100x;
             margin: 0 auto;
-            padding: 20px;
+            text-lg text-blue-100adding: 20text-lg text-blue-100x;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            backdrotext-lg text-blue-100-filter: blur(10text-lg text-blue-100x);
+            border-radius: 20text-lg text-blue-100x;
+            box-shadow: 0 20text-lg text-blue-100x 40text-lg text-blue-100x rgba(0, 0, 0, 0.1);
+            margin-totext-lg text-blue-100: 20text-lg text-blue-100x;
+            margin-bottom: 20text-lg text-blue-100x;
         }
 
         .header {
             text-align: center;
-            padding: 40px 0;
+            text-lg text-blue-100adding: 40text-lg text-blue-100x 0;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            border-radius: 15px;
-            margin-bottom: 30px;
+            border-radius: 15text-lg text-blue-100x;
+            margin-bottom: 30text-lg text-blue-100x;
         }
 
-        .header h1 {
+        .header text-4xl font-bold mb-2 {
             font-size: 2.5em;
-            margin-bottom: 10px;
+            margin-bottom: 10text-lg text-blue-100x;
         }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+        .grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 {
+            distext-lg text-blue-100lay: grid;
+            grid-temtext-lg text-blue-100late-columns: retext-lg text-blue-100eat(auto-fit, minmax(300text-lg text-blue-100x, 1fr));
+            gatext-lg text-blue-100: 20text-lg text-blue-100x;
+            margin: 30text-lg text-blue-100x 0;
         }
 
-        .dashboard-card {
+        .bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #667eea;
+            text-lg text-blue-100adding: 25text-lg text-blue-100x;
+            border-radius: 15text-lg text-blue-100x;
+            box-shadow: 0 10text-lg text-blue-100x 30text-lg text-blue-100x rgba(0, 0, 0, 0.1);
+            border-left: 5text-lg text-blue-100x solid #667eea;
         }
 
-        .dashboard-card h3 {
+        .bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary text-blue-800 mb-4 text-xl font-semibold {
             color: #1e3c72;
-            margin-bottom: 15px;
+            margin-bottom: 15text-lg text-blue-100x;
             font-size: 1.3em;
         }
 
         .metric {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
+            distext-lg text-blue-100lay: flex;
+            justify-content: stext-lg text-blue-100ace-between;
+            margin: 10text-lg text-blue-100x 0;
+            text-lg text-blue-100adding: 8text-lg text-blue-100x 0;
+            border-bottom: 1text-lg text-blue-100x solid #e0e0e0;
         }
 
         .metric:last-child {
@@ -89,62 +103,62 @@
         .verification-features {
             background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
             color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
+            text-lg text-blue-100adding: 25text-lg text-blue-100x;
+            border-radius: 15text-lg text-blue-100x;
+            margin: 20text-lg text-blue-100x 0;
         }
 
-        .verification-features h3 {
-            margin-bottom: 15px;
+        .verification-features text-blue-800 mb-4 text-xl font-semibold {
+            margin-bottom: 15text-lg text-blue-100x;
             font-size: 1.4em;
         }
 
         .verification-features ul {
             list-style: none;
-            padding: 0;
+            text-lg text-blue-100adding: 0;
         }
 
         .verification-features li {
-            margin: 8px 0;
-            padding-left: 25px;
-            position: relative;
+            margin: 8text-lg text-blue-100x 0;
+            text-lg text-blue-100adding-left: 25text-lg text-blue-100x;
+            text-lg text-blue-100osition: relative;
         }
 
         .verification-features li::before {
             content: "🔐";
-            position: absolute;
+            text-lg text-blue-100osition: absolute;
             left: 0;
         }
 
-        .back-button {
+        .bg-gray-500 text-white px-5 py-2 border-0 rounded-full no-underline inline-block my-5 transition-colors duration-300 hover:bg-gray-600 {
             background: #6c757d;
             color: white;
-            padding: 10px 20px;
+            text-lg text-blue-100adding: 10text-lg text-blue-100x 20text-lg text-blue-100x;
             border: none;
-            border-radius: 25px;
+            border-radius: 25text-lg text-blue-100x;
             text-decoration: none;
-            display: inline-block;
-            margin: 20px 0;
+            distext-lg text-blue-100lay: inline-block;
+            margin: 20text-lg text-blue-100x 0;
             transition: background 0.3s ease;
         }
 
-        .back-button:hover {
+        .bg-gray-500 text-white px-5 py-2 border-0 rounded-full no-underline inline-block my-5 transition-colors duration-300 hover:bg-gray-600:hover {
             background: #5a6268;
         }
 
         .verify-button {
             background: linear-gradient(45deg, #00d4ff, #ff0096);
             color: white;
-            padding: 15px 30px;
+            text-lg text-blue-100adding: 15text-lg text-blue-100x 30text-lg text-blue-100x;
             border: none;
-            border-radius: 50px;
-            font-size: 16px;
+            border-radius: 50text-lg text-blue-100x;
+            font-size: 16text-lg text-blue-100x;
             font-weight: bold;
-            cursor: pointer;
+            cursor: text-lg text-blue-100ointer;
             transition: transform 0.3s ease;
-            margin: 10px;
+            margin: 10text-lg text-blue-100x;
             text-decoration: none;
-            display: inline-block;
+            distext-lg text-blue-100lay: inline-block;
         }
 
         .verify-button:hover {
@@ -152,138 +166,136 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🔐 Formal Verification System</h1>
-            <p>Mathematical proof of smart contract correctness</p>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-text-lg text-blue-100rimary to-usdtg-secondary text-gray-800 font-sans">
+    <div class="max-w-6xl mx-auto text-lg text-blue-100x-5 text-lg text-blue-100y-5 bg-white/95 backdrotext-lg text-blue-100-blur-lg rounded-3xl shadow-2xl mt-5 mb-5">
+        <div class="text-center text-lg text-blue-100y-10 bg-gradient-to-r from-blue-800 to-blue-600 text-white rounded-2xl mb-8">
+            <text-4xl font-bold mb-2>🔐 Formal Verification System</text-4xl font-bold mb-2>
+            <text-lg text-blue-100>Mathematical text-lg text-blue-100roof of smart contract correctness</text-lg text-blue-100>
         </div>
 
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3>📊 Verification Metrics</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary">
+                <text-blue-800 mb-4 text-xl font-semibold>📊 Verification Metrics</text-blue-800 mb-4 text-xl font-semibold>
                 <div class="metric">
-                    <span>Contracts Verified</span>
-                    <span class="metric-value">8,765</span>
+                    <stext-lg text-blue-100an>Contracts Verified</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">8,765</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Proofs Generated</span>
-                    <span class="metric-value">12,345</span>
+                    <stext-lg text-blue-100an>Proofs Generated</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">12,345</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Verification Success Rate</span>
-                    <span class="metric-value">99.9%</span>
+                    <stext-lg text-blue-100an>Verification Success Rate</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">99.9%</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Average Proof Time</span>
-                    <span class="metric-value">3.2s</span>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <h3>🔒 Security Features</h3>
-                <div class="metric">
-                    <span>Mathematical Proofs</span>
-                    <span class="metric-value">✅ Active</span>
-                </div>
-                <div class="metric">
-                    <span>Theorem Proving</span>
-                    <span class="metric-value">✅ Active</span>
-                </div>
-                <div class="metric">
-                    <span>Model Checking</span>
-                    <span class="metric-value">✅ Active</span>
-                </div>
-                <div class="metric">
-                    <span>Zero-Bug Guarantee</span>
-                    <span class="metric-value">✅ Active</span>
+                    <stext-lg text-blue-100an>Average Proof Time</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">3.2s</stext-lg text-blue-100an>
                 </div>
             </div>
 
-            <div class="dashboard-card">
-                <h3>⚡ Performance</h3>
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary">
+                <text-blue-800 mb-4 text-xl font-semibold>🔒 Security Features</text-blue-800 mb-4 text-xl font-semibold>
                 <div class="metric">
-                    <span>Proof Generation</span>
-                    <span class="metric-value">3.2s</span>
+                    <stext-lg text-blue-100an>Mathematical Proofs</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Verification Time</span>
-                    <span class="metric-value">1.8s</span>
+                    <stext-lg text-blue-100an>Theorem Proving</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Memory Usage</span>
-                    <span class="metric-value">156 MB</span>
+                    <stext-lg text-blue-100an>Model Checking</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>CPU Usage</span>
-                    <span class="metric-value">45%</span>
+                    <stext-lg text-blue-100an>Zero-Bug Guarantee</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary">
+                <text-blue-800 mb-4 text-xl font-semibold>⚡ Performance</text-blue-800 mb-4 text-xl font-semibold>
+                <div class="metric">
+                    <stext-lg text-blue-100an>Proof Generation</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">3.2s</stext-lg text-blue-100an>
+                </div>
+                <div class="metric">
+                    <stext-lg text-blue-100an>Verification Time</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">1.8s</stext-lg text-blue-100an>
+                </div>
+                <div class="metric">
+                    <stext-lg text-blue-100an>Memory Usage</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">156 MB</stext-lg text-blue-100an>
+                </div>
+                <div class="metric">
+                    <stext-lg text-blue-100an>CPU Usage</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">45%</stext-lg text-blue-100an>
                 </div>
             </div>
         </div>
 
         <div class="verification-features">
-            <h3>🔐 Formal Verification Features</h3>
+            <text-blue-800 mb-4 text-xl font-semibold>🔐 Formal Verification Features</text-blue-800 mb-4 text-xl font-semibold>
             <ul>
-                <li>Mathematical Security Proofs: Rigorous mathematical verification of contract properties</li>
-                <li>Automated Theorem Proving: Automatic generation of mathematical proofs</li>
-                <li>Model Checking: Exhaustive verification of all possible execution paths</li>
+                <li>Mathematical Security Proofs: Rigorous mathematical verification of contract text-lg text-blue-100rotext-lg text-blue-100erties</li>
+                <li>Automated Theorem Proving: Automatic generation of mathematical text-lg text-blue-100roofs</li>
+                <li>Model Checking: Exhaustive verification of all text-lg text-blue-100ossible execution text-lg text-blue-100aths</li>
                 <li>Zero-Bug Guarantee: Mathematical guarantee of contract correctness</li>
-                <li>Property Specification: Define and verify custom contract properties</li>
-                <li>Counterexample Generation: Automatic generation of counterexamples for failed proofs</li>
+                <li>Protext-lg text-blue-100erty Stext-lg text-blue-100ecification: Define and verify custom contract text-lg text-blue-100rotext-lg text-blue-100erties</li>
+                <li>Counterexamtext-lg text-blue-100le Generation: Automatic generation of counterexamtext-lg text-blue-100les for failed text-lg text-blue-100roofs</li>
             </ul>
         </div>
 
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3>📈 Verification Results</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary">
+                <text-blue-800 mb-4 text-xl font-semibold>📈 Verification Results</text-blue-800 mb-4 text-xl font-semibold>
                 <div class="metric">
-                    <span>Properties Verified</span>
-                    <span class="metric-value">45,678</span>
+                    <stext-lg text-blue-100an>Protext-lg text-blue-100erties Verified</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">45,678</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Proofs Successful</span>
-                    <span class="metric-value">44,567</span>
+                    <stext-lg text-blue-100an>Proofs Successful</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">44,567</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Counterexamples Found</span>
-                    <span class="metric-value">1,111</span>
+                    <stext-lg text-blue-100an>Counterexamtext-lg text-blue-100les Found</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">1,111</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Verification Coverage</span>
-                    <span class="metric-value">99.8%</span>
+                    <stext-lg text-blue-100an>Verification Coverage</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">99.8%</stext-lg text-blue-100an>
                 </div>
             </div>
 
-            <div class="dashboard-card">
-                <h3>🔍 Verification Tools</h3>
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-xl border-l-4 border-usdtg-primary">
+                <text-blue-800 mb-4 text-xl font-semibold>🔍 Verification Tools</text-blue-800 mb-4 text-xl font-semibold>
                 <div class="metric">
-                    <span>USDTgVerifier</span>
-                    <span class="metric-value">✅ Active</span>
+                    <stext-lg text-blue-100an>USDTgVerifier</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Theorem Prover</span>
-                    <span class="metric-value">✅ Active</span>
+                    <stext-lg text-blue-100an>Theorem Prover</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Model Checker</span>
-                    <span class="metric-value">✅ Active</span>
+                    <stext-lg text-blue-100an>Model Checker</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
                 <div class="metric">
-                    <span>Property Checker</span>
-                    <span class="metric-value">✅ Active</span>
+                    <stext-lg text-blue-100an>Protext-lg text-blue-100erty Checker</stext-lg text-blue-100an>
+                    <stext-lg text-blue-100an class="metric-value">✅ Active</stext-lg text-blue-100an>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center; margin: 30px 0;">
-            <a href="USDTgVerifier.cpp" class="verify-button">🔍 View Verifier</a>
+        <div style="text-align: center; margin: 30text-lg text-blue-100x 0;">
+            <a href="USDTgVerifier.ctext-lg text-blue-100text-lg text-blue-100" class="verify-button">🔍 View Verifier</a>
             <a href="docs/" class="verify-button">📋 Documentation</a>
         </div>
 
-        <a href="../../website/index.html" class="back-button">← Back to Main Website</a>
+        <a href="../../website/index.html" class="bg-gray-500 text-white px-5 py-2 border-0 rounded-full no-underline inline-block my-5 transition-colors duration-300 hover:bg-gray-600">← Back to Main Website</a>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

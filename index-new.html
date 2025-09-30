@@ -28,10 +28,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Dashboard - World's Most Advanced Blockchain</title>
     <link rel="icon" href="assets/logos/logo.png" type="image/png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -187,7 +201,7 @@
         }
         
         /* QUANTUM ANNOUNCEMENT */
-        .quantum-announcement {
+        .bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold {
             background: linear-gradient(45deg, #ff6b00, #ff0066);
             padding: 15px;
             text-align: center;
@@ -205,12 +219,12 @@
             100% { box-shadow: 0 0 30px rgba(255, 0, 102, 0.8); }
         }
         
-        .quantum-link {
+        .text-white underline hover:text-yellow-300 transition-colors duration-300 {
             color: white !important;
             text-decoration: none;
         }
         
-        .main-container {
+        .main-max-w-7xl mx-auto {
             text-align: center;
             max-width: 1200px;
             margin: 200px auto 0;
@@ -451,17 +465,17 @@
                 grid-template-columns: 1fr;
             }
             
-            .main-container {
+            .main-max-w-7xl mx-auto {
                 padding: 20px;
             }
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans">
     <!-- Quantum Announcement Banner -->
-    <div class="quantum-announcement">
+    <div class="bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold">
         🚀 <strong>WORLD'S MOST ADVANCED:</strong> Complete Ecosystem with 20+ Revolutionary Features! 
-        <a href="website/quantum-safe.html" class="quantum-link">⚛️ Explore Quantum Technology →</a>
+        <a href="website/quantum-safe.html" class="text-white underline hover:text-yellow-300 transition-colors duration-300">⚛️ Explore Quantum Technology →</a>
     </div>
     
     <!-- MEGA MENU Navigation -->
@@ -690,7 +704,7 @@
         </div>
     </nav>
     
-    <div class="main-container">
+    <div class="main-max-w-7xl mx-auto">
         <div class="logo">
             <img src="assets/logos/logo.png" alt="USDTgVerse Logo" style="width: 120px; height: 120px; margin-right: 20px;">
             <div>USDTgVerse</div>
@@ -734,7 +748,7 @@
                     <h2 class="quantum-title">Quantum-Safe Revolution</h2>
                     <p class="quantum-slogan">World's First Complete Quantum-Resistant Ecosystem</p>
                     <p class="quantum-description">
-                        USDTgVerse pioneers post-quantum cryptography with 20+ revolutionary features including 
+                        USDTgVerse pioneers post-quantum cryptography with 20+ revolutionary grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 including 
                         MEV protection, homomorphic encryption, zero-knowledge privacy, and verifiable delay functions. 
                         Future-proof your digital assets for the quantum computing era.
                     </p>
@@ -839,7 +853,7 @@
     
     <script>
         console.log('🌌 USDTgVerse Dashboard Loaded');
-        console.log('🚀 All 20+ advanced features accessible');
+        console.log('🚀 All 20+ advanced grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 accessible');
         console.log('⚛️ Quantum-safe MEGA MENU active');
         
         // MEGA MENU interaction
@@ -886,7 +900,5 @@
         });
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

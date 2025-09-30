@@ -27,10 +27,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgWallet - Enterprise Financial Platform with OdixPay++ Integration</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -45,7 +59,7 @@
             color: white;
         }
 
-        .header {
+        .bg-black/20 backdrop-blur-lg p-5 {
             background: rgba(0,0,0,0.2);
             padding: 20px;
             backdrop-filter: blur(10px);
@@ -54,7 +68,7 @@
             z-index: 100;
         }
 
-        .header-content {
+        .bg-black/20 backdrop-blur-lg p-5-content {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -62,18 +76,18 @@
             align-items: center;
         }
 
-        .logo {
+        .text-2xl font-bold text-usdtg-accent {
             font-size: 1.8em;
             font-weight: bold;
             color: #4CAF50;
         }
 
-        .nav-links {
+        .flex space-x-4 {
             display: flex;
             gap: 20px;
         }
 
-        .nav-links a {
+        .flex space-x-4 a {
             color: white;
             text-decoration: none;
             padding: 10px 20px;
@@ -82,12 +96,12 @@
             transition: all 0.3s;
         }
 
-        .nav-links a:hover {
+        .flex space-x-4 a:hover {
             background: rgba(255,255,255,0.2);
             transform: translateY(-2px);
         }
 
-        .container {
+        .max-w-7xl mx-auto p-5 {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -114,7 +128,7 @@
             backdrop-filter: blur(10px);
         }
 
-        .wallet-balance {
+        .wallet-text-3xl font-bold text-teal-400 mb-2 {
             text-align: center;
             margin-bottom: 30px;
             padding: 20px;
@@ -122,14 +136,14 @@
             border-radius: 15px;
         }
 
-        .balance-amount {
+        .text-3xl font-bold text-teal-400 mb-2-amount {
             font-size: 2.5em;
             font-weight: bold;
             color: #4CAF50;
             margin-bottom: 10px;
         }
 
-        .balance-label {
+        .text-3xl font-bold text-teal-400 mb-2-label {
             color: rgba(255,255,255,0.8);
             font-size: 1.1em;
         }
@@ -216,7 +230,7 @@
             font-size: 0.9em;
         }
 
-        .asset-balance {
+        .asset-text-3xl font-bold text-teal-400 mb-2 {
             text-align: right;
         }
 
@@ -237,7 +251,7 @@
             margin-bottom: 30px;
         }
 
-        .action-btn {
+        .action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg {
             flex: 1;
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             border: none;
@@ -250,16 +264,16 @@
             transition: all 0.3s;
         }
 
-        .action-btn:hover {
+        .action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
         }
 
-        .action-btn.secondary {
+        .action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg.secondary {
             background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
         }
 
-        .action-btn.secondary:hover {
+        .action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg.secondary:hover {
             box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
         }
 
@@ -339,7 +353,7 @@
             margin-top: 20px;
         }
 
-        .feature-card {
+        .feature-bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 {
             background: rgba(0,0,0,0.2);
             border-radius: 15px;
             padding: 20px;
@@ -347,7 +361,7 @@
             transition: all 0.3s;
         }
 
-        .feature-card:hover {
+        .feature-bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20:hover {
             background: rgba(0,0,0,0.3);
             transform: translateY(-5px);
         }
@@ -379,11 +393,11 @@
         }
     </style>
 </head>
-<body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">💳 USDTgWallet</div>
-            <div class="nav-links">
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans">
+    <div class="bg-black/20 backdrop-blur-lg p-5">
+        <div class="bg-black/20 backdrop-blur-lg p-5-content">
+            <div class="text-2xl font-bold text-usdtg-accent">💳 USDTgWallet</div>
+            <div class="flex space-x-4">
                 <a href="/" onclick="goBack()">← Back</a>
                 <a href="/">🏠 Home</a>
                 <a href="../../website/index.html">🌟 Website</a>
@@ -394,13 +408,13 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="max-w-7xl mx-auto p-5">
         <div class="wallet-interface">
             <!-- Sidebar -->
             <div class="sidebar">
-                <div class="wallet-balance">
-                    <div class="balance-amount">$12,456.78</div>
-                    <div class="balance-label">Total Portfolio Value</div>
+                <div class="wallet-text-3xl font-bold text-teal-400 mb-2">
+                    <div class="text-3xl font-bold text-teal-400 mb-2-amount">$12,456.78</div>
+                    <div class="text-3xl font-bold text-teal-400 mb-2-label">Total Portfolio Value</div>
                     <div style="margin-top: 10px; padding: 8px 12px; background: rgba(76, 175, 80, 0.2); border-radius: 20px; font-size: 0.9em;">
                         💰 Treasury Yield: <span style="color: #4CAF50; font-weight: bold;">3.96% APY</span>
                     </div>
@@ -469,9 +483,9 @@
                     <h2 class="section-title">📊 Wallet Overview</h2>
                     
                     <div class="action-buttons">
-                        <button class="action-btn" onclick="showSection('send')">📤 Send</button>
-                        <button class="action-btn secondary" onclick="showSection('receive')">📥 Receive</button>
-                        <button class="action-btn" onclick="showSection('swap')">🔄 Swap</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="showSection('send')">📤 Send</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="showSection('receive')">📥 Receive</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="showSection('swap')">🔄 Swap</button>
                     </div>
                     
                     <div class="asset-list">
@@ -483,7 +497,7 @@
                                     <p>Native Stablecoin</p>
                                 </div>
                             </div>
-                            <div class="asset-balance">
+                            <div class="asset-text-3xl font-bold text-teal-400 mb-2">
                                 <div class="asset-amount">8,456.78</div>
                                 <div class="asset-value">$8,456.78</div>
                             </div>
@@ -497,7 +511,7 @@
                                     <p>Tether</p>
                                 </div>
                             </div>
-                            <div class="asset-balance">
+                            <div class="asset-text-3xl font-bold text-teal-400 mb-2">
                                 <div class="asset-amount">2,340.56</div>
                                 <div class="asset-value">$2,340.56</div>
                             </div>
@@ -511,7 +525,7 @@
                                     <p>USD Coin</p>
                                 </div>
                             </div>
-                            <div class="asset-balance">
+                            <div class="asset-text-3xl font-bold text-teal-400 mb-2">
                                 <div class="asset-amount">1,890.23</div>
                                 <div class="asset-value">$1,890.23</div>
                             </div>
@@ -525,7 +539,7 @@
                                     <p>ETH</p>
                                 </div>
                             </div>
-                            <div class="asset-balance">
+                            <div class="asset-text-3xl font-bold text-teal-400 mb-2">
                                 <div class="asset-amount">1.5678</div>
                                 <div class="asset-value">$3,894.50</div>
                             </div>
@@ -539,7 +553,7 @@
                                     <p>TRX</p>
                                 </div>
                             </div>
-                            <div class="asset-balance">
+                            <div class="asset-text-3xl font-bold text-teal-400 mb-2">
                                 <div class="asset-amount">1,234.56</div>
                                 <div class="asset-value">$105.50</div>
                             </div>
@@ -553,7 +567,7 @@
                                     <p>SOL</p>
                                 </div>
                             </div>
-                            <div class="asset-balance">
+                            <div class="asset-text-3xl font-bold text-teal-400 mb-2">
                                 <div class="asset-amount">45.67</div>
                                 <div class="asset-value">$6,805.03</div>
                             </div>
@@ -590,7 +604,7 @@
                         <input type="text" class="form-input" placeholder="Transaction memo">
                     </div>
                     
-                    <button class="action-btn" onclick="sendTransaction()">📤 Send Transaction</button>
+                    <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="sendTransaction()">📤 Send Transaction</button>
                 </div>
 
                 <!-- Receive Section -->
@@ -609,7 +623,7 @@
                         <input type="text" class="form-input" value="0x1234567890abcdef1234567890abcdef12345678" readonly>
                     </div>
                     
-                    <button class="action-btn secondary" onclick="copyAddress()">📋 Copy Address</button>
+                    <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="copyAddress()">📋 Copy Address</button>
                 </div>
 
                 <!-- Swap Section -->
@@ -676,7 +690,7 @@
                         </div>
                     </div>
                     
-                    <button class="action-btn" onclick="executeSwap()" id="swapButton">
+                    <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="executeSwap()" id="swapButton">
                         🔄 Swap Tokens
                     </button>
                     
@@ -691,7 +705,7 @@
                     
                     <div style="background: rgba(0,0,0,0.2); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
                         <h3 style="color: #4CAF50; margin-bottom: 10px;">🌍 Global Spend Management</h3>
-                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Issue virtual and physical cards with real-time controls and spend limits</p>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Issue virtual and physical bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20s with real-time controls and spend limits</p>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                             <div style="text-align: center; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px;">
@@ -712,7 +726,7 @@
                         </div>
                     </div>
                     
-                    <button class="action-btn" onclick="issueCard()">💳 Issue New Card</button>
+                    <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="issueCard()">💳 Issue New Card</button>
                 </div>
 
                 <!-- Expense Management Section -->
@@ -740,8 +754,8 @@
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="action-btn" onclick="scanReceipt()">📱 Scan Receipt</button>
-                        <button class="action-btn secondary" onclick="viewExpenses()">📊 View Reports</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="scanReceipt()">📱 Scan Receipt</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="viewExpenses()">📊 View Reports</button>
                     </div>
                 </div>
 
@@ -767,14 +781,14 @@
                             <div style="text-align: center; padding: 20px; background: rgba(255, 193, 7, 0.2); border-radius: 10px;">
                                 <div style="font-size: 2.5em; font-weight: bold; color: #FFC107;">$0</div>
                                 <div style="font-weight: bold;">Minimum</div>
-                                <div style="font-size: 0.9em; color: rgba(255,255,255,0.7);">No minimum balance</div>
+                                <div style="font-size: 0.9em; color: rgba(255,255,255,0.7);">No minimum text-3xl font-bold text-teal-400 mb-2</div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="action-btn" onclick="openTreasuryAccount()">🏦 Open Treasury Account</button>
-                        <button class="action-btn secondary" onclick="viewYield()">📈 View Earnings</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="openTreasuryAccount()">🏦 Open Treasury Account</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="viewYield()">📈 View Earnings</button>
                     </div>
                 </div>
 
@@ -803,8 +817,8 @@
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="action-btn" onclick="bookTravel()">✈️ Book Travel</button>
-                        <button class="action-btn secondary" onclick="viewTrips()">🧳 View Trips</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="bookTravel()">✈️ Book Travel</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="viewTrips()">🧳 View Trips</button>
                     </div>
                 </div>
 
@@ -842,7 +856,7 @@
                             <div>⚡ Payment ready for processing</div>
                         </div>
                         
-                        <button class="action-btn" onclick="processBillPayment()">📄 Process Payment</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="processBillPayment()">📄 Process Payment</button>
                     </div>
                     
                     <!-- Smart Invoicing Interface -->
@@ -867,8 +881,8 @@
                         </div>
                         
                         <div style="display: flex; gap: 10px;">
-                            <button class="action-btn" onclick="generateSmartInvoice()">🧾 Generate Invoice</button>
-                            <button class="action-btn secondary" onclick="previewInvoice()">👁️ Preview</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="generateSmartInvoice()">🧾 Generate Invoice</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="previewInvoice()">👁️ Preview</button>
                         </div>
                     </div>
                     
@@ -899,7 +913,7 @@
                             <div>🔐 Blockchain immutability</div>
                         </div>
                         
-                        <button class="action-btn" onclick="createEscrow()">🔒 Create Escrow</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="createEscrow()">🔒 Create Escrow</button>
                     </div>
                     
                     <!-- Subscriptions Interface -->
@@ -934,8 +948,8 @@
                         </div>
                         
                         <div style="display: flex; gap: 10px;">
-                            <button class="action-btn" onclick="addSubscription()">🔄 Add Subscription</button>
-                            <button class="action-btn secondary" onclick="manageSubscriptions()">⚙️ Manage All</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="addSubscription()">🔄 Add Subscription</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="manageSubscriptions()">⚙️ Manage All</button>
                         </div>
                     </div>
                     
@@ -961,8 +975,8 @@
                         </div>
                         
                         <div style="display: flex; gap: 10px;">
-                            <button class="action-btn" onclick="executeBatchPayment()">📦 Execute Batch</button>
-                            <button class="action-btn secondary" onclick="importCSV()">📄 Import CSV</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="executeBatchPayment()">📦 Execute Batch</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="importCSV()">📄 Import CSV</button>
                         </div>
                     </div>
                     
@@ -991,8 +1005,8 @@
                         </div>
                         
                         <div style="display: flex; gap: 10px;">
-                            <button class="action-btn" onclick="setupMerchant()">🏪 Setup Gateway</button>
-                            <button class="action-btn secondary" onclick="viewIntegration()">🔗 Integration Guide</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="setupMerchant()">🏪 Setup Gateway</button>
+                            <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="viewIntegration()">🔗 Integration Guide</button>
                         </div>
                     </div>
                 </div>
@@ -1077,13 +1091,13 @@
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="action-btn">🔐 Security Settings</button>
-                        <button class="action-btn secondary">📱 Backup Wallet</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">🔐 Security Settings</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary">📱 Backup Wallet</button>
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="action-btn">🔔 Notifications</button>
-                        <button class="action-btn secondary">🌐 Network Settings</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">🔔 Notifications</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary">🌐 Network Settings</button>
                     </div>
                 </div>
             </div>
@@ -1161,8 +1175,8 @@
                 document.getElementById('priceImpact').style.color = impact > 0.1 ? '#ff6b6b' : '#4CAF50';
             }
             
-            // Update balances (simulated)
-            const balances = {
+            // Update text-3xl font-bold text-teal-400 mb-2s (simulated)
+            const text-3xl font-bold text-teal-400 mb-2s = {
                 'USDTG': '8,456.78',
                 'USDT': '2,340.56',
                 'USDC': '1,890.23',
@@ -1171,8 +1185,8 @@
                 'SOL': '45.67'
             };
             
-            document.getElementById('swapFromBalance').textContent = balances[fromToken] || '0.00';
-            document.getElementById('swapToBalance').textContent = balances[toToken] || '0.00';
+            document.getElementById('swapFromBalance').textContent = text-3xl font-bold text-teal-400 mb-2s[fromToken] || '0.00';
+            document.getElementById('swapToBalance').textContent = text-3xl font-bold text-teal-400 mb-2s[toToken] || '0.00';
         }
 
         function swapTokens() {
@@ -1220,12 +1234,12 @@
 
         // Corporate Cards - Real interface instead of popup
         function issueCard() {
-            // Hide current section content and show card issuance form
+            // Hide current section content and show bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 issuance form
             const currentSection = document.querySelector('.content-section.active');
-            const cardSection = document.getElementById('corporate');
+            const bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20Section = document.getElementById('corporate');
             
-            // Add card issuance form dynamically
-            const cardForm = `
+            // Add bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 issuance form dynamically
+            const bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20Form = `
                 <div style="background: rgba(76, 175, 80, 0.2); border-radius: 15px; padding: 20px; margin: 20px 0;">
                     <h3 style="color: #4CAF50; margin-bottom: 15px;">✅ Virtual Card Created Successfully!</h3>
                     <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 15px; margin: 15px 0;">
@@ -1236,18 +1250,18 @@
                         <div>Limit: $5,000/month</div>
                     </div>
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button class="action-btn secondary" onclick="viewCardDetails()">📱 View Full Details</button>
-                        <button class="action-btn" onclick="setCardLimits()">🎯 Set Limits</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="viewCardDetails()">📱 View Full Details</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="setCardLimits()">🎯 Set Limits</button>
                     </div>
                 </div>
             `;
             
-            // Find the issue card button and add the form after it
-            const issueButton = cardSection.querySelector('button[onclick="issueCard()"]');
-            if (issueButton && !cardSection.querySelector('.card-success')) {
+            // Find the issue bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 button and add the form after it
+            const issueButton = bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20Section.querySelector('button[onclick="issueCard()"]');
+            if (issueButton && !bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20Section.querySelector('.bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20-success')) {
                 const successDiv = document.createElement('div');
-                successDiv.className = 'card-success';
-                successDiv.innerHTML = cardForm;
+                successDiv.className = 'bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20-success';
+                successDiv.innerHTML = bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20Form;
                 issueButton.parentNode.insertBefore(successDiv, issueButton.nextSibling);
                 issueButton.textContent = '💳 Issue Another Card';
             }
@@ -1277,8 +1291,8 @@
                     </div>
                     
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button class="action-btn" onclick="approveExpense()">✅ Approve & Submit</button>
-                        <button class="action-btn secondary" onclick="editExpense()">✏️ Edit Details</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="approveExpense()">✅ Approve & Submit</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="editExpense()">✏️ Edit Details</button>
                     </div>
                 </div>
             `;
@@ -1331,8 +1345,8 @@
                     </div>
                     
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button class="action-btn" onclick="exportReport()">📄 Export Report</button>
-                        <button class="action-btn secondary" onclick="setPolicy()">⚙️ Policy Settings</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="exportReport()">📄 Export Report</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="setPolicy()">⚙️ Policy Settings</button>
                     </div>
                 </div>
             `;
@@ -1374,13 +1388,13 @@
                         <div style="margin: 5px 0;">✅ FDIC Insured up to $250,000</div>
                         <div style="margin: 5px 0;">⚡ Same-day liquidity access</div>
                         <div style="margin: 5px 0;">🔄 Daily compounding</div>
-                        <div style="margin: 5px 0;">💸 No minimum balance required</div>
+                        <div style="margin: 5px 0;">💸 No minimum text-3xl font-bold text-teal-400 mb-2 required</div>
                         <div style="margin: 5px 0;">🔐 Enterprise-grade security</div>
                     </div>
                     
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button class="action-btn" onclick="depositTreasury()">💰 Deposit Funds</button>
-                        <button class="action-btn secondary" onclick="withdrawTreasury()">💸 Withdraw</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="depositTreasury()">💰 Deposit Funds</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="withdrawTreasury()">💸 Withdraw</button>
                     </div>
                 </div>
             `;
@@ -1431,8 +1445,8 @@
                     </div>
                     
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button class="action-btn" onclick="exportEarnings()">📄 Export Report</button>
-                        <button class="action-btn secondary" onclick="reinvestmentSettings()">⚙️ Settings</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="exportEarnings()">📄 Export Report</button>
+                        <button class="action-bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg secondary" onclick="reinvestmentSettings()">⚙️ Settings</button>
                     </div>
                 </div>
             `;
@@ -1539,7 +1553,7 @@
             button.textContent = '✅ Added';
             
             // Update active subscriptions list
-            const activeList = document.querySelector('.form-input').closest('.content-section').querySelector('[style*="255, 193, 7"]');
+            const activeList = document.querySelector('.form-input').text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300st('.content-section').querySelector('[style*="255, 193, 7"]');
             const newSub = document.createElement('div');
             newSub.innerHTML = `🆕 ${serviceName}: $${amount}/month`;
             activeList.appendChild(newSub);
@@ -1611,7 +1625,7 @@
         // Simulate real-time updates
         setInterval(() => {
             // Update portfolio value
-            const portfolioValue = document.querySelector('.balance-amount');
+            const portfolioValue = document.querySelector('.text-3xl font-bold text-teal-400 mb-2-amount');
             const currentValue = parseFloat(portfolioValue.textContent.replace('$', '').replace(',', ''));
             const change = (Math.random() - 0.5) * 10;
             const newValue = Math.max(0, currentValue + change);
@@ -1620,7 +1634,7 @@
         
         // Helper functions for new interfaces
         function viewCardDetails() {
-            alert('📱 Card Details: Full card information, transaction history, and security settings available.');
+            alert('📱 Card Details: Full bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 information, transaction history, and security settings available.');
         }
         
         function setCardLimits() {
@@ -1675,7 +1689,5 @@
         console.log('🎯 Enterprise-grade UX complete');
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

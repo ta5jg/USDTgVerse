@@ -10,7 +10,7 @@
    USDTgVerse Trading Interface
    
    Professional trading interface featuring:
-   - Real-time price charts
+   - Real-time text-2xl font-bold text-green-400 mb-2 charts
    - Order book and market depth
    - Buy/sell order placement
    - Portfolio management
@@ -28,10 +28,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Trading Interface</title>
     <link rel="icon" href="../assets/logos/logo.png" type="image/png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -46,7 +60,7 @@
             min-height: 100vh;
         }
 
-        .trading-container {
+        .grid grid-cols-1 lg:grid-cols-4 gap-4 h-screen p-4 {
             display: grid;
             grid-template-columns: 1fr 300px;
             grid-template-rows: 60px 1fr;
@@ -55,7 +69,7 @@
             background: #333;
         }
 
-        .header {
+        .bg-gray-800 p-4 rounded-lg {
             grid-column: 1 / -1;
             background: linear-gradient(90deg, #00D4AA 0%, #0099FF 100%);
             display: flex;
@@ -65,18 +79,18 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .header h1 {
+        .bg-gray-800 p-4 rounded-lg text-2xl font-bold mb-4 {
             font-size: 24px;
             font-weight: 700;
         }
 
-        .trading-pair {
+        .flex items-center space-x-4 {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .pair-selector {
+        .bg-gray-700 text-white px-4 py-2 rounded border-0 {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -99,7 +113,7 @@
             flex-direction: column;
         }
 
-        .chart-header {
+        .chart-bg-gray-800 p-4 rounded-lg {
             padding: 20px;
             border-bottom: 1px solid #333;
             display: flex;
@@ -107,19 +121,19 @@
             align-items: center;
         }
 
-        .price-info {
+        .text-2xl font-bold text-green-400 mb-2-info {
             display: flex;
             flex-direction: column;
             gap: 5px;
         }
 
-        .current-price {
+        .current-text-2xl font-bold text-green-400 mb-2 {
             font-size: 28px;
             font-weight: 700;
             color: #00D4AA;
         }
 
-        .price-change {
+        .text-2xl font-bold text-green-400 mb-2-text-sm text-gray-400 {
             font-size: 14px;
             color: #00D4AA;
         }
@@ -188,7 +202,7 @@
             font-weight: 500;
         }
 
-        .form-input {
+        .w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4 {
             width: 100%;
             padding: 12px;
             background: #0f0f23;
@@ -199,7 +213,7 @@
             transition: border-color 0.3s ease;
         }
 
-        .form-input:focus {
+        .w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4:focus {
             outline: none;
             border-color: #00D4AA;
         }
@@ -209,7 +223,7 @@
             gap: 10px;
         }
 
-        .form-row .form-input {
+        .form-row .w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4 {
             flex: 1;
         }
 
@@ -231,12 +245,12 @@
             margin-bottom: 10px;
         }
 
-        .buy-button {
+        .bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg {
             background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
             color: white;
         }
 
-        .sell-button {
+        .bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg {
             background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
             color: white;
         }
@@ -256,7 +270,7 @@
             border-bottom: 1px solid #333;
         }
 
-        .sidebar-header {
+        .sidebar-bg-gray-800 p-4 rounded-lg {
             padding: 15px 20px;
             font-size: 16px;
             font-weight: 600;
@@ -280,7 +294,7 @@
             border-bottom: none;
         }
 
-        .order-book-price {
+        .order-book-text-2xl font-bold text-green-400 mb-2 {
             color: #00D4AA;
         }
 
@@ -304,7 +318,7 @@
             border-bottom: none;
         }
 
-        .trade-price {
+        .trade-text-2xl font-bold text-green-400 mb-2 {
             color: #00D4AA;
         }
 
@@ -341,13 +355,13 @@
             color: #ccc;
         }
 
-        .portfolio-change {
+        .portfolio-text-sm text-gray-400 {
             font-size: 12px;
             color: #00D4AA;
         }
 
         @media (max-width: 1200px) {
-            .trading-container {
+            .grid grid-cols-1 lg:grid-cols-4 gap-4 h-screen p-4 {
                 grid-template-columns: 1fr;
                 grid-template-rows: 60px 1fr 200px;
             }
@@ -362,26 +376,26 @@
         }
     </style>
 </head>
-<body>
-    <div class="trading-container">
-        <div class="header">
-            <h1>USDTgVerse Trading</h1>
-            <div class="trading-pair">
-                <select class="pair-selector" id="tradingPair">
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-slate-800 text-white font-sans">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 h-screen p-4">
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <text-2xl font-bold mb-4>USDTgVerse Trading</text-2xl font-bold mb-4>
+            <div class="flex items-center space-x-4">
+                <select class="bg-gray-700 text-white px-4 py-2 rounded border-0" id="tradingPair">
                     <option value="USDTg/USDT">USDTg/USDT</option>
                     <option value="USDTgV/USDT">USDTgV/USDT</option>
                     <option value="USDTgG/USDT">USDTgG/USDT</option>
                 </select>
-                <div class="price-info">
-                    <div class="current-price" id="currentPrice">$1.00</div>
-                    <div class="price-change" id="priceChange">+0.00%</div>
+                <div class="text-2xl font-bold text-green-400 mb-2-info">
+                    <div class="current-text-2xl font-bold text-green-400 mb-2" id="currentPrice">$1.00</div>
+                    <div class="text-2xl font-bold text-green-400 mb-2-text-sm text-gray-400" id="text-2xl font-bold text-green-400 mb-2Change">+0.00%</div>
                 </div>
             </div>
         </div>
 
         <div class="main-content">
             <div class="chart-section">
-                <div class="chart-header">
+                <div class="chart-bg-gray-800 p-4 rounded-lg">
                     <h2>Price Chart</h2>
                     <div class="chart-controls">
                         <button class="chart-period" data-period="1h">1H</button>
@@ -409,60 +423,60 @@
                     <div class="form-group">
                         <label class="form-label">Buy USDTg</label>
                         <div class="form-row">
-                            <input type="number" class="form-input" placeholder="Amount" id="buyAmount">
-                            <input type="number" class="form-input" placeholder="Price" id="buyPrice" value="1.00">
+                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Amount" id="buyAmount">
+                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Price" id="buyPrice" value="1.00">
                         </div>
                         <div class="balance-info">Balance: 1,000.00 USDT</div>
                     </div>
-                    <button class="trade-button buy-button" onclick="placeBuyOrder()">Buy USDTg</button>
+                    <button class="trade-button bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="placeBuyOrder()">Buy USDTg</button>
 
                     <div class="form-group">
                         <label class="form-label">Sell USDTg</label>
                         <div class="form-row">
-                            <input type="number" class="form-input" placeholder="Amount" id="sellAmount">
-                            <input type="number" class="form-input" placeholder="Price" id="sellPrice" value="1.00">
+                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Amount" id="sellAmount">
+                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Price" id="sellPrice" value="1.00">
                         </div>
                         <div class="balance-info">Balance: 500.00 USDTg</div>
                     </div>
-                    <button class="trade-button sell-button" onclick="placeSellOrder()">Sell USDTg</button>
+                    <button class="trade-button bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="placeSellOrder()">Sell USDTg</button>
                 </div>
             </div>
         </div>
 
         <div class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-header">Order Book</div>
+                <div class="sidebar-bg-gray-800 p-4 rounded-lg">Order Book</div>
                 <div class="order-book" id="orderBook">
                     <div class="order-book-row">
-                        <span class="order-book-price">$1.01</span>
+                        <span class="order-book-text-2xl font-bold text-green-400 mb-2">$1.01</span>
                         <span class="order-book-amount">1,250.00</span>
                     </div>
                     <div class="order-book-row">
-                        <span class="order-book-price">$1.00</span>
+                        <span class="order-book-text-2xl font-bold text-green-400 mb-2">$1.00</span>
                         <span class="order-book-amount">2,500.00</span>
                     </div>
                     <div class="order-book-row">
-                        <span class="order-book-price">$0.99</span>
+                        <span class="order-book-text-2xl font-bold text-green-400 mb-2">$0.99</span>
                         <span class="order-book-amount">1,800.00</span>
                     </div>
                 </div>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-header">Recent Trades</div>
+                <div class="sidebar-bg-gray-800 p-4 rounded-lg">Recent Trades</div>
                 <div class="recent-trades" id="recentTrades">
                     <div class="trade-row">
-                        <span class="trade-price">$1.00</span>
+                        <span class="trade-text-2xl font-bold text-green-400 mb-2">$1.00</span>
                         <span class="trade-amount">100.00</span>
                         <span class="trade-time">12:45</span>
                     </div>
                     <div class="trade-row">
-                        <span class="trade-price">$0.99</span>
+                        <span class="trade-text-2xl font-bold text-green-400 mb-2">$0.99</span>
                         <span class="trade-amount">250.00</span>
                         <span class="trade-time">12:44</span>
                     </div>
                     <div class="trade-row">
-                        <span class="trade-price">$1.01</span>
+                        <span class="trade-text-2xl font-bold text-green-400 mb-2">$1.01</span>
                         <span class="trade-amount">75.00</span>
                         <span class="trade-time">12:43</span>
                     </div>
@@ -470,20 +484,20 @@
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-header">Portfolio</div>
+                <div class="sidebar-bg-gray-800 p-4 rounded-lg">Portfolio</div>
                 <div class="portfolio" id="portfolio">
                     <div class="portfolio-item">
                         <span class="portfolio-symbol">USDTg</span>
                         <div>
                             <div class="portfolio-value">500.00</div>
-                            <div class="portfolio-change">+2.5%</div>
+                            <div class="portfolio-text-sm text-gray-400">+2.5%</div>
                         </div>
                     </div>
                     <div class="portfolio-item">
                         <span class="portfolio-symbol">USDT</span>
                         <div>
                             <div class="portfolio-value">1,000.00</div>
-                            <div class="portfolio-change">+0.0%</div>
+                            <div class="portfolio-text-sm text-gray-400">+0.0%</div>
                         </div>
                     </div>
                 </div>
@@ -508,7 +522,7 @@
 
             setupEventListeners() {
                 // Trading pair selector
-                document.getElementById('tradingPair').addEventListener('change', (e) => {
+                document.getElementById('tradingPair').addEventListener('text-sm text-gray-400', (e) => {
                     this.currentPair = e.target.value;
                     this.updatePrice();
                 });
@@ -531,23 +545,23 @@
             }
 
             updatePrice() {
-                const prices = {
-                    'USDTg/USDT': { price: 1.00, change: 0.00 },
-                    'USDTgV/USDT': { price: 0.51, change: 2.50 },
-                    'USDTgG/USDT': { price: 5.00, change: 1.80 }
+                const text-2xl font-bold text-green-400 mb-2s = {
+                    'USDTg/USDT': { text-2xl font-bold text-green-400 mb-2: 1.00, text-sm text-gray-400: 0.00 },
+                    'USDTgV/USDT': { text-2xl font-bold text-green-400 mb-2: 0.51, text-sm text-gray-400: 2.50 },
+                    'USDTgG/USDT': { text-2xl font-bold text-green-400 mb-2: 5.00, text-sm text-gray-400: 1.80 }
                 };
 
-                const pairData = prices[this.currentPair];
-                document.getElementById('currentPrice').textContent = `$${pairData.price.toFixed(2)}`;
-                document.getElementById('priceChange').textContent = `${pairData.change >= 0 ? '+' : ''}${pairData.change.toFixed(2)}%`;
-                document.getElementById('priceChange').style.color = pairData.change >= 0 ? '#00D4AA' : '#FF6B6B';
+                const pairData = text-2xl font-bold text-green-400 mb-2s[this.currentPair];
+                document.getElementById('currentPrice').textContent = `$${pairData.text-2xl font-bold text-green-400 mb-2.toFixed(2)}`;
+                document.getElementById('text-2xl font-bold text-green-400 mb-2Change').textContent = `${pairData.text-sm text-gray-400 >= 0 ? '+' : ''}${pairData.text-sm text-gray-400.toFixed(2)}%`;
+                document.getElementById('text-2xl font-bold text-green-400 mb-2Change').style.color = pairData.text-sm text-gray-400 >= 0 ? '#00D4AA' : '#FF6B6B';
             }
 
             startPriceUpdates() {
                 setInterval(() => {
-                    // Simulate price updates
-                    const change = (Math.random() - 0.5) * 0.02;
-                    this.currentPrice += change;
+                    // Simulate text-2xl font-bold text-green-400 mb-2 updates
+                    const text-sm text-gray-400 = (Math.random() - 0.5) * 0.02;
+                    this.currentPrice += text-sm text-gray-400;
                     this.updatePrice();
                 }, 5000);
             }
@@ -559,15 +573,15 @@
         // Trading functions
         function placeBuyOrder() {
             const amount = document.getElementById('buyAmount').value;
-            const price = document.getElementById('buyPrice').value;
+            const text-2xl font-bold text-green-400 mb-2 = document.getElementById('buyPrice').value;
             
-            if (!amount || !price) {
+            if (!amount || !text-2xl font-bold text-green-400 mb-2) {
                 alert('Please fill in all fields');
                 return;
             }
 
-            const total = parseFloat(amount) * parseFloat(price);
-            if (confirm(`Buy ${amount} USDTg at $${price} each?\nTotal: $${total.toFixed(2)}`)) {
+            const total = parseFloat(amount) * parseFloat(text-2xl font-bold text-green-400 mb-2);
+            if (confirm(`Buy ${amount} USDTg at $${text-2xl font-bold text-green-400 mb-2} each?\nTotal: $${total.toFixed(2)}`)) {
                 alert('Buy order placed successfully!');
                 document.getElementById('buyAmount').value = '';
             }
@@ -575,22 +589,20 @@
 
         function placeSellOrder() {
             const amount = document.getElementById('sellAmount').value;
-            const price = document.getElementById('sellPrice').value;
+            const text-2xl font-bold text-green-400 mb-2 = document.getElementById('sellPrice').value;
             
-            if (!amount || !price) {
+            if (!amount || !text-2xl font-bold text-green-400 mb-2) {
                 alert('Please fill in all fields');
                 return;
             }
 
-            const total = parseFloat(amount) * parseFloat(price);
-            if (confirm(`Sell ${amount} USDTg at $${price} each?\nTotal: $${total.toFixed(2)}`)) {
+            const total = parseFloat(amount) * parseFloat(text-2xl font-bold text-green-400 mb-2);
+            if (confirm(`Sell ${amount} USDTg at $${text-2xl font-bold text-green-400 mb-2} each?\nTotal: $${total.toFixed(2)}`)) {
                 alert('Sell order placed successfully!');
                 document.getElementById('sellAmount').value = '';
             }
         }
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

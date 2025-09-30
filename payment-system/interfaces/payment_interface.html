@@ -28,11 +28,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDTgVerse Payment System</title>
-    <link rel="icon" href="../../assets/logos/logo.png" type="image/png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <text-xs text-gray-400 mb-1 pl-4 relativenk rel="icon" href="../../assets/logos/logo.png" type="image/png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-text-teal-400': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -41,8 +55,8 @@
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            font-family: 'SF Pro Display', -apple-system, Btext-xs text-gray-400 mb-1 pl-4 relativenkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
             color: #ffffff;
             min-height: 100vh;
         }
@@ -57,7 +71,7 @@
             right: 0;
             z-index: 1000;
             padding: 15px 0;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px sotext-xs text-gray-400 mb-1 pl-4 relatived rgba(255, 255, 255, 0.1);
         }
 
         .nav-container {
@@ -65,19 +79,19 @@
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
-            align-items: center;
+            atext-xs text-gray-400 mb-1 pl-4 relativegn-items: center;
             justify-content: space-between;
         }
 
         .nav-brand {
             display: flex;
-            align-items: center;
+            atext-xs text-gray-400 mb-1 pl-4 relativegn-items: center;
             gap: 15px;
         }
 
         .nav-brand a {
             display: flex;
-            align-items: center;
+            atext-xs text-gray-400 mb-1 pl-4 relativegn-items: center;
             gap: 15px;
             text-decoration: none;
             color: white;
@@ -96,13 +110,13 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .nav-links {
+        .nav-text-xs text-gray-400 mb-1 pl-4 relativenks {
             display: flex;
             gap: 20px;
-            align-items: center;
+            atext-xs text-gray-400 mb-1 pl-4 relativegn-items: center;
         }
 
-        .nav-links a {
+        .nav-text-xs text-gray-400 mb-1 pl-4 relativenks a {
             color: white;
             text-decoration: none;
             padding: 10px 15px;
@@ -110,7 +124,7 @@
             transition: all 0.3s ease;
         }
 
-        .nav-links a:hover {
+        .nav-text-xs text-gray-400 mb-1 pl-4 relativenks a:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
@@ -127,7 +141,7 @@
 
         /* Mobile Menu Styles */
         @media (max-width: 1024px) {
-            .nav-links {
+            .nav-text-xs text-gray-400 mb-1 pl-4 relativenks {
                 display: none !important;
             }
             .mobile-menu-toggle {
@@ -143,15 +157,15 @@
         }
 
         .header {
-            text-align: center;
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
             margin-bottom: 40px;
         }
 
         .header h1 {
             font-size: 36px;
             font-weight: 700;
-            background: linear-gradient(135deg, #00D4AA 0%, #0099FF 100%);
-            -webkit-background-clip: text;
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #00D4AA 0%, #0099FF 100%);
+            -webkit-background-ctext-xs text-gray-400 mb-1 pl-4 relativep: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
         }
@@ -168,51 +182,51 @@
             margin-bottom: 40px;
         }
 
-        .payment-method-card {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        .bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20 {
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 16px;
             padding: 24px;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
-        .payment-method-card:hover {
+        .bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
         }
 
-        .payment-method-card.selected {
+        .bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20.border-teal-400 shadow-teal-400/30 {
             border-color: #00D4AA;
             box-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
         }
 
-        .payment-method-icon {
+        .text-5xl mb-4 text-center {
             font-size: 48px;
             margin-bottom: 16px;
-            text-align: center;
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
         }
 
-        .payment-method-title {
+        .text-xl font-semibold text-teal-400 mb-2 {
             font-size: 20px;
             font-weight: 600;
             color: #00D4AA;
             margin-bottom: 8px;
         }
 
-        .payment-method-description {
+        .text-sm text-gray-300 leading-relaxed mb-4 {
             font-size: 14px;
             color: #ccc;
-            line-height: 1.5;
+            text-xs text-gray-400 mb-1 pl-4 relativene-height: 1.5;
             margin-bottom: 16px;
         }
 
-        .payment-method-features {
-            list-style: none;
+        .text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4 {
+            text-xs text-gray-400 mb-1 pl-4 relativest-style: none;
             margin-bottom: 16px;
         }
 
-        .payment-method-features li {
+        .text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4 text-xs text-gray-400 mb-1 pl-4 relative {
             font-size: 12px;
             color: #666;
             margin-bottom: 4px;
@@ -220,7 +234,7 @@
             position: relative;
         }
 
-        .payment-method-features li:before {
+        .text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4 text-xs text-gray-400 mb-1 pl-4 relative:before {
             content: "✓";
             position: absolute;
             left: 0;
@@ -228,27 +242,27 @@
             font-weight: bold;
         }
 
-        .payment-form {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        .bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 mb-10 {
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 16px;
             padding: 24px;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
             margin-bottom: 40px;
         }
 
-        .form-header {
+        .text-2xl font-semibold text-teal-400 mb-6 text-center {
             font-size: 24px;
             font-weight: 600;
             color: #00D4AA;
             margin-bottom: 24px;
-            text-align: center;
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
         }
 
-        .form-group {
+        .mb-5 {
             margin-bottom: 20px;
         }
 
-        .form-label {
+        .block mb-2 text-sm text-gray-300 font-medium {
             display: block;
             margin-bottom: 8px;
             font-size: 14px;
@@ -256,48 +270,48 @@
             font-weight: 500;
         }
 
-        .form-input {
+        .w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400 {
             width: 100%;
             padding: 12px;
             background: #0f0f23;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
             border-radius: 8px;
             color: white;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
 
-        .form-input:focus {
-            outline: none;
+        .w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400:focus {
+            outtext-xs text-gray-400 mb-1 pl-4 relativene: none;
             border-color: #00D4AA;
         }
 
-        .form-row {
+        .grid grid-cols-1 md:grid-cols-2 gap-4 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        .form-select {
+        .w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400 {
             width: 100%;
             padding: 12px;
             background: #0f0f23;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
             border-radius: 8px;
             color: white;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
 
-        .form-select:focus {
-            outline: none;
+        .w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400:focus {
+            outtext-xs text-gray-400 mb-1 pl-4 relativene: none;
             border-color: #00D4AA;
         }
 
-        .payment-button {
+        .w-full p-4 bg-gradient-to-r from-teal-500 to-teal-600 border-0 rounded-lg text-white text-lg font-semibold cursor-pointer transition-all duration-300 mb-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-teal-500/30 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #00D4AA 0%, #00B894 100%);
             border: none;
             border-radius: 8px;
             color: white;
@@ -308,113 +322,113 @@
             margin-bottom: 16px;
         }
 
-        .payment-button:hover {
+        .w-full p-4 bg-gradient-to-r from-teal-500 to-teal-600 border-0 rounded-lg text-white text-lg font-semibold cursor-pointer transition-all duration-300 mb-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-teal-500/30 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
         }
 
-        .payment-button:disabled {
+        .w-full p-4 bg-gradient-to-r from-teal-500 to-teal-600 border-0 rounded-lg text-white text-lg font-semibold cursor-pointer transition-all duration-300 mb-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-teal-500/30 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none:disabled {
             background: #666;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
-        .payment-status {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        .bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 mb-10 hidden {
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 16px;
             padding: 24px;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
             margin-bottom: 40px;
             display: none;
         }
 
-        .status-header {
+        .text-xl font-semibold text-teal-400 mb-4 text-center {
             font-size: 20px;
             font-weight: 600;
             color: #00D4AA;
             margin-bottom: 16px;
-            text-align: center;
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
         }
 
-        .status-item {
+        .flex justify-between py-3 border-b border-gray-600 last:border-b-0 {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
         }
 
-        .status-item:last-child {
+        .flex justify-between py-3 border-b border-gray-600 last:border-b-0:last-child {
             border-bottom: none;
         }
 
-        .status-label {
+        .text-sm text-gray-300 {
             font-size: 14px;
             color: #ccc;
         }
 
-        .status-value {
+        .text-sm text-white font-medium {
             font-size: 14px;
             color: #fff;
             font-weight: 500;
         }
 
-        .status-value.success {
+        .text-sm text-white font-medium.text-teal-400 {
             color: #00D4AA;
         }
 
-        .status-value.error {
+        .text-sm text-white font-medium.text-red-400 {
             color: #FF6B6B;
         }
 
-        .status-value.pending {
+        .text-sm text-white font-medium.text-orange-400 {
             color: #FFA500;
         }
 
-        .payment-analytics {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        .bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 {
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 16px;
             padding: 24px;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
         }
 
-        .analytics-header {
+        .text-xl font-semibold text-teal-400 mb-5 text-center {
             font-size: 20px;
             font-weight: 600;
             color: #00D4AA;
             margin-bottom: 20px;
-            text-align: center;
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
         }
 
-        .analytics-grid {
+        .grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
         }
 
-        .analytics-item {
-            text-align: center;
+        .text-center p-4 bg-slate-900 rounded-lg border border-gray-600 {
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
             padding: 16px;
             background: #0f0f23;
             border-radius: 8px;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
         }
 
-        .analytics-value {
+        .text-2xl font-bold text-teal-400 mb-2 {
             font-size: 24px;
             font-weight: 700;
             color: #00D4AA;
             margin-bottom: 8px;
         }
 
-        .analytics-label {
+        .text-xs text-gray-400 uppercase tracking-wider {
             font-size: 12px;
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .modal {
+        .hidden fixed inset-0 z-50 bg-black/80 {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -425,25 +439,25 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .modal-content {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        .hidden fixed inset-0 z-50 bg-black/80-content {
+            background: text-xs text-gray-400 mb-1 pl-4 relativenear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             margin: 10% auto;
             padding: 30px;
             border-radius: 16px;
             width: 90%;
             max-width: 500px;
-            border: 1px solid #333;
+            border: 1px sotext-xs text-gray-400 mb-1 pl-4 relatived #333;
         }
 
-        .modal-header {
+        .hidden fixed inset-0 z-50 bg-black/80-header {
             font-size: 24px;
             font-weight: 600;
             color: #00D4AA;
             margin-bottom: 20px;
-            text-align: center;
+            text-atext-xs text-gray-400 mb-1 pl-4 relativegn: center;
         }
 
-        .close {
+        .text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300 {
             color: #666;
             float: right;
             font-size: 28px;
@@ -451,7 +465,7 @@
             cursor: pointer;
         }
 
-        .close:hover {
+        .text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300:hover {
             color: #ccc;
         }
 
@@ -468,141 +482,141 @@
                 grid-template-columns: 1fr;
             }
             
-            .form-row {
+            .grid grid-cols-1 md:grid-cols-2 gap-4 {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body>
+<body class="font-sans bg-gradient-to-br from-gray-900 to-blue-900 text-white min-h-screen">
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="https://www.usdtgverse.com">
-                    <img src="../../assets/logos/logo.png" alt="USDTgVerse">
-                    <h2>USDTgVerse</h2>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg py-4 border-b-2 border-white/10">
+        <div class="max-w-6xl mx-auto px-5 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="https://www.usdtgverse.com" class="flex items-center gap-4 text-white no-undertext-xs text-gray-400 mb-1 pl-4 relativene">
+                    <img src="../../assets/logos/logo.png" alt="USDTgVerse" class="w-10 h-10 rounded-full">
+                    <h2 class="text-2xl font-bold text-white drop-shadow-lg">USDTgVerse</h2>
                 </a>
             </div>
             
             <!-- Mobile Menu Toggle -->
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <button class="md:hidden bg-transparent border-0 text-white text-2xl cursor-pointer p-2" id="mobile-menu-toggle">
                 ☰
             </button>
             
-            <div class="nav-links" id="desktop-menu">
-                <a href="https://www.usdtgverse.com">🏠 Home</a>
-                <a href="../dashboard/index.html">📊 Dashboard</a>
-                <a href="../host-to-host-system/interfaces/h2h_interface.html">🏦 H2H System</a>
-                <a href="https://www.usdtgverse.com/website/index.html">🌐 Website</a>
+            <div class="hidden md:flex gap-5 items-center" id="desktop-menu">
+                <a href="https://www.usdtgverse.com" class="text-white no-undertext-xs text-gray-400 mb-1 pl-4 relativene px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10">🏠 Home</a>
+                <a href="../dashboard/index.html" class="text-white no-undertext-xs text-gray-400 mb-1 pl-4 relativene px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10">📊 Dashboard</a>
+                <a href="../host-to-host-system/interfaces/h2h_interface.html" class="text-white no-undertext-xs text-gray-400 mb-1 pl-4 relativene px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10">🏦 H2H System</a>
+                <a href="https://www.usdtgverse.com/website/index.html" class="text-white no-undertext-xs text-gray-400 mb-1 pl-4 relativene px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10">🌐 Website</a>
             </div>
         </div>
     </nav>
 
-    <div class="payment-container">
-        <div class="header">
-            <h1>USDTgVerse Payment System</h1>
-            <p>Secure, fast, and reliable payment processing</p>
+    <div class="max-w-6xl mx-auto px-5 pt-20">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-teal-400 to-blue-400 bg-ctext-xs text-gray-400 mb-1 pl-4 relativep-text text-transparent mb-2">USDTgVerse Payment System</h1>
+            <p class="text-lg text-gray-300">Secure, fast, and retext-xs text-gray-400 mb-1 pl-4 relativeable payment processing</p>
         </div>
 
-        <div class="payment-methods">
-            <div class="payment-method-card" data-method="bank_wire">
-                <div class="payment-method-icon">🏦</div>
-                <div class="payment-method-title">Bank Wire Transfer</div>
-                <div class="payment-method-description">Traditional bank-to-bank transfers with secure processing</div>
-                <ul class="payment-method-features">
-                    <li>Secure bank-to-bank transfer</li>
-                    <li>Low transaction fees</li>
-                    <li>International support</li>
-                    <li>SWIFT/IBAN compatibility</li>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="bank_wire">
+                <div class="text-5xl mb-4 text-center">🏦</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">Bank Wire Transfer</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Traditional bank-to-bank transfers with secure processing</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Secure bank-to-bank transfer</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Low transaction fees</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>International support</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>SWIFT/IBAN compatibitext-xs text-gray-400 mb-1 pl-4 relativety</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
 
-            <div class="payment-method-card" data-method="credit_card">
-                <div class="payment-method-icon">💳</div>
-                <div class="payment-method-title">Credit Card</div>
-                <div class="payment-method-description">Visa, MasterCard, and American Express support</div>
-                <ul class="payment-method-features">
-                    <li>Visa, MasterCard, Amex</li>
-                    <li>Instant processing</li>
-                    <li>3D Secure authentication</li>
-                    <li>PCI DSS compliant</li>
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="credit_card">
+                <div class="text-5xl mb-4 text-center">💳</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">Credit Card</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Visa, MasterCard, and American Express support</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Visa, MasterCard, Amex</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Instant processing</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>3D Secure authentication</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>PCI DSS comptext-xs text-gray-400 mb-1 pl-4 relativeant</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
 
-            <div class="payment-method-card" data-method="debit_card">
-                <div class="payment-method-icon">🏧</div>
-                <div class="payment-method-title">Debit Card</div>
-                <div class="payment-method-description">Direct bank account debit with real-time processing</div>
-                <ul class="payment-method-features">
-                    <li>Direct bank account debit</li>
-                    <li>Real-time processing</li>
-                    <li>Lower fees than credit cards</li>
-                    <li>Instant confirmation</li>
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="debit_card">
+                <div class="text-5xl mb-4 text-center">🏧</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">Debit Card</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Direct bank account debit with real-time processing</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Direct bank account debit</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Real-time processing</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Lower fees than credit cards</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Instant confirmation</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
 
-            <div class="payment-method-card" data-method="paypal">
-                <div class="payment-method-icon">💰</div>
-                <div class="payment-method-title">PayPal</div>
-                <div class="payment-method-description">Secure PayPal integration with buyer protection</div>
-                <ul class="payment-method-features">
-                    <li>PayPal account integration</li>
-                    <li>Buyer protection</li>
-                    <li>Mobile-friendly</li>
-                    <li>International support</li>
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="paypal">
+                <div class="text-5xl mb-4 text-center">💰</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">PayPal</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Secure PayPal integration with buyer protection</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>PayPal account integration</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Buyer protection</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Mobile-friendly</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>International support</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
 
-            <div class="payment-method-card" data-method="usdtgverse_pay">
-                <div class="payment-method-icon">🔄</div>
-                <div class="payment-method-title">USDTgVerse PAY</div>
-                <div class="payment-method-description">Our proprietary payment system with quantum-safe security</div>
-                <ul class="payment-method-features">
-                    <li>Quantum-safe encryption</li>
-                    <li>Multi-currency support</li>
-                    <li>Real-time processing</li>
-                    <li>Advanced analytics</li>
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="usdtgverse_pay">
+                <div class="text-5xl mb-4 text-center">🔄</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">USDTgVerse PAY</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Our proprietary payment system with quantum-safe security</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Quantum-safe encryption</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Multi-currency support</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Real-time processing</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Advanced analytics</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
 
-            <div class="payment-method-card" data-method="direct_ip">
-                <div class="payment-method-icon">🌐</div>
-                <div class="payment-method-title">Direct IP Payment</div>
-                <div class="payment-method-description">Server-to-server direct payment processing</div>
-                <ul class="payment-method-features">
-                    <li>Direct server-to-server</li>
-                    <li>Ultra-fast processing</li>
-                    <li>Quantum-safe encryption</li>
-                    <li>Enterprise-grade security</li>
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="direct_ip">
+                <div class="text-5xl mb-4 text-center">🌐</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">Direct IP Payment</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Server-to-server direct payment processing</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Direct server-to-server</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Ultra-fast processing</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Quantum-safe encryption</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Enterprise-grade security</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
 
-            <div class="payment-method-card" data-method="crypto">
-                <div class="payment-method-icon">₿</div>
-                <div class="payment-method-title">Cryptocurrency</div>
-                <div class="payment-method-description">Pay with Bitcoin, Ethereum, and other cryptocurrencies</div>
-                <ul class="payment-method-features">
-                    <li>BTC, ETH, BNB, TRX support</li>
-                    <li>USDT, USDC stablecoins</li>
-                    <li>USDTgVerse native tokens</li>
-                    <li>Real-time price conversion</li>
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20" data-method="crypto">
+                <div class="text-5xl mb-4 text-center">₿</div>
+                <div class="text-xl font-semibold text-teal-400 mb-2">Cryptocurrency</div>
+                <div class="text-sm text-gray-300 leading-relaxed mb-4">Pay with Bitcoin, Ethereum, and other cryptocurrencies</div>
+                <ul class="text-xs text-gray-400 mb-1 pl-4 relativest-none mb-4">
+                    <text-xs text-gray-400 mb-1 pl-4 relative>BTC, ETH, BNB, TRX support</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>USDT, USDC stablecoins</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>USDTgVerse native tokens</text-xs text-gray-400 mb-1 pl-4 relative>
+                    <text-xs text-gray-400 mb-1 pl-4 relative>Real-time price conversion</text-xs text-gray-400 mb-1 pl-4 relative>
                 </ul>
             </div>
         </div>
 
-        <div class="payment-form" id="paymentForm" style="display: none;">
-            <div class="form-header" id="formHeader">Select Payment Method</div>
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 mb-10" id="paymentForm" style="display: none;">
+            <div class="text-2xl font-semibold text-teal-400 mb-6 text-center" id="formHeader">Select Payment Method</div>
             
             <form id="paymentFormElement">
-                <div class="form-group">
-                    <label class="form-label">Amount</label>
-                    <input type="number" class="form-input" id="amount" placeholder="0.00" step="0.01" required>
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm text-gray-300 font-medium">Amount</label>
+                    <input type="number" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="amount" placeholder="0.00" step="0.01" required>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Currency</label>
-                    <select class="form-select" id="currency" required>
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm text-gray-300 font-medium">Currency</label>
+                    <select class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="currency" required>
                         <optgroup label="Fiat Currencies">
                             <option value="USD">USD (US Dollar)</option>
                             <option value="EUR">EUR (Euro)</option>
@@ -611,7 +625,7 @@
                         </optgroup>
                         <optgroup label="USDTgVerse Native">
                             <option value="USDTg">USDTg (Stablecoin)</option>
-                            <option value="USDTgV">USDTgV (Utility Token)</option>
+                            <option value="USDTgV">USDTgV (Utitext-xs text-gray-400 mb-1 pl-4 relativety Token)</option>
                             <option value="USDTgG">USDTgG (Governance Token)</option>
                         </optgroup>
                         <optgroup label="Major Cryptocurrencies">
@@ -625,61 +639,61 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Description</label>
-                    <input type="text" class="form-input" id="description" placeholder="Payment description" required>
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm text-gray-300 font-medium">Description</label>
+                    <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="description" placeholder="Payment description" required>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Merchant ID</label>
-                    <input type="text" class="form-input" id="merchantId" placeholder="Merchant identifier" required>
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm text-gray-300 font-medium">Merchant ID</label>
+                    <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="merchantId" placeholder="Merchant identifier" required>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Customer ID</label>
-                    <input type="text" class="form-input" id="customerId" placeholder="Customer identifier" required>
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm text-gray-300 font-medium">Customer ID</label>
+                    <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="customerId" placeholder="Customer identifier" required>
                 </div>
 
                 <!-- Bank Wire Specific Fields -->
                 <div id="bankWireFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Bank Name</label>
-                            <input type="text" class="form-input" id="bankName" placeholder="Bank name">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Bank Name</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="bankName" placeholder="Bank name">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Account Number</label>
-                            <input type="text" class="form-input" id="accountNumber" placeholder="Account number">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Account Number</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="accountNumber" placeholder="Account number">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Routing Number</label>
-                            <input type="text" class="form-input" id="routingNumber" placeholder="Routing number">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Routing Number</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="routingNumber" placeholder="Routing number">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">SWIFT Code</label>
-                            <input type="text" class="form-input" id="swiftCode" placeholder="SWIFT code">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">SWIFT Code</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="swiftCode" placeholder="SWIFT code">
                         </div>
                     </div>
                 </div>
 
                 <!-- Credit/Debit Card Specific Fields -->
                 <div id="cardFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Card Number</label>
-                            <input type="text" class="form-input" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Card Number</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="cardNumber" placeholder="1234 5678 9012 3456">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Card Holder Name</label>
-                            <input type="text" class="form-input" id="cardHolder" placeholder="Card holder name">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Card Holder Name</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="cardHolder" placeholder="Card holder name">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Expiry Month</label>
-                            <select class="form-select" id="expiryMonth">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Expiry Month</label>
+                            <select class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="expiryMonth">
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -694,9 +708,9 @@
                                 <option value="12">12</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Expiry Year</label>
-                            <select class="form-select" id="expiryYear">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Expiry Year</label>
+                            <select class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="expiryYear">
                                 <option value="2025">2025</option>
                                 <option value="2026">2026</option>
                                 <option value="2027">2027</option>
@@ -706,112 +720,112 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">CVV</label>
-                        <input type="text" class="form-input" id="cvv" placeholder="123" maxlength="4">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm text-gray-300 font-medium">CVV</label>
+                        <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="cvv" placeholder="123" maxlength="4">
                     </div>
                 </div>
 
                 <!-- PayPal Specific Fields -->
                 <div id="paypalFields" style="display: none;">
-                    <div class="form-group">
-                        <label class="form-label">PayPal Email</label>
-                        <input type="email" class="form-input" id="paypalEmail" placeholder="PayPal email address">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm text-gray-300 font-medium">PayPal Email</label>
+                        <input type="email" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="paypalEmail" placeholder="PayPal email address">
                     </div>
                 </div>
 
                 <!-- USDTgVerse PAY Specific Fields -->
                 <div id="usdtgversePayFields" style="display: none;">
-                    <div class="form-group">
-                        <label class="form-label">USDTgVerse PAY Account ID</label>
-                        <input type="text" class="form-input" id="usdtgversePayAccount" placeholder="Account ID">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm text-gray-300 font-medium">USDTgVerse PAY Account ID</label>
+                        <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="usdtgversePayAccount" placeholder="Account ID">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Wallet Address</label>
-                        <input type="text" class="form-input" id="walletAddress" placeholder="Wallet address">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm text-gray-300 font-medium">Wallet Address</label>
+                        <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="walletAddress" placeholder="Wallet address">
                     </div>
                 </div>
 
                 <!-- Direct IP Specific Fields -->
                 <div id="directIpFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Server IP</label>
-                            <input type="text" class="form-input" id="serverIp" placeholder="192.168.1.100">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Server IP</label>
+                            <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="serverIp" placeholder="192.168.1.100">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Server Port</label>
-                            <input type="number" class="form-input" id="serverPort" placeholder="8443" value="8443">
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm text-gray-300 font-medium">Server Port</label>
+                            <input type="number" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="serverPort" placeholder="8443" value="8443">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Server Key</label>
-                        <input type="text" class="form-input" id="serverKey" placeholder="Server authentication key">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm text-gray-300 font-medium">Server Key</label>
+                        <input type="text" class="w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400" id="serverKey" placeholder="Server authentication key">
                     </div>
                 </div>
 
-                <button type="submit" class="payment-button" id="processPayment">Process Payment</button>
+                <button type="submit" class="w-full p-4 bg-gradient-to-r from-teal-500 to-teal-600 border-0 rounded-lg text-white text-lg font-semibold cursor-pointer transition-all duration-300 mb-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-teal-500/30 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none" id="processPayment">Process Payment</button>
             </form>
         </div>
 
-        <div class="payment-status" id="paymentStatus">
-            <div class="status-header">Payment Status</div>
-            <div class="status-item">
-                <span class="status-label">Transaction ID:</span>
-                <span class="status-value" id="transactionId">-</span>
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 mb-10 hidden" id="paymentStatus">
+            <div class="text-xl font-semibold text-teal-400 mb-4 text-center">Payment Status</div>
+            <div class="flex justify-between py-3 border-b border-gray-600 last:border-b-0">
+                <span class="text-sm text-gray-300">Transaction ID:</span>
+                <span class="text-sm text-white font-medium" id="transactionId">-</span>
             </div>
-            <div class="status-item">
-                <span class="status-label">Status:</span>
-                <span class="status-value" id="paymentStatusValue">-</span>
+            <div class="flex justify-between py-3 border-b border-gray-600 last:border-b-0">
+                <span class="text-sm text-gray-300">Status:</span>
+                <span class="text-sm text-white font-medium" id="paymentStatusValue">-</span>
             </div>
-            <div class="status-item">
-                <span class="status-label">Amount:</span>
-                <span class="status-value" id="paymentAmount">-</span>
+            <div class="flex justify-between py-3 border-b border-gray-600 last:border-b-0">
+                <span class="text-sm text-gray-300">Amount:</span>
+                <span class="text-sm text-white font-medium" id="paymentAmount">-</span>
             </div>
-            <div class="status-item">
-                <span class="status-label">Currency:</span>
-                <span class="status-value" id="paymentCurrency">-</span>
+            <div class="flex justify-between py-3 border-b border-gray-600 last:border-b-0">
+                <span class="text-sm text-gray-300">Currency:</span>
+                <span class="text-sm text-white font-medium" id="paymentCurrency">-</span>
             </div>
-            <div class="status-item">
-                <span class="status-label">Reference Number:</span>
-                <span class="status-value" id="referenceNumber">-</span>
+            <div class="flex justify-between py-3 border-b border-gray-600 last:border-b-0">
+                <span class="text-sm text-gray-300">Reference Number:</span>
+                <span class="text-sm text-white font-medium" id="referenceNumber">-</span>
             </div>
-            <div class="status-item">
-                <span class="status-label">Processing Time:</span>
-                <span class="status-value" id="processingTime">-</span>
+            <div class="flex justify-between py-3 border-b border-gray-600 last:border-b-0">
+                <span class="text-sm text-gray-300">Processing Time:</span>
+                <span class="text-sm text-white font-medium" id="processingTime">-</span>
             </div>
         </div>
 
-        <div class="payment-analytics">
-            <div class="analytics-header">Payment Analytics</div>
-            <div class="analytics-grid">
-                <div class="analytics-item">
-                    <div class="analytics-value" id="totalTransactions">0</div>
-                    <div class="analytics-label">Total Transactions</div>
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600">
+            <div class="text-xl font-semibold text-teal-400 mb-5 text-center">Payment Analytics</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-slate-900 rounded-lg border border-gray-600">
+                    <div class="text-2xl font-bold text-teal-400 mb-2" id="totalTransactions">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Total Transactions</div>
                 </div>
-                <div class="analytics-item">
-                    <div class="analytics-value" id="totalVolume">$0.00</div>
-                    <div class="analytics-label">Total Volume</div>
+                <div class="text-center p-4 bg-slate-900 rounded-lg border border-gray-600">
+                    <div class="text-2xl font-bold text-teal-400 mb-2" id="totalVolume">$0.00</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Total Volume</div>
                 </div>
-                <div class="analytics-item">
-                    <div class="analytics-value" id="successRate">0%</div>
-                    <div class="analytics-label">Success Rate</div>
+                <div class="text-center p-4 bg-slate-900 rounded-lg border border-gray-600">
+                    <div class="text-2xl font-bold text-teal-400 mb-2" id="text-teal-400Rate">0%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Success Rate</div>
                 </div>
-                <div class="analytics-item">
-                    <div class="analytics-value" id="avgProcessingTime">0ms</div>
-                    <div class="analytics-label">Avg Processing Time</div>
+                <div class="text-center p-4 bg-slate-900 rounded-lg border border-gray-600">
+                    <div class="text-2xl font-bold text-teal-400 mb-2" id="avgProcessingTime">0ms</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Avg Processing Time</div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal for payment confirmation -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div class="modal-header">Confirm Payment</div>
-            <div id="modalContent"></div>
-            <button class="payment-button" onclick="confirmPayment()">Confirm Payment</button>
+    <div id="paymentModal" class="hidden fixed inset-0 z-50 bg-black/80">
+        <div class="hidden fixed inset-0 z-50 bg-black/80-content">
+            <span class="text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300" onctext-xs text-gray-400 mb-1 pl-4 relativeck="text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300Modal()">&times;</span>
+            <div class="hidden fixed inset-0 z-50 bg-black/80-header">Confirm Payment</div>
+            <div id="hidden fixed inset-0 z-50 bg-black/80Content"></div>
+            <button class="w-full p-4 bg-gradient-to-r from-teal-500 to-teal-600 border-0 rounded-lg text-white text-lg font-semibold cursor-pointer transition-all duration-300 mb-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-teal-500/30 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none" onctext-xs text-gray-400 mb-1 pl-4 relativeck="confirmPayment()">Confirm Payment</button>
         </div>
     </div>
 
@@ -819,12 +833,12 @@
         // Payment Interface JavaScript
         class PaymentInterface {
             constructor() {
-                this.selectedMethod = null;
+                this.border-teal-400 shadow-teal-400/30Method = null;
                 this.paymentData = {};
                 this.analytics = {
                     totalTransactions: 0,
                     totalVolume: 0,
-                    successfulTransactions: 0,
+                    text-teal-400fulTransactions: 0,
                     totalProcessingTime: 0
                 };
                 this.init();
@@ -837,8 +851,8 @@
 
             setupEventListeners() {
                 // Payment method selection
-                document.querySelectorAll('.payment-method-card').forEach(card => {
-                    card.addEventListener('click', (e) => {
+                document.querySelectorAll('.bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20').forEach(card => {
+                    card.addEventListener('ctext-xs text-gray-400 mb-1 pl-4 relativeck', (e) => {
                         this.selectPaymentMethod(e.currentTarget.dataset.method);
                     });
                 });
@@ -849,24 +863,24 @@
                     this.processPayment();
                 });
 
-                // Real-time form validation
-                document.querySelectorAll('.form-input, .form-select').forEach(input => {
+                // Real-time form vatext-xs text-gray-400 mb-1 pl-4 relativedation
+                document.querySelectorAll('.w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400, .w-full p-3 bg-slate-900 border border-gray-600 rounded-lg text-white text-base transition-colors duration-300 focus:outtext-xs text-gray-400 mb-1 pl-4 relativene-none focus:border-teal-400').forEach(input => {
                     input.addEventListener('input', () => {
-                        this.validateForm();
+                        this.vatext-xs text-gray-400 mb-1 pl-4 relativedateForm();
                     });
                 });
             }
 
             selectPaymentMethod(method) {
                 // Remove previous selection
-                document.querySelectorAll('.payment-method-card').forEach(card => {
-                    card.classList.remove('selected');
+                document.querySelectorAll('.bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-gray-600 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/20').forEach(card => {
+                    card.classList.remove('border-teal-400 shadow-teal-400/30');
                 });
 
-                // Add selection to clicked card
-                document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+                // Add selection to ctext-xs text-gray-400 mb-1 pl-4 relativecked card
+                document.querySelector(`[data-method="${method}"]`).classList.add('border-teal-400 shadow-teal-400/30');
 
-                this.selectedMethod = method;
+                this.border-teal-400 shadow-teal-400/30Method = method;
                 this.showPaymentForm(method);
             }
 
@@ -916,43 +930,43 @@
                 }
             }
 
-            validateForm() {
+            vatext-xs text-gray-400 mb-1 pl-4 relativedateForm() {
                 const form = document.getElementById('paymentFormElement');
                 const inputs = form.querySelectorAll('input[required], select[required]');
-                let isValid = true;
+                let isVatext-xs text-gray-400 mb-1 pl-4 relatived = true;
 
                 inputs.forEach(input => {
                     if (!input.value.trim()) {
-                        isValid = false;
+                        isVatext-xs text-gray-400 mb-1 pl-4 relatived = false;
                         input.style.borderColor = '#FF6B6B';
                     } else {
                         input.style.borderColor = '#333';
                     }
                 });
 
-                // Method-specific validation
-                if (this.selectedMethod === 'credit_card' || this.selectedMethod === 'debit_card') {
+                // Method-specific vatext-xs text-gray-400 mb-1 pl-4 relativedation
+                if (this.border-teal-400 shadow-teal-400/30Method === 'credit_card' || this.border-teal-400 shadow-teal-400/30Method === 'debit_card') {
                     const cardNumber = document.getElementById('cardNumber').value;
-                    if (cardNumber && !this.validateCardNumber(cardNumber)) {
-                        isValid = false;
+                    if (cardNumber && !this.vatext-xs text-gray-400 mb-1 pl-4 relativedateCardNumber(cardNumber)) {
+                        isVatext-xs text-gray-400 mb-1 pl-4 relatived = false;
                         document.getElementById('cardNumber').style.borderColor = '#FF6B6B';
                     }
                 }
 
-                if (this.selectedMethod === 'paypal') {
+                if (this.border-teal-400 shadow-teal-400/30Method === 'paypal') {
                     const email = document.getElementById('paypalEmail').value;
-                    if (email && !this.validateEmail(email)) {
-                        isValid = false;
+                    if (email && !this.vatext-xs text-gray-400 mb-1 pl-4 relativedateEmail(email)) {
+                        isVatext-xs text-gray-400 mb-1 pl-4 relatived = false;
                         document.getElementById('paypalEmail').style.borderColor = '#FF6B6B';
                     }
                 }
 
-                document.getElementById('processPayment').disabled = !isValid;
-                return isValid;
+                document.getElementById('processPayment').disabled = !isVatext-xs text-gray-400 mb-1 pl-4 relatived;
+                return isVatext-xs text-gray-400 mb-1 pl-4 relatived;
             }
 
-            validateCardNumber(cardNumber) {
-                // Simple Luhn algorithm validation
+            vatext-xs text-gray-400 mb-1 pl-4 relativedateCardNumber(cardNumber) {
+                // Simple Luhn algorithm vatext-xs text-gray-400 mb-1 pl-4 relativedation
                 const cleaned = cardNumber.replace(/\s/g, '');
                 if (!/^\d+$/.test(cleaned)) return false;
 
@@ -976,20 +990,20 @@
                 return sum % 10 === 0;
             }
 
-            validateEmail(email) {
+            vatext-xs text-gray-400 mb-1 pl-4 relativedateEmail(email) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return emailRegex.test(email);
             }
 
             processPayment() {
-                if (!this.validateForm()) {
+                if (!this.vatext-xs text-gray-400 mb-1 pl-4 relativedateForm()) {
                     alert('Please fill in all required fields correctly.');
                     return;
                 }
 
                 // Collect payment data
                 this.paymentData = {
-                    method: this.selectedMethod,
+                    method: this.border-teal-400 shadow-teal-400/30Method,
                     amount: parseFloat(document.getElementById('amount').value),
                     currency: document.getElementById('currency').value,
                     description: document.getElementById('description').value,
@@ -999,7 +1013,7 @@
                 };
 
                 // Add method-specific data
-                switch (this.selectedMethod) {
+                switch (this.border-teal-400 shadow-teal-400/30Method) {
                     case 'bank_wire':
                         this.paymentData.bankName = document.getElementById('bankName').value;
                         this.paymentData.accountNumber = document.getElementById('accountNumber').value;
@@ -1028,13 +1042,13 @@
                         break;
                 }
 
-                // Show confirmation modal
+                // Show confirmation hidden fixed inset-0 z-50 bg-black/80
                 this.showConfirmationModal();
             }
 
             showConfirmationModal() {
-                const modal = document.getElementById('paymentModal');
-                const content = document.getElementById('modalContent');
+                const hidden fixed inset-0 z-50 bg-black/80 = document.getElementById('paymentModal');
+                const content = document.getElementById('hidden fixed inset-0 z-50 bg-black/80Content');
                 
                 content.innerHTML = `
                     <p><strong>Payment Method:</strong> ${this.getMethodDisplayName(this.paymentData.method)}</p>
@@ -1045,7 +1059,7 @@
                     <p>Are you sure you want to process this payment?</p>
                 `;
                 
-                modal.style.display = 'block';
+                hidden fixed inset-0 z-50 bg-black/80.style.display = 'block';
             }
 
             getMethodDisplayName(method) {
@@ -1061,7 +1075,7 @@
             }
 
             confirmPayment() {
-                this.closeModal();
+                this.text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300Modal();
                 this.simulatePaymentProcessing();
             }
 
@@ -1085,11 +1099,11 @@
                 // Simulate processing delay
                 setTimeout(() => {
                     const processingTime = Date.now() - startTime;
-                    const success = Math.random() > 0.1; // 90% success rate
+                    const text-teal-400 = Math.random() > 0.1; // 90% text-teal-400 rate
                     
                     this.updatePaymentStatus({
                         transactionId: transactionId,
-                        status: success ? 'completed' : 'failed',
+                        status: text-teal-400 ? 'completed' : 'failed',
                         amount: `${this.paymentData.amount} ${this.paymentData.currency}`,
                         currency: this.paymentData.currency,
                         referenceNumber: referenceNumber,
@@ -1097,11 +1111,11 @@
                     });
 
                     // Update analytics
-                    this.updateAnalytics(success, this.paymentData.amount, processingTime);
+                    this.updateAnalytics(text-teal-400, this.paymentData.amount, processingTime);
                     
-                    // Show success/error message
-                    if (success) {
-                        alert(`Payment completed successfully!\nTransaction ID: ${transactionId}\nReference: ${referenceNumber}`);
+                    // Show text-teal-400/text-red-400 message
+                    if (text-teal-400) {
+                        alert(`Payment completed text-teal-400fully!\nTransaction ID: ${transactionId}\nReference: ${referenceNumber}`);
                     } else {
                         alert(`Payment failed. Please try again.\nTransaction ID: ${transactionId}`);
                     }
@@ -1111,7 +1125,7 @@
             updatePaymentStatus(status) {
                 document.getElementById('transactionId').textContent = status.transactionId;
                 document.getElementById('paymentStatusValue').textContent = status.status;
-                document.getElementById('paymentStatusValue').className = `status-value ${status.status}`;
+                document.getElementById('paymentStatusValue').className = `text-sm text-white font-medium ${status.status}`;
                 document.getElementById('paymentAmount').textContent = status.amount;
                 document.getElementById('paymentCurrency').textContent = status.currency;
                 document.getElementById('referenceNumber').textContent = status.referenceNumber;
@@ -1120,19 +1134,19 @@
                 document.getElementById('paymentStatus').style.display = 'block';
             }
 
-            updateAnalytics(success, amount, processingTime) {
+            updateAnalytics(text-teal-400, amount, processingTime) {
                 this.analytics.totalTransactions++;
                 this.analytics.totalVolume += amount;
                 this.analytics.totalProcessingTime += processingTime;
                 
-                if (success) {
-                    this.analytics.successfulTransactions++;
+                if (text-teal-400) {
+                    this.analytics.text-teal-400fulTransactions++;
                 }
                 
                 // Update display
                 document.getElementById('totalTransactions').textContent = this.analytics.totalTransactions;
                 document.getElementById('totalVolume').textContent = `$${this.analytics.totalVolume.toFixed(2)}`;
-                document.getElementById('successRate').textContent = `${((this.analytics.successfulTransactions / this.analytics.totalTransactions) * 100).toFixed(1)}%`;
+                document.getElementById('text-teal-400Rate').textContent = `${((this.analytics.text-teal-400fulTransactions / this.analytics.totalTransactions) * 100).toFixed(1)}%`;
                 document.getElementById('avgProcessingTime').textContent = `${Math.round(this.analytics.totalProcessingTime / this.analytics.totalTransactions)}ms`;
             }
 
@@ -1144,39 +1158,39 @@
                 return 'REF' + Date.now() + Math.random().toString(36).substr(2, 6).toUpperCase();
             }
 
-            closeModal() {
+            text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300Modal() {
                 document.getElementById('paymentModal').style.display = 'none';
             }
         }
 
-        // Initialize payment interface
+        // Initiatext-xs text-gray-400 mb-1 pl-4 relativeze payment interface
         const paymentInterface = new PaymentInterface();
         
-        // Check for pre-selected payment method from menu
+        // Check for pre-border-teal-400 shadow-teal-400/30 payment method from menu
         document.addEventListener('DOMContentLoaded', function() {
-            const selectedMethod = localStorage.getItem('selectedPaymentMethod');
-            if (selectedMethod) {
-                // Find and click the corresponding payment method card
-                const methodCard = document.querySelector(`[data-method="${selectedMethod}"]`);
+            const border-teal-400 shadow-teal-400/30Method = localStorage.getItem('border-teal-400 shadow-teal-400/30PaymentMethod');
+            if (border-teal-400 shadow-teal-400/30Method) {
+                // Find and ctext-xs text-gray-400 mb-1 pl-4 relativeck the corresponding payment method card
+                const methodCard = document.querySelector(`[data-method="${border-teal-400 shadow-teal-400/30Method}"]`);
                 if (methodCard) {
-                    methodCard.click();
+                    methodCard.ctext-xs text-gray-400 mb-1 pl-4 relativeck();
                 }
                 // Clear the stored method
-                localStorage.removeItem('selectedPaymentMethod');
+                localStorage.removeItem('border-teal-400 shadow-teal-400/30PaymentMethod');
             }
         });
 
-        // Mobile Menu Toggle Functionality
+        // Mobile Menu Toggle Functionatext-xs text-gray-400 mb-1 pl-4 relativety
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const desktopMenu = document.getElementById('desktop-menu');
             
             if (mobileMenuToggle && desktopMenu) {
-                mobileMenuToggle.addEventListener('click', function(e) {
+                mobileMenuToggle.addEventListener('ctext-xs text-gray-400 mb-1 pl-4 relativeck', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    console.log('Payment page hamburger menu clicked');
+                    console.log('Payment page hamburger menu ctext-xs text-gray-400 mb-1 pl-4 relativecked');
                     
                     if (desktopMenu.style.display === 'none' || desktopMenu.style.display === '') {
                         desktopMenu.style.display = 'flex';
@@ -1189,7 +1203,7 @@
                         desktopMenu.style.backdropFilter = 'blur(20px)';
                         desktopMenu.style.padding = '30px 20px';
                         desktopMenu.style.borderRadius = '0 0 15px 15px';
-                        desktopMenu.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+                        desktopMenu.style.border = '2px sotext-xs text-gray-400 mb-1 pl-4 relatived rgba(255, 255, 255, 0.2)';
                         desktopMenu.style.borderTop = 'none';
                         desktopMenu.style.zIndex = '9999';
                         desktopMenu.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
@@ -1198,31 +1212,29 @@
                     } else {
                         desktopMenu.style.display = 'none';
                         mobileMenuToggle.innerHTML = '☰';
-                        console.log('Payment page mobile menu closed');
+                        console.log('Payment page mobile menu text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300d');
                     }
                 });
             }
         });
 
-        // Global functions for modal
-        function closeModal() {
-            paymentInterface.closeModal();
+        // Global functions for hidden fixed inset-0 z-50 bg-black/80
+        function text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300Modal() {
+            paymentInterface.text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300Modal();
         }
 
         function confirmPayment() {
             paymentInterface.confirmPayment();
         }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('paymentModal');
-            if (event.target === modal) {
-                closeModal();
+        // Close hidden fixed inset-0 z-50 bg-black/80 when ctext-xs text-gray-400 mb-1 pl-4 relativecking outside
+        window.onctext-xs text-gray-400 mb-1 pl-4 relativeck = function(event) {
+            const hidden fixed inset-0 z-50 bg-black/80 = document.getElementById('paymentModal');
+            if (event.target === hidden fixed inset-0 z-50 bg-black/80) {
+                text-gray-400 float-right text-3xl font-bold cursor-pointer hover:text-gray-300Modal();
             }
         }
     </script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
