@@ -991,22 +991,25 @@
         }
         
         // Handle anchor navigation from menu
-        window.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('load', function() {
             const hash = window.location.hash;
             if (hash) {
-                // Wait for page to fully load
+                console.log('Hash detected:', hash);
+                // Wait for PaymentInterface to initialize
                 setTimeout(() => {
                     const element = document.querySelector(hash);
+                    console.log('Element found:', element);
                     if (element) {
                         // Scroll to element
                         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         
                         // Auto-click the payment method card to open form
                         setTimeout(() => {
+                            console.log('Auto-clicking element:', hash);
                             element.click();
-                        }, 500);
+                        }, 800);
                     }
-                }, 300);
+                }, 500);
             }
         });
     </script>
