@@ -25,145 +25,268 @@
     <link rel="icon" type="image/png" href="../assets/logos/logo.png">
     <style>
         .trading-chart {
-            @apply bg-white rounded-xl shadow-lg p-6;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
         }
         .chart-header {
-            @apply flex justify-between items-center mb-4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
         .chart-title {
-            @apply text-lg font-semibold text-gray-800;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
         }
         .chart-controls {
-            @apply flex space-x-2;
+            display: flex;
+            gap: 0.5rem;
         }
         .chart-btn {
-            @apply px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chart-btn:hover {
+            background: #f3f4f6;
         }
         .chart-btn.active {
-            @apply bg-blue-500 text-white border-blue-500;
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
         }
         .chart-container {
-            @apply h-64 bg-gray-50 rounded-lg flex items-center justify-center;
+            height: 16rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .chart-placeholder {
-            @apply text-center text-gray-500;
+            text-align: center;
+            color: #6b7280;
         }
         .chart-message {
-            @apply text-lg;
+            font-size: 1.125rem;
         }
         .trading-panel {
-            @apply bg-white rounded-xl shadow-lg p-6;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
         }
         .panel-tabs {
-            @apply flex space-x-2 mb-6;
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
         .tab-btn {
-            @apply px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            background: #f3f4f6;
         }
         .tab-btn.active {
-            @apply bg-blue-500 text-white border-blue-500;
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
         }
         .trading-form {
-            @apply space-y-4;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         .form-group {
-            @apply space-y-2;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
         .form-label {
-            @apply block text-sm font-medium text-gray-700;
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
         }
         .form-select, .form-input {
-            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .form-select:focus, .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         .form-summary {
-            @apply bg-gray-50 p-4 rounded-lg space-y-2;
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
         .summary-row {
-            @apply flex justify-between text-sm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
         }
         .btn-buy {
-            @apply w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors;
+            width: 100%;
+            background: #10b981;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-buy:hover {
+            background: #059669;
         }
         .account-summary {
-            @apply grid grid-cols-1 md:grid-cols-3 gap-6 mt-8;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .account-summary {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         .summary-card {
-            @apply bg-white rounded-xl shadow-lg p-6;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
         }
         .card-title {
-            @apply text-lg font-semibold text-gray-800 mb-4;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
         }
         .balance-item, .position-item, .order-item {
-            @apply flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .balance-item:last-child, .position-item:last-child, .order-item:last-child {
+            border-bottom: none;
         }
         .balance-label {
-            @apply text-sm text-gray-600;
+            font-size: 0.875rem;
+            color: #4b5563;
         }
         .balance-value {
-            @apply font-semibold text-gray-800;
+            font-weight: 600;
+            color: #1f2937;
         }
         .position-pair, .order-pair {
-            @apply font-medium text-gray-800;
+            font-weight: 500;
+            color: #1f2937;
         }
         .position-side, .order-type {
-            @apply px-2 py-1 text-xs rounded-full;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 9999px;
         }
         .position-side.buy, .order-type.buy {
-            @apply bg-green-100 text-green-800;
+            background: #dcfce7;
+            color: #166534;
         }
         .position-side.sell, .order-type.sell {
-            @apply bg-red-100 text-red-800;
+            background: #fee2e2;
+            color: #991b1b;
         }
         .position-size, .order-amount {
-            @apply text-sm text-gray-600;
+            font-size: 0.875rem;
+            color: #4b5563;
         }
         .position-pnl {
-            @apply font-semibold;
+            font-weight: 600;
         }
         .position-pnl.positive {
-            @apply text-green-600;
+            color: #059669;
         }
         .position-pnl.negative {
-            @apply text-red-600;
+            color: #dc2626;
         }
         .order-status {
-            @apply px-2 py-1 text-xs rounded-full;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 9999px;
         }
         .order-status.filled {
-            @apply bg-green-100 text-green-800;
+            background: #dcfce7;
+            color: #166534;
         }
         .order-status.pending {
-            @apply bg-yellow-100 text-yellow-800;
+            background: #fef3c7;
+            color: #92400e;
         }
         .list-group-item {
-            @apply flex justify-between items-center p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: all 0.2s;
         }
         .list-group-item:last-child {
-            @apply border-b-0;
+            border-bottom: none;
+        }
+        .list-group-item:hover {
+            background: #f9fafb;
         }
         .list-group-item.active {
-            @apply bg-blue-50 border-blue-200;
+            background: #eff6ff;
+            border-color: #dbeafe;
         }
         .badge {
-            @apply px-2 py-1 text-xs rounded-full;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 9999px;
         }
         .badge.bg-success {
-            @apply bg-green-100 text-green-800;
+            background: #dcfce7;
+            color: #166534;
         }
         .badge.bg-danger {
-            @apply bg-red-100 text-red-800;
+            background: #fee2e2;
+            color: #991b1b;
         }
         .fw-bold {
-            @apply font-semibold;
+            font-weight: 600;
         }
         .text-muted {
-            @apply text-gray-500;
+            color: #6b7280;
         }
         .text-end {
-            @apply text-right;
+            text-align: right;
         }
         .small {
-            @apply text-sm;
+            font-size: 0.875rem;
         }
     </style>
 </head>
