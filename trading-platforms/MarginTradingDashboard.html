@@ -23,6 +23,149 @@
         }
     </script>
     <link rel="icon" type="image/png" href="../assets/logos/logo.png">
+    <style>
+        .trading-chart {
+            @apply bg-white rounded-xl shadow-lg p-6;
+        }
+        .chart-header {
+            @apply flex justify-between items-center mb-4;
+        }
+        .chart-title {
+            @apply text-lg font-semibold text-gray-800;
+        }
+        .chart-controls {
+            @apply flex space-x-2;
+        }
+        .chart-btn {
+            @apply px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors;
+        }
+        .chart-btn.active {
+            @apply bg-blue-500 text-white border-blue-500;
+        }
+        .chart-container {
+            @apply h-64 bg-gray-50 rounded-lg flex items-center justify-center;
+        }
+        .chart-placeholder {
+            @apply text-center text-gray-500;
+        }
+        .chart-message {
+            @apply text-lg;
+        }
+        .trading-panel {
+            @apply bg-white rounded-xl shadow-lg p-6;
+        }
+        .panel-tabs {
+            @apply flex space-x-2 mb-6;
+        }
+        .tab-btn {
+            @apply px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors;
+        }
+        .tab-btn.active {
+            @apply bg-blue-500 text-white border-blue-500;
+        }
+        .trading-form {
+            @apply space-y-4;
+        }
+        .form-group {
+            @apply space-y-2;
+        }
+        .form-label {
+            @apply block text-sm font-medium text-gray-700;
+        }
+        .form-select, .form-input {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+        }
+        .form-summary {
+            @apply bg-gray-50 p-4 rounded-lg space-y-2;
+        }
+        .summary-row {
+            @apply flex justify-between text-sm;
+        }
+        .btn-buy {
+            @apply w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors;
+        }
+        .account-summary {
+            @apply grid grid-cols-1 md:grid-cols-3 gap-6 mt-8;
+        }
+        .summary-card {
+            @apply bg-white rounded-xl shadow-lg p-6;
+        }
+        .card-title {
+            @apply text-lg font-semibold text-gray-800 mb-4;
+        }
+        .balance-item, .position-item, .order-item {
+            @apply flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0;
+        }
+        .balance-label {
+            @apply text-sm text-gray-600;
+        }
+        .balance-value {
+            @apply font-semibold text-gray-800;
+        }
+        .position-pair, .order-pair {
+            @apply font-medium text-gray-800;
+        }
+        .position-side, .order-type {
+            @apply px-2 py-1 text-xs rounded-full;
+        }
+        .position-side.buy, .order-type.buy {
+            @apply bg-green-100 text-green-800;
+        }
+        .position-side.sell, .order-type.sell {
+            @apply bg-red-100 text-red-800;
+        }
+        .position-size, .order-amount {
+            @apply text-sm text-gray-600;
+        }
+        .position-pnl {
+            @apply font-semibold;
+        }
+        .position-pnl.positive {
+            @apply text-green-600;
+        }
+        .position-pnl.negative {
+            @apply text-red-600;
+        }
+        .order-status {
+            @apply px-2 py-1 text-xs rounded-full;
+        }
+        .order-status.filled {
+            @apply bg-green-100 text-green-800;
+        }
+        .order-status.pending {
+            @apply bg-yellow-100 text-yellow-800;
+        }
+        .list-group-item {
+            @apply flex justify-between items-center p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors;
+        }
+        .list-group-item:last-child {
+            @apply border-b-0;
+        }
+        .list-group-item.active {
+            @apply bg-blue-50 border-blue-200;
+        }
+        .badge {
+            @apply px-2 py-1 text-xs rounded-full;
+        }
+        .badge.bg-success {
+            @apply bg-green-100 text-green-800;
+        }
+        .badge.bg-danger {
+            @apply bg-red-100 text-red-800;
+        }
+        .fw-bold {
+            @apply font-semibold;
+        }
+        .text-muted {
+            @apply text-gray-500;
+        }
+        .text-end {
+            @apply text-right;
+        }
+        .small {
+            @apply text-sm;
+        }
+    </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary font-sans text-gray-800">
     <!-- Header -->
@@ -108,9 +251,9 @@
                                 <option>DeFi Tokens</option>
                             </select>
                         </div>
-                        <div class="card-body p-0">
-                            <div class="list-group list-group-flush">
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="p-0">
+                            <div class="space-y-0">
+                                <div class="list-group-item">
                                     <div>
                                         <div class="fw-bold">USDTg/USDT</div>
                                         <small class="text-muted">$1.00</small>
@@ -121,7 +264,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="list-group-item">
                                     <div>
                                         <div class="fw-bold">USDTgV/USDTg</div>
                                         <small class="text-muted">$0.52</small>
@@ -132,7 +275,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="list-group-item">
                                     <div>
                                         <div class="fw-bold">USDTgG/USDTg</div>
                                         <small class="text-muted">$4.95</small>
@@ -148,29 +291,32 @@
                 </div>
 
                 <!-- Trading Chart -->
-                <div class="trading-chart">
-                    <div class="chart-header">
-                        <h3 class="chart-title">USDTgV/USDTg</h3>
-                        <div class="chart-controls">
-                            <button class="chart-btn active">1D</button>
-                            <button class="chart-btn">1W</button>
-                            <button class="chart-btn">1M</button>
-                            <button class="chart-btn">3M</button>
+                <div class="lg:col-span-2">
+                    <div class="trading-chart">
+                        <div class="chart-header">
+                            <h3 class="chart-title">USDTgV/USDTg</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active">1D</button>
+                                <button class="chart-btn">1W</button>
+                                <button class="chart-btn">1M</button>
+                                <button class="chart-btn">3M</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="chart-container">
-                        <div class="chart-placeholder">
-                            <div class="chart-message">
-                                📈 Real-time Trading Chart
-                                <br>
-                                <small>Advanced charting with technical indicators</small>
+                        <div class="chart-container">
+                            <div class="chart-placeholder">
+                                <div class="chart-message">
+                                    📈 Real-time Trading Chart
+                                    <br>
+                                    <small>Advanced charting with technical indicators</small>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trading Panel -->
-                <div class="trading-panel">
+                <div class="lg:col-span-1">
+                    <div class="trading-panel">
                     <div class="panel-tabs">
                         <button class="tab-btn active">Market</button>
                         <button class="tab-btn">Limit</button>
@@ -219,6 +365,7 @@
                         </div>
                         
                         <button class="btn-buy">Buy USDTgV</button>
+                    </div>
                     </div>
                 </div>
             </div>
