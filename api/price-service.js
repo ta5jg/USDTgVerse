@@ -15,8 +15,10 @@ class USDTgVersePriceService {
         this.usdtgverseAPI = 'https://api.usdtgverse.com';
         this.coingeckoAPI = 'https://api.coingecko.com/api/v3';
         this.cache = new Map();
-        this.cacheTimeout = 30000; // 30 seconds
-        this.updateInterval = 10000; // 10 seconds
+        this.cacheTimeout = 300000; // 5 minutes - longer cache to avoid rate limits
+        this.updateInterval = 60000; // 1 minute - slower updates
+        this.lastCoinGeckoCall = 0;
+        this.coinGeckoMinInterval = 10000; // 10 seconds between CoinGecko calls
         
         // USDTgVerse native tokens
         this.nativeTokens = {
@@ -156,7 +158,16 @@ class USDTgVersePriceService {
      */
     async getExternalTokenPrice(symbol) {
         try {
+            // Rate limiting for CoinGecko
+            const now = Date.now();
+            if (now - this.lastCoinGeckoCall < this.coinGeckoMinInterval) {
+                console.log(`Rate limiting: Using cached data for ${symbol}`);
+                return this.getFallbackExternalPrice(symbol);
+            }
+            
             const coinId = this.externalTokens[symbol];
+            this.lastCoinGeckoCall = now;
+            
             const response = await fetch(
                 `${this.coingeckoAPI}/simple/price?ids=${coinId}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`
             );
