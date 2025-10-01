@@ -1021,6 +1021,9 @@
             </style>
         `;
         
+        console.log('🌌 USDTgVerse Website Loaded');
+        console.log('🚀 All applications accessible');
+        
         // MEGA MENU Hover Functionality
         const menuItems = document.querySelectorAll('.mega-menu-item');
         menuItems.forEach(item => {
@@ -1038,6 +1041,13 @@
                     dropdown.style.transform = 'translateY(-10px)';
                 });
             }
+        });
+        
+        // Add click tracking
+        document.querySelectorAll('.app-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                console.log('🔗 Navigating to:', this.href);
+            });
         });
         
         // Mobile menu toggle
