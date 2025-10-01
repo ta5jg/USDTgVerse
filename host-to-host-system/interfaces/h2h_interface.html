@@ -63,7 +63,7 @@
         }
 
         /* Navigation Bar */
-        .bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5 {
+        nav {
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(15px);
             position: fixed;
@@ -75,7 +75,7 @@
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        .max-w-7xl mx-auto flex justify-between items-center {
+        nav > div {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -84,49 +84,57 @@
             justify-content: space-between;
         }
 
-        .flex items-center space-x-4 {
+        nav .flex {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .flex items-center space-x-4 a {
+        nav .flex a {
             display: flex;
             align-items: center;
             gap: 15px;
             text-decoration: none;
             color: white;
+            transition: all 0.3s ease;
+        }
+        
+        nav .flex a:hover {
+            opacity: 0.8;
         }
 
-        .flex items-center space-x-4 img {
+        nav img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .flex items-center space-x-4 h2 {
+        nav h2 {
             font-size: 24px;
             font-weight: bold;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .flex space-x-4 {
+        nav #desktop-menu {
             display: flex;
             gap: 20px;
             align-items: center;
         }
 
-        .flex space-x-4 a {
+        nav #desktop-menu a {
             color: white;
             text-decoration: none;
             padding: 10px 15px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
 
-        .flex space-x-4 a:hover {
+        nav #desktop-menu a:hover {
             background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         /* Mobile Menu Toggle */
@@ -142,7 +150,7 @@
 
         /* Mobile Menu Styles */
         @media (max-width: 1024px) {
-            .flex space-x-4 {
+            nav #desktop-menu {
                 display: none !important;
             }
             .mobile-menu-toggle {
@@ -154,7 +162,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
-            margin-top: 80px; /* Add margin for fixed bg-black/20 backdrop-blur-lg sticky top-0 z-50 p-5 */
+            margin-top: 100px; /* Add margin for fixed navigation */
         }
 
         .header {
@@ -227,15 +235,21 @@
             margin-bottom: 16px;
         }
 
-        .protocol-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 li {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 4px;
-            padding-left: 16px;
+        .protocol-features {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .protocol-features li {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 8px;
+            padding-left: 24px;
             position: relative;
         }
 
-        .protocol-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 li:before {
+        .protocol-features li:before {
             content: "✓";
             position: absolute;
             left: 0;
@@ -578,7 +592,7 @@
                 <div class="protocol-icon">🏦</div>
                 <div class="protocol-title">SWIFT</div>
                 <div class="protocol-description">Society for Worldwide Interbank Financial Telecommunication</div>
-                <ul class="protocol-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20">
+                <ul class="protocol-features">
                     <li>MT message support</li>
                     <li>ISO 20022 compatibility</li>
                     <li>Real-time processing</li>
