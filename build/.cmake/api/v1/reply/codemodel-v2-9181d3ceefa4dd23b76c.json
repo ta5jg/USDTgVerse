@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-1840756a60ef63173435.json",
+					"jsonFile" : "directory-.-Debug-57ec41f53c294f85a3e5.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -19,7 +19,9 @@
 						0,
 						1,
 						2,
-						3
+						3,
+						4,
+						5
 					]
 				}
 			],
@@ -37,7 +39,9 @@
 						0,
 						1,
 						2,
-						3
+						3,
+						4,
+						5
 					]
 				}
 			],
@@ -45,29 +49,43 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "odixpay_api::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-odixpay_api-Debug-1a7bdf8060c47073b4df.json",
+					"name" : "odixpay_api",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "trading_engine::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-trading_engine-Debug-79a8dc7ebaab2c31ecec.json",
+					"name" : "trading_engine",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "usdtg-genesis::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-usdtg-genesis-Debug-3a4079d6e04b9c5665de.json",
+					"jsonFile" : "target-usdtg-genesis-Debug-583227378425bb71bc46.json",
 					"name" : "usdtg-genesis",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "usdtg-keytool::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-usdtg-keytool-Debug-560776f98a683d77a6a8.json",
+					"jsonFile" : "target-usdtg-keytool-Debug-94beadca9456f84b4188.json",
 					"name" : "usdtg-keytool",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "usdtgverse::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-usdtgverse-Debug-304309e1213520becf88.json",
+					"jsonFile" : "target-usdtgverse-Debug-8dc952e3a15f7051b22c.json",
 					"name" : "usdtgverse",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "usdtgwallet::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-usdtgwallet-Debug-473246893a207c082481.json",
+					"jsonFile" : "target-usdtgwallet-Debug-8c8889a5f23483a10257.json",
 					"name" : "usdtgwallet",
 					"projectIndex" : 0
 				}

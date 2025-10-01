@@ -85,16 +85,6 @@ package_source:
 package_source/fast: package_source
 .PHONY : package_source/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/Applications/CMake.app/Contents/bin/ctest $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -205,6 +195,45 @@ usdtgverse/fast:
 .PHONY : usdtgverse/fast
 
 #=============================================================================
+# Target rules for targets named odixpay_api
+
+# Build rule for target.
+odixpay_api: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 odixpay_api
+.PHONY : odixpay_api
+
+# fast build rule for target.
+odixpay_api/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/build
+.PHONY : odixpay_api/fast
+
+#=============================================================================
+# Target rules for targets named trading_engine
+
+# Build rule for target.
+trading_engine: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 trading_engine
+.PHONY : trading_engine
+
+# fast build rule for target.
+trading_engine/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/build
+.PHONY : trading_engine/fast
+
+#=============================================================================
+# Target rules for targets named usdtgwallet
+
+# Build rule for target.
+usdtgwallet: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 usdtgwallet
+.PHONY : usdtgwallet
+
+# fast build rule for target.
+usdtgwallet/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/build
+.PHONY : usdtgwallet/fast
+
+#=============================================================================
 # Target rules for targets named usdtg-keytool
 
 # Build rule for target.
@@ -230,27 +259,13 @@ usdtg-genesis/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/build
 .PHONY : usdtg-genesis/fast
 
-#=============================================================================
-# Target rules for targets named usdtgwallet
-
-# Build rule for target.
-usdtgwallet: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 usdtgwallet
-.PHONY : usdtgwallet
-
-# fast build rule for target.
-usdtgwallet/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/build
-.PHONY : usdtgwallet/fast
-
 src/codec/decode.o: src/codec/decode.cpp.o
 .PHONY : src/codec/decode.o
 
 # target to build an object file
 src/codec/decode.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/decode.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o
 .PHONY : src/codec/decode.cpp.o
 
 src/codec/decode.i: src/codec/decode.cpp.i
@@ -258,9 +273,8 @@ src/codec/decode.i: src/codec/decode.cpp.i
 
 # target to preprocess a source file
 src/codec/decode.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/decode.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.i
 .PHONY : src/codec/decode.cpp.i
 
 src/codec/decode.s: src/codec/decode.cpp.s
@@ -268,9 +282,8 @@ src/codec/decode.s: src/codec/decode.cpp.s
 
 # target to generate assembly for a file
 src/codec/decode.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/decode.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.s
 .PHONY : src/codec/decode.cpp.s
 
 src/codec/deterministic.o: src/codec/deterministic.cpp.o
@@ -278,9 +291,8 @@ src/codec/deterministic.o: src/codec/deterministic.cpp.o
 
 # target to build an object file
 src/codec/deterministic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/deterministic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o
 .PHONY : src/codec/deterministic.cpp.o
 
 src/codec/deterministic.i: src/codec/deterministic.cpp.i
@@ -288,9 +300,8 @@ src/codec/deterministic.i: src/codec/deterministic.cpp.i
 
 # target to preprocess a source file
 src/codec/deterministic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/deterministic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.i
 .PHONY : src/codec/deterministic.cpp.i
 
 src/codec/deterministic.s: src/codec/deterministic.cpp.s
@@ -298,9 +309,8 @@ src/codec/deterministic.s: src/codec/deterministic.cpp.s
 
 # target to generate assembly for a file
 src/codec/deterministic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/deterministic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.s
 .PHONY : src/codec/deterministic.cpp.s
 
 src/codec/encode.o: src/codec/encode.cpp.o
@@ -308,9 +318,8 @@ src/codec/encode.o: src/codec/encode.cpp.o
 
 # target to build an object file
 src/codec/encode.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/encode.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.o
 .PHONY : src/codec/encode.cpp.o
 
 src/codec/encode.i: src/codec/encode.cpp.i
@@ -318,9 +327,8 @@ src/codec/encode.i: src/codec/encode.cpp.i
 
 # target to preprocess a source file
 src/codec/encode.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/encode.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.i
 .PHONY : src/codec/encode.cpp.i
 
 src/codec/encode.s: src/codec/encode.cpp.s
@@ -328,9 +336,8 @@ src/codec/encode.s: src/codec/encode.cpp.s
 
 # target to generate assembly for a file
 src/codec/encode.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/encode.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.s
 .PHONY : src/codec/encode.cpp.s
 
 src/codec/varint.o: src/codec/varint.cpp.o
@@ -338,9 +345,8 @@ src/codec/varint.o: src/codec/varint.cpp.o
 
 # target to build an object file
 src/codec/varint.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/varint.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o
 .PHONY : src/codec/varint.cpp.o
 
 src/codec/varint.i: src/codec/varint.cpp.i
@@ -348,9 +354,8 @@ src/codec/varint.i: src/codec/varint.cpp.i
 
 # target to preprocess a source file
 src/codec/varint.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/varint.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.i
 .PHONY : src/codec/varint.cpp.i
 
 src/codec/varint.s: src/codec/varint.cpp.s
@@ -358,9 +363,8 @@ src/codec/varint.s: src/codec/varint.cpp.s
 
 # target to generate assembly for a file
 src/codec/varint.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/codec/varint.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.s
 .PHONY : src/codec/varint.cpp.s
 
 src/common/bytes.o: src/common/bytes.cpp.o
@@ -368,9 +372,9 @@ src/common/bytes.o: src/common/bytes.cpp.o
 
 # target to build an object file
 src/common/bytes.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.o
 .PHONY : src/common/bytes.cpp.o
 
 src/common/bytes.i: src/common/bytes.cpp.i
@@ -378,9 +382,9 @@ src/common/bytes.i: src/common/bytes.cpp.i
 
 # target to preprocess a source file
 src/common/bytes.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.i
 .PHONY : src/common/bytes.cpp.i
 
 src/common/bytes.s: src/common/bytes.cpp.s
@@ -388,9 +392,9 @@ src/common/bytes.s: src/common/bytes.cpp.s
 
 # target to generate assembly for a file
 src/common/bytes.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.s
 .PHONY : src/common/bytes.cpp.s
 
 src/common/endian.o: src/common/endian.cpp.o
@@ -398,9 +402,9 @@ src/common/endian.o: src/common/endian.cpp.o
 
 # target to build an object file
 src/common/endian.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.o
 .PHONY : src/common/endian.cpp.o
 
 src/common/endian.i: src/common/endian.cpp.i
@@ -408,9 +412,9 @@ src/common/endian.i: src/common/endian.cpp.i
 
 # target to preprocess a source file
 src/common/endian.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.i
 .PHONY : src/common/endian.cpp.i
 
 src/common/endian.s: src/common/endian.cpp.s
@@ -418,9 +422,9 @@ src/common/endian.s: src/common/endian.cpp.s
 
 # target to generate assembly for a file
 src/common/endian.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.s
 .PHONY : src/common/endian.cpp.s
 
 src/common/logging.o: src/common/logging.cpp.o
@@ -428,9 +432,9 @@ src/common/logging.o: src/common/logging.cpp.o
 
 # target to build an object file
 src/common/logging.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.o
 .PHONY : src/common/logging.cpp.o
 
 src/common/logging.i: src/common/logging.cpp.i
@@ -438,9 +442,9 @@ src/common/logging.i: src/common/logging.cpp.i
 
 # target to preprocess a source file
 src/common/logging.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.i
 .PHONY : src/common/logging.cpp.i
 
 src/common/logging.s: src/common/logging.cpp.s
@@ -448,9 +452,9 @@ src/common/logging.s: src/common/logging.cpp.s
 
 # target to generate assembly for a file
 src/common/logging.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.s
 .PHONY : src/common/logging.cpp.s
 
 src/common/span.o: src/common/span.cpp.o
@@ -458,9 +462,9 @@ src/common/span.o: src/common/span.cpp.o
 
 # target to build an object file
 src/common/span.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/span.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/span.cpp.o
 .PHONY : src/common/span.cpp.o
 
 src/common/span.i: src/common/span.cpp.i
@@ -468,9 +472,9 @@ src/common/span.i: src/common/span.cpp.i
 
 # target to preprocess a source file
 src/common/span.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/span.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/span.cpp.i
 .PHONY : src/common/span.cpp.i
 
 src/common/span.s: src/common/span.cpp.s
@@ -478,9 +482,9 @@ src/common/span.s: src/common/span.cpp.s
 
 # target to generate assembly for a file
 src/common/span.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/span.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/span.cpp.s
 .PHONY : src/common/span.cpp.s
 
 src/common/time.o: src/common/time.cpp.o
@@ -488,9 +492,9 @@ src/common/time.o: src/common/time.cpp.o
 
 # target to build an object file
 src/common/time.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/time.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/time.cpp.o
 .PHONY : src/common/time.cpp.o
 
 src/common/time.i: src/common/time.cpp.i
@@ -498,9 +502,9 @@ src/common/time.i: src/common/time.cpp.i
 
 # target to preprocess a source file
 src/common/time.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/time.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/time.cpp.i
 .PHONY : src/common/time.cpp.i
 
 src/common/time.s: src/common/time.cpp.s
@@ -508,9 +512,9 @@ src/common/time.s: src/common/time.cpp.s
 
 # target to generate assembly for a file
 src/common/time.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/time.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/time.cpp.s
 .PHONY : src/common/time.cpp.s
 
 src/common/varint.o: src/common/varint.cpp.o
@@ -518,9 +522,9 @@ src/common/varint.o: src/common/varint.cpp.o
 
 # target to build an object file
 src/common/varint.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.o
 .PHONY : src/common/varint.cpp.o
 
 src/common/varint.i: src/common/varint.cpp.i
@@ -528,9 +532,9 @@ src/common/varint.i: src/common/varint.cpp.i
 
 # target to preprocess a source file
 src/common/varint.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.i
 .PHONY : src/common/varint.cpp.i
 
 src/common/varint.s: src/common/varint.cpp.s
@@ -538,130 +542,10 @@ src/common/varint.s: src/common/varint.cpp.s
 
 # target to generate assembly for a file
 src/common/varint.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.s
 .PHONY : src/common/varint.cpp.s
-
-src/core/account.o: src/core/account.cpp.o
-.PHONY : src/core/account.o
-
-# target to build an object file
-src/core/account.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o
-.PHONY : src/core/account.cpp.o
-
-src/core/account.i: src/core/account.cpp.i
-.PHONY : src/core/account.i
-
-# target to preprocess a source file
-src/core/account.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.i
-.PHONY : src/core/account.cpp.i
-
-src/core/account.s: src/core/account.cpp.s
-.PHONY : src/core/account.s
-
-# target to generate assembly for a file
-src/core/account.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.s
-.PHONY : src/core/account.cpp.s
-
-src/core/block.o: src/core/block.cpp.o
-.PHONY : src/core/block.o
-
-# target to build an object file
-src/core/block.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o
-.PHONY : src/core/block.cpp.o
-
-src/core/block.i: src/core/block.cpp.i
-.PHONY : src/core/block.i
-
-# target to preprocess a source file
-src/core/block.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.i
-.PHONY : src/core/block.cpp.i
-
-src/core/block.s: src/core/block.cpp.s
-.PHONY : src/core/block.s
-
-# target to generate assembly for a file
-src/core/block.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.s
-.PHONY : src/core/block.cpp.s
-
-src/core/chain.o: src/core/chain.cpp.o
-.PHONY : src/core/chain.o
-
-# target to build an object file
-src/core/chain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o
-.PHONY : src/core/chain.cpp.o
-
-src/core/chain.i: src/core/chain.cpp.i
-.PHONY : src/core/chain.i
-
-# target to preprocess a source file
-src/core/chain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.i
-.PHONY : src/core/chain.cpp.i
-
-src/core/chain.s: src/core/chain.cpp.s
-.PHONY : src/core/chain.s
-
-# target to generate assembly for a file
-src/core/chain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.s
-.PHONY : src/core/chain.cpp.s
-
-src/core/mempool.o: src/core/mempool.cpp.o
-.PHONY : src/core/mempool.o
-
-# target to build an object file
-src/core/mempool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o
-.PHONY : src/core/mempool.cpp.o
-
-src/core/mempool.i: src/core/mempool.cpp.i
-.PHONY : src/core/mempool.i
-
-# target to preprocess a source file
-src/core/mempool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.i
-.PHONY : src/core/mempool.cpp.i
-
-src/core/mempool.s: src/core/mempool.cpp.s
-.PHONY : src/core/mempool.s
-
-# target to generate assembly for a file
-src/core/mempool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.s
-.PHONY : src/core/mempool.cpp.s
-
-src/core/state.o: src/core/state.cpp.o
-.PHONY : src/core/state.o
-
-# target to build an object file
-src/core/state.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o
-.PHONY : src/core/state.cpp.o
-
-src/core/state.i: src/core/state.cpp.i
-.PHONY : src/core/state.i
-
-# target to preprocess a source file
-src/core/state.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.i
-.PHONY : src/core/state.cpp.i
-
-src/core/state.s: src/core/state.cpp.s
-.PHONY : src/core/state.s
-
-# target to generate assembly for a file
-src/core/state.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.s
-.PHONY : src/core/state.cpp.s
 
 src/core/tx.o: src/core/tx.cpp.o
 .PHONY : src/core/tx.o
@@ -692,9 +576,9 @@ src/crypto/blake3.o: src/crypto/blake3.cpp.o
 
 # target to build an object file
 src/crypto/blake3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.o
 .PHONY : src/crypto/blake3.cpp.o
 
 src/crypto/blake3.i: src/crypto/blake3.cpp.i
@@ -702,9 +586,9 @@ src/crypto/blake3.i: src/crypto/blake3.cpp.i
 
 # target to preprocess a source file
 src/crypto/blake3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.i
 .PHONY : src/crypto/blake3.cpp.i
 
 src/crypto/blake3.s: src/crypto/blake3.cpp.s
@@ -712,9 +596,9 @@ src/crypto/blake3.s: src/crypto/blake3.cpp.s
 
 # target to generate assembly for a file
 src/crypto/blake3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.s
 .PHONY : src/crypto/blake3.cpp.s
 
 src/crypto/ed25519.o: src/crypto/ed25519.cpp.o
@@ -722,9 +606,9 @@ src/crypto/ed25519.o: src/crypto/ed25519.cpp.o
 
 # target to build an object file
 src/crypto/ed25519.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.o
 .PHONY : src/crypto/ed25519.cpp.o
 
 src/crypto/ed25519.i: src/crypto/ed25519.cpp.i
@@ -732,9 +616,9 @@ src/crypto/ed25519.i: src/crypto/ed25519.cpp.i
 
 # target to preprocess a source file
 src/crypto/ed25519.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.i
 .PHONY : src/crypto/ed25519.cpp.i
 
 src/crypto/ed25519.s: src/crypto/ed25519.cpp.s
@@ -742,9 +626,9 @@ src/crypto/ed25519.s: src/crypto/ed25519.cpp.s
 
 # target to generate assembly for a file
 src/crypto/ed25519.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.s
 .PHONY : src/crypto/ed25519.cpp.s
 
 src/crypto/hash.o: src/crypto/hash.cpp.o
@@ -752,9 +636,9 @@ src/crypto/hash.o: src/crypto/hash.cpp.o
 
 # target to build an object file
 src/crypto/hash.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.o
 .PHONY : src/crypto/hash.cpp.o
 
 src/crypto/hash.i: src/crypto/hash.cpp.i
@@ -762,9 +646,9 @@ src/crypto/hash.i: src/crypto/hash.cpp.i
 
 # target to preprocess a source file
 src/crypto/hash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.i
 .PHONY : src/crypto/hash.cpp.i
 
 src/crypto/hash.s: src/crypto/hash.cpp.s
@@ -772,9 +656,9 @@ src/crypto/hash.s: src/crypto/hash.cpp.s
 
 # target to generate assembly for a file
 src/crypto/hash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.s
 .PHONY : src/crypto/hash.cpp.s
 
 src/crypto/keys.o: src/crypto/keys.cpp.o
@@ -782,9 +666,9 @@ src/crypto/keys.o: src/crypto/keys.cpp.o
 
 # target to build an object file
 src/crypto/keys.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.o
 .PHONY : src/crypto/keys.cpp.o
 
 src/crypto/keys.i: src/crypto/keys.cpp.i
@@ -792,9 +676,9 @@ src/crypto/keys.i: src/crypto/keys.cpp.i
 
 # target to preprocess a source file
 src/crypto/keys.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.i
 .PHONY : src/crypto/keys.cpp.i
 
 src/crypto/keys.s: src/crypto/keys.cpp.s
@@ -802,9 +686,9 @@ src/crypto/keys.s: src/crypto/keys.cpp.s
 
 # target to generate assembly for a file
 src/crypto/keys.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.s
 .PHONY : src/crypto/keys.cpp.s
 
 src/crypto/noise.o: src/crypto/noise.cpp.o
@@ -812,9 +696,9 @@ src/crypto/noise.o: src/crypto/noise.cpp.o
 
 # target to build an object file
 src/crypto/noise.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.o
 .PHONY : src/crypto/noise.cpp.o
 
 src/crypto/noise.i: src/crypto/noise.cpp.i
@@ -822,9 +706,9 @@ src/crypto/noise.i: src/crypto/noise.cpp.i
 
 # target to preprocess a source file
 src/crypto/noise.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.i
 .PHONY : src/crypto/noise.cpp.i
 
 src/crypto/noise.s: src/crypto/noise.cpp.s
@@ -832,9 +716,9 @@ src/crypto/noise.s: src/crypto/noise.cpp.s
 
 # target to generate assembly for a file
 src/crypto/noise.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.s
 .PHONY : src/crypto/noise.cpp.s
 
 src/crypto/secp256k1_wrapper.o: src/crypto/secp256k1_wrapper.cpp.o
@@ -842,9 +726,9 @@ src/crypto/secp256k1_wrapper.o: src/crypto/secp256k1_wrapper.cpp.o
 
 # target to build an object file
 src/crypto/secp256k1_wrapper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.o
 .PHONY : src/crypto/secp256k1_wrapper.cpp.o
 
 src/crypto/secp256k1_wrapper.i: src/crypto/secp256k1_wrapper.cpp.i
@@ -852,9 +736,9 @@ src/crypto/secp256k1_wrapper.i: src/crypto/secp256k1_wrapper.cpp.i
 
 # target to preprocess a source file
 src/crypto/secp256k1_wrapper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.i
 .PHONY : src/crypto/secp256k1_wrapper.cpp.i
 
 src/crypto/secp256k1_wrapper.s: src/crypto/secp256k1_wrapper.cpp.s
@@ -862,9 +746,9 @@ src/crypto/secp256k1_wrapper.s: src/crypto/secp256k1_wrapper.cpp.s
 
 # target to generate assembly for a file
 src/crypto/secp256k1_wrapper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.s
 .PHONY : src/crypto/secp256k1_wrapper.cpp.s
 
 src/crypto/sha256.o: src/crypto/sha256.cpp.o
@@ -872,9 +756,9 @@ src/crypto/sha256.o: src/crypto/sha256.cpp.o
 
 # target to build an object file
 src/crypto/sha256.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.o
 .PHONY : src/crypto/sha256.cpp.o
 
 src/crypto/sha256.i: src/crypto/sha256.cpp.i
@@ -882,9 +766,9 @@ src/crypto/sha256.i: src/crypto/sha256.cpp.i
 
 # target to preprocess a source file
 src/crypto/sha256.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.i
 .PHONY : src/crypto/sha256.cpp.i
 
 src/crypto/sha256.s: src/crypto/sha256.cpp.s
@@ -892,9 +776,9 @@ src/crypto/sha256.s: src/crypto/sha256.cpp.s
 
 # target to generate assembly for a file
 src/crypto/sha256.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.s
 .PHONY : src/crypto/sha256.cpp.s
 
 src/crypto/signature.o: src/crypto/signature.cpp.o
@@ -902,9 +786,9 @@ src/crypto/signature.o: src/crypto/signature.cpp.o
 
 # target to build an object file
 src/crypto/signature.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.o
 .PHONY : src/crypto/signature.cpp.o
 
 src/crypto/signature.i: src/crypto/signature.cpp.i
@@ -912,9 +796,9 @@ src/crypto/signature.i: src/crypto/signature.cpp.i
 
 # target to preprocess a source file
 src/crypto/signature.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.i
 .PHONY : src/crypto/signature.cpp.i
 
 src/crypto/signature.s: src/crypto/signature.cpp.s
@@ -922,9 +806,9 @@ src/crypto/signature.s: src/crypto/signature.cpp.s
 
 # target to generate assembly for a file
 src/crypto/signature.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.s
 .PHONY : src/crypto/signature.cpp.s
 
 src/main.o: src/main.c.o
@@ -951,53 +835,29 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgverse.dir/build.make CMakeFiles/usdtgverse.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/tools/genesis.o: src/tools/genesis.cpp.o
-.PHONY : src/tools/genesis.o
+src/odixpay/odixpay_api.o: src/odixpay/odixpay_api.c.o
+.PHONY : src/odixpay/odixpay_api.o
 
 # target to build an object file
-src/tools/genesis.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o
-.PHONY : src/tools/genesis.cpp.o
+src/odixpay/odixpay_api.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/src/odixpay/odixpay_api.c.o
+.PHONY : src/odixpay/odixpay_api.c.o
 
-src/tools/genesis.i: src/tools/genesis.cpp.i
-.PHONY : src/tools/genesis.i
-
-# target to preprocess a source file
-src/tools/genesis.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.i
-.PHONY : src/tools/genesis.cpp.i
-
-src/tools/genesis.s: src/tools/genesis.cpp.s
-.PHONY : src/tools/genesis.s
-
-# target to generate assembly for a file
-src/tools/genesis.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.s
-.PHONY : src/tools/genesis.cpp.s
-
-src/tools/genesis_main.o: src/tools/genesis_main.cpp.o
-.PHONY : src/tools/genesis_main.o
-
-# target to build an object file
-src/tools/genesis_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o
-.PHONY : src/tools/genesis_main.cpp.o
-
-src/tools/genesis_main.i: src/tools/genesis_main.cpp.i
-.PHONY : src/tools/genesis_main.i
+src/odixpay/odixpay_api.i: src/odixpay/odixpay_api.c.i
+.PHONY : src/odixpay/odixpay_api.i
 
 # target to preprocess a source file
-src/tools/genesis_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.i
-.PHONY : src/tools/genesis_main.cpp.i
+src/odixpay/odixpay_api.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/src/odixpay/odixpay_api.c.i
+.PHONY : src/odixpay/odixpay_api.c.i
 
-src/tools/genesis_main.s: src/tools/genesis_main.cpp.s
-.PHONY : src/tools/genesis_main.s
+src/odixpay/odixpay_api.s: src/odixpay/odixpay_api.c.s
+.PHONY : src/odixpay/odixpay_api.s
 
 # target to generate assembly for a file
-src/tools/genesis_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.s
-.PHONY : src/tools/genesis_main.cpp.s
+src/odixpay/odixpay_api.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/src/odixpay/odixpay_api.c.s
+.PHONY : src/odixpay/odixpay_api.c.s
 
 src/tools/keytool.o: src/tools/keytool.cpp.o
 .PHONY : src/tools/keytool.o
@@ -1046,6 +906,30 @@ src/tools/keytool_main.s: src/tools/keytool_main.cpp.s
 src/tools/keytool_main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.s
 .PHONY : src/tools/keytool_main.cpp.s
+
+src/trading-engine/trading_engine.o: src/trading-engine/trading_engine.c.o
+.PHONY : src/trading-engine/trading_engine.o
+
+# target to build an object file
+src/trading-engine/trading_engine.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/src/trading-engine/trading_engine.c.o
+.PHONY : src/trading-engine/trading_engine.c.o
+
+src/trading-engine/trading_engine.i: src/trading-engine/trading_engine.c.i
+.PHONY : src/trading-engine/trading_engine.i
+
+# target to preprocess a source file
+src/trading-engine/trading_engine.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/src/trading-engine/trading_engine.c.i
+.PHONY : src/trading-engine/trading_engine.c.i
+
+src/trading-engine/trading_engine.s: src/trading-engine/trading_engine.c.s
+.PHONY : src/trading-engine/trading_engine.s
+
+# target to generate assembly for a file
+src/trading-engine/trading_engine.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/src/trading-engine/trading_engine.c.s
+.PHONY : src/trading-engine/trading_engine.c.s
 
 src/wallet/account_manager.o: src/wallet/account_manager.cpp.o
 .PHONY : src/wallet/account_manager.o
@@ -1157,7 +1041,8 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
-	@echo "... test"
+	@echo "... odixpay_api"
+	@echo "... trading_engine"
 	@echo "... usdtg-genesis"
 	@echo "... usdtg-keytool"
 	@echo "... usdtgverse"
@@ -1192,21 +1077,6 @@ help:
 	@echo "... src/common/varint.o"
 	@echo "... src/common/varint.i"
 	@echo "... src/common/varint.s"
-	@echo "... src/core/account.o"
-	@echo "... src/core/account.i"
-	@echo "... src/core/account.s"
-	@echo "... src/core/block.o"
-	@echo "... src/core/block.i"
-	@echo "... src/core/block.s"
-	@echo "... src/core/chain.o"
-	@echo "... src/core/chain.i"
-	@echo "... src/core/chain.s"
-	@echo "... src/core/mempool.o"
-	@echo "... src/core/mempool.i"
-	@echo "... src/core/mempool.s"
-	@echo "... src/core/state.o"
-	@echo "... src/core/state.i"
-	@echo "... src/core/state.s"
 	@echo "... src/core/tx.o"
 	@echo "... src/core/tx.i"
 	@echo "... src/core/tx.s"
@@ -1237,18 +1107,18 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/tools/genesis.o"
-	@echo "... src/tools/genesis.i"
-	@echo "... src/tools/genesis.s"
-	@echo "... src/tools/genesis_main.o"
-	@echo "... src/tools/genesis_main.i"
-	@echo "... src/tools/genesis_main.s"
+	@echo "... src/odixpay/odixpay_api.o"
+	@echo "... src/odixpay/odixpay_api.i"
+	@echo "... src/odixpay/odixpay_api.s"
 	@echo "... src/tools/keytool.o"
 	@echo "... src/tools/keytool.i"
 	@echo "... src/tools/keytool.s"
 	@echo "... src/tools/keytool_main.o"
 	@echo "... src/tools/keytool_main.i"
 	@echo "... src/tools/keytool_main.s"
+	@echo "... src/trading-engine/trading_engine.o"
+	@echo "... src/trading-engine/trading_engine.i"
+	@echo "... src/trading-engine/trading_engine.s"
 	@echo "... src/wallet/account_manager.o"
 	@echo "... src/wallet/account_manager.i"
 	@echo "... src/wallet/account_manager.s"

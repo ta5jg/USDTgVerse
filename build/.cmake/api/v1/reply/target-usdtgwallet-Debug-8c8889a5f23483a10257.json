@@ -1,8 +1,9 @@
 {
+	"archive" : {},
 	"artifacts" : 
 	[
 		{
-			"path" : "libusdtgwallet.dylib"
+			"path" : "libusdtgwallet.a"
 		}
 	],
 	"backtrace" : 1,
@@ -12,7 +13,6 @@
 		[
 			"add_library",
 			"install",
-			"target_link_libraries",
 			"add_compile_options",
 			"include_directories"
 		],
@@ -28,37 +28,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 324,
+				"line" : 157,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 341,
+				"line" : 246,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 334,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
 				"line" : 34,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
+				"command" : 2,
 				"file" : 0,
 				"line" : 42,
 				"parent" : 0
 			},
 			{
-				"command" : 4,
+				"command" : 3,
 				"file" : 0,
-				"line" : 115,
+				"line" : 75,
 				"parent" : 0
 			}
 		]
@@ -69,80 +63,90 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC"
+					"fragment" : "-O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wall"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wextra"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wpedantic"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wno-unused-parameter"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wno-missing-field-initializers"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wno-conversion"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wno-sign-conversion"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wformat=2"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wundef"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wshadow"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wpointer-arith"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"fragment" : "-Wno-deprecated-declarations"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"fragment" : "-ffast-math"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"fragment" : "-funroll-loops"
-				}
-			],
-			"defines" : 
-			[
-				{
-					"define" : "usdtgwallet_EXPORTS"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 6,
+					"backtrace" : 5,
+					"path" : "/Users/irfangedik/USDTgVerse/include"
+				},
+				{
+					"backtrace" : 5,
 					"path" : "/Users/irfangedik/USDTgVerse/src"
 				},
 				{
-					"backtrace" : 6,
-					"path" : "/Users/irfangedik/USDTgVerse/external"
+					"backtrace" : 5,
+					"path" : "/Users/irfangedik/USDTgVerse/src/common"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/irfangedik/USDTgVerse/src/crypto"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/irfangedik/USDTgVerse/src/odixpay"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/irfangedik/USDTgVerse/src/trading-engine"
 				}
 			],
 			"language" : "CXX",
@@ -189,10 +193,6 @@
 			{
 				"backtrace" : 2,
 				"path" : "lib"
-			},
-			{
-				"backtrace" : 2,
-				"path" : "lib"
 			}
 		],
 		"prefix" : 
@@ -200,29 +200,8 @@
 			"path" : "/usr/local"
 		}
 	},
-	"link" : 
-	{
-		"commandFragments" : 
-		[
-			{
-				"fragment" : "-dynamiclib -Wl,-headerpad_max_install_names",
-				"role" : "flags"
-			},
-			{
-				"backtrace" : 3,
-				"fragment" : "/usr/local/lib/libssl.dylib",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 3,
-				"fragment" : "/usr/local/lib/libcrypto.dylib",
-				"role" : "libraries"
-			}
-		],
-		"language" : "CXX"
-	},
 	"name" : "usdtgwallet",
-	"nameOnDisk" : "libusdtgwallet.dylib",
+	"nameOnDisk" : "libusdtgwallet.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -394,5 +373,5 @@
 			"sourceGroupIndex" : 0
 		}
 	],
-	"type" : "SHARED_LIBRARY"
+	"type" : "STATIC_LIBRARY"
 }

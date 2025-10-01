@@ -8,10 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/irfangedik/USDTgVerse/src/codec/decode.cpp" "CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp" "CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/codec/encode.cpp" "CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/codec/varint.cpp" "CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/common/bytes.cpp" "CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/common/endian.cpp" "CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/common/logging.cpp" "CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o" "gcc" "CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o.d"

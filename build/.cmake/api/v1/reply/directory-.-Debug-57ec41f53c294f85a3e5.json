@@ -17,37 +17,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 341,
+				"line" : 235,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 346,
+				"line" : 240,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 472,
+				"line" : 246,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 478,
+				"line" : 253,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 484,
-				"parent" : 0
-			},
-			{
-				"command" : 0,
-				"file" : 0,
-				"line" : 490,
+				"line" : 260,
 				"parent" : 0
 			}
 		]
@@ -57,42 +51,17 @@
 		{
 			"backtrace" : 1,
 			"component" : "Unspecified",
-			"destination" : "lib",
-			"paths" : 
-			[
-				"libusdtgwallet.dylib"
-			],
-			"targetId" : "usdtgwallet::@6890427a1f51a3e7e1df",
-			"targetIndex" : 3,
-			"type" : "target"
-		},
-		{
-			"backtrace" : 2,
-			"component" : "Unspecified",
-			"destination" : "include/usdtgwallet",
-			"paths" : 
-			[
-				{
-					"from" : "src/wallet",
-					"to" : "."
-				}
-			],
-			"type" : "directory"
-		},
-		{
-			"backtrace" : 3,
-			"component" : "Unspecified",
 			"destination" : "bin",
 			"paths" : 
 			[
 				"usdtgverse"
 			],
 			"targetId" : "usdtgverse::@6890427a1f51a3e7e1df",
-			"targetIndex" : 2,
+			"targetIndex" : 4,
 			"type" : "target"
 		},
 		{
-			"backtrace" : 4,
+			"backtrace" : 2,
 			"component" : "Unspecified",
 			"destination" : "bin",
 			"paths" : 
@@ -100,11 +69,11 @@
 				"usdtg-keytool"
 			],
 			"targetId" : "usdtg-keytool::@6890427a1f51a3e7e1df",
-			"targetIndex" : 1,
+			"targetIndex" : 3,
 			"type" : "target"
 		},
 		{
-			"backtrace" : 4,
+			"backtrace" : 2,
 			"component" : "Unspecified",
 			"destination" : "bin",
 			"paths" : 
@@ -112,31 +81,44 @@
 				"usdtg-genesis"
 			],
 			"targetId" : "usdtg-genesis::@6890427a1f51a3e7e1df",
+			"targetIndex" : 2,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libusdtgwallet.a"
+			],
+			"targetId" : "usdtgwallet::@6890427a1f51a3e7e1df",
+			"targetIndex" : 5,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libodixpay_api.a"
+			],
+			"targetId" : "odixpay_api::@6890427a1f51a3e7e1df",
 			"targetIndex" : 0,
 			"type" : "target"
 		},
 		{
 			"backtrace" : 5,
 			"component" : "Unspecified",
-			"destination" : "include/usdtgverse",
+			"destination" : "lib",
 			"paths" : 
 			[
-				{
-					"from" : "src",
-					"to" : "."
-				}
+				"libtrading_engine.a"
 			],
-			"type" : "directory"
-		},
-		{
-			"backtrace" : 6,
-			"component" : "Unspecified",
-			"destination" : "lib/cmake/USDTgVerse",
-			"paths" : 
-			[
-				"cmake/USDTgVerseConfig.cmake"
-			],
-			"type" : "file"
+			"targetId" : "trading_engine::@6890427a1f51a3e7e1df",
+			"targetIndex" : 1,
+			"type" : "target"
 		}
 	],
 	"paths" : 

@@ -1,416 +1,362 @@
 [
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -g -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgverse.dir/src/main.c.o -c /Users/irfangedik/USDTgVerse/src/main.c",
+  "command": "/usr/bin/clang  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -g -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgverse.dir/src/main.c.o -c /Users/irfangedik/USDTgVerse/src/main.c",
   "file": "/Users/irfangedik/USDTgVerse/src/main.c",
   "output": "CMakeFiles/usdtgverse.dir/src/main.c.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o"
+  "command": "/usr/bin/clang  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -g -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/odixpay_api.dir/src/odixpay/odixpay_api.c.o -c /Users/irfangedik/USDTgVerse/src/odixpay/odixpay_api.c",
+  "file": "/Users/irfangedik/USDTgVerse/src/odixpay/odixpay_api.c",
+  "output": "CMakeFiles/odixpay_api.dir/src/odixpay/odixpay_api.c.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/varint.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/varint.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.o"
+  "command": "/usr/bin/clang  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -g -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/trading_engine.dir/src/trading-engine/trading_engine.c.o -c /Users/irfangedik/USDTgVerse/src/trading-engine/trading_engine.c",
+  "file": "/Users/irfangedik/USDTgVerse/src/trading-engine/trading_engine.c",
+  "output": "CMakeFiles/trading_engine.dir/src/trading-engine/trading_engine.c.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/endian.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/endian.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/span.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/span.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/logging.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/logging.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/time.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/time.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/keytool.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/tools/keytool.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/keytool_main.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/tools/keytool_main.cpp",
-  "output": "CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/varint.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/varint.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/endian.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/endian.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/span.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/span.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/logging.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/logging.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/time.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/common/time.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/tx.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/core/tx.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/account.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/core/account.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/block.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/core/block.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/state.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/core/state.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/mempool.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/core/mempool.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/chain.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/core/chain.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/genesis.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/tools/genesis.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp",
-  "file": "/Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp",
-  "output": "CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o"
-},
-{
-  "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/common/bytes.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/varint.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/varint.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/common/varint.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/common/varint.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/endian.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/endian.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/common/endian.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/common/endian.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/span.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/span.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/span.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/span.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/common/span.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/common/span.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/logging.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/logging.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/common/logging.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/common/logging.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/time.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/time.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/common/time.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/time.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/common/time.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/common/time.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/hash.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/blake3.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/sha256.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/ed25519.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/secp256k1_wrapper.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/keys.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/signature.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/crypto/noise.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/encode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/encode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/codec/encode.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/decode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/decode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/codec/decode.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/codec/varint.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/deterministic.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/codec/deterministic.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/codec/deterministic.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/sdk.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/sdk.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/sdk.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/sdk.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/wallet/sdk.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/wallet/sdk.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/account_manager.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/account_manager.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/account_manager.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/account_manager.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/wallet/account_manager.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/wallet/account_manager.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/transaction_builder.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/transaction_builder.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/transaction_builder.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/transaction_builder.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/wallet/transaction_builder.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/wallet/transaction_builder.cpp.o"
 },
 {
   "directory": "/Users/irfangedik/USDTgVerse/build",
-  "command": "/usr/bin/clang++ -Dusdtgwallet_EXPORTS -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/external -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -fPIC -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/odixpay_client.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/odixpay_client.cpp",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtgwallet.dir/src/wallet/odixpay_client.cpp.o -c /Users/irfangedik/USDTgVerse/src/wallet/odixpay_client.cpp",
   "file": "/Users/irfangedik/USDTgVerse/src/wallet/odixpay_client.cpp",
   "output": "CMakeFiles/usdtgwallet.dir/src/wallet/odixpay_client.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/varint.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/varint.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/common/varint.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/endian.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/endian.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/span.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/span.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/common/span.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/logging.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/logging.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/common/logging.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/time.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/time.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/common/time.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/hash.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/blake3.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/sha256.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/ed25519.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/keytool.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/tools/keytool.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/keytool_main.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/tools/keytool_main.cpp",
+  "output": "CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/bytes.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/varint.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/varint.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/endian.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/endian.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/common/endian.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/span.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/span.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/logging.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/logging.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/common/logging.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o -c /Users/irfangedik/USDTgVerse/src/common/time.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/common/time.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/hash.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/hash.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/keys.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/keys.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/signature.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.o -c /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/crypto/noise.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/crypto/noise.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/codec/encode.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/encode.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/codec/decode.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/codec/varint.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o"
+},
+{
+  "directory": "/Users/irfangedik/USDTgVerse/build",
+  "command": "/usr/bin/clang++  -I/Users/irfangedik/USDTgVerse/include -I/Users/irfangedik/USDTgVerse/src -I/Users/irfangedik/USDTgVerse/src/common -I/Users/irfangedik/USDTgVerse/src/crypto -I/Users/irfangedik/USDTgVerse/src/odixpay -I/Users/irfangedik/USDTgVerse/src/trading-engine -O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer -Wno-deprecated-declarations -Wno-sign-conversion -Wno-implicit-int-conversion -std=c++20 -arch arm64 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-conversion -Wno-sign-conversion -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wno-deprecated-declarations -ffast-math -funroll-loops -o CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/tx.cpp",
+  "file": "/Users/irfangedik/USDTgVerse/src/core/tx.cpp",
+  "output": "CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o"
 }
 ]

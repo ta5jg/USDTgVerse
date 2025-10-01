@@ -64,16 +64,20 @@ CMAKE_BINARY_DIR = /Users/irfangedik/USDTgVerse/build
 
 # The main recursive "all" target.
 all: CMakeFiles/usdtgverse.dir/all
+all: CMakeFiles/odixpay_api.dir/all
+all: CMakeFiles/trading_engine.dir/all
+all: CMakeFiles/usdtgwallet.dir/all
 all: CMakeFiles/usdtg-keytool.dir/all
 all: CMakeFiles/usdtg-genesis.dir/all
-all: CMakeFiles/usdtgwallet.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/usdtgverse.dir/codegen
+codegen: CMakeFiles/odixpay_api.dir/codegen
+codegen: CMakeFiles/trading_engine.dir/codegen
+codegen: CMakeFiles/usdtgwallet.dir/codegen
 codegen: CMakeFiles/usdtg-keytool.dir/codegen
 codegen: CMakeFiles/usdtg-genesis.dir/codegen
-codegen: CMakeFiles/usdtgwallet.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -82,9 +86,11 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/usdtgverse.dir/clean
+clean: CMakeFiles/odixpay_api.dir/clean
+clean: CMakeFiles/trading_engine.dir/clean
+clean: CMakeFiles/usdtgwallet.dir/clean
 clean: CMakeFiles/usdtg-keytool.dir/clean
 clean: CMakeFiles/usdtg-genesis.dir/clean
-clean: CMakeFiles/usdtgwallet.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -94,7 +100,7 @@ clean: CMakeFiles/usdtgwallet.dir/clean
 CMakeFiles/usdtgverse.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgverse.dir/build.make CMakeFiles/usdtgverse.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgverse.dir/build.make CMakeFiles/usdtgverse.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=49,50 "Built target usdtgverse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=42,43 "Built target usdtgverse"
 .PHONY : CMakeFiles/usdtgverse.dir/all
 
 # Build rule for subdir invocation for target.
@@ -111,7 +117,7 @@ usdtgverse: CMakeFiles/usdtgverse.dir/rule
 # codegen rule for target.
 CMakeFiles/usdtgverse.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgverse.dir/build.make CMakeFiles/usdtgverse.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=49,50 "Finished codegen for target usdtgverse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=42,43 "Finished codegen for target usdtgverse"
 .PHONY : CMakeFiles/usdtgverse.dir/codegen
 
 # clean rule for target.
@@ -120,68 +126,68 @@ CMakeFiles/usdtgverse.dir/clean:
 .PHONY : CMakeFiles/usdtgverse.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/usdtg-keytool.dir
+# Target rules for target CMakeFiles/odixpay_api.dir
 
 # All Build rule for target.
-CMakeFiles/usdtg-keytool.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48 "Built target usdtg-keytool"
-.PHONY : CMakeFiles/usdtg-keytool.dir/all
+CMakeFiles/odixpay_api.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=1,2 "Built target odixpay_api"
+.PHONY : CMakeFiles/odixpay_api.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/usdtg-keytool.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 21
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/usdtg-keytool.dir/all
+CMakeFiles/odixpay_api.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/odixpay_api.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 0
-.PHONY : CMakeFiles/usdtg-keytool.dir/rule
+.PHONY : CMakeFiles/odixpay_api.dir/rule
 
 # Convenience name for target.
-usdtg-keytool: CMakeFiles/usdtg-keytool.dir/rule
-.PHONY : usdtg-keytool
+odixpay_api: CMakeFiles/odixpay_api.dir/rule
+.PHONY : odixpay_api
 
 # codegen rule for target.
-CMakeFiles/usdtg-keytool.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48 "Finished codegen for target usdtg-keytool"
-.PHONY : CMakeFiles/usdtg-keytool.dir/codegen
+CMakeFiles/odixpay_api.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=1,2 "Finished codegen for target odixpay_api"
+.PHONY : CMakeFiles/odixpay_api.dir/codegen
 
 # clean rule for target.
-CMakeFiles/usdtg-keytool.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/clean
-.PHONY : CMakeFiles/usdtg-keytool.dir/clean
+CMakeFiles/odixpay_api.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odixpay_api.dir/build.make CMakeFiles/odixpay_api.dir/clean
+.PHONY : CMakeFiles/odixpay_api.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/usdtg-genesis.dir
+# Target rules for target CMakeFiles/trading_engine.dir
 
 # All Build rule for target.
-CMakeFiles/usdtg-genesis.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27 "Built target usdtg-genesis"
-.PHONY : CMakeFiles/usdtg-genesis.dir/all
+CMakeFiles/trading_engine.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=3,4 "Built target trading_engine"
+.PHONY : CMakeFiles/trading_engine.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/usdtg-genesis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 27
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/usdtg-genesis.dir/all
+CMakeFiles/trading_engine.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/trading_engine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 0
-.PHONY : CMakeFiles/usdtg-genesis.dir/rule
+.PHONY : CMakeFiles/trading_engine.dir/rule
 
 # Convenience name for target.
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/rule
-.PHONY : usdtg-genesis
+trading_engine: CMakeFiles/trading_engine.dir/rule
+.PHONY : trading_engine
 
 # codegen rule for target.
-CMakeFiles/usdtg-genesis.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27 "Finished codegen for target usdtg-genesis"
-.PHONY : CMakeFiles/usdtg-genesis.dir/codegen
+CMakeFiles/trading_engine.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=3,4 "Finished codegen for target trading_engine"
+.PHONY : CMakeFiles/trading_engine.dir/codegen
 
 # clean rule for target.
-CMakeFiles/usdtg-genesis.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/clean
-.PHONY : CMakeFiles/usdtg-genesis.dir/clean
+CMakeFiles/trading_engine.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_engine.dir/build.make CMakeFiles/trading_engine.dir/clean
+.PHONY : CMakeFiles/trading_engine.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/usdtgwallet.dir
@@ -190,7 +196,7 @@ CMakeFiles/usdtg-genesis.dir/clean:
 CMakeFiles/usdtgwallet.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73 "Built target usdtgwallet"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66 "Built target usdtgwallet"
 .PHONY : CMakeFiles/usdtgwallet.dir/all
 
 # Build rule for subdir invocation for target.
@@ -207,13 +213,77 @@ usdtgwallet: CMakeFiles/usdtgwallet.dir/rule
 # codegen rule for target.
 CMakeFiles/usdtgwallet.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73 "Finished codegen for target usdtgwallet"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66 "Finished codegen for target usdtgwallet"
 .PHONY : CMakeFiles/usdtgwallet.dir/codegen
 
 # clean rule for target.
 CMakeFiles/usdtgwallet.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtgwallet.dir/build.make CMakeFiles/usdtgwallet.dir/clean
 .PHONY : CMakeFiles/usdtgwallet.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/usdtg-keytool.dir
+
+# All Build rule for target.
+CMakeFiles/usdtg-keytool.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41 "Built target usdtg-keytool"
+.PHONY : CMakeFiles/usdtg-keytool.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/usdtg-keytool.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 17
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/usdtg-keytool.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 0
+.PHONY : CMakeFiles/usdtg-keytool.dir/rule
+
+# Convenience name for target.
+usdtg-keytool: CMakeFiles/usdtg-keytool.dir/rule
+.PHONY : usdtg-keytool
+
+# codegen rule for target.
+CMakeFiles/usdtg-keytool.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41 "Finished codegen for target usdtg-keytool"
+.PHONY : CMakeFiles/usdtg-keytool.dir/codegen
+
+# clean rule for target.
+CMakeFiles/usdtg-keytool.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-keytool.dir/build.make CMakeFiles/usdtg-keytool.dir/clean
+.PHONY : CMakeFiles/usdtg-keytool.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/usdtg-genesis.dir
+
+# All Build rule for target.
+CMakeFiles/usdtg-genesis.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 "Built target usdtg-genesis"
+.PHONY : CMakeFiles/usdtg-genesis.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/usdtg-genesis.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 20
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/usdtg-genesis.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/irfangedik/USDTgVerse/build/CMakeFiles 0
+.PHONY : CMakeFiles/usdtg-genesis.dir/rule
+
+# Convenience name for target.
+usdtg-genesis: CMakeFiles/usdtg-genesis.dir/rule
+.PHONY : usdtg-genesis
+
+# codegen rule for target.
+CMakeFiles/usdtg-genesis.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 "Finished codegen for target usdtg-genesis"
+.PHONY : CMakeFiles/usdtg-genesis.dir/codegen
+
+# clean rule for target.
+CMakeFiles/usdtg-genesis.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/usdtg-genesis.dir/build.make CMakeFiles/usdtg-genesis.dir/clean
+.PHONY : CMakeFiles/usdtg-genesis.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

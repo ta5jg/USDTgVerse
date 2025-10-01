@@ -48,80 +48,44 @@ endif()
 
 option(USDTGVERSE_BUILD_TESTS "Build test suite" ON)
 option(USDTGVERSE_BUILD_TOOLS "Build CLI tools" ON)
-option(USDTGVERSE_BUILD_WALLET_SDK "Build USDTgWallet C++ SDK" ON)
-option(USDTGVERSE_USE_ROCKSDB "Use RocksDB for storage" ON)
-option(USDTGVERSE_USE_LIBSODIUM "Use libsodium for crypto" ON)
-option(USDTGVERSE_USE_SECP256K1 "Use libsecp256k1" ON)
-option(USDTGVERSE_ENABLE_METRICS "Enable Prometheus metrics" ON)
-option(USDTGVERSE_ENABLE_FUZZING "Enable fuzzing support" OFF)
+option(USDTGVERSE_BUILD_ODIXPAY "Build ODIX PAY integration" ON)
+option(USDTGVERSE_BUILD_TRADING_ENGINE "Build Trading Engine" ON)
+option(USDTGVERSE_BUILD_WALLET_SDK "Build Wallet SDK" ON)
+option(USDTGVERSE_BUILD_METRICS "Build metrics collection" ON)
+option(USDTGVERSE_BUILD_FUZZING "Build fuzzing targets" OFF)
 
 # ============================================================================
-# EXTERNAL DEPENDENCIES
+# DEPENDENCIES
 # ============================================================================
 
-# Required system libraries
+# Find required packages
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
 
-# Optional: RocksDB
-if(USDTGVERSE_USE_ROCKSDB)
-    find_package(PkgConfig QUIET)
-    if(PkgConfig_FOUND)
-        pkg_check_modules(ROCKSDB QUIET rocksdb)
-    endif()
-    
-    if(ROCKSDB_FOUND)
-        add_compile_definitions(USDTGVERSE_HAS_ROCKSDB)
-        message(STATUS "✅ RocksDB found: ${ROCKSDB_VERSION}")
-    else()
-        message(STATUS "⚠️  RocksDB not found, using built-in storage")
-    endif()
-endif()
-
-# Optional: libsodium
-if(USDTGVERSE_USE_LIBSODIUM)
-    find_package(PkgConfig QUIET)
-    if(PkgConfig_FOUND)
-        pkg_check_modules(SODIUM QUIET libsodium)
-    endif()
-    
-    if(SODIUM_FOUND)
-        add_compile_definitions(USDTGVERSE_HAS_SODIUM)
-        message(STATUS "✅ libsodium found: ${SODIUM_VERSION}")
-    else()
-        message(STATUS "⚠️  libsodium not found, using built-in crypto")
-    endif()
-endif()
-
-# Optional: libsecp256k1
-if(USDTGVERSE_USE_SECP256K1)
-    find_package(PkgConfig QUIET)
-    if(PkgConfig_FOUND)
-        pkg_check_modules(SECP256K1 QUIET libsecp256k1)
-    endif()
-    
-    if(SECP256K1_FOUND)
-        add_compile_definitions(USDTGVERSE_HAS_SECP256K1)
-        message(STATUS "✅ libsecp256k1 found: ${SECP256K1_VERSION}")
-    else()
-        message(STATUS "⚠️  libsecp256k1 not found, using built-in implementation")
-    endif()
-endif()
+# Optional dependencies
+find_package(RocksDB QUIET)
+find_package(libsodium QUIET)
+find_package(secp256k1 QUIET)
+find_package(GTest QUIET)
 
 # ============================================================================
 # INCLUDE DIRECTORIES
 # ============================================================================
 
 include_directories(
+    ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/external
+    ${CMAKE_SOURCE_DIR}/src/common
+    ${CMAKE_SOURCE_DIR}/src/crypto
+    ${CMAKE_SOURCE_DIR}/src/odixpay
+    ${CMAKE_SOURCE_DIR}/src/trading-engine
 )
 
 # ============================================================================
-# SOURCE FILES ORGANIZATION
+# SOURCE FILES
 # ============================================================================
 
-# Common utilities
+# Common sources
 set(COMMON_SOURCES
     src/common/bytes.cpp
     src/common/varint.cpp
@@ -131,7 +95,7 @@ set(COMMON_SOURCES
     src/common/time.cpp
 )
 
-# Cryptography layer
+# Crypto sources
 set(CRYPTO_SOURCES
     src/crypto/hash.cpp
     src/crypto/blake3.cpp
@@ -143,381 +107,164 @@ set(CRYPTO_SOURCES
     src/crypto/noise.cpp
 )
 
-# Codec layer (USDTg-Bin)
-set(CODEC_SOURCES
-    src/codec/encode.cpp
-    src/codec/decode.cpp
-    src/codec/varint.cpp
-    src/codec/deterministic.cpp
-)
-
-# Key-Value storage
-set(KV_SOURCES
-    src/kv/ikv.cpp
-    src/kv/mem/memory_kv.cpp
-    src/kv/mmap_log/mmap_kv.cpp
-)
-
-# RocksDB backend (optional)
-if(ROCKSDB_FOUND)
-    list(APPEND KV_SOURCES src/kv/rocksdb/rocks_kv.cpp)
-endif()
-
-# Merkle tree & SMT
-set(MERKLE_SOURCES
-    src/merkle/smt.cpp
-    src/merkle/merkle_tree.cpp
-    src/merkle/proof.cpp
-)
-
-# Core blockchain
-set(CORE_SOURCES
-    src/core/tx.cpp
-    src/core/account.cpp
-    src/core/block.cpp
-    src/core/state.cpp
-    src/core/mempool.cpp
-    src/core/chain.cpp
-)
-
-# Virtual Machine (Phase 2)
-set(VM_SOURCES
-    src/core/vm/vm.cpp
-    src/core/vm/instruction.cpp
-    src/core/vm/gas.cpp
-)
-
-# Consensus (HotStuff BFT-PoS)
-set(CONSENSUS_SOURCES
-    src/consensus/hotstuff/engine.cpp
-    src/consensus/hotstuff/pacemaker.cpp
-    src/consensus/hotstuff/safety.cpp
-    src/consensus/hotstuff/liveness.cpp
-    src/consensus/messages.cpp
-    src/consensus/staking.cpp
-    src/consensus/validator.cpp
-)
-
-# P2P Networking
-set(P2P_SOURCES
-    src/p2p/peer.cpp
-    src/p2p/wire.cpp
-    src/p2p/gossip.cpp
-    src/p2p/rpc.cpp
-    src/p2p/discovery.cpp
-    src/p2p/noise_transport.cpp
-)
-
-# Node orchestration
-set(NODE_SOURCES
-    src/node/config.cpp
-    src/node/node.cpp
-    src/node/roles/validator.cpp
-    src/node/roles/sentry.cpp
-    src/node/roles/rpc_node.cpp
-)
-
-# OdixPay++ native messages
+# ODIX PAY sources
 set(ODIXPAY_SOURCES
-    src/core/odixpay/invoice.cpp
-    src/core/odixpay/escrow.cpp
-    src/core/odixpay/subscription.cpp
-    src/core/odixpay/batch_pay.cpp
-    src/core/odixpay/spending_limits.cpp
-    src/core/odixpay/fee_sponsor.cpp
+    src/odixpay/odixpay_api.c
 )
 
-# Tools
-set(TOOLS_SOURCES
-    src/tools/keytool.cpp
-    src/tools/genesis.cpp
-    src/tools/cli.cpp
-)
-
-# All sources combined
-set(ALL_SOURCES
-    ${COMMON_SOURCES}
-    ${CRYPTO_SOURCES}
-    ${CODEC_SOURCES}
-    ${KV_SOURCES}
-    ${MERKLE_SOURCES}
-    ${CORE_SOURCES}
-    ${CONSENSUS_SOURCES}
-    ${P2P_SOURCES}
-    ${NODE_SOURCES}
-    ${ODIXPAY_SOURCES}
+# Trading Engine sources
+set(TRADING_ENGINE_SOURCES
+    src/trading-engine/trading_engine.c
 )
 
 # ============================================================================
-# MAIN EXECUTABLE
+# EXECUTABLES
 # ============================================================================
 
-add_executable(usdtgverse
-    src/main.c
-)
-
-# Link libraries
-target_link_libraries(usdtgverse PRIVATE
-    Threads::Threads
+# Main blockchain node
+add_executable(usdtgverse src/main.c)
+target_link_libraries(usdtgverse 
+    ${CMAKE_THREAD_LIBS_INIT}
     OpenSSL::SSL
     OpenSSL::Crypto
 )
 
-# Optional libraries
-if(ROCKSDB_FOUND)
-    target_link_libraries(usdtgverse PRIVATE ${ROCKSDB_LIBRARIES})
-    target_include_directories(usdtgverse PRIVATE ${ROCKSDB_INCLUDE_DIRS})
-endif()
-
-if(SODIUM_FOUND)
-    target_link_libraries(usdtgverse PRIVATE ${SODIUM_LIBRARIES})
-    target_include_directories(usdtgverse PRIVATE ${SODIUM_INCLUDE_DIRS})
-endif()
-
-if(SECP256K1_FOUND)
-    target_link_libraries(usdtgverse PRIVATE ${SECP256K1_LIBRARIES})
-    target_include_directories(usdtgverse PRIVATE ${SECP256K1_INCLUDE_DIRS})
-endif()
-
-# ============================================================================
-# CLI TOOLS
-# ============================================================================
-
-if(USDTGVERSE_BUILD_TOOLS)
-    # Key management tool
-    add_executable(usdtg-keytool
-        ${COMMON_SOURCES}
-        ${CRYPTO_SOURCES}
-        ${CODEC_SOURCES}
-        src/tools/keytool.cpp
-        src/tools/keytool_main.cpp
-    )
-    
-    target_link_libraries(usdtg-keytool PRIVATE
-        Threads::Threads
+# ODIX PAY API
+if(USDTGVERSE_BUILD_ODIXPAY)
+    add_library(odixpay_api STATIC ${ODIXPAY_SOURCES})
+    target_link_libraries(odixpay_api 
+        ${CMAKE_THREAD_LIBS_INIT}
         OpenSSL::SSL
         OpenSSL::Crypto
     )
-    
-    # Genesis generator
-    add_executable(usdtg-genesis
-        ${COMMON_SOURCES}
-        ${CRYPTO_SOURCES}
-        ${CODEC_SOURCES}
-        ${CORE_SOURCES}
-        src/tools/genesis.cpp
-        src/tools/genesis_main.cpp
-    )
-    
-    target_link_libraries(usdtg-genesis PRIVATE
-        Threads::Threads
-        OpenSSL::SSL
-        OpenSSL::Crypto
-    )
+    target_include_directories(odixpay_api PUBLIC src/odixpay)
 endif()
 
-# ============================================================================
-# USDTGWALLET C++ SDK
-# ============================================================================
+# Trading Engine
+if(USDTGVERSE_BUILD_TRADING_ENGINE)
+    add_library(trading_engine STATIC ${TRADING_ENGINE_SOURCES})
+    target_link_libraries(trading_engine 
+        ${CMAKE_THREAD_LIBS_INIT}
+        OpenSSL::SSL
+        OpenSSL::Crypto
+        m
+    )
+    target_include_directories(trading_engine PUBLIC src/trading-engine)
+endif()
 
+# Wallet SDK
 if(USDTGVERSE_BUILD_WALLET_SDK)
-    add_library(usdtgwallet SHARED
+    add_library(usdtgwallet STATIC 
         ${COMMON_SOURCES}
         ${CRYPTO_SOURCES}
-        ${CODEC_SOURCES}
+        src/codec/encode.cpp
+        src/codec/decode.cpp
+        src/codec/varint.cpp
+        src/codec/deterministic.cpp
         src/wallet/sdk.cpp
         src/wallet/account_manager.cpp
         src/wallet/transaction_builder.cpp
         src/wallet/odixpay_client.cpp
     )
+    target_link_libraries(usdtgwallet 
+        ${CMAKE_THREAD_LIBS_INIT}
+        OpenSSL::SSL
+        OpenSSL::Crypto
+    )
+endif()
+
+# Key tool
+if(USDTGVERSE_BUILD_TOOLS)
+    add_executable(usdtg-keytool 
+        ${COMMON_SOURCES}
+        ${CRYPTO_SOURCES}
+        src/tools/keytool.cpp
+        src/tools/keytool_main.cpp
+    )
+    target_link_libraries(usdtg-keytool 
+        ${CMAKE_THREAD_LIBS_INIT}
+        OpenSSL::SSL
+        OpenSSL::Crypto
+    )
+endif()
+
+# Genesis tool
+if(USDTGVERSE_BUILD_TOOLS)
+    add_executable(usdtg-genesis 
+        ${COMMON_SOURCES}
+        ${CRYPTO_SOURCES}
+        src/codec/encode.cpp
+        src/codec/decode.cpp
+        src/codec/varint.cpp
+        src/codec/deterministic.cpp
+        src/core/tx.cpp
+    )
+    target_link_libraries(usdtg-genesis 
+        ${CMAKE_THREAD_LIBS_INIT}
+        OpenSSL::SSL
+        OpenSSL::Crypto
+    )
+endif()
+
+# ============================================================================
+# TESTS
+# ============================================================================
+
+if(USDTGVERSE_BUILD_TESTS AND GTest_FOUND)
+    enable_testing()
     
-    target_link_libraries(usdtgwallet PRIVATE
-        Threads::Threads
+    add_executable(test_crypto 
+        ${CRYPTO_SOURCES}
+        tests/test_crypto.cpp
+    )
+    target_link_libraries(test_crypto 
+        GTest::gtest
+        GTest::gtest_main
+        ${CMAKE_THREAD_LIBS_INIT}
         OpenSSL::SSL
         OpenSSL::Crypto
     )
     
-    # Install SDK
-    install(TARGETS usdtgwallet
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-    )
-    
-    install(DIRECTORY src/wallet/
-        DESTINATION include/usdtgwallet
-        FILES_MATCHING PATTERN "*.hpp"
-    )
-endif()
-
-# ============================================================================
-# TESTING
-# ============================================================================
-
-if(USDTGVERSE_BUILD_TESTS)
-    enable_testing()
-    
-    # Find Google Test
-    find_package(PkgConfig QUIET)
-    if(PkgConfig_FOUND)
-        pkg_check_modules(GTEST QUIET gtest)
-    endif()
-    
-    if(GTEST_FOUND)
-        set(TEST_SOURCES
-            tests/test_common.cpp
-            tests/test_crypto.cpp
-            tests/test_codec.cpp
-            tests/test_merkle.cpp
-            tests/test_tx.cpp
-            tests/test_account.cpp
-            tests/test_block.cpp
-            tests/test_state.cpp
-            tests/test_consensus.cpp
-            tests/test_p2p.cpp
-            tests/test_odixpay.cpp
-            tests/test_integration.cpp
-        )
-        
-        add_executable(usdtgverse_tests
-            ${ALL_SOURCES}
-            ${TEST_SOURCES}
-            tests/test_main.cpp
-        )
-        
-        target_link_libraries(usdtgverse_tests PRIVATE
-            ${GTEST_LIBRARIES}
-            Threads::Threads
-            OpenSSL::SSL
-            OpenSSL::Crypto
-        )
-        
-        target_include_directories(usdtgverse_tests PRIVATE ${GTEST_INCLUDE_DIRS})
-        target_compile_definitions(usdtgverse_tests PRIVATE TESTING_MODE)
-        
-        add_test(NAME USDTgVerseTests COMMAND usdtgverse_tests)
-        
-        message(STATUS "✅ Tests enabled with Google Test")
-    else()
-        message(STATUS "⚠️  Google Test not found, tests disabled")
-    endif()
-endif()
-
-# ============================================================================
-# FUZZING (LibFuzzer)
-# ============================================================================
-
-if(USDTGVERSE_ENABLE_FUZZING AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(FUZZ_SOURCES
-        tests/fuzz/fuzz_tx_decode.cpp
-        tests/fuzz/fuzz_block_decode.cpp
-        tests/fuzz/fuzz_consensus_msg.cpp
-        tests/fuzz/fuzz_p2p_msg.cpp
-    )
-    
-    foreach(FUZZ_TARGET ${FUZZ_SOURCES})
-        get_filename_component(TARGET_NAME ${FUZZ_TARGET} NAME_WE)
-        add_executable(${TARGET_NAME}
-            ${ALL_SOURCES}
-            ${FUZZ_TARGET}
-        )
-        
-        target_compile_options(${TARGET_NAME} PRIVATE -fsanitize=fuzzer,address)
-        target_link_options(${TARGET_NAME} PRIVATE -fsanitize=fuzzer,address)
-        
-        target_link_libraries(${TARGET_NAME} PRIVATE
-            Threads::Threads
-            OpenSSL::SSL
-            OpenSSL::Crypto
-        )
-    endforeach()
-    
-    message(STATUS "✅ Fuzzing targets enabled")
-endif()
-
-# ============================================================================
-# CODE FORMATTING & LINTING
-# ============================================================================
-
-# clang-format
-find_program(CLANG_FORMAT clang-format)
-if(CLANG_FORMAT)
-    file(GLOB_RECURSE ALL_CXX_SOURCE_FILES
-        src/*.cpp src/*.hpp
-        tests/*.cpp tests/*.hpp
-    )
-    
-    add_custom_target(format
-        COMMAND ${CLANG_FORMAT} -i ${ALL_CXX_SOURCE_FILES}
-        COMMENT "🎨 Formatting code with clang-format"
-    )
-    
-    add_custom_target(format-check
-        COMMAND ${CLANG_FORMAT} --dry-run --Werror ${ALL_CXX_SOURCE_FILES}
-        COMMENT "🔍 Checking code format"
-    )
-endif()
-
-# clang-tidy
-find_program(CLANG_TIDY clang-tidy)
-if(CLANG_TIDY)
-    set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
-    message(STATUS "✅ clang-tidy enabled")
+    add_test(NAME CryptoTests COMMAND test_crypto)
 endif()
 
 # ============================================================================
 # INSTALLATION
 # ============================================================================
 
-# Install main executable
 install(TARGETS usdtgverse
     RUNTIME DESTINATION bin
 )
 
-# Install tools
 if(USDTGVERSE_BUILD_TOOLS)
     install(TARGETS usdtg-keytool usdtg-genesis
         RUNTIME DESTINATION bin
     )
 endif()
 
-# Install headers for development
-install(DIRECTORY src/
-    DESTINATION include/usdtgverse
-    FILES_MATCHING PATTERN "*.hpp"
-)
-
-# Install CMake config
-install(FILES cmake/USDTgVerseConfig.cmake
-    DESTINATION lib/cmake/USDTgVerse
-)
-
-# ============================================================================
-# PACKAGING
-# ============================================================================
-
-set(CPACK_PACKAGE_NAME "USDTgVerse")
-set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_DESCRIPTION}")
-set(CPACK_PACKAGE_VENDOR "USDTgVerse Team")
-set(CPACK_PACKAGE_CONTACT "dev@usdtgverse.com")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
-set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
-
-if(UNIX AND NOT APPLE)
-    set(CPACK_GENERATOR "DEB;RPM;TGZ")
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "USDTgVerse Team <dev@usdtgverse.com>")
-    set(CPACK_DEBIAN_PACKAGE_SECTION "net")
-    set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
-    set(CPACK_RPM_PACKAGE_GROUP "Applications/Internet")
-    set(CPACK_RPM_PACKAGE_LICENSE "MIT")
-elseif(APPLE)
-    set(CPACK_GENERATOR "DragNDrop;TGZ")
+if(USDTGVERSE_BUILD_WALLET_SDK)
+    install(TARGETS usdtgwallet
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
 
-include(CPack)
+if(USDTGVERSE_BUILD_ODIXPAY)
+    install(TARGETS odixpay_api
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
+endif()
+
+if(USDTGVERSE_BUILD_TRADING_ENGINE)
+    install(TARGETS trading_engine
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
+endif()
 
 # ============================================================================
-# BUILD SUMMARY
+# CONFIGURATION SUMMARY
 # ============================================================================
 
 message(STATUS "")
@@ -534,23 +281,25 @@ message(STATUS "")
 message(STATUS "🔧 Features:")
 message(STATUS "   Tests: ${USDTGVERSE_BUILD_TESTS}")
 message(STATUS "   Tools: ${USDTGVERSE_BUILD_TOOLS}")
+message(STATUS "   ODIX PAY: ${USDTGVERSE_BUILD_ODIXPAY}")
+message(STATUS "   Trading Engine: ${USDTGVERSE_BUILD_TRADING_ENGINE}")
 message(STATUS "   Wallet SDK: ${USDTGVERSE_BUILD_WALLET_SDK}")
-message(STATUS "   Metrics: ${USDTGVERSE_ENABLE_METRICS}")
-message(STATUS "   Fuzzing: ${USDTGVERSE_ENABLE_FUZZING}")
+message(STATUS "   Metrics: ${USDTGVERSE_BUILD_METRICS}")
+message(STATUS "   Fuzzing: ${USDTGVERSE_BUILD_FUZZING}")
 message(STATUS "")
 message(STATUS "📦 Dependencies:")
-if(ROCKSDB_FOUND)
-    message(STATUS "   RocksDB: ✅ ${ROCKSDB_VERSION}")
+if(RocksDB_FOUND)
+    message(STATUS "   RocksDB: ✅ ${RocksDB_VERSION}")
 else()
     message(STATUS "   RocksDB: ❌ Using built-in storage")
 endif()
-if(SODIUM_FOUND)
-    message(STATUS "   libsodium: ✅ ${SODIUM_VERSION}")
+if(libsodium_FOUND)
+    message(STATUS "   libsodium: ✅ ${libsodium_VERSION}")
 else()
     message(STATUS "   libsodium: ❌ Using built-in crypto")
 endif()
-if(SECP256K1_FOUND)
-    message(STATUS "   libsecp256k1: ✅ ${SECP256K1_VERSION}")
+if(secp256k1_FOUND)
+    message(STATUS "   libsecp256k1: ✅ ${secp256k1_VERSION}")
 else()
     message(STATUS "   libsecp256k1: ❌ Using built-in implementation")
 endif()
@@ -560,6 +309,9 @@ message(STATUS "🚀 Ready to build the fastest enterprise blockchain!")
 message(STATUS "💎 Native USDTg Token - No Contract Address")
 message(STATUS "🎯 1 USD = 1 USDTg - Algorithmic Stability")
 message(STATUS "⚡ Pure C++ Performance - Zero Framework Dependencies")
+message(STATUS "🔐 Quantum-Safe Cryptography - Future-Proof Security")
+message(STATUS "💳 ODIX PAY Integration - Enterprise Payments")
+message(STATUS "📈 Trading Engine - Leveraged Trading")
 message(STATUS "")
 message(STATUS "🌌 =============================================== 🌌")
 message(STATUS "")

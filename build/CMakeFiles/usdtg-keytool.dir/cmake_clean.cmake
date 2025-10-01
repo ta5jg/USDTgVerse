@@ -1,12 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o.d"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o.d"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o.d"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o"
-  "CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o.d"
   "CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o"
   "CMakeFiles/usdtg-keytool.dir/src/common/bytes.cpp.o.d"
   "CMakeFiles/usdtg-keytool.dir/src/common/endian.cpp.o"

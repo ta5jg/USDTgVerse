@@ -15,8 +15,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeLanguageInformation.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CMakeSystemSpecificInitialize.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CPack.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CPackComponent.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CheckIncludeFile.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CheckLibraryExists.cmake"
@@ -25,11 +23,13 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Compiler/Clang.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Compiler/GNU.cmake"
+  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindGTest.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindOpenSSL.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageMessage.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPkgConfig.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindThreads.cmake"
+  "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/GoogleTest.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Internal/CMakeCLinkerInformation.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Internal/CMakeCXXLinkerInformation.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Internal/CMakeCommonLinkerInformation.cmake"
@@ -48,7 +48,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/Linker/Apple-AppleClang.cmake"
   "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/Platform/UnixPaths.cmake"
-  "/Applications/CMake.app/Contents/share/cmake-4.1/Templates/CPackConfig.cmake.in"
   "/Users/irfangedik/USDTgVerse/CMakeLists.txt"
   "CMakeFiles/4.1.1/CMakeCCompiler.cmake"
   "CMakeFiles/4.1.1/CMakeCXXCompiler.cmake"
@@ -63,15 +62,15 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CPackConfig.cmake"
-  "CPackSourceConfig.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/usdtgverse.dir/DependInfo.cmake"
+  "CMakeFiles/odixpay_api.dir/DependInfo.cmake"
+  "CMakeFiles/trading_engine.dir/DependInfo.cmake"
+  "CMakeFiles/usdtgwallet.dir/DependInfo.cmake"
   "CMakeFiles/usdtg-keytool.dir/DependInfo.cmake"
   "CMakeFiles/usdtg-genesis.dir/DependInfo.cmake"
-  "CMakeFiles/usdtgwallet.dir/DependInfo.cmake"
   )

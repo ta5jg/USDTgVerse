@@ -18,11 +18,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/irfangedik/USDTgVerse/src/common/span.cpp" "CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/common/span.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/common/time.cpp" "CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/common/time.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/common/varint.cpp" "CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/common/varint.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/core/account.cpp" "CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/core/block.cpp" "CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/core/chain.cpp" "CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/core/mempool.cpp" "CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/core/state.cpp" "CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/core/tx.cpp" "CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/crypto/blake3.cpp" "CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/crypto/blake3.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/crypto/ed25519.cpp" "CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/crypto/ed25519.cpp.o.d"
@@ -32,8 +27,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/irfangedik/USDTgVerse/src/crypto/secp256k1_wrapper.cpp" "CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/crypto/secp256k1_wrapper.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/crypto/sha256.cpp" "CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/crypto/sha256.cpp.o.d"
   "/Users/irfangedik/USDTgVerse/src/crypto/signature.cpp" "CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/crypto/signature.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/tools/genesis.cpp" "CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o.d"
-  "/Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp" "CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o" "gcc" "CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

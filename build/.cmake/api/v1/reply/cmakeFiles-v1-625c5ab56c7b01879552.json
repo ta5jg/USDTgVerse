@@ -274,7 +274,12 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPkgConfig.cmake"
+			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindGTest.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/GoogleTest.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -285,69 +290,6 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPkgConfig.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPkgConfig.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPkgConfig.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CPack.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Modules/CPackComponent.cmake"
-		},
-		{
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Templates/CPackConfig.cmake.in"
-		},
-		{
-			"isExternal" : true,
-			"path" : "/Applications/CMake.app/Contents/share/cmake-4.1/Templates/CPackConfig.cmake.in"
 		}
 	],
 	"kind" : "cmakeFiles",

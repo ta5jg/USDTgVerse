@@ -338,104 +338,6 @@ CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/core/tx.cpp -o CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.s
 
-CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o: /Users/irfangedik/USDTgVerse/src/core/account.cpp
-CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/account.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/core/account.cpp > CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/core/account.cpp -o CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.s
-
-CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o: /Users/irfangedik/USDTgVerse/src/core/block.cpp
-CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/block.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/core/block.cpp > CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/core/block.cpp -o CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.s
-
-CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o: /Users/irfangedik/USDTgVerse/src/core/state.cpp
-CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/state.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/core/state.cpp > CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/core/state.cpp -o CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.s
-
-CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o: /Users/irfangedik/USDTgVerse/src/core/mempool.cpp
-CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/mempool.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/core/mempool.cpp > CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/core/mempool.cpp -o CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.s
-
-CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o: /Users/irfangedik/USDTgVerse/src/core/chain.cpp
-CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o -c /Users/irfangedik/USDTgVerse/src/core/chain.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/core/chain.cpp > CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/core/chain.cpp -o CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.s
-
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o: /Users/irfangedik/USDTgVerse/src/tools/genesis.cpp
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/genesis.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/tools/genesis.cpp > CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/tools/genesis.cpp -o CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.s
-
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o: CMakeFiles/usdtg-genesis.dir/flags.make
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o: /Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o: CMakeFiles/usdtg-genesis.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o -MF CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o.d -o CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp
-
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp > CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.i
-
-CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/tools/genesis_main.cpp -o CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.s
-
 # Object files for target usdtg-genesis
 usdtg__genesis_OBJECTS = \
 "CMakeFiles/usdtg-genesis.dir/src/common/bytes.cpp.o" \
@@ -456,14 +358,7 @@ usdtg__genesis_OBJECTS = \
 "CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o" \
 "CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o" \
 "CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o" \
-"CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o"
+"CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o"
 
 # External object files for target usdtg-genesis
 usdtg__genesis_EXTERNAL_OBJECTS =
@@ -487,18 +382,11 @@ usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/codec/decode.cpp.o
 usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/codec/varint.cpp.o
 usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/codec/deterministic.cpp.o
 usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/core/tx.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/core/account.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/core/block.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/core/state.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/core/mempool.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/core/chain.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/tools/genesis.cpp.o
-usdtg-genesis: CMakeFiles/usdtg-genesis.dir/src/tools/genesis_main.cpp.o
 usdtg-genesis: CMakeFiles/usdtg-genesis.dir/build.make
 usdtg-genesis: /usr/local/lib/libssl.dylib
 usdtg-genesis: /usr/local/lib/libcrypto.dylib
 usdtg-genesis: CMakeFiles/usdtg-genesis.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable usdtg-genesis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable usdtg-genesis"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/usdtg-genesis.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

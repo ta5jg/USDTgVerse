@@ -1,0 +1,2 @@
+/usr/bin/ar qc libodixpay_api.a CMakeFiles/odixpay_api.dir/src/odixpay/odixpay_api.c.o
+/usr/bin/ranlib libodixpay_api.a

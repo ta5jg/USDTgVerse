@@ -268,66 +268,10 @@ CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/crypto/noise.cpp -o CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.s
 
-CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o: CMakeFiles/usdtg-keytool.dir/flags.make
-CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o: /Users/irfangedik/USDTgVerse/src/codec/encode.cpp
-CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o: CMakeFiles/usdtg-keytool.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o -MF CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o.d -o CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/encode.cpp
-
-CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/codec/encode.cpp > CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.i
-
-CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/codec/encode.cpp -o CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.s
-
-CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o: CMakeFiles/usdtg-keytool.dir/flags.make
-CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o: /Users/irfangedik/USDTgVerse/src/codec/decode.cpp
-CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o: CMakeFiles/usdtg-keytool.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o -MF CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o.d -o CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/decode.cpp
-
-CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/codec/decode.cpp > CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.i
-
-CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/codec/decode.cpp -o CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.s
-
-CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o: CMakeFiles/usdtg-keytool.dir/flags.make
-CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o: /Users/irfangedik/USDTgVerse/src/codec/varint.cpp
-CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o: CMakeFiles/usdtg-keytool.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o -MF CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o.d -o CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/varint.cpp
-
-CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/codec/varint.cpp > CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.i
-
-CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/codec/varint.cpp -o CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.s
-
-CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o: CMakeFiles/usdtg-keytool.dir/flags.make
-CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o: /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp
-CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o: CMakeFiles/usdtg-keytool.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o -MF CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o.d -o CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o -c /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp
-
-CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp > CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.i
-
-CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/irfangedik/USDTgVerse/src/codec/deterministic.cpp -o CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.s
-
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o: CMakeFiles/usdtg-keytool.dir/flags.make
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o: /Users/irfangedik/USDTgVerse/src/tools/keytool.cpp
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o: CMakeFiles/usdtg-keytool.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o -MF CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o.d -o CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/keytool.cpp
 
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.i: cmake_force
@@ -341,7 +285,7 @@ CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.s: cmake_force
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o: CMakeFiles/usdtg-keytool.dir/flags.make
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o: /Users/irfangedik/USDTgVerse/src/tools/keytool_main.cpp
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o: CMakeFiles/usdtg-keytool.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o -MF CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o.d -o CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o -c /Users/irfangedik/USDTgVerse/src/tools/keytool_main.cpp
 
 CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.i: cmake_force
@@ -368,10 +312,6 @@ usdtg__keytool_OBJECTS = \
 "CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o" \
 "CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o" \
 "CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o" \
-"CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o" \
-"CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o" \
-"CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o" \
-"CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o" \
 "CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o" \
 "CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o"
 
@@ -392,17 +332,13 @@ usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/crypto/secp256k1_wrapper.cpp.o
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/crypto/keys.cpp.o
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/crypto/signature.cpp.o
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/crypto/noise.cpp.o
-usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/codec/encode.cpp.o
-usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/codec/decode.cpp.o
-usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/codec/varint.cpp.o
-usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/codec/deterministic.cpp.o
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/tools/keytool.cpp.o
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/src/tools/keytool_main.cpp.o
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/build.make
 usdtg-keytool: /usr/local/lib/libssl.dylib
 usdtg-keytool: /usr/local/lib/libcrypto.dylib
 usdtg-keytool: CMakeFiles/usdtg-keytool.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable usdtg-keytool"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/irfangedik/USDTgVerse/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable usdtg-keytool"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/usdtg-keytool.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

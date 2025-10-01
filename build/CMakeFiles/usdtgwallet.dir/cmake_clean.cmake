@@ -43,7 +43,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/usdtgwallet.dir/src/wallet/sdk.cpp.o.d"
   "CMakeFiles/usdtgwallet.dir/src/wallet/transaction_builder.cpp.o"
   "CMakeFiles/usdtgwallet.dir/src/wallet/transaction_builder.cpp.o.d"
-  "libusdtgwallet.dylib"
+  "libusdtgwallet.a"
   "libusdtgwallet.pdb"
 )
 

@@ -28,19 +28,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 303,
+				"line" : 193,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 478,
+				"line" : 240,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 312,
+				"line" : 202,
 				"parent" : 0
 			},
 			{
@@ -58,7 +58,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 115,
+				"line" : 75,
 				"parent" : 0
 			}
 		]
@@ -132,11 +132,27 @@
 			[
 				{
 					"backtrace" : 6,
+					"path" : "/Users/irfangedik/USDTgVerse/include"
+				},
+				{
+					"backtrace" : 6,
 					"path" : "/Users/irfangedik/USDTgVerse/src"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "/Users/irfangedik/USDTgVerse/external"
+					"path" : "/Users/irfangedik/USDTgVerse/src/common"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/irfangedik/USDTgVerse/src/crypto"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/irfangedik/USDTgVerse/src/odixpay"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/irfangedik/USDTgVerse/src/trading-engine"
 				}
 			],
 			"language" : "CXX",
@@ -168,14 +184,7 @@
 				15,
 				16,
 				17,
-				18,
-				19,
-				20,
-				21,
-				22,
-				23,
-				24,
-				25
+				18
 			]
 		}
 	],
@@ -250,14 +259,7 @@
 				15,
 				16,
 				17,
-				18,
-				19,
-				20,
-				21,
-				22,
-				23,
-				24,
-				25
+				18
 			]
 		}
 	],
@@ -375,48 +377,6 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/core/tx.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/core/account.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/core/block.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/core/state.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/core/mempool.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/core/chain.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/tools/genesis.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/tools/genesis_main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtrading_engine.a "CMakeFiles/trading_engine.dir/src/trading-engine/trading_engine.c.o"
+/usr/bin/ranlib libtrading_engine.a
