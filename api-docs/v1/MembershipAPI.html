@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <div class="bg-yellow-400 text-gray-800 px-3 py-1 rounded-full text-sm">
-                        <i class="bi bi-bg-blue-100 p-4 rounded-lg font-mono text-sm-slash mr-1"></i>API Version v1.0
+                        API Version v1.0
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center space-x-3 me-3">
                 <a href="../../../index.html" class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm mr-2">
-                    <i class="bi bi-argrid grid-cols-1 lg:grid-cols-4 gap-6-left mr-1"></i>Back to Main
+                    <i class="bi bi-arrow-left mr-1"></i>Back to Main
                 </a>
                 <a href="../../../website/index.html" class="border border-blue-500 text-blue-500 px-3 py-1 rounded text-sm">
                     <i class="bi bi-house mr-1"></i>Website
@@ -78,15 +78,15 @@
                     <i class="bi bi-hook mr-1"></i>Webhooks
                 </a>
                 <a class="text-gray-700 no-underline px-3 py-2 rounded hover:bg-gray-100" href="#examples">
-                    <i class="bi bi-bg-blue-100 p-4 rounded-lg font-mono text-sm-slash mr-1"></i>Examples
+                    <i class="bi bi-code-slash mr-1"></i>Examples
                 </a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <p-5 class="api-p-5">
-        <div class="api-max-w-7xl mx-auto px-4">
+    <main class="py-5">
+        <div class="max-w-7xl mx-auto px-4">
             <!-- Overview Section -->
             <section id="overview" class="api-section">
                 <h2 class="section-title">API Overview</h2>
@@ -98,19 +98,19 @@
                     </p>
                     
                     <div class="api-features">
-                        <div class="feature-bg-white rounded-lg shadow-lg p-6">
+                        <div class="feature-card">
                             <div class="feature-icon">🔐</div>
                             <h3 class="feature-title">Quantum-Safe Security</h3>
                             <p class="feature-description">Advanced cryptographic protection with post-quantum algorithms</p>
                         </div>
                         
-                        <div class="feature-bg-white rounded-lg shadow-lg p-6">
+                        <div class="feature-card">
                             <div class="feature-icon">⚡</div>
                             <h3 class="feature-title">High Performance</h3>
                             <p class="feature-description">Sub-millisecond response times with 99.9% uptime</p>
                         </div>
                         
-                        <div class="feature-bg-white rounded-lg shadow-lg p-6">
+                        <div class="feature-card">
                             <div class="feature-icon">🏢</div>
                             <h3 class="feature-title">Enterprise Ready</h3>
                             <p class="feature-description">SOC 2 Type II certified with full compliance suite</p>
@@ -120,7 +120,7 @@
                     <div class="api-endpoints">
                         <h3 class="endpoints-title">Base URL</h3>
                         <div class="endpoint-url">
-                            <bg-blue-100 p-4 rounded-lg font-mono text-sm>https://api.usdtgverse.com/v1</bg-blue-100 p-4 rounded-lg font-mono text-sm>
+                            https://api.usdtgverse.com/v1
                         </div>
                         
                         <h3 class="endpoints-title">Rate Limits</h3>
@@ -440,38 +440,46 @@ curl -X POST \
                 </div>
             </section>
         </div>
-    </p-5>
+    </main>
 
     <!-- Footer -->
-    <bg-black/20 backdrop-blur-lg p-8 text-center class="api-bg-black/20 backdrop-blur-lg p-8 text-center">
-        <div class="bg-black/20 backdrop-blur-lg p-8 text-center-max-w-7xl mx-auto px-4">
-            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-content">
-                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
-                    <h4>USDTgVerse API</h4>
-                    <p>Enterprise Blockchain API</p>
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <h4 class="text-xl font-bold mb-4">USDTgVerse API</h4>
+                <p class="text-gray-300 mb-6">Enterprise Blockchain API</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <h5 class="font-semibold mb-2">Support</h5>
+                        <ul class="space-y-1 text-gray-300">
+                            <li><a href="#" class="hover:text-white">API Support</a></li>
+                            <li><a href="#" class="hover:text-white">Documentation</a></li>
+                            <li><a href="#" class="hover:text-white">Status Page</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold mb-2">Resources</h5>
+                        <ul class="space-y-1 text-gray-300">
+                            <li><a href="#" class="hover:text-white">SDK Downloads</a></li>
+                            <li><a href="#" class="hover:text-white">Postman Collection</a></li>
+                            <li><a href="#" class="hover:text-white">GitHub Examples</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold mb-2">Contact</h5>
+                        <ul class="space-y-1 text-gray-300">
+                            <li><a href="#" class="hover:text-white">Developer Support</a></li>
+                            <li><a href="#" class="hover:text-white">Enterprise Sales</a></li>
+                            <li><a href="#" class="hover:text-white">Partnership</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">API Support</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Status Page</a></li>
-                    </ul>
+                <div class="border-t border-gray-700 pt-6">
+                    <p class="text-gray-400">&copy; 2024 USDTgVerse. All rights reserved.</p>
                 </div>
-                <div class="bg-black/20 backdrop-blur-lg p-8 text-center-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">SDK Downloads</a></li>
-                        <li><a href="#">Postman Collection</a></li>
-                        <li><a href="#">GitHub Examples</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="bg-black/20 backdrop-blur-lg p-8 text-center-bottom">
-                <p>&copy; 2024 USDTgVerse. All rights reserved.</p>
             </div>
         </div>
-    </bg-black/20 backdrop-blur-lg p-8 text-center>
+    </footer>
 
     <script>
         // Tab functionality
