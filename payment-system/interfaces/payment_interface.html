@@ -879,9 +879,9 @@
 
                     document.getElementById('processPayment').disabled = !isValid;
                     return isValid;
-                }
+                };
 
-                this.validateCardNumber(cardNumber) {
+                this.validateCardNumber = (cardNumber) => {
                     // Simple Luhn algorithm validation
                     const cleaned = cardNumber.replace(/\D/g, '');
                     if (cleaned.length < 13 || cleaned.length > 19) return false;
@@ -904,12 +904,12 @@
                     }
 
                     return sum % 10 === 0;
-                }
+                };
 
-                this.validateEmail(email) {
+                this.validateEmail = (email) => {
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     return emailRegex.test(email);
-                }
+                };
             }
 
             processPayment() {
