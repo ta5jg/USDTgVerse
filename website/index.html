@@ -1021,39 +1021,33 @@
             </style>
         `;
         
-        // Mega Menu JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            const megaMenuItems = document.querySelectorAll('.mega-menu-item');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const desktopMenu = document.getElementById('desktop-menu');
-            
-            // Desktop mega menu functionality
-            megaMenuItems.forEach(item => {
-                const link = item.querySelector('a');
-                const dropdown = item.querySelector('.mega-dropdown');
+        // MEGA MENU Hover Functionality
+        const menuItems = document.querySelectorAll('.mega-menu-item');
+        menuItems.forEach(item => {
+            const dropdown = item.querySelector('.mega-dropdown');
+            if (dropdown) {
+                item.addEventListener('mouseenter', function() {
+                    dropdown.style.opacity = '1';
+                    dropdown.style.visibility = 'visible';
+                    dropdown.style.transform = 'translateY(0)';
+                });
                 
-                if (dropdown) {
-                    item.addEventListener('mouseenter', () => {
-                        dropdown.style.opacity = '1';
-                        dropdown.style.visibility = 'visible';
-                        dropdown.style.transform = 'translateY(0)';
-                    });
-                    
-                    item.addEventListener('mouseleave', () => {
-                        dropdown.style.opacity = '0';
-                        dropdown.style.visibility = 'hidden';
-                        dropdown.style.transform = 'translateY(-10px)';
-                    });
-                }
-            });
-            
-            // Mobile menu toggle
-            if (mobileMenuToggle && desktopMenu) {
-                mobileMenuToggle.addEventListener('click', () => {
-                    desktopMenu.classList.toggle('mobile-open');
+                item.addEventListener('mouseleave', function() {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.visibility = 'hidden';
+                    dropdown.style.transform = 'translateY(-10px)';
                 });
             }
         });
+        
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const desktopMenu = document.getElementById('desktop-menu');
+        if (mobileMenuToggle && desktopMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                desktopMenu.classList.toggle('mobile-open');
+            });
+        }
     </script>
 </body>
 </html>
