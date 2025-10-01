@@ -29,6 +29,7 @@
     <title>USDTgDEX - Decentralized Exchange</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../../api/price-service.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -332,7 +333,10 @@
         async function updateDEXPrices() {
             try {
                 const priceService = window.USDTgVersePriceService;
-                if (!priceService) return;
+                if (!priceService) {
+                    console.warn('USDTgVersePriceService not available, using fallback data');
+                    return;
+                }
                 
                 const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG', 'USDT', 'USDC']);
                 
@@ -340,7 +344,7 @@
                 updateDEXStats(prices);
                 
             } catch (error) {
-                console.error('Error updating DEX prices:', error);
+                console.warn('Error updating DEX prices, using fallback data:', error);
             }
         }
         
@@ -555,16 +559,30 @@
         // Initialize
         updateSwapRate();
         
+        // Initialize price updates
+        setTimeout(() => {
+            updateDEXPrices();
+        }, 1000);
+        
         // Simulate real-time data updates
         setInterval(() => {
             // Update balances (simulated)
-            document.getElementById('fromBalance').textContent = (Math.random() * 1000).toFixed(2);
-            document.getElementById('toBalance').textContent = (Math.random() * 1000).toFixed(2);
+            const fromBalanceEl = document.getElementById('fromBalance');
+            const toBalanceEl = document.getElementById('toBalance');
+            const priceImpactEl = document.getElementById('priceImpact');
+            
+            if (fromBalanceEl) fromBalanceEl.textContent = (Math.random() * 1000).toFixed(2);
+            if (toBalanceEl) toBalanceEl.textContent = (Math.random() * 1000).toFixed(2);
             
             // Update price impact
-            const impact = (Math.random() * 0.5).toFixed(3);
-            document.getElementById('priceImpact').textContent = impact + '%';
-            document.getElementById('priceImpact').style.color = impact > 0.1 ? '#ff6b6b' : '#4CAF50';
+            if (priceImpactEl) {
+                const impact = (Math.random() * 0.5).toFixed(3);
+                priceImpactEl.textContent = impact + '%';
+                priceImpactEl.style.color = impact > 0.1 ? '#ff6b6b' : '#4CAF50';
+            }
+            
+            // Update DEX prices every 30 seconds
+            updateDEXPrices();
         }, 5000);
         
         console.log('🔄 USDTgDEX initialized');
