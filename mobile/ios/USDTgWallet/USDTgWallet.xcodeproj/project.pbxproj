@@ -18,6 +18,8 @@
 		B2B1D6632E7EEC6100F3CC9F /* MultiWalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */; };
 		A1234567890ABCDE5 /* TokenPriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE5 /* TokenPriceService.swift */; };
 		A1234567890ABCDE6 /* RealAssetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE6 /* RealAssetRowView.swift */; };
+		A1234567890ABCDE7 /* ODIXPAYView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE7 /* ODIXPAYView.swift */; };
+		A1234567890ABCDE8 /* TradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE8 /* TradingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiWalletManager.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE5 /* TokenPriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPriceService.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE6 /* RealAssetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealAssetRowView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE7 /* ODIXPAYView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODIXPAYView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE8 /* TradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingView.swift; sourceTree = "<group>"; };
 		C1234567890ABCDEF /* USDTgWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USDTgWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,6 +80,8 @@
 				B1234567890ABCDE4 /* Assets.xcassets */,
 				B1234567890ABCDE5 /* TokenPriceService.swift */,
 				B1234567890ABCDE6 /* RealAssetRowView.swift */,
+				B1234567890ABCDE7 /* ODIXPAYView.swift */,
+				B1234567890ABCDE8 /* TradingView.swift */,
 			);
 			path = USDTgWallet;
 			sourceTree = "<group>";
@@ -166,6 +172,8 @@
 				A1234567890ABCDE3 /* BridgeView.swift in Sources */,
 				A1234567890ABCDE5 /* TokenPriceService.swift in Sources */,
 				A1234567890ABCDE6 /* RealAssetRowView.swift in Sources */,
+				A1234567890ABCDE7 /* ODIXPAYView.swift in Sources */,
+				A1234567890ABCDE8 /* TradingView.swift in Sources */,
 				A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
