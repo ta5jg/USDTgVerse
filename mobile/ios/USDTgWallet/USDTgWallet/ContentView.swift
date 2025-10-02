@@ -123,13 +123,21 @@ struct ContentView: View {
                 }
                 .tag(0)
             
-            // USDTgVerse PAY Tab
-            USDTgVersePayView()
+            // ODIX PAY Tab
+            ODIXPAYView()
                 .tabItem {
                     Image(systemName: "creditcard.fill")
-                    Text("USDTgVerse PAY")
+                    Text("ODIX PAY")
                 }
                 .tag(1)
+            
+            // Trading Tab
+            TradingView()
+                .tabItem {
+                    Image(systemName: "chart.line.uptrend.xyaxis")
+                    Text("Trading")
+                }
+                .tag(2)
             
             // Bridge Tab
             BridgeView()
@@ -137,7 +145,7 @@ struct ContentView: View {
                     Image(systemName: "arrow.left.arrow.right.circle.fill")
                     Text("Bridge")
                 }
-                .tag(2)
+                .tag(3)
             
             // Settings Tab
             NavigationView {
@@ -152,7 +160,7 @@ struct ContentView: View {
                 Image(systemName: "gearshape.fill")
                 Text("Settings")
             }
-            .tag(3)
+            .tag(4)
         }
         .accentColor(Color(red: 0.3, green: 0.7, blue: 0.3))
     }
