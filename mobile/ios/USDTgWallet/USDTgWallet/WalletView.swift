@@ -62,6 +62,11 @@ struct WalletView: View {
     @State private var showingSwapView = false
     @State private var showingWalletList = false
     @State private var showingNetworkSelector = false
+    @State private var showingUSDTgVersePay = false
+    @State private var showingMembership = false
+    @State private var showingMarginTrading = false
+    @State private var showingCopyTrading = false
+    @State private var showingCustody = false
     @State private var currentWalletName = "My Quantum Wallet"
     @State private var currentNetwork = "USDTgVerse"
     @State private var currentWalletAssets: [WalletAsset] = []
@@ -166,6 +171,21 @@ struct WalletView: View {
                  }
              )
          }
+         .sheet(isPresented: $showingUSDTgVersePay) {
+             USDTgVersePayView()
+         }
+         .sheet(isPresented: $showingMembership) {
+             MembershipView()
+         }
+         .sheet(isPresented: $showingMarginTrading) {
+             MarginTradingView()
+         }
+         .sheet(isPresented: $showingCopyTrading) {
+             CopyTradingView()
+         }
+         .sheet(isPresented: $showingCustody) {
+             CustodyView()
+         }
     }
     
     // MARK: - Wallet Data Loading
@@ -178,32 +198,55 @@ struct WalletView: View {
         loadAssetsForNetwork(currentNetwork)
     }
     
-    // MARK: - Balance Loading Helper
-    private func loadWalletBalance(for walletName: String, asset: String) -> Double? {
-        // In production, this would load from blockchain
-        // For now, return stored balance or welcome bonus for new wallets
-        let balanceKey = "Wallet_\(walletName)_Balance_\(asset)"
-        let storedBalance = UserDefaults.standard.double(forKey: balanceKey)
-        
-        if storedBalance > 0 {
-            return storedBalance
-        } else if asset == "USDTg" {
-            // Return welcome bonus for USDTg
-            return 10.0
-        } else {
-            return nil
+    // MARK: - Real Balance Loading Helper
+    private func loadRealWalletBalance(for walletName: String, asset: String) -> Double {
+        // Production blockchain balance loading
+        guard networkManager.isConnected else {
+            return 0.0 // No connection = 0 balance
         }
+        
+        return fetchBalanceFromBlockchain(for: walletName, asset: asset)
+    }
+    
+    private func fetchBalanceFromBlockchain(for walletName: String, asset: String) -> Double {
+        // Synchronous blockchain balance fetching
+        let walletAddress = UserDefaults.standard.string(forKey: "walletAddress") ?? ""
+        
+        guard !walletAddress.isEmpty else {
+            return 0.0
+        }
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        var balance: Double = 0.0
+        let apiURL = "https://api.usdtgverse.com/api/v1/balance/\(walletAddress)/\(asset.lowercased())"
+        
+        guard let url = URL(string: apiURL) else { return 0.0 }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            defer { semaphore.signal() }
+            
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let fetchedBalance = json["balance"] as? Double else {
+                return
+            }
+            
+            balance = fetchedBalance
+        }.resume()
+        
+        semaphore.wait()
+        return balance
     }
     
     private func loadAssetsForNetwork(_ network: String) {
-        // Load network-specific assets
+        // Load real assets from blockchain - NO DEMO DATA
         switch network {
         case "USDTgVerse":
-            // Load real wallet balance or default to welcome bonus
-            let usdtgBalance = loadWalletBalance(for: currentWalletName, asset: "USDTg") ?? 10.0
+            // Load real wallet balance from blockchain
+            let usdtgBalance = loadRealWalletBalance(for: currentWalletName, asset: "USDTg")
             currentWalletAssets = [
                 WalletAsset(symbol: "USDTg", name: "USDTgVerse Token", balance: usdtgBalance, price: 1.0),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
+                WalletAsset(symbol: "USTD", name: "Tether USD", balance: 0.0, price: 1.0),
                 WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0)
             ]
             
@@ -277,8 +320,7 @@ struct WalletView: View {
                         .fontWeight(.bold)
                         .foregroundColor(networkColor(for: currentNetwork))
                     
-                    Text(networkSubtitle(for: currentNetwork))
-                        .font(.caption)
+                    .font(.caption)
                         .foregroundColor(.secondary)
                 }
                 
@@ -289,8 +331,7 @@ struct WalletView: View {
                         .fill(networkManager.isConnected ? .green : .red)
                         .frame(width: 12, height: 12)
                     
-                    Text("Block #\(networkManager.blockHeight)")
-                        .font(.caption)
+                    .font(.caption)
                         .foregroundColor(.secondary)
                 }
             }
@@ -350,7 +391,7 @@ struct WalletView: View {
         case "TRON": return "High Throughput Network"
         case "Solana": return "Ultra-Fast Blockchain"
         case "Polygon": return "Ethereum Layer 2"
-        case "Arbitrum": return "Ethereum Scaling Solution"
+        case " Arbitrum": return "Ethereum Scaling Solution"
         case "Avalanche": return "Fast Finality Network"
         default: return "Blockchain Network"
         }
@@ -371,8 +412,7 @@ struct WalletView: View {
                          .fontWeight(.semibold)
                          .foregroundColor(.white)
                      
-                     Image(systemName: "chevron.down")
-                         .font(.caption)
+                     .font(.caption)
                          .foregroundColor(.secondary)
                  }
              }
@@ -382,7 +422,7 @@ struct WalletView: View {
                  .foregroundColor(.white)
              
              HStack {
-                 Text("USDTg: \(formatBalance(loadWalletBalance(for: currentWalletName, asset: "USDTg") ?? 10.0))")
+                 Text("USDTg: \(formatBalance(loadRealWalletBalance(for: currentWalletName, asset: "USDTg")))")
                      .font(.subheadline)
                      .foregroundColor(Color(red: 0.3, green: 0.7, blue: 0.3))
                 
@@ -444,7 +484,7 @@ struct WalletView: View {
                     title: "USDTgVerse PAY",
                     color: .green
                 ) {
-                    // Navigate to USDTgVerse PAY
+                    showingUSDTgVersePay = true
                 }
             }
             
@@ -452,36 +492,36 @@ struct WalletView: View {
             HStack(spacing: 20) {
                 QuickActionButton(
                     icon: "person.3.fill",
-                    title: "Membership",
-                    color: .purple
-                ) {
-                    // Navigate to Membership Portal
+                        title: "Membership",
+                        color: .purple
+                    ) {
+                        showingMembership = true
+                    }
+                    
+                    QuickActionButton(
+                        icon: "chart.line.uptrend.xyaxis",
+                        title: "Margin Trading",
+                        color: .orange
+                    ) {
+                        showingMarginTrading = true
+                    }
+                    
+                    QuickActionButton(
+                        icon: "doc.on.doc.fill",
+                        title: "Copy Trading",
+                        color: .cyan
+                    ) {
+                        showingCopyTrading = true
+                    }
+                    
+                    QuickActionButton(
+                        icon: "building.columns.fill",
+                        title: "Custody",
+                        color: .yellow
+                    ) {
+                        showingCustody = true
+                    }
                 }
-                
-                QuickActionButton(
-                    icon: "chart.line.uptrend.xyaxis",
-                    title: "Margin Trading",
-                    color: .orange
-                ) {
-                    // Navigate to Margin Trading
-                }
-                
-                QuickActionButton(
-                    icon: "doc.on.doc.fill",
-                    title: "Copy Trading",
-                    color: .cyan
-                ) {
-                    // Navigate to Copy Trading
-                }
-                
-                QuickActionButton(
-                    icon: "building.columns.fill",
-                    title: "Custody",
-                    color: .yellow
-                ) {
-                    // Navigate to Custody Services
-                }
-            }
         }
     }
     
@@ -492,7 +532,7 @@ struct WalletView: View {
                 .padding(.horizontal)
             
              ForEach(currentWalletAssets) { asset in
-                 RealAssetRowView(asset: asset)
+                 AssetRowView(asset: asset)
              }
         }
         .padding(.vertical)
@@ -517,42 +557,7 @@ struct WalletView: View {
             .padding(.horizontal)
             
             ForEach(getWalletTransactions(), id: \.id) { transaction in
-                HStack {
-                    Circle()
-                        .fill(transaction.type == "received" ? .green : transaction.type == "sent" ? .red : .blue)
-                        .frame(width: 40, height: 40)
-                        .overlay(
-                            Image(systemName: transaction.icon)
-                                .foregroundColor(.white)
-                                .font(.system(size: 16, weight: .bold))
-                        )
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(transaction.title)
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                        
-                        Text(transaction.subtitle)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing, spacing: 4) {
-                        Text(transaction.amount)
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .foregroundColor(transaction.type == "received" ? .green : transaction.type == "sent" ? .red : .blue)
-                        
-                        Text(transaction.time)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
+                TransactionRowView(transaction: transaction)
             }
         }
         .padding(.vertical)
@@ -561,25 +566,22 @@ struct WalletView: View {
     }
     
     private func getWalletTransactions() -> [WalletTransaction] {
-        // Load real transactions from UserDefaults or show welcome bonus
-        let hasTransactions = UserDefaults.standard.array(forKey: "Wallet_\(currentWalletName)_Transactions") != nil
-        if !hasTransactions {
-            // Show welcome bonus for new wallets
-            return [
-                WalletTransaction(
-                    id: "welcome", type: "received", title: "Welcome Bonus", 
-                    subtitle: "USDTgVerse Quantum Wallet", amount: "+10.00 USDTg", 
-                    time: "Just now", icon: "gift"
-                )
-            ]
-        } else {
-            // Load real transactions from storage
-            // In production, this would parse stored transaction data
+        // Fetch real transactions from blockchain
+        guard networkManager.isConnected else {
             return []
         }
+        
+        // In production, this will fetch from blockchain API
+        return fetchRealTransactionsFromBlockchain()
     }
     
-    struct WalletTransaction {
+    private func fetchRealTransactionsFromBlockchain() -> [WalletTransaction] {
+        // This will be implemented to fetch from production blockchain API
+        // No demo transactions will be returned
+        return []
+    }
+    
+    struct WalletTransaction: Identifiable {
         let id: String
         let type: String
         let title: String
@@ -590,28 +592,46 @@ struct WalletView: View {
     }
 }
 
-struct QuickActionButton: View {
-    let icon: String
-    let title: String
-    let color: Color
-    let action: () -> Void
+struct TransactionRowView: View {
+    let transaction: WalletView.WalletTransaction
     
     var body: some View {
-        Button(action: action) {
-            VStack(spacing: 8) {
-                Image(systemName: icon)
-                    .font(.system(size: 24))
-                    .foregroundColor(color)
+        HStack {
+            Circle()
+                .fill(transaction.type == "received" ? .green : transaction.type == "sent" ? .red : .blue)
+                .frame(width: 40, height: 40)
+                .overlay(
+                    Image(systemName: transaction.icon)
+                        .foregroundColor(.white)
+                        .font(.system(size: 16, weight: .bold))
+                )
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(transaction.title)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
                 
-                Text(title)
+                Text(transaction.subtitle)
                     .font(.caption)
-                    .foregroundColor(.white)
+                    .foregroundColor(.secondary)
             }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color.secondary.opacity(0.2))
-            .cornerRadius(12)
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(transaction.amount)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(transaction.type == "received" ? .green : transaction.type == "sent" ? .red : .blue)
+                
+                Text(transaction.time)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
         }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(8)
     }
 }
 
@@ -655,62 +675,6 @@ struct AssetRowView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
-    }
-}
-
-struct TransactionRowView: View {
-    let transaction: Transaction
-    
-    var body: some View {
-        HStack {
-            Image(systemName: transaction.type.icon)
-                .font(.system(size: 20))
-                .foregroundColor(transaction.type.color)
-                .frame(width: 30)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(transactionTitle)
-                    .font(.subheadline)
-                    .foregroundColor(.white)
-                
-                Text(transactionSubtitle)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 4) {
-                Text("\(transaction.type == .sent ? "-" : "+")\(transaction.amount, specifier: "%.6f") \(transaction.asset)")
-                    .font(.subheadline)
-                    .foregroundColor(transaction.type == .sent ? .red : .green)
-                
-                Text(transaction.timestamp, style: .time)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 8)
-    }
-    
-    private var transactionTitle: String {
-        switch transaction.type {
-        case .sent: return "Sent \(transaction.asset)"
-        case .received: return "Received \(transaction.asset)"
-        case .bridge: return "Bridge Transfer"
-        case .odixpay: return "OdixPay Payment"
-        }
-    }
-    
-    private var transactionSubtitle: String {
-        if let from = transaction.from {
-            return "From: \(String(from.prefix(12)))..."
-        } else if let to = transaction.to {
-            return "To: \(String(to.prefix(12)))..."
-        } else {
-            return "Transaction ID: \(String(transaction.id.prefix(8)))..."
-        }
     }
 }
 
@@ -899,7 +863,8 @@ struct BasicReceiveView: View {
             }
         }
         .sheet(isPresented: $showingShareSheet) {
-            ShareSheet(activityItems: [qrCodeImage].compactMap { $0 })
+            // ShareSheet implementation would go here
+            Text("Share")
         }
     }
     
@@ -941,7 +906,7 @@ struct BasicReceiveView: View {
         filter.correctionLevel = "H" // High error correction for mobile scanning
         
         if let outputImage = filter.outputImage {
-            // Scale up the QR code for better visibility
+            // Scale.up the QR code for better visibility
             let transform = CGAffineTransform(scaleX: 10, y: 10)
             let scaledImage = outputImage.transformed(by: transform)
             
@@ -999,9 +964,7 @@ struct BasicSwapView: View {
     }
 }
 
-// MARK: - Legacy Asset Row View (Removed - using RealAssetRowView.swift instead)
-
-// MARK: - Basic Wallet List Sheet (No external dependencies)
+// MARK: - Basic Wallet List Sheet
 struct BasicWalletListSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var currentWalletName: String
@@ -1051,8 +1014,6 @@ struct BasicWalletListSheet: View {
                                             .font(.headline)
                                             .fontWeight(.semibold)
                                             .foregroundColor(.primary)
-                                        
-                                        // No demo badge - clean wallet list
                                     }
                                     
                                     Text("Balance: $\(walletName == "USDTgVerse Wallet" ? 0.0 : 10.0, specifier: "%.2f")")
@@ -1250,11 +1211,8 @@ struct NetworkSelectorSheet: View {
     }
 }
 
-// MARK: - Share Sheet for QR Codes (Defined in ContentView.swift)
-
 #Preview {
     WalletView()
         .environmentObject(WalletManager())
         .environmentObject(NetworkManager())
 }
-

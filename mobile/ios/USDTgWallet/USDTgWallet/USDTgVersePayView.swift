@@ -48,6 +48,10 @@ enum USDTgVersePayFeature: String, CaseIterable {
     }
 }
 
+extension USDTgVersePayFeature: FeatureProtocol {
+    var title: String { rawValue }
+}
+
 struct USDTgVersePayView: View {
     @State private var selectedFeature: USDTgVersePayFeature?
     
@@ -92,9 +96,9 @@ struct USDTgVersePayView: View {
             
             // Quick Stats
             HStack(spacing: 20) {
-                StatCard(title: "Active Cards", value: "12")
-                StatCard(title: "Monthly Volume", value: "$45K")
-                StatCard(title: "Transactions", value: "234")
+                StatCard(title: "Active Cards", value: "12", color: .blue)
+                StatCard(title: "Monthly Volume", value: "$45K", color: .green)
+                StatCard(title: "Transactions", value: "234", color: .purple)
             }
         }
         .padding()
@@ -121,64 +125,12 @@ struct USDTgVersePayView: View {
             get: { selectedFeature },
             set: { selectedFeature = $0 }
         )) { feature in
-            FeatureDetailView(feature: feature)
+            USDTgVersePayFeatureDetailView(feature: feature)
         }
     }
 }
 
-struct StatCard: View {
-    let title: String
-    let value: String
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Text(value)
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.primary)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-    }
-}
-
-struct FeatureCard: View {
-    let feature: USDTgVersePayFeature
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 12) {
-                Text(feature.icon)
-                    .font(.system(size: 40))
-                
-                Text(feature.rawValue)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.primary)
-                
-                Text(feature.description)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity, minHeight: 140)
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(16)
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
-
-struct FeatureDetailView: View {
+struct USDTgVersePayFeatureDetailView: View {
     let feature: USDTgVersePayFeature
     @Environment(\.presentationMode) var presentationMode
     

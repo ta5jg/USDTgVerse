@@ -2,201 +2,17 @@
 //  SharedComponents.swift
 //  USDTgWallet
 //
-//  Created by USDTgVerse Team on 2025-09-20.
+//  Created by USDTgVerse Team on 2025-10-02.
 //  Copyright © 2025 USDTgVerse. All rights reserved.
 //
 
 import SwiftUI
 
-// MARK: - TabButton Component
-struct TabButton: View {
-    let title: String
-    let isSelected: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Text(title)
-                .font(.headline)
-                .fontWeight(isSelected ? .bold : .medium)
-                .foregroundColor(isSelected ? .white : .primary)
-                .padding(.vertical, 12)
-                .padding(.horizontal, 20)
-                .background(
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(isSelected ? Color.blue : Color.clear)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 25)
-                        .stroke(Color.blue, lineWidth: isSelected ? 0 : 1)
-                )
-        }
-        .animation(.easeInOut(duration: 0.2), value: isSelected)
-    }
-}
+// MARK: - Shared Components for USDTgWallet
 
-// MARK: - Asset Logo Component
-struct AssetLogo: View {
-    let assetName: String
-    let size: CGFloat
-    
-    var body: some View {
-        Group {
-            if assetName == "USDTg" {
-                Image("usdtg_logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size, height: size)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle()
-                            .stroke(Color.green, lineWidth: 2)
-                    )
-            } else {
-                Circle()
-                    .fill(tokenColor(for: assetName))
-                    .frame(width: size, height: size)
-                    .overlay(
-                        Text(tokenSymbol(for: assetName))
-                            .font(.system(size: size * 0.4, weight: .bold))
-                            .foregroundColor(.white)
-                    )
-            }
-        }
-    }
-    
-    private func tokenColor(for name: String) -> Color {
-        switch name {
-        case "Bitcoin", "BTC": return .orange
-        case "Ethereum", "ETH": return .purple
-        case "USDT": return .green
-        case "USDC": return .blue
-        case "TRON", "TRX": return .red
-        case "BNB": return .yellow
-        case "SOL", "Solana": return .purple
-        case "MATIC": return .purple
-        case "AVAX": return .red
-        default: return .gray
-        }
-    }
-    
-    private func tokenSymbol(for name: String) -> String {
-        switch name {
-        case "Bitcoin", "BTC": return "₿"
-        case "Ethereum", "ETH": return "Ξ"
-        case "USDT": return "₮"
-        case "USDC": return "©"
-        case "TRON", "TRX": return "♦"
-        case "BNB": return "◆"
-        case "SOL", "Solana": return "◉"
-        case "MATIC": return "⬟"
-        case "AVAX": return "▲"
-        default: return String(name.prefix(1))
-        }
-    }
-}
-
-// MARK: - Network Status Badge
-struct NetworkStatusBadge: View {
-    let network: String
-    let isConnected: Bool
-    
-    var body: some View {
-        HStack(spacing: 4) {
-            Circle()
-                .fill(isConnected ? Color.green : Color.red)
-                .frame(width: 6, height: 6)
-            
-            Text(network)
-                .font(.caption2)
-                .fontWeight(.medium)
-        }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 4)
-        .background(isConnected ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
-        .foregroundColor(isConnected ? .green : .red)
-        .cornerRadius(8)
-    }
-}
-
-// MARK: - Portfolio Summary Card
-struct PortfolioSummaryCard: View {
-    let totalValue: String
-    let assetsCount: Int
-    let networksCount: Int
-    let isLoading: Bool
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            // USDTgVerse Branding
-            VStack(spacing: 8) {
-                Image("usdtg_logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle()
-                            .stroke(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 3)
-                    )
-                
-                Text("USDTgVerse Wallet")
-                    .font(.headline)
-                    .fontWeight(.bold)
-            }
-            
-            // Portfolio Value
-            VStack(spacing: 4) {
-                Text("Total Portfolio")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                
-                HStack(spacing: 8) {
-                    Text(totalValue)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .contentTransition(.numericText())
-                    
-                    if isLoading {
-                        ProgressView()
-                            .scaleEffect(0.7)
-                    }
-                }
-                
-                HStack(spacing: 16) {
-                    Text("\(assetsCount) Assets")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Text("•")
-                        .foregroundColor(.secondary)
-                    
-                    Text("\(networksCount)/8 Networks")
-                        .font(.caption)
-                        .foregroundColor(.green)
-                    
-                    Text("•")
-                        .foregroundColor(.secondary)
-                    
-                    Text("LIVE DATA")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
-                }
-            }
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(16)
-        .padding()
-    }
-}
-
-// MARK: - Action Button
-struct ActionButton: View {
-    let title: String
+struct QuickActionButton: View {
     let icon: String
+    let title: String
     let color: Color
     let action: () -> Void
     
@@ -205,23 +21,212 @@ struct ActionButton: View {
             VStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.title2)
-                    .fontWeight(.semibold)
+                    .foregroundColor(color)
                 
                 Text(title)
                     .font(.caption)
                     .fontWeight(.medium)
+                    .foregroundColor(.primary)
             }
-            .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [color, color.opacity(0.8)]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
+            .padding(.vertical, 12)
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct FeatureCard: View {
+    let feature: FeatureProtocol
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 12) {
+                Text(feature.icon)
+                    .font(.system(size: 40))
+                
+                Text(feature.title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.primary)
+                
+                Text(feature.description)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity, minHeight: 140)
+            .padding()
+            .background(Color(.systemGray6))
             .cornerRadius(16)
         }
+        .buttonStyle(PlainButtonStyle())
     }
+}
+
+struct FeatureDetailView: View {
+    let feature: FeatureProtocol
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 24) {
+                // Feature Header
+                VStack(spacing: 16) {
+                    Text(feature.icon)
+                        .font(.system(size: 80))
+                    
+                    Text(feature.title)
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    Text(feature.description)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+                
+                // Demo Content
+                demoContent
+                
+                Spacer()
+                
+                // Action Button
+                Button("Get Started") {
+                    // Handle feature action
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+                .font(.headline)
+                .padding()
+            }
+            .navigationTitle(feature.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("Done") {
+                presentationMode.wrappedValue.dismiss()
+            })
+        }
+    }
+    
+    @ViewBuilder
+    var demoContent: some View {
+        VStack(spacing: 16) {
+            Text("🚀 Coming Soon")
+                .font(.title2)
+                .fontWeight(.semibold)
+            
+            Text("This feature is under development and will be available in the next update.")
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+        .padding(.horizontal)
+    }
+}
+
+// MARK: - Protocol for Features
+protocol FeatureProtocol {
+    var title: String { get }
+    var description: String { get }
+    var icon: String { get }
+}
+
+/* Disabled duplicate StatCard - now defined in CopyTradingView.swift
+struct StatCard: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(value)
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
+            
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+    }
+}
+*/
+
+struct TokenBalanceView: View {
+    let symbol: String
+    let balance: Double
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(symbol)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            Text("\(balance, specifier: "%.2f")")
+                .font(.headline)
+                .fontWeight(.semibold)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(Color(.systemBackground))
+        .cornerRadius(8)
+    }
+}
+
+struct TransactionCard: View {
+    let transaction: TransactionProtocol
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Text(transaction.type)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text(transaction.amount)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(transaction.isPositive ? .green : .red)
+            }
+            
+            HStack {
+                Text(transaction.id.prefix(12) + "...")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .font(.system(.caption, design: .monospaced))
+                
+                Spacer()
+                
+                Text(transaction.timestamp)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(8)
+    }
+}
+
+protocol TransactionProtocol {
+    var type: String { get }
+    var amount: String { get }
+    var id: String { get }
+    var timestamp: String { get }
+    var isPositive: Bool { get }
 }

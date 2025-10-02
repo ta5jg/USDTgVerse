@@ -338,6 +338,11 @@
             </div>
         </div>
 
+        <!-- Search Results Area -->
+        <div id="searchResults" class="hidden mb-6">
+            <!-- Results will be displayed here -->
+        </div>
+
         <div class="sections">
             <div class="section">
                 <h2>📦 Latest Blocks</h2>
@@ -547,10 +552,145 @@
             const query = searchInput.value.trim();
             
             if (query) {
-                alert(`🔍 Searching for: ${query}\n\nIn a real implementation, this would query the blockchain API and display detailed results.`);
+                console.log(`🔍 Searching for: ${query}`);
+                
+                // Real blockchain API query function
+                searchBlockchainAPI(query);
             }
         }
         
+        async function searchBlockchainAPI(query) {
+            try {
+                // Show loading state
+                const resultsDiv = document.getElementById('searchResults');
+                resultsDiv.innerHTML = '<div class="text-center py-8">🔍 Searching blockchain...</div>';
+                resultsDiv.classList.remove('hidden');
+                
+                // Determine search type
+                let searchType, endpoint;
+                
+                if (query.startsWith('#')) {
+                    // Block search
+                    searchType = 'block';
+                    const blockNumber = query.substring(1);
+                    endpoint = `/api/v1/blocks/${blockNumber}`;
+                } else if (query.length === 64 && /^[a-fA-F0-9]+$/.test(query)) {
+                    // Transaction hash
+                    searchType = 'transaction';
+                    endpoint = `/api/v1/transactions/${query}`;
+                } else {
+                    // Address
+                    searchType = 'address';
+                    endpoint = `/api/v1/addresses/${query}`;
+                }
+                
+                // Call blockchain API
+                const response = await fetch(endpoint, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${getAPIToken()}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    displaySearchResults(data, searchType);
+                } else {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+            } catch (error) {
+                console.error('Blockchain API Error:', error);
+                
+                // Fallback: show formatted message instead of demo alert
+                const resultsDiv = document.getElementById('searchResults');
+                resultsDiv.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">🔍 Search Results</h3>
+                        <p class="text-red-600 mb-2">Search Query: <code class="bg-red-100 px-2 py-1 rounded">${query}</code></p>
+                        <p class="text-red-600 mb-4">Unable to connect to blockchain API. Please check your connection or try again later.</p>
+                        <div class="text-sm text-gray-500">
+                            <p><strong>Search Type Detected:</strong> ${determineSearchType(query)}</p>
+                            <p><strong>Expected API Endpoint:</strong> ${getExpectedEndpoint(query)}</p>
+                            <p><strong>Status:</strong> Blockchain API connection failed</p>
+                        </div>
+                    </div>
+                `;
+                resultsDiv.classList.remove('hidden');
+            }
+        }
+        
+        function getAPIToken() {
+            // Generate a mock API token for demo (replace with real auth in production)
+            return 'demo-token-' + Date.now();
+        }
+        
+        function determineSearchType(query) {
+            if (query.startsWith('#')) return 'Block Number';
+            if (query.length === 64 && /^[a-fA-F0-9]+$/.test(query)) return 'Transaction Hash';
+            return 'Address/Tx';
+        }
+        
+        function getExpectedEndpoint(query) {
+            if (query.startsWith('#')) {
+                const blockNumber = query.substring(1);
+                return `/api/v1/blocks/${blockNumber}`;
+            } else if (query.length === 64 && /^[a-fA-F0-9]+$/.test(query)) {
+                return `/api/v1/transactions/${query}`;
+            } else {
+                return `/api/v1/addresses/${query}`;
+            }
+        }
+        
+        function displaySearchResults(data, searchType) {
+            const resultsDiv = document.getElementById('searchResults');
+            
+            let html = `
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">✅ Search Results Found</h3>
+                    <p class="text-green-600 mb-4">Search Type: <strong>${searchType}</strong></p>
+            `;
+            
+            // Display different types of results
+            if (searchType === 'block') {
+                html += `
+                    <div class="space-y-2">
+                        <p><strong>Block:</strong> ${data.number || 'N/A'}</p>
+                        <p><strong>Hash:</strong> <code class="bg-green-100 px-2 py-1 rounded text-xs">${data.hash || 'N/A'}</code></p>
+                        <p><strong>Timestamp:</strong> ${data.timestamp || 'N/A'}</p>
+                        <p><strong>Transactions:</strong> ${data.transactionCount || '0'}</p>
+                        <p><strong>Size:</strong> ${data.size || '0'} bytes</p>
+                    </div>
+                `;
+            } else if (searchType === 'transaction') {
+                html += `
+                    <div class="space-y-2">
+                        <p><strong>Hash:</strong> <code class="bg-green-100 px-2 py-1 rounded text-xs">${data.hash || 'N/A'}</code></p>
+                        <p><strong>From:</strong> <code class="bg-green-100 px-2 py-1 rounded text-xs">${data.from || 'N/A'}</code></p>
+                        <p><strong>To:</strong> <code class="bg-green-100 px-2 py-1 rounded text-xs">${data.to || 'N/A'}</code></p>
+                        <p><strong>Amount:</strong> ${data.amount || '[Calculating]'} USDTg</p>
+                        <p><strong>Status:</strong> <span class="${data.status === 'confirmed' ? 'text-green-600' : 'text-yellow-600'}">${data.status || 'pending'}</span></p>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="space-y-2">
+                        <p><strong>Address:</strong> <code class="bg-green-100 px-2 py-1 rounded text-xs">${data.address || 'N/A'}</code></p>
+                        <p><strong>Balance:</strong> ${data.balance || '[Calculating]'} USDTg</p>
+                        <p><strong>Transaction Count:</strong> ${data.transactionCount || '0'}</p>
+                        <p><strong>First Seen:</strong> ${data.firstSeen || 'N/A'}</p>
+                        <p><strong>Last Activity:</strong> ${data.lastActivity || 'N/A'}</p>
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.remove('hidden');
+        }
+
         function updateTimestamps() {
             const timeElements = document.querySelectorAll('.block-time');
             timeElements.forEach((element, index) => {

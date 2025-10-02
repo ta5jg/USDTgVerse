@@ -18,8 +18,14 @@
 		B2B1D6632E7EEC6100F3CC9F /* MultiWalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */; };
 		A1234567890ABCDE5 /* TokenPriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE5 /* TokenPriceService.swift */; };
 		A1234567890ABCDE6 /* RealAssetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE6 /* RealAssetRowView.swift */; };
-		A1234567890ABCDE7 /* ODIXPAYView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE7 /* ODIXPAYView.swift */; };
-		A1234567890ABCDE8 /* TradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE8 /* TradingView.swift */; };
+		A1234567890ABCDE7 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE7 /* SharedComponents.swift */; };
+		A1234567890ABCDE8 /* ODIXPAYView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE8 /* ODIXPAYView.swift */; };
+		A1234567890ABCDE9 /* TradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDE9 /* TradingView.swift */; };
+		A1234567890ABCDFA /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEA /* MembershipView.swift */; };
+		A1234567890ABCDFB /* MarginTradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEB /* MarginTradingView.swift */; };
+		A1234567890ABCDFC /* CopyTradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEC /* CopyTradingView.swift */; };
+		A1234567890ABCDFD /* CustodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDED /* CustodyView.swift */; };
+		// A1234567890ABCDFE /* ProductionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1234567890ABCDEE /* ProductionAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +40,14 @@
 		B2B1D6622E7EEC6100F3CC9F /* MultiWalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiWalletManager.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE5 /* TokenPriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPriceService.swift; sourceTree = "<group>"; };
 		B1234567890ABCDE6 /* RealAssetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealAssetRowView.swift; sourceTree = "<group>"; };
-		B1234567890ABCDE7 /* ODIXPAYView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODIXPAYView.swift; sourceTree = "<group>"; };
-		B1234567890ABCDE8 /* TradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE7 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE8 /* ODIXPAYView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODIXPAYView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDE9 /* TradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDEA /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDEB /* MarginTradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginTradingView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDEC /* CopyTradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTradingView.swift; sourceTree = "<group>"; };
+		B1234567890ABCDED /* CustodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustodyView.swift; sourceTree = "<group>"; };
+		// B1234567890ABCDEE /* ProductionAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionAPIClient.swift; sourceTree = "<group>"; };
 		C1234567890ABCDEF /* USDTgWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USDTgWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,8 +92,13 @@
 				B1234567890ABCDE4 /* Assets.xcassets */,
 				B1234567890ABCDE5 /* TokenPriceService.swift */,
 				B1234567890ABCDE6 /* RealAssetRowView.swift */,
-				B1234567890ABCDE7 /* ODIXPAYView.swift */,
-				B1234567890ABCDE8 /* TradingView.swift */,
+				B1234567890ABCDE7 /* SharedComponents.swift */,
+				B1234567890ABCDE8 /* ODIXPAYView.swift */,
+				B1234567890ABCDE9 /* TradingView.swift */,
+				B1234567890ABCDEA /* MembershipView.swift */,
+				B1234567890ABCDEB /* MarginTradingView.swift */,
+				B1234567890ABCDEC /* CopyTradingView.swift */,
+				B1234567890ABCDED /* CustodyView.swift */,
 			);
 			path = USDTgWallet;
 			sourceTree = "<group>";
@@ -172,9 +189,15 @@
 				A1234567890ABCDE3 /* BridgeView.swift in Sources */,
 				A1234567890ABCDE5 /* TokenPriceService.swift in Sources */,
 				A1234567890ABCDE6 /* RealAssetRowView.swift in Sources */,
-				A1234567890ABCDE7 /* ODIXPAYView.swift in Sources */,
-				A1234567890ABCDE8 /* TradingView.swift in Sources */,
+				A1234567890ABCDE7 /* SharedComponents.swift in Sources */,
+				A1234567890ABCDE8 /* ODIXPAYView.swift in Sources */,
+				A1234567890ABCDE9 /* TradingView.swift in Sources */,
 				A1234567890ABCDEF /* USDTgWalletApp.swift in Sources */,
+				A1234567890ABCDFA /* MembershipView.swift in Sources */,
+				A1234567890ABCDFB /* MarginTradingView.swift in Sources */,
+				A1234567890ABCDFC /* CopyTradingView.swift in Sources */,
+				A1234567890ABCDFD /* CustodyView.swift in Sources */,
+				// A1234567890ABCDFE /* ProductionAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

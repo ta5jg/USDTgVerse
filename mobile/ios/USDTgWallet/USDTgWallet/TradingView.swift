@@ -7,767 +7,490 @@
 //
 
 import SwiftUI
-import Charts
 
-enum TradingTab: String, CaseIterable {
-    case trade = "Trade"
-    case positions = "Positions"
-    case orders = "Orders"
-    case history = "History"
-}
-
-enum OrderType: String, CaseIterable {
-    case market = "Market"
-    case limit = "Limit"
-    case stop = "Stop"
-}
-
-enum OrderSide: String, CaseIterable {
+enum TradingAction: String, CaseIterable {
     case buy = "Buy"
     case sell = "Sell"
+    case marketOrder = "Market Order"
+    case benchmarkOrder = "Benchmark Order"
+    case smartOrder = "Smart Order"
+    case basketOrder = "Basket Order"
+    case portfolioRebalance = "Portfolio Rebalance"
+    case volumeOrder = "Volume Order"
+    case liquidityOrder = "Liquidity Order"
+    case advancedOrder = "Advanced Order"
+
+    var icon: String {
+        switch self {
+        case .buy: return "📈"
+        case .sell: return "📉"
+        case .marketOrder: return "🎯"
+        case .benchmarkOrder: return "🎯"
+        case .smartOrder: return "🧠"
+        case .basketOrder: return "🛍️"
+        case .portfolioRebalance: return "⚖️"
+        case .volumeOrder: return "📊"
+        case .liquidityOrder: return "💧"
+        case .advancedOrder: return "⚙️"
+        }
+    }
+}
+
+extension TradingAction: FeatureProtocol {
+    var title: String { rawValue }
+    
+    var description: String {
+        switch self {
+        case .buy: return "Execute purchase orders"
+        case .sell: return "Execute sell orders"
+        case .marketOrder: return "Place market orders"
+        case .benchmarkOrder: return "Compare against benchmarks"
+        case .smartOrder: return "AI-powered order execution"
+        case .basketOrder: return "Execute basket of securities"
+        case .portfolioRebalance: return "Rebalance entire portfolio"
+        case .volumeOrder: return "Volume-based order types"
+        case .liquidityOrder: return "Liquidity-focused orders"
+        case .advancedOrder: return "Complex order strategies"
+        }
+    }
+}
+
+extension TradingAction: Identifiable {
+    var id: String { rawValue }
 }
 
 struct TradingView: View {
-    @State private var selectedTab: TradingTab = .trade
-    @State private var selectedSymbol = "USDTg/USDT"
+    @State private var selectedPair: String = "USDTg/USDT"
     @State private var currentPrice: Double = 1.00
     @State private var priceChange: Double = 0.02
-    @State private var balance: Double = 10000.00
-    @State private var availableBalance: Double = 8500.00
-    @State private var marginUsed: Double = 1500.00
-    @State private var unrealizedPnL: Double = 250.00
-    
-    let symbols = ["USDTg/USDT", "USDTgV/USDT", "USDTgG/USDT", "USDTg/ETH", "USDTg/BTC"]
-    
+    @State private var leverage: Int = 10
+    @State private var selectedAction: TradingAction?
+    @State private var orderCount: Int = 0
+    @State private var profits: Double = 2147.83
+    @State private var currentPortfolioValue: Double = 50000.00
+
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                // Header with Balance
-                headerView
-                
-                // Tab Selector
-                tabSelector
-                
-                // Content
-                tabContent
+            ScrollView {
+                VStack(spacing: 20) {
+                    headerView
+                    tradingActionsGrid
+                    livePricesSection
+                    orderBookSection
+                    positionsSection
+                    orderHistorySection
+                }
+                .padding()
             }
-            .navigationTitle("Trading")
+            .navigationTitle("Trading Engine")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-    
+
     private var headerView: some View {
-        VStack(spacing: 16) {
-            // Trading Logo
-            VStack(spacing: 8) {
-                Circle()
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 60, height: 60)
-                    .overlay(
-                        Image(systemName: "chart.line.uptrend.xyaxis")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                    )
-                
-                Text("Leveraged Trading")
-                    .font(.headline)
-                    .fontWeight(.bold)
+        VStack(spacing: 12) {
+            Picker("Trading Pair", selection: $selectedPair) {
+                Text("USDTg/USDT").tag("USDTg/USDT")
+                Text("USDTgV/USDT").tag("USDTgV/USDT")
+                Text("USDTgG/USDT").tag("USDTgG/USDT")
             }
-            
-            // Balance Overview
-            VStack(spacing: 12) {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Trading Balance")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text("$\(balance, specifier: "%.2f")")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing) {
-                        Text("Unrealized PnL")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text("$\(unrealizedPnL, specifier: "%.2f")")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(unrealizedPnL >= 0 ? .green : .red)
-                    }
+            .pickerStyle(SegmentedPickerStyle())
+
+            HStack {
+                Text(selectedPair)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text(String(format: "$%.4f", currentPrice))
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    Text(String(format: "%+.2f%%", priceChange * 100))
+                        .foregroundColor(priceChange >= 0 ? .green : .red)
+                        .font(.subheadline)
                 }
-                
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Available")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text("$\(availableBalance, specifier: "%.2f")")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing) {
-                        Text("Margin Used")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text("$\(marginUsed, specifier: "%.2f")")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                    }
-                }
+            }
+            .padding(.horizontal)
+
+            HStack {
+                StatCard(title: "Leverage", value: "\(leverage)x", color: .orange)
+                StatCard(title: "24h Volume", value: "$15.2M", color: .green)
+                StatCard(title: "Open Interest", value: "$8.9M", color: .blue)
+                StatCard(title: "Orders", value: "42", color: .purple)
             }
         }
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(16)
-        .padding()
     }
-    
-    private var tabSelector: some View {
-        HStack(spacing: 0) {
-            ForEach(TradingTab.allCases, id: \.self) { tab in
-                Button(action: {
-                    selectedTab = tab
-                }) {
-                    VStack(spacing: 4) {
-                        Text(tab.rawValue)
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .foregroundColor(selectedTab == tab ? .blue : .secondary)
-                        
-                        Rectangle()
-                            .fill(selectedTab == tab ? Color.blue : Color.clear)
-                            .frame(height: 2)
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-            }
-        }
-        .padding(.horizontal)
-        .background(Color(.systemBackground))
-    }
-    
-    @ViewBuilder
-    private var tabContent: some View {
-        switch selectedTab {
-        case .trade:
-            TradeView(
-                selectedSymbol: $selectedSymbol,
-                currentPrice: $currentPrice,
-                priceChange: $priceChange,
-                symbols: symbols
-            )
-        case .positions:
-            PositionsView()
-        case .orders:
-            OrdersView()
-        case .history:
-            HistoryView()
-        }
-    }
-}
 
-struct TradeView: View {
-    @Binding var selectedSymbol: String
-    @Binding var currentPrice: Double
-    @Binding var priceChange: Double
-    let symbols: [String]
-    
-    @State private var orderType: OrderType = .market
-    @State private var orderSide: OrderSide = .buy
-    @State private var quantity = ""
-    @State private var price = ""
-    @State private var leverage: Double = 1
-    @State private var isPlacingOrder = false
-    @State private var showingSuccess = false
-    
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 24) {
-                // Symbol Selector
-                symbolSelector
-                
-                // Price Display
-                priceDisplay
-                
-                // Order Form
-                orderForm
-                
-                // Order Buttons
-                orderButtons
+    private var tradingActionsGrid: some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+            ForEach(Array(TradingAction.allCases.prefix(8)), id: \.self) { action in
+                TradingActionCard(action: action, onAction: {
+                    selectedAction = action
+                })
             }
-            .padding()
-        }
-        .alert("Order Placed!", isPresented: $showingSuccess) {
-            Button("OK") { }
-        } message: {
-            Text("Your \(orderSide.rawValue) order for \(quantity) \(selectedSymbol) has been placed successfully!")
         }
     }
-    
-    private var symbolSelector: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Trading Pair")
+
+    private var livePricesSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("📈 Live Prices")
                 .font(.headline)
+                .fontWeight(.semibold)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(symbols, id: \.self) { symbol in
-                        Button(action: {
-                            selectedSymbol = symbol
-                            updatePrice()
-                        }) {
-                            Text(symbol)
-                                .font(.subheadline)
-                                .fontWeight(.medium)
-                                .foregroundColor(selectedSymbol == symbol ? .white : .primary)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .background(selectedSymbol == symbol ? Color.blue : Color(.systemGray6))
-                                .cornerRadius(20)
-                        }
-                    }
+            VStack(spacing: 8) {
+                PriceRow(symbol: "USDTg/USDT", price: 1.0000, change: 2.14, volume: "15.2M")
+                PriceRow(symbol: "USDTgV/USDT", price: 0.9980, change: -0.85, volume: "12.8M")
+                PriceRow(symbol: "USDTgG/USDT", price: 1.0015, change: 1.23, volume: "8.5M")
+                PriceRow(symbol: "OZBC/USDT", price: 256.20, change: 3.45, volume: "25.1M")
+                PriceRow(symbol: "USDTg/EUR", price: 0.9150, change: -1.12, volume: "5.2M")
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+
+    private var orderBookSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("📊 Order Book")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                Spacer()
+                Button("Refresh") {
+                    // Refresh order book
+                }
+                .foregroundColor(.blue)
+                .font(.caption)
+            }
+            
+            VStack(spacing: 4) {
+                HStack {
+                    Text("Price")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("Amount")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("Total")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
                 .padding(.horizontal)
-            }
-        }
-    }
-    
-    private var priceDisplay: some View {
-        VStack(spacing: 8) {
-            Text("Current Price")
-                .font(.headline)
-            
-            HStack {
-                Text("$\(currentPrice, specifier: "%.6f")")
-                    .font(.system(size: 24, weight: .bold, design: .monospaced))
                 
-                Spacer()
-                
-                HStack(spacing: 4) {
-                    Image(systemName: priceChange >= 0 ? "arrow.up" : "arrow.down")
-                        .foregroundColor(priceChange >= 0 ? .green : .red)
-                    
-                    Text("\(priceChange * 100, specifier: "%.2f")%")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(priceChange >= 0 ? .green : .red)
-                }
-            }
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(12)
-        }
-    }
-    
-    private var orderForm: some View {
-        VStack(spacing: 20) {
-            // Order Type
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Order Type")
-                    .font(.headline)
-                
-                Picker("Order Type", selection: $orderType) {
-                    ForEach(OrderType.allCases, id: \.self) { type in
-                        Text(type.rawValue).tag(type)
+                // Sample order book data
+                ForEach(0..<5) { index in
+                    HStack {
+                        Text("\(1.0000 + Double(index) * 0.001, specifier: "%.4f")")
+                            .foregroundColor(.red)
+                            .font(.system(.caption, design: .monospaced))
+                        Spacer()
+                        Text("\(Double.random(in: 100...1000), specifier: "%.2f")")
+                            .font(.caption)
+                            .font(.system(.caption, design: .monospaced))
+                        Spacer()
+                        Text("\(Double.random(in: 500...5000), specifier: "%.2f")")
+                            .font(.caption)
+                            .font(.system(.caption, design: .monospaced))
                     }
+                    .padding(.horizontal)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-            
-            // Quantity
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Quantity")
-                    .font(.headline)
                 
-                TextField("0.00", text: $quantity)
-                    .keyboardType(.decimalPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            
-            // Price (for limit/stop orders)
-            if orderType != .market {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Price")
-                        .font(.headline)
-                    
-                    TextField("0.00", text: $price)
-                        .keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                Divider()
+                    .background(Color.gray)
+                
+                ForEach(0..<5) { index in
+                    HStack {
+                        Text("\(1.0000 - Double(index) * 0.001, specifier: "%.4f")")
+                            .foregroundColor(.green)
+                            .font(.caption)
+                            .font(.system(.caption, design: .monospaced))
+                        Spacer()
+                        Text("\(Double.random(in: 100...1000), specifier: "%.2f")")
+                            .font(.caption)
+                            .font(.system(.caption, design: .monospaced))
+                        Spacer()
+                        Text("\(Double.random(in: 500...5000), specifier: "%.2f")")
+                            .font(.caption)
+                            .font(.system(.caption, design: .monospaced))
+                    }
+                    .padding(.horizontal)
                 }
-            }
-            
-            // Leverage
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Leverage: \(Int(leverage))x")
-                    .font(.headline)
-                
-                Slider(value: $leverage, in: 1...100, step: 1)
-                    .accentColor(.blue)
             }
         }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
     }
-    
-    private var orderButtons: some View {
-        HStack(spacing: 16) {
-            Button(action: {
-                orderSide = .buy
-                placeOrder()
-            }) {
-                Text("Buy")
+
+    private var positionsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("💼 Positions")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(12)
+                Spacer()
+                Button("View All") {
+                    // Navigate to positions
+                }
+                .foregroundColor(.blue)
+                .font(.caption)
             }
             
-            Button(action: {
-                orderSide = .sell
-                placeOrder()
-            }) {
-                Text("Sell")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.red)
-                    .cornerRadius(12)
+            VStack(spacing: 8) {
+                PositionCard(
+                    symbol: "USDTg/USDT",
+                    type: "Long",
+                    size: "1,000",
+                    entryPrice: "$0.9980",
+                    currentPrice: "$1.0000",
+                    pnl: "$2.00",
+                    pnlPercent: "+0.20%"
+                )
+                
+                PositionCard(
+                    symbol: "OZBC/USDT",
+                    type: "Short",
+                    size: "100",
+                    entryPrice: "$258.50",
+                    currentPrice: "$256.20",
+                    pnl: "$230.00",
+                    pnlPercent: "+0.89%"
+                )
             }
         }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
     }
-    
-    private func updatePrice() {
-        // Simulate price update
-        let basePrice = getBasePrice(for: selectedSymbol)
-        let change = (Double.random(in: -0.02...0.02))
-        currentPrice = basePrice * (1 + change)
-        priceChange = change
-    }
-    
-    private func getBasePrice(for symbol: String) -> Double {
-        switch symbol {
-        case "USDTg/USDT": return 1.00
-        case "USDTgV/USDT": return 0.50
-        case "USDTgG/USDT": return 5.00
-        case "USDTg/ETH": return 0.0005
-        case "USDTg/BTC": return 0.000022
-        default: return 1.00
+
+    private var orderHistorySection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("📋 Recent Orders")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                Spacer()
+                Button("View All") {
+                    // Navigate to order history
+                }
+                .foregroundColor(.blue)
+                .font(.caption)
+            }
+            
+            VStack(spacing: 8) {
+                OrderHistoryCard(
+                    symbol: "USDTg/USDT",
+                    side: "BUY",
+                    amount: "500.00",
+                    price: "$1.0000",
+                    status: "Filled",
+                    time: "10:25:30"
+                )
+                
+                OrderHistoryCard(
+                    symbol: "OZBC/USDT",
+                    side: "SELL",
+                    amount: "50.00",
+                    price: "$258.50",
+                    status: "Partially Filled",
+                    time: "09:45:15"
+                )
+            }
         }
-    }
-    
-    private func placeOrder() {
-        guard !quantity.isEmpty, Double(quantity) ?? 0 > 0 else { return }
-        
-        isPlacingOrder = true
-        
-        // Simulate order placement
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            isPlacingOrder = false
-            showingSuccess = true
-        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
     }
 }
 
-struct PositionsView: View {
-    @State private var positions: [Position] = [
-        Position(
-            id: "pos_001",
-            symbol: "USDTg/USDT",
-            side: .buy,
-            quantity: 1000,
-            entryPrice: 0.9995,
-            currentPrice: 1.0005,
-            leverage: 10,
-            pnl: 1.00
-        ),
-        Position(
-            id: "pos_002",
-            symbol: "USDTgV/USDT",
-            side: .sell,
-            quantity: 500,
-            entryPrice: 0.5020,
-            currentPrice: 0.4980,
-            leverage: 5,
-            pnl: 2.00
-        )
-    ]
+struct TradingActionCard: View {
+    let action: TradingAction
+    let onAction: () -> Void
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(positions) { position in
-                    PositionCard(position: position) {
-                        closePosition(position.id)
-                    }
-                }
+        Button(action: onAction) {
+            VStack(spacing: 12) {
+                Text(action.icon)
+                    .font(.system(size: 32))
+                
+                Text(action.title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.primary)
+                
+                Text(action.description)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
             }
+            .frame(maxWidth: .infinity, minHeight: 140)
             .padding()
+            .background(Color(.systemBackground))
+            .cornerRadius(16)
+            .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
         }
+        .buttonStyle(PlainButtonStyle())
     }
+}
+
+struct PriceRow: View {
+    let symbol: String
+    let price: Double
+    let change: Double
+    let volume: String
     
-    private func closePosition(_ positionId: String) {
-        positions.removeAll { $0.id == positionId }
+    var body: some View {
+        HStack {
+            Text(symbol)
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .frame(width: 100, alignment: .leading)
+            
+            Spacer()
+            
+            Text("\(price, specifier: "%.4f")")
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .font(.system(.caption, design: .monospaced))
+            
+            Spacer()
+            
+            Text("\(change, specifier: "%+.2f")%")
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundColor(change >= 0 ? .green : .red)
+            
+            Spacer()
+            
+            Text(volume)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .frame(width: 60, alignment: .trailing)
+        }
+        .padding(.vertical, 4)
     }
 }
 
 struct PositionCard: View {
-    let position: Position
-    let onClose: () -> Void
+    let symbol: String
+    let type: String
+    let size: String
+    let entryPrice: String
+    let currentPrice: String
+    let pnl: String
+    let pnlPercent: String
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(position.symbol)
-                    .font(.headline)
+                Text(symbol)
+                    .font(.subheadline)
                     .fontWeight(.semibold)
                 
                 Spacer()
                 
-                Text(position.side.rawValue)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
+                Text(type)
+                    .font(.caption)
                     .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(position.side == .buy ? Color.green : Color.red)
-                    .cornerRadius(6)
+                    .padding(.vertical, 2)
+                    .background(type == "Long" ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
+                    .foregroundColor(type == "Long" ? .green : .red)
+                    .cornerRadius(4)
             }
             
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Quantity")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("\(position.quantity)")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .center) {
-                    Text("Entry Price")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("$\(position.entryPrice, specifier: "%.6f")")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("Current Price")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("$\(position.currentPrice, specifier: "%.6f")")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-            }
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Leverage")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("\(position.leverage)x")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("PnL")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("$\(position.pnl, specifier: "%.2f")")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(position.pnl >= 0 ? .green : .red)
-                }
-            }
-            
-            Button("Close Position") {
-                onClose()
-            }
-            .font(.subheadline)
-            .foregroundColor(.white)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(Color.orange)
-            .cornerRadius(8)
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-    }
-}
-
-struct OrdersView: View {
-    @State private var orders: [Order] = [
-        Order(
-            id: "ord_001",
-            symbol: "USDTg/USDT",
-            side: .buy,
-            quantity: 500,
-            price: 0.9990,
-            type: .limit,
-            status: "Pending"
-        ),
-        Order(
-            id: "ord_002",
-            symbol: "USDTgG/USDT",
-            side: .sell,
-            quantity: 100,
-            price: 5.1000,
-            type: .limit,
-            status: "Pending"
-        )
-    ]
-    
-    var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(orders) { order in
-                    OrderCard(order: order) {
-                        cancelOrder(order.id)
-                    }
-                }
-            }
-            .padding()
-        }
-    }
-    
-    private func cancelOrder(_ orderId: String) {
-        orders.removeAll { $0.id == orderId }
-    }
-}
-
-struct OrderCard: View {
-    let order: Order
-    let onCancel: () -> Void
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text(order.symbol)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Text(order.side.rawValue)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(order.side == .buy ? Color.green : Color.red)
-                    .cornerRadius(6)
-            }
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Quantity")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("\(order.quantity)")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .center) {
-                    Text("Price")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("$\(order.price, specifier: "%.6f")")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("Type")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text(order.type.rawValue)
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-            }
-            
-            HStack {
-                Text("Status: \(order.status)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                
-                Spacer()
-                
-                Button("Cancel") {
-                    onCancel()
-                }
-                .font(.subheadline)
-                .foregroundColor(.white)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color.red)
-                .cornerRadius(8)
-            }
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-    }
-}
-
-struct HistoryView: View {
-    @State private var history: [TradeHistory] = [
-        TradeHistory(
-            id: "hist_001",
-            symbol: "USDTg/USDT",
-            side: .buy,
-            quantity: 1000,
-            price: 0.9995,
-            timestamp: Date().addingTimeInterval(-3600),
-            pnl: 1.00
-        ),
-        TradeHistory(
-            id: "hist_002",
-            symbol: "USDTgV/USDT",
-            side: .sell,
-            quantity: 500,
-            price: 0.5020,
-            timestamp: Date().addingTimeInterval(-7200),
-            pnl: 2.00
-        )
-    ]
-    
-    var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(history) { trade in
-                    HistoryCard(trade: trade)
-                }
-            }
-            .padding()
-        }
-    }
-}
-
-struct HistoryCard: View {
-    let trade: TradeHistory
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text(trade.symbol)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Text(trade.side.rawValue)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(trade.side == .buy ? Color.green : Color.red)
-                    .cornerRadius(6)
-            }
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Quantity")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("\(trade.quantity)")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .center) {
-                    Text("Price")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("$\(trade.price, specifier: "%.6f")")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("PnL")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text("$\(trade.pnl, specifier: "%.2f")")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(trade.pnl >= 0 ? .green : .red)
-                }
-            }
-            
-            HStack {
-                Text(trade.timestamp, style: .relative)
+                Text("Size: \(size)")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
                 Spacer()
+                
+                Text("Entry: \(entryPrice)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                VStack(alignment: .trailing) {
+                    Text("PnL: \(pnl)")
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundColor(pnl.hasPrefix("+") ? .green : .red)
+                    
+                    Text(pnlPercent)
+                        .font(.caption)
+                        .foregroundColor(pnlPercent.hasPrefix("+") ? .green : .red)
+                }
             }
         }
         .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
+        .background(Color(.systemBackground))
+        .cornerRadius(8)
     }
 }
 
-// MARK: - Data Models
-struct Position: Identifiable {
-    let id: String
+struct OrderHistoryCard: View {
     let symbol: String
-    let side: OrderSide
-    let quantity: Double
-    let entryPrice: Double
-    let currentPrice: Double
-    let leverage: Int
-    let pnl: Double
-}
-
-struct Order: Identifiable {
-    let id: String
-    let symbol: String
-    let side: OrderSide
-    let quantity: Double
-    let price: Double
-    let type: OrderType
+    let side: String
+    let amount: String
+    let price: String
     let status: String
-}
-
-struct TradeHistory: Identifiable {
-    let id: String
-    let symbol: String
-    let side: OrderSide
-    let quantity: Double
-    let price: Double
-    let timestamp: Date
-    let pnl: Double
+    let time: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(symbol)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text(side)
+                    .font(.caption)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .background(side == "BUY" ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
+                    .foregroundColor(side == "BUY" ? .green : .red)
+                    .cornerRadius(4)
+            }
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Amount: \(amount)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    Text("Price: \(price)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text(status)
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundColor(status == "Filled" ? .green : .orange)
+                    
+                    Text(time)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(8)
+    }
 }
 
 struct TradingView_Previews: PreviewProvider {
