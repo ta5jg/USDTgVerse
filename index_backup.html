@@ -1,0 +1,1275 @@
+<!--
+==============================================
+ File:        index.html
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Main Dashboard - Enterprise Independent Blockchain
+   
+   Main landing page for the USDTgVerse ecosystem featuring:
+   - Token information and prices
+   - Mega menu navigation
+   - Live dashboard links
+   - Real-time status updates
+   - Professional UI/UX design
+
+ License:
+   MIT License
+==============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Dashboard - Enterprise Independent Blockchain</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="api/price-service.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold {
+            background: linear-gradient(45deg, #ff6b00, #ff0066);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            animation: glow 2s infinite alternate;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 1024px) {
+            .bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold {
+                display: none;
+            }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 0, 102, 0.8); }
+        }
+        
+        .text-white underline hover:text-yellow-300 transition-colors duration-300 {
+            color: white !important;
+            text-decoration: none;
+        }
+        
+        .main-max-w-7xl mx-auto px-4 {
+            text-align: center;
+            max-width: 1200px;
+            margin: 500px auto 0;
+            padding: 40px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-max-w-7xl mx-auto px-4 {
+                margin: 550px auto 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-max-w-7xl mx-auto px-4 {
+                margin: 600px auto 0;
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2.5em;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-max-w-7xl mx-auto px-4 {
+                margin: 650px auto 0;
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2em;
+            }
+            
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        .logo {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .logo-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(76, 175, 80, 0.3);
+            position: relative;
+            border: 4px solid white;
+        }
+        
+        .logo-shield {
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .logo-crown {
+            position: absolute;
+            top: -15px;
+            font-size: 2em;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .app-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .app-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .quantum-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            animation: quantum-glow 3s infinite alternate;
+        }
+        
+        @keyframes quantum-glow {
+            0% { 
+                border-color: rgba(0, 255, 136, 0.3);
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            }
+            100% { 
+                border-color: rgba(0, 102, 255, 0.5);
+                box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+            }
+        }
+        
+        .quantum-icon {
+            font-size: 3em;
+            animation: quantum-spin 4s infinite linear;
+        }
+        
+        @keyframes quantum-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .text-white underline hover:text-yellow-300 transition-colors duration-300-btn {
+            background: linear-gradient(45deg, #00ff88, #0066ff) !important;
+            color: white !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: quantum-pulse 2s infinite;
+        }
+        
+        @keyframes quantum-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .quantum-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            margin: 40px 0;
+            padding: 40px;
+            animation: quantum-section-glow 4s infinite alternate;
+        }
+        
+        @keyframes quantum-section-glow {
+            0% { 
+                border-color: rgba(0, 255, 136, 0.3);
+                box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+            }
+            100% { 
+                border-color: rgba(0, 102, 255, 0.5);
+                box-shadow: 0 0 50px rgba(0, 102, 255, 0.3);
+            }
+        }
+        
+        .quantum-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .quantum-logo-large {
+            font-size: 8em;
+            animation: quantum-logo-pulse 3s infinite;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            min-width: 120px;
+        }
+        
+        @keyframes quantum-logo-pulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+            50% { 
+                transform: scale(1.1) rotate(180deg);
+                filter: hue-rotate(60deg);
+            }
+        }
+        
+        .quantum-info {
+            flex: 1;
+        }
+        
+        .quantum-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00ff88, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .quantum-slogan {
+            font-size: 1.3em;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .quantum-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        .quantum-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff88, #0066ff);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            animation: quantum-cta-glow 2s infinite alternate;
+        }
+        
+        @keyframes quantum-cta-glow {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+            100% { box-shadow: 0 0 40px rgba(0, 102, 255, 0.6); }
+        }
+        
+        .quantum-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .quantum-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .quantum-logo-large {
+                font-size: 5em;
+            }
+            
+            .quantum-title {
+                font-size: 2em;
+            }
+        }
+        
+        .app-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .app-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .app-description {
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        
+        .app-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: white;
+            color: #2a5298;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .app-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .status-bar {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .status-item {
+            text-align: center;
+        }
+        
+        .status-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .status-label {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5em;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-max-w-7xl mx-auto px-4 {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans m-0 p-0">
+    <!-- Navigation will be added dynamically by JavaScript -->
+
+    <div class="bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold">
+        🚀 <strong>MAJOR RELEASE:</strong> Three Tokens Live! USDTg ($1.00), USDTgV ($0.50), USDTgG ($5.00) - All trading pairs active! 
+        <a href="dashboard/index.html" class="text-white underline hover:text-yellow-300 transition-colors duration-300">📊 Trade Now →</a>
+    </div>
+    
+    <!-- Include Navigation -->
+    <div id="navigation-placeholder"></div>
+    <div class="main-max-w-7xl mx-auto px-4">
+        <div class="logo">
+            <img src="assets/logos/logo.png" alt="USDTgVerse Logo" style="width: 120px; height: 120px; margin-right: 20px;">
+            <div>USDTgVerse</div>
+        </div>
+        <div class="subtitle">A Stable Universe, Decentralized for All.</div>
+        <div class="description">
+            The world's first truly independent blockchain with native USDTg stablecoin.<br>
+            Ultra-high performance, enterprise security, zero dependencies.<br>
+            <strong>🎉 NEW:</strong> USDTgV Utility Token ($0.50) & USDTgG Governance Token ($5.00) now live!
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="status-value" style="color: #28a745;">LIVE</div>
+                    <div class="status-label">Mainnet Status</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value">100%</div>
+                    <div class="status-label">Security Score</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="usdtg-price">$1.00</div>
+                    <div class="status-label">USDTg Price</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="usdtgv-price">$0.50</div>
+                    <div class="status-label">USDTgV Price</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="usdtgg-price">$5.00</div>
+                    <div class="status-label">USDTgG Price</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value">1.6B</div>
+                    <div class="status-label">Total Supply</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quantum-Safe Security Section -->
+        <div class="quantum-section">
+            <div class="quantum-content">
+                <div class="quantum-logo-large">⚛️</div>
+                <div class="quantum-info">
+                    <h2 class="quantum-title">Quantum-Safe Revolution</h2>
+                    <p class="quantum-slogan">World's First Quantum-Resistant Blockchain</p>
+                    <p class="quantum-description">
+                        USDTgVerse pioneers post-quantum cryptography with CRYSTALS-Dilithium and CRYSTALS-Kyber algorithms, 
+                        providing 256-bit quantum security - equivalent to AES-1024 classical encryption. 
+                        Future-proof your digital assets for the next 50 years.
+                    </p>
+                    <a href="website/quantum-safe.html" class="quantum-cta">
+                        🚀 Explore Quantum Technology
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-icon">🔧</div>
+                <div class="app-title">USDTgScript IDE</div>
+                <div class="app-description">Native smart contract development with quantum-safe grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20</div>
+                <a href="native-ide/web/index.html" class="app-link">Launch IDE</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🏭</div>
+                <div class="app-title">Universal Factory</div>
+                <div class="app-description">Deploy contracts to all major blockchains from one interface</div>
+                <a href="universal-factory/deploy.html" class="app-link">Deploy Contracts</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🔮</div>
+                <div class="app-title">Oracle Network</div>
+                <div class="app-description">Independent price feeds free from external dependencies</div>
+                <a href="oracle-network/dashboard.html" class="app-link">View Oracles</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🌉</div>
+                <div class="app-title">Bootstrap Bridge</div>
+                <div class="app-description">Bridge USDT/USDC/BNB to USDTgVerse for initial liquidity</div>
+                <a href="bootstrap-system/bridge.html" class="app-link">Bridge Assets</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🌟</div>
+                <div class="app-title">Main Website</div>
+                <div class="app-description">Professional landing page with grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 and documentation</div>
+                <a href="website/index.html" class="app-link">Visit Website</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">📊</div>
+                <div class="app-title">Live Dashboard</div>
+                <div class="app-description">Real-time trading dashboard with all three tokens</div>
+                <a href="dashboard/index.html" class="app-link">Open Dashboard</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🔍</div>
+                <div class="app-title">USDTgScan</div>
+                <div class="app-description">Real-time blockchain explorer and transaction tracker</div>
+                <a href="explorer/usdtgscan.html" class="app-link">Launch Explorer</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">💳</div>
+                <div class="app-title">Transfer dApp</div>
+                <div class="app-description">Instant USDTg transfers with real-time confirmation</div>
+                <a href="dapps/usdtg-transfer/index.html" class="app-link">Open dApp</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🔒</div>
+                <div class="app-title">Security Audit</div>
+                <div class="app-description">100% security score - enterprise audit report</div>
+                <a href="audit/USDTgVerse_Security_Audit_Report_FIXED.html" class="app-link">View Report</a>
+            </div>
+            
+            
+            <div class="app-card">
+                <div class="app-icon">🔄</div>
+                <div class="app-title">USDTgDEX</div>
+                <div class="app-description">Decentralized exchange with automated market maker</div>
+                <a href="dashboard/index.html#dex" class="app-link">Launch DEX</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🏪</div>
+                <div class="app-title">USDTgCEX</div>
+                <div class="app-description">High-frequency centralized trading platform</div>
+                <a href="dashboard/index.html#cex" class="app-link">Launch CEX</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">💳</div>
+                <div class="app-title">USDTgWallet</div>
+                <div class="app-description">Digital wallet with OdixPay++ payment system</div>
+                <a href="wallet/demo/wallet.html" class="app-link">Open Wallet</a>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-icon">🌉</div>
+                <div class="app-title">Multi-Chain Bridges</div>
+                <div class="app-description">Cross-chain transfers with ETH, TRON, and Solana</div>
+                <a href="bridges/web/bridge.html" class="app-link">Launch Bridges</a>
+            </div>
+        </div>
+        
+        <div style="opacity: 0.8; font-size: 0.9em;">
+            🚀 USDTgVerse: Ready for Enterprise Production<br>
+            Pure C Backend + Professional Frontend
+        </div>
+    </div>
+    
+    <script>
+        // MEGA MENU Navigation
+        // MEGA MENU Navigation
+        document.getElementById('navigation-placeholder').innerHTML = `
+            <nav style="
+                background: rgba(0, 0, 0, 0.9) !important;
+                backdrop-filter: blur(10px);
+                padding: 15px 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+                transition: background 0.3s ease;
+            ">
+                <div style="
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    display: flex;
+                    align-items: center;
+                ">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <a href="https://www.usdtgverse.com" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                            <img src="assets/logos/logo.png" alt="USDTgVerse Logo" style="
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                border: 2px solid rgba(255, 255, 255, 0.2);
+                                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                                transition: all 0.3s ease;
+                            ">
+                            <h2 style="
+                                font-size: 24px;
+                                font-weight: bold;
+                                color: white;
+                                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                                transition: all 0.3s ease;
+                            ">USDTgVerse</h2>
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobile-menu-toggle" style="
+                        display: none;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 1.5em;
+                        cursor: pointer;
+                        padding: 10px;
+                        margin-left: auto;
+                    ">☰</button>
+                    
+                    <div id="desktop-menu" style="display: flex; gap: 15px; align-items: center; margin-left: auto;">
+                        <!-- Products Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🚀 Products
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 800px;
+                                border-radius: 12px;
+                                padding: 20px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                                    <!-- Column 1: Core Platform -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #667eea; padding-bottom: 5px;">🌟 Core Platform</h3>
+                                        <a href="dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📊 Dashboard</div>
+                                            <div style="font-size: 12px; color: #666;">Real-time trading and analytics</div>
+                                        </a>
+                                        <a href="exchanges/web/dex.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔄 DEX</div>
+                                            <div style="font-size: 12px; color: #666;">Decentralized exchange platform</div>
+                                        </a>
+                                        <a href="exchanges/web/cex.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏪 CEX</div>
+                                            <div style="font-size: 12px; color: #666;">Centralized exchange platform</div>
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- Column 2: Development Tools -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #764ba2; padding-bottom: 5px;">🛠️ Development</h3>
+                                        <a href="ide-development/USDTgVerseIDE.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💻 USDTgVerse IDE</div>
+                                            <div style="font-size: 12px; color: #666;">Smart contract development</div>
+                                        </a>
+                                        <a href="dev-tools/USDTgIDE.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔧 Dev Tools</div>
+                                            <div style="font-size: 12px; color: #666;">Development utilities</div>
+                                        </a>
+                                        <a href="sdk/documentation.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📚 SDK Docs</div>
+                                            <div style="font-size: 12px; color: #666;">API documentation</div>
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- Column 3: Enterprise Solutions -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #00d4ff; padding-bottom: 5px;">🏢 Enterprise</h3>
+                                        <a href="membership-system/interfaces/membership_portal.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">👥 Membership</div>
+                                            <div style="font-size: 12px; color: #666;">User management system</div>
+                                        </a>
+                                        <a href="institutional-services/CustodyServicesDashboard.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏦 Custody</div>
+                                            <div style="font-size: 12px; color: #666;">Institutional services</div>
+                                        </a>
+                                        <a href="revenue-systems/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💰 Revenue</div>
+                                            <div style="font-size: 12px; color: #666;">Revenue management</div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                                    <a href="dashboard/index.html" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block;">View All Products →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Platform Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🌟 Platform
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="website/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🌐 Main Website</a>
+                                <a href="dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📊 Live Dashboard</a>
+                                <a href="explorer/usdtgscan.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔍 Explorer</a>
+                                <a href="dapps/usdtg-transfer/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📱 dApp</a>
+                                <a href="wallet/demo/wallet.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Wallet</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Payments & H2H Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                💳 Payments & H2H
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 600px;
+                                border-radius: 12px;
+                                padding: 20px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                                    <!-- Column 1: Payment Systems -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #28a745; padding-bottom: 5px;">💳 Payment Systems</h3>
+                                        <a href="payment-system/interfaces/payment_interface.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💳 Payment System</div>
+                                            <div style="font-size: 12px; color: #666;">Core payment infrastructure</div>
+                                        </a>
+                                        <a href="payment-system/interfaces/payment_interface.html#bank-wire" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏦 Bank Wire</div>
+                                            <div style="font-size: 12px; color: #666;">Traditional wire transfers</div>
+                                        </a>
+                                        <a href="payment-system/interfaces/payment_interface.html#credit-card" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💳 Credit/Debit Card</div>
+                                            <div style="font-size: 12px; color: #666;">Card payment processing</div>
+                                        </a>
+                                        <a href="payment-system/interfaces/payment_interface.html#paypal" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💰 PayPal</div>
+                                            <div style="font-size: 12px; color: #666;">PayPal integration</div>
+                                        </a>
+                                        <a href="payment-system/interfaces/payment_interface.html#usdtgverse-pay" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔄 USDTgVerse PAY</div>
+                                            <div style="font-size: 12px; color: #666;">Native payment solution</div>
+                                        </a>
+                                        <a href="payment-system/interfaces/payment_interface.html#crypto" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">₿ Cryptocurrency</div>
+                                            <div style="font-size: 12px; color: #666;">Crypto payment gateway</div>
+                                        </a>
+                                    </div>
+                                    <!-- Column 2: H2H Systems -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #dc3545; padding-bottom: 5px;">🏦 H2H Systems</h3>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏦 H2H System</div>
+                                            <div style="font-size: 12px; color: #666;">Host-to-host infrastructure</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('swift')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📋 SWIFT Protocol</div>
+                                            <div style="font-size: 12px; color: #666;">International wire transfers</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('iso20022')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📋 ISO 20022</div>
+                                            <div style="font-size: 12px; color: #666;">Financial messaging standard</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fix')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">⚡ FIX Protocol</div>
+                                            <div style="font-size: 12px; color: #666;">Trading protocol</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('ach')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔄 ACH Network</div>
+                                            <div style="font-size: 12px; color: #666;">Automated clearing house</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('sepa')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🇪🇺 SEPA</div>
+                                            <div style="font-size: 12px; color: #666;">Single Euro Payments Area</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fedwire')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏛️ Fedwire</div>
+                                            <div style="font-size: 12px; color: #666;">Federal Reserve wire service</div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                                    <a href="payment-system/interfaces/payment_interface.html" style="background: linear-gradient(45deg, #28a745, #dc3545); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block;">View All Payment Solutions →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Privacy Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🔒 Privacy
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 250px;
+                                border-radius: 12px;
+                                padding: 15px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <a href="zk-privacy-layer-system/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🛡️ ZK Privacy</a>
+                                <a href="homomorphic-encryption/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔐 Homomorphic Encryption</a>
+                                <a href="mev-protection-system/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🛡️ MEV Protection</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Enterprise & Revenue Mega Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="#" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                🏢 Enterprise & Revenue
+                            </a>
+                            <div class="mega-dropdown" style="
+                                position: absolute;
+                                top: 100%;
+                                right: 0;
+                                background: rgba(255, 255, 255, 0.95);
+                                backdrop-filter: blur(20px);
+                                min-width: 600px;
+                                border-radius: 12px;
+                                padding: 20px;
+                                opacity: 0;
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                                z-index: 10000;
+                                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            ">
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                                    <!-- Column 1: Enterprise Solutions -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #00d4ff; padding-bottom: 5px;">🏢 Enterprise Solutions</h3>
+                                        <a href="membership-system/interfaces/membership_portal.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">👥 Membership Portal</div>
+                                            <div style="font-size: 12px; color: #666;">User management system</div>
+                                        </a>
+                                        <a href="membership-system/interfaces/enterprise_dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏢 Enterprise Dashboard</div>
+                                            <div style="font-size: 12px; color: #666;">Business management interface</div>
+                                        </a>
+                                        <a href="trading-platforms/MarginTradingDashboard.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💰 Margin Trading</div>
+                                            <div style="font-size: 12px; color: #666;">Advanced trading platform</div>
+                                        </a>
+                                        <a href="trading-platforms/CopyTradingPlatform.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📈 Copy Trading</div>
+                                            <div style="font-size: 12px; color: #666;">Social trading platform</div>
+                                        </a>
+                                        <a href="institutional-services/CustodyServicesDashboard.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏦 Custody Services</div>
+                                            <div style="font-size: 12px; color: #666;">Institutional asset custody</div>
+                                        </a>
+                                        <a href="api-docs/v1/MembershipAPI.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 212, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📚 Enterprise API</div>
+                                            <div style="font-size: 12px; color: #666;">Business integration APIs</div>
+                                        </a>
+                                    </div>
+                                    <!-- Column 2: Revenue Systems -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #ffc107; padding-bottom: 5px;">💰 Revenue Systems</h3>
+                                        <a href="revenue-systems/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(255, 193, 7, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📈 Revenue Dashboard</div>
+                                            <div style="font-size: 12px; color: #666;">Revenue analytics and tracking</div>
+                                        </a>
+                                        <a href="revenue-systems/affiliate/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(255, 193, 7, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🤝 Affiliate Program</div>
+                                            <div style="font-size: 12px; color: #666;">Partner referral system</div>
+                                        </a>
+                                        <a href="revenue-systems/white-label/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(255, 193, 7, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏷️ White-Label Solutions</div>
+                                            <div style="font-size: 12px; color: #666;">Customizable platform solutions</div>
+                                        </a>
+                                        <a href="revenue-systems/referral/AffiliateProgram.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(255, 193, 7, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🎯 Referral System</div>
+                                            <div style="font-size: 12px; color: #666;">Advanced referral tracking</div>
+                                        </a>
+                                        <a href="revenue-systems/referral/AffiliateProgram.html#calculator" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(255, 193, 7, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🧮 Earnings Calculator</div>
+                                            <div style="font-size: 12px; color: #666;">Revenue projection tools</div>
+                                        </a>
+                                        <a href="revenue-systems/referral/AffiliateProgram.html#leaderboard" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(255, 193, 7, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🏆 Leaderboard</div>
+                                            <div style="font-size: 12px; color: #666;">Performance rankings</div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                                    <a href="membership-system/interfaces/enterprise_dashboard.html" style="background: linear-gradient(45deg, #00d4ff, #ffc107); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block;">View All Enterprise Solutions →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantum Menu -->
+                        <div class="mega-menu-item" style="position: relative;">
+                            <a href="website/quantum-safe.html" style="color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                                ⚛️ Quantum
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <style>
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.5; }
+                    100% { opacity: 1; }
+                }
+                nav a:hover {
+                    background: rgba(255,255,255,0.2) !important;
+                    transform: translateY(-2px);
+                }
+                
+                /* Mobile Menu Styles */
+                @media (max-width: 1024px) {
+                    #desktop-menu {
+                        display: none !important;
+                    }
+                    #mobile-menu-toggle {
+                        display: block !important;
+                    }
+                }
+                
+                /* Mobile Menu Override */
+                #desktop-menu.mobile-open {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    position: fixed !important;
+                    top: 80px !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    background: rgba(0, 0, 0, 0.98) !important;
+                    backdrop-filter: blur(20px) !important;
+                    padding: 30px 20px !important;
+                    border-radius: 0 0 15px 15px !important;
+                    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+                    border-top: none !important;
+                    z-index: 9999 !important;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+                }
+                
+                @media (max-width: 768px) {
+                    nav {
+                        padding: 10px 0 !important;
+                    }
+                    nav div[style*="max-width: 1200px"] {
+                        padding: 0 15px !important;
+                    }
+                    nav h2 {
+                        font-size: 18px !important;
+                    }
+                    nav img {
+                        width: 30px !important;
+                        height: 30px !important;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    nav h2 {
+                        font-size: 16px !important;
+                    }
+                    nav img {
+                        width: 25px !important;
+                        height: 25px !important;
+                    }
+                }
+            </style>
+        `;
+        
+        console.log('🌌 USDTgVerse Dashboard Loaded');
+        console.log('🚀 All applications accessible');
+        
+        // MEGA MENU Hover Functionality
+        const menuItems = document.querySelectorAll('.mega-menu-item');
+        menuItems.forEach(item => {
+            const dropdown = item.querySelector('.mega-dropdown');
+            if (dropdown) {
+                item.addEventListener('mouseenter', function() {
+                    dropdown.style.opacity = '1';
+                    dropdown.style.visibility = 'visible';
+                    dropdown.style.transform = 'translateY(0)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.visibility = 'hidden';
+                    dropdown.style.transform = 'translateY(-10px)';
+                });
+            }
+        });
+        
+        // Add click tracking
+        document.querySelectorAll('.app-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                console.log('🔗 Navigating to:', this.href);
+            });
+        });
+        
+        // Payment method selection function
+        function selectPaymentMethod(method) {
+            localStorage.setItem('selectedPaymentMethod', method);
+        }
+        
+        // H2H protocol selection function
+        function selectH2HProtocol(protocol) {
+            localStorage.setItem('selectedH2HProtocol', protocol);
+        }
+        
+        // Mobile Menu Toggle Functionality
+        function initMobileMenu() {
+            // Wait for navigation to be created
+            setTimeout(() => {
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const desktopMenu = document.getElementById('desktop-menu');
+                
+                console.log('Main page mobile menu elements:', { mobileMenuToggle, desktopMenu });
+                
+                if (mobileMenuToggle && desktopMenu) {
+                    // Remove any existing event listeners
+                    mobileMenuToggle.removeEventListener('click', handleMobileMenuClick);
+                    
+                    // Add new event listener
+                    mobileMenuToggle.addEventListener('click', handleMobileMenuClick);
+                    
+                    function handleMobileMenuClick(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        console.log('Main page hamburger menu clicked');
+                        
+                        if (desktopMenu.classList.contains('mobile-open')) {
+                            desktopMenu.classList.remove('mobile-open');
+                            mobileMenuToggle.innerHTML = '☰';
+                            console.log('Main page mobile menu closed');
+                        } else {
+                            desktopMenu.classList.add('mobile-open');
+                            mobileMenuToggle.innerHTML = '✕';
+                            console.log('Main page mobile menu opened');
+                        }
+                    }
+                } else {
+                    console.log('Main page mobile menu elements not found');
+                }
+            }, 200);
+        }
+        
+        // Initialize mobile menu when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            initMobileMenu();
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const desktopMenu = document.getElementById('desktop-menu');
+            
+            if (mobileMenuToggle && desktopMenu && 
+                !mobileMenuToggle.contains(e.target) && 
+                !desktopMenu.contains(e.target)) {
+                if (window.innerWidth <= 1024) {
+                    desktopMenu.classList.remove('mobile-open');
+                    mobileMenuToggle.innerHTML = '☰';
+                }
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const desktopMenu = document.getElementById('desktop-menu');
+            
+            if (window.innerWidth > 1024) {
+                if (desktopMenu) {
+                    desktopMenu.classList.remove('mobile-open');
+                }
+                if (mobileMenuToggle) {
+                    mobileMenuToggle.innerHTML = '☰';
+                }
+            } else {
+                if (desktopMenu) {
+                    desktopMenu.style.display = 'none';
+                }
+            }
+        });
+        
+        // Mega Menu Functionality
+        function initMegaMenu() {
+            setTimeout(() => {
+                const megaMenuItems = document.querySelectorAll('.mega-menu-item');
+                
+                megaMenuItems.forEach(item => {
+                    const link = item.querySelector('a');
+                    const dropdown = item.querySelector('.mega-dropdown');
+                    
+                    if (link && dropdown) {
+                        // Remove existing event listeners
+                        link.removeEventListener('mouseenter', showDropdown);
+                        link.removeEventListener('mouseleave', hideDropdown);
+                        dropdown.removeEventListener('mouseenter', showDropdown);
+                        dropdown.removeEventListener('mouseleave', hideDropdown);
+                        
+                        // Add new event listeners
+                        link.addEventListener('mouseenter', showDropdown);
+                        link.addEventListener('mouseleave', hideDropdown);
+                        dropdown.addEventListener('mouseenter', showDropdown);
+                        dropdown.addEventListener('mouseleave', hideDropdown);
+                        
+                        function showDropdown() {
+                            dropdown.style.opacity = '1';
+                            dropdown.style.visibility = 'visible';
+                            dropdown.style.transform = 'translateY(0)';
+                        }
+                        
+                        function hideDropdown() {
+                            dropdown.style.opacity = '0';
+                            dropdown.style.visibility = 'hidden';
+                            dropdown.style.transform = 'translateY(-10px)';
+                        }
+                    }
+                });
+            }, 300);
+        }
+        
+        // Initialize mega menu when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMegaMenu);
+        } else {
+            initMegaMenu();
+        }
+    </script>
+    
+    <script>
+        // Real-time price updates
+        async function updatePrices() {
+            try {
+                const priceService = window.USDTgVersePriceService;
+                if (!priceService) return;
+                
+                const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG']);
+                
+                // Update USDTg price
+                const usdtgElement = document.getElementById('usdtg-price');
+                if (usdtgElement && prices.USDTg) {
+                    usdtgElement.textContent = `$${prices.USDTg.price.toFixed(2)}`;
+                }
+                
+                // Update USDTgV price
+                const usdtgvElement = document.getElementById('usdtgv-price');
+                if (usdtgvElement && prices.USDTgV) {
+                    usdtgvElement.textContent = `$${prices.USDTgV.price.toFixed(2)}`;
+                }
+                
+                // Update USDTgG price
+                const usdtggElement = document.getElementById('usdtgg-price');
+                if (usdtggElement && prices.USDTgG) {
+                    usdtggElement.textContent = `$${prices.USDTgG.price.toFixed(2)}`;
+                }
+            } catch (error) {
+                console.error('Error updating prices:', error);
+            }
+        }
+        
+        // Listen for price update events
+        window.addEventListener('usdtgverse-price-update', updatePrices);
+        
+        // Initial price update
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updatePrices, 1000);
+        });
+    </script>
+    
+</body>
+</html>
