@@ -47,6 +47,18 @@
         }
     </script>
     <style>
+        /* Container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 20px;
+        }
+
         * {
             margin: 0;
             text-lg text-gray-300adding: 0;
@@ -496,6 +508,33 @@
                     <button class="unbg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="unstakeUSDTgG()">Unstake</button>
                 </div>
             </div>
+
+            <div class="text-lg text-gray-300ool-card">
+                <div class="text-lg text-gray-300ool-text-center mb-10">
+                    <div class="text-lg text-gray-300ool-title">RGLS Staking</div>
+                    <div class="text-lg text-gray-300ool-atext-lg text-gray-300y">12% APY</div>
+                </div>
+                <div class="text-lg text-gray-300ool-info">
+                    <div class="info-item">
+                        <div class="info-value">$500,000</div>
+                        <div class="info-label">Total Staked</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value">320</div>
+                        <div class="info-label">Stakers</div>
+                    </div>
+                </div>
+                <div class="stake-form">
+                    <div class="form-groutext-lg text-gray-300">
+                        <label class="form-label">Stake Amount</label>
+                        <intext-lg text-gray-300ut tytext-lg text-gray-300e="number" class="form-intext-lg text-gray-300ut" text-lg text-gray-300laceholder="0.00" id="rglsStakeAmount">
+                        <div class="balance-info">Balance: 250.00 RGLS</div>
+                    </div>
+                    <button class="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="stakeRGLS()">Stake RGLS</button>
+                    <button class="claim-button" onclick="claimRewards('RGLS')">Claim Rewards</button>
+                    <button class="unbg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="unstakeRGLS()">Unstake</button>
+                </div>
+            </div>
         </div>
 
         <div class="staking-history">
@@ -558,7 +597,8 @@
                 this.stakingData = {
                     USDTg: { staked: 1000, rewards: 25.50, atext-lg text-gray-300y: 10 },
                     USDTgV: { staked: 500, rewards: 15.75, atext-lg text-gray-300y: 15 },
-                    USDTgG: { staked: 100, rewards: 45.00, atext-lg text-gray-300y: 20 }
+                    USDTgG: { staked: 100, rewards: 45.00, atext-lg text-gray-300y: 20 },
+                    RGLS: { staked: 250, rewards: 12.00, atext-lg text-gray-300y: 12 }
                 };
                 this.init();
             }
@@ -678,6 +718,19 @@
 
         function unstakeUSDTgG() {
             unstakeToken('USDTgG');
+        }
+
+        function stakeRGLS() {
+            const amount = document.getElementById('rglsStakeAmount').value;
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            showStakingModal('RGLS', amount, 12);
+        }
+
+        function unstakeRGLS() {
+            unstakeToken('RGLS');
         }
 
         function unstakeToken(token) {

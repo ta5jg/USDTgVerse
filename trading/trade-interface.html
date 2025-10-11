@@ -3,14 +3,14 @@
  File:        trade-interface.html
  Author:      Irfan Gedik
  Created:     27.09.2025
- Last Update: 27.09.2025
- Version:     1.0
+ Last Update: 05.10.2025
+ Version:     2.0
 
  Description:
-   USDTgVerse Trading Interface
+   USDTgVerse Trading Interface - FIXED VERSION
    
    Professional trading interface featuring:
-   - Real-time text-2xl font-bold text-green-400 mb-2 charts
+   - Real-time price charts
    - Order book and market depth
    - Buy/sell order placement
    - Portfolio management
@@ -26,10 +26,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USDTgVerse Trading Interface</title>
+    <title>USDTgVerse Trading Interface - UPDATED v2.1</title>
     <link rel="icon" href="../assets/logos/logo.png" type="image/png">
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?v=2.1"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -60,7 +60,19 @@
             min-height: 100vh;
         }
 
-        .grid grid-cols-1 lg:grid-cols-4 gap-4 h-screen p-4 {
+        /* Container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .trading-grid {
             display: grid;
             grid-template-columns: 1fr 300px;
             grid-template-rows: 60px 1fr;
@@ -69,7 +81,7 @@
             background: #333;
         }
 
-        .bg-gray-800 p-4 rounded-lg {
+        .header-section {
             grid-column: 1 / -1;
             background: linear-gradient(90deg, #00D4AA 0%, #0099FF 100%);
             display: flex;
@@ -79,18 +91,19 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .bg-gray-800 p-4 rounded-lg text-2xl font-bold mb-4 {
+        .header-title {
             font-size: 24px;
             font-weight: 700;
+            color: white;
         }
 
-        .flex items-center space-x-4 {
+        .header-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
         }
 
-        .bg-gray-700 text-white px-4 py-2 rounded border-0 {
+        .trading-pair-selector {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -100,9 +113,27 @@
             font-weight: 600;
         }
 
+        .price-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .current-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #00D4AA;
+        }
+
+        .price-change {
+            font-size: 14px;
+            color: #00D4AA;
+        }
+
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: 2fr 1fr;
             gap: 1px;
             background: #333;
         }
@@ -111,9 +142,10 @@
             background: #1a1a2e;
             display: flex;
             flex-direction: column;
+            max-height: 400px;
         }
 
-        .chart-bg-gray-800 p-4 rounded-lg {
+        .chart-header {
             padding: 20px;
             border-bottom: 1px solid #333;
             display: flex;
@@ -121,33 +153,47 @@
             align-items: center;
         }
 
-        .text-2xl font-bold text-green-400 mb-2-info {
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00D4AA;
+        }
+
+        .chart-controls {
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            gap: 10px;
         }
 
-        .current-text-2xl font-bold text-green-400 mb-2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #00D4AA;
-        }
-
-        .text-2xl font-bold text-green-400 mb-2-text-sm text-gray-400 {
+        .chart-period {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #666;
             font-size: 14px;
-            color: #00D4AA;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chart-period.active {
+            background: #00D4AA;
+            color: white;
+            border-color: #00D4AA;
         }
 
         .chart-container {
             flex: 1;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #0f0f23;
-            margin: 20px;
-            border-radius: 12px;
+            margin: 15px;
+            border-radius: 8px;
             border: 1px solid #333;
+            min-height: 200px;
+            max-height: 300px;
         }
 
         .chart-placeholder {
@@ -160,51 +206,87 @@
             background: #1a1a2e;
             display: flex;
             flex-direction: column;
+            flex: 1;
         }
 
         .order-tabs {
             display: flex;
             border-bottom: 1px solid #333;
+            background: #1a1a2e;
+            border-radius: 8px 8px 0 0;
         }
 
         .order-tab {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             background: transparent;
             border: none;
             color: #666;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            border-right: 1px solid #333;
+            position: relative;
+        }
+
+        .order-tab:last-child {
+            border-right: none;
+        }
+
+        .order-tab:hover {
+            color: #00D4AA;
+            background: rgba(0, 212, 170, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .order-tab.active {
             color: #00D4AA;
-            background: rgba(0, 212, 170, 0.1);
+            background: rgba(0, 212, 170, 0.15);
+            border-bottom: 3px solid #00D4AA;
+            box-shadow: 0 2px 4px rgba(0, 212, 170, 0.3);
+        }
+
+        .order-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 170, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .order-tab:hover::before {
+            opacity: 1;
         }
 
         .order-form {
-            padding: 20px;
+            padding: 25px;
             flex: 1;
+            overflow-y: auto;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 12px;
+            font-size: 16px;
             color: #ccc;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4 {
+        .form-input {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background: #0f0f23;
             border: 1px solid #333;
             border-radius: 8px;
@@ -213,44 +295,44 @@
             transition: border-color 0.3s ease;
         }
 
-        .w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4:focus {
+        .form-input:focus {
             outline: none;
             border-color: #00D4AA;
         }
 
         .form-row {
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .form-row .w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4 {
+        .form-row .form-input {
             flex: 1;
         }
 
         .balance-info {
-            font-size: 12px;
+            font-size: 14px;
             color: #666;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         .trade-button {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg {
+        .buy-button {
             background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
             color: white;
         }
 
-        .bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg {
+        .sell-button {
             background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
             color: white;
         }
@@ -270,7 +352,7 @@
             border-bottom: 1px solid #333;
         }
 
-        .sidebar-bg-gray-800 p-4 rounded-lg {
+        .sidebar-header {
             padding: 15px 20px;
             font-size: 16px;
             font-weight: 600;
@@ -294,7 +376,7 @@
             border-bottom: none;
         }
 
-        .order-book-text-2xl font-bold text-green-400 mb-2 {
+        .order-book-price {
             color: #00D4AA;
         }
 
@@ -318,7 +400,7 @@
             border-bottom: none;
         }
 
-        .trade-text-2xl font-bold text-green-400 mb-2 {
+        .trade-price {
             color: #00D4AA;
         }
 
@@ -355,13 +437,13 @@
             color: #ccc;
         }
 
-        .portfolio-text-sm text-gray-400 {
+        .portfolio-change {
             font-size: 12px;
             color: #00D4AA;
         }
 
         @media (max-width: 1200px) {
-            .grid grid-cols-1 lg:grid-cols-4 gap-4 h-screen p-4 {
+            .trading-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: 60px 1fr 200px;
             }
@@ -374,33 +456,52 @@
                 grid-row: 3;
             }
         }
+
+        /* Additional cursor and interaction styles */
+        .order-tab {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .order-tab:active {
+            transform: translateY(0px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-tab:focus {
+            outline: 2px solid #00D4AA;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-gray-900 to-slate-800 text-white font-sans">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 h-screen p-4">
-        <div class="bg-gray-800 p-4 rounded-lg">
-            <text-2xl font-bold mb-4>USDTgVerse Trading</text-2xl font-bold mb-4>
-            <div class="flex items-center space-x-4">
-                <select class="bg-gray-700 text-white px-4 py-2 rounded border-0" id="tradingPair">
+    <div class="trading-grid">
+        <div class="header-section">
+            <div class="header-title">USDTgVerse Trading</div>
+            <div class="header-controls">
+                <select class="trading-pair-selector" id="tradingPair">
                     <option value="USDTg/USDT">USDTg/USDT</option>
                     <option value="USDTgV/USDT">USDTgV/USDT</option>
                     <option value="USDTgG/USDT">USDTgG/USDT</option>
+                    <option value="RGLS/USDT">RGLS/USDT</option>
                 </select>
-                <div class="text-2xl font-bold text-green-400 mb-2-info">
-                    <div class="current-text-2xl font-bold text-green-400 mb-2" id="currentPrice">$1.00</div>
-                    <div class="text-2xl font-bold text-green-400 mb-2-text-sm text-gray-400" id="text-2xl font-bold text-green-400 mb-2Change">+0.00%</div>
+                <div class="price-info">
+                    <div class="current-price" id="currentPrice">$1.00</div>
+                    <div class="price-change" id="priceChange">+0.00%</div>
                 </div>
             </div>
         </div>
 
         <div class="main-content">
             <div class="chart-section">
-                <div class="chart-bg-gray-800 p-4 rounded-lg">
-                    <h2>Price Chart</h2>
+                <div class="chart-header">
+                    <div class="chart-title">Price Chart</div>
                     <div class="chart-controls">
                         <button class="chart-period" data-period="1h">1H</button>
-                        <button class="chart-period" data-period="4h">4H</button>
-                        <button class="chart-period active" data-period="1d">1D</button>
+                        <button class="chart-period active" data-period="4h">4H</button>
+                        <button class="chart-period" data-period="1d">1D</button>
                         <button class="chart-period" data-period="1w">1W</button>
                     </div>
                 </div>
@@ -423,60 +524,60 @@
                     <div class="form-group">
                         <label class="form-label">Buy USDTg</label>
                         <div class="form-row">
-                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Amount" id="buyAmount">
-                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Price" id="buyPrice" value="1.00">
+                            <input type="number" class="form-input" placeholder="Amount" id="buyAmount" value="1.00">
+                            <input type="number" class="form-input" placeholder="Price" id="buyPrice" value="1.00">
                         </div>
                         <div class="balance-info">Balance: 1,000.00 USDT</div>
                     </div>
-                    <button class="trade-button bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="placeBuyOrder()">Buy USDTg</button>
+                    <button class="trade-button buy-button" onclick="placeBuyOrder()">Buy USDTg</button>
 
                     <div class="form-group">
                         <label class="form-label">Sell USDTg</label>
                         <div class="form-row">
-                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Amount" id="sellAmount">
-                            <input type="number" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white mb-4" placeholder="Price" id="sellPrice" value="1.00">
+                            <input type="number" class="form-input" placeholder="Amount" id="sellAmount" value="1.00">
+                            <input type="number" class="form-input" placeholder="Price" id="sellPrice" value="1.00">
                         </div>
                         <div class="balance-info">Balance: 500.00 USDTg</div>
                     </div>
-                    <button class="trade-button bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 border-0 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" onclick="placeSellOrder()">Sell USDTg</button>
+                    <button class="trade-button sell-button" onclick="placeSellOrder()">Sell USDTg</button>
                 </div>
             </div>
         </div>
 
         <div class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-bg-gray-800 p-4 rounded-lg">Order Book</div>
+                <div class="sidebar-header">Order Book</div>
                 <div class="order-book" id="orderBook">
                     <div class="order-book-row">
-                        <span class="order-book-text-2xl font-bold text-green-400 mb-2">$1.01</span>
+                        <span class="order-book-price">$1.01</span>
                         <span class="order-book-amount">1,250.00</span>
                     </div>
                     <div class="order-book-row">
-                        <span class="order-book-text-2xl font-bold text-green-400 mb-2">$1.00</span>
+                        <span class="order-book-price">$1.00</span>
                         <span class="order-book-amount">2,500.00</span>
                     </div>
                     <div class="order-book-row">
-                        <span class="order-book-text-2xl font-bold text-green-400 mb-2">$0.99</span>
+                        <span class="order-book-price">$0.99</span>
                         <span class="order-book-amount">1,800.00</span>
                     </div>
                 </div>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-bg-gray-800 p-4 rounded-lg">Recent Trades</div>
+                <div class="sidebar-header">Recent Trades</div>
                 <div class="recent-trades" id="recentTrades">
                     <div class="trade-row">
-                        <span class="trade-text-2xl font-bold text-green-400 mb-2">$1.00</span>
+                        <span class="trade-price">$1.00</span>
                         <span class="trade-amount">100.00</span>
                         <span class="trade-time">12:45</span>
                     </div>
                     <div class="trade-row">
-                        <span class="trade-text-2xl font-bold text-green-400 mb-2">$0.99</span>
+                        <span class="trade-price">$0.99</span>
                         <span class="trade-amount">250.00</span>
                         <span class="trade-time">12:44</span>
                     </div>
                     <div class="trade-row">
-                        <span class="trade-text-2xl font-bold text-green-400 mb-2">$1.01</span>
+                        <span class="trade-price">$1.01</span>
                         <span class="trade-amount">75.00</span>
                         <span class="trade-time">12:43</span>
                     </div>
@@ -484,20 +585,20 @@
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-bg-gray-800 p-4 rounded-lg">Portfolio</div>
+                <div class="sidebar-header">Portfolio</div>
                 <div class="portfolio" id="portfolio">
                     <div class="portfolio-item">
                         <span class="portfolio-symbol">USDTg</span>
                         <div>
                             <div class="portfolio-value">500.00</div>
-                            <div class="portfolio-text-sm text-gray-400">+2.5%</div>
+                            <div class="portfolio-change">+2.5%</div>
                         </div>
                     </div>
                     <div class="portfolio-item">
                         <span class="portfolio-symbol">USDT</span>
                         <div>
                             <div class="portfolio-value">1,000.00</div>
-                            <div class="portfolio-text-sm text-gray-400">+0.0%</div>
+                            <div class="portfolio-change">+0.0%</div>
                         </div>
                     </div>
                 </div>
@@ -506,7 +607,7 @@
     </div>
 
     <script>
-        // Trading Interface JavaScript
+        // Trading Interface JavaScript - FIXED VERSION
         class TradingInterface {
             constructor() {
                 this.currentPair = 'USDTg/USDT';
@@ -522,7 +623,7 @@
 
             setupEventListeners() {
                 // Trading pair selector
-                document.getElementById('tradingPair').addEventListener('text-sm text-gray-400', (e) => {
+                document.getElementById('tradingPair').addEventListener('change', (e) => {
                     this.currentPair = e.target.value;
                     this.updatePrice();
                 });
@@ -532,6 +633,28 @@
                     tab.addEventListener('click', (e) => {
                         document.querySelectorAll('.order-tab').forEach(t => t.classList.remove('active'));
                         e.target.classList.add('active');
+                        
+                        // Add visual feedback
+                        const tabType = e.target.getAttribute('data-tab');
+                        console.log('Switched to tab:', tabType);
+                        
+                        // Update form based on tab
+                        this.updateOrderForm(tabType);
+                        
+                        // Add click animation
+                        e.target.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            e.target.style.transform = '';
+                        }, 150);
+                    });
+
+                    // Add mouse enter/leave events for better feedback
+                    tab.addEventListener('mouseenter', (e) => {
+                        e.target.style.cursor = 'pointer';
+                    });
+
+                    tab.addEventListener('mouseleave', (e) => {
+                        e.target.style.cursor = 'pointer';
                     });
                 });
 
@@ -545,43 +668,70 @@
             }
 
             updatePrice() {
-                const text-2xl font-bold text-green-400 mb-2s = {
-                    'USDTg/USDT': { text-2xl font-bold text-green-400 mb-2: 1.00, text-sm text-gray-400: 0.00 },
-                    'USDTgV/USDT': { text-2xl font-bold text-green-400 mb-2: 0.51, text-sm text-gray-400: 2.50 },
-                    'USDTgG/USDT': { text-2xl font-bold text-green-400 mb-2: 5.00, text-sm text-gray-400: 1.80 }
+                const prices = {
+                    'USDTg/USDT': { price: 1.00, change: 0.00 },
+                    'USDTgV/USDT': { price: 0.51, change: 2.50 },
+                    'USDTgG/USDT': { price: 5.00, change: 1.80 },
+                    'RGLS/USDT': { price: 1.00, change: 0.00 }
                 };
 
-                const pairData = text-2xl font-bold text-green-400 mb-2s[this.currentPair];
-                document.getElementById('currentPrice').textContent = `$${pairData.text-2xl font-bold text-green-400 mb-2.toFixed(2)}`;
-                document.getElementById('text-2xl font-bold text-green-400 mb-2Change').textContent = `${pairData.text-sm text-gray-400 >= 0 ? '+' : ''}${pairData.text-sm text-gray-400.toFixed(2)}%`;
-                document.getElementById('text-2xl font-bold text-green-400 mb-2Change').style.color = pairData.text-sm text-gray-400 >= 0 ? '#00D4AA' : '#FF6B6B';
+                const pairData = prices[this.currentPair];
+                document.getElementById('currentPrice').textContent = `$${pairData.price.toFixed(2)}`;
+                document.getElementById('priceChange').textContent = `${pairData.change >= 0 ? '+' : ''}${pairData.change.toFixed(2)}%`;
+                document.getElementById('priceChange').style.color = pairData.change >= 0 ? '#00D4AA' : '#FF6B6B';
             }
 
             startPriceUpdates() {
                 setInterval(() => {
-                    // Simulate text-2xl font-bold text-green-400 mb-2 updates
-                    const text-sm text-gray-400 = (Math.random() - 0.5) * 0.02;
-                    this.currentPrice += text-sm text-gray-400;
+                    // Simulate price updates
+                    const change = (Math.random() - 0.5) * 0.02;
+                    this.currentPrice += change;
                     this.updatePrice();
                 }, 5000);
+            }
+
+            updateOrderForm(tabType) {
+                const buyPriceInput = document.getElementById('buyPrice');
+                const sellPriceInput = document.getElementById('sellPrice');
+                
+                switch(tabType) {
+                    case 'market':
+                        buyPriceInput.value = 'Market';
+                        sellPriceInput.value = 'Market';
+                        buyPriceInput.disabled = true;
+                        sellPriceInput.disabled = true;
+                        break;
+                    case 'limit':
+                        buyPriceInput.value = '1.00';
+                        sellPriceInput.value = '1.00';
+                        buyPriceInput.disabled = false;
+                        sellPriceInput.disabled = false;
+                        break;
+                    case 'stop':
+                        buyPriceInput.value = '1.00';
+                        sellPriceInput.value = '1.00';
+                        buyPriceInput.disabled = false;
+                        sellPriceInput.disabled = false;
+                        break;
+                }
             }
         }
 
         // Initialize trading interface
         const tradingInterface = new TradingInterface();
 
-        // Trading functions
+        // Trading functions - FIXED VERSION
         function placeBuyOrder() {
             const amount = document.getElementById('buyAmount').value;
-            const text-2xl font-bold text-green-400 mb-2 = document.getElementById('buyPrice').value;
+            const price = document.getElementById('buyPrice').value;
             
-            if (!amount || !text-2xl font-bold text-green-400 mb-2) {
+            if (!amount || !price) {
                 alert('Please fill in all fields');
                 return;
             }
 
-            const total = parseFloat(amount) * parseFloat(text-2xl font-bold text-green-400 mb-2);
-            if (confirm(`Buy ${amount} USDTg at $${text-2xl font-bold text-green-400 mb-2} each?\nTotal: $${total.toFixed(2)}`)) {
+            const total = parseFloat(amount) * parseFloat(price);
+            if (confirm(`Buy ${amount} USDTg at $${price} each?\nTotal: $${total.toFixed(2)}`)) {
                 alert('Buy order placed successfully!');
                 document.getElementById('buyAmount').value = '';
             }
@@ -589,19 +739,40 @@
 
         function placeSellOrder() {
             const amount = document.getElementById('sellAmount').value;
-            const text-2xl font-bold text-green-400 mb-2 = document.getElementById('sellPrice').value;
+            const price = document.getElementById('sellPrice').value;
             
-            if (!amount || !text-2xl font-bold text-green-400 mb-2) {
+            if (!amount || !price) {
                 alert('Please fill in all fields');
                 return;
             }
 
-            const total = parseFloat(amount) * parseFloat(text-2xl font-bold text-green-400 mb-2);
-            if (confirm(`Sell ${amount} USDTg at $${text-2xl font-bold text-green-400 mb-2} each?\nTotal: $${total.toFixed(2)}`)) {
+            const total = parseFloat(amount) * parseFloat(price);
+            if (confirm(`Sell ${amount} USDTg at $${price} each?\nTotal: $${total.toFixed(2)}`)) {
                 alert('Sell order placed successfully!');
                 document.getElementById('sellAmount').value = '';
             }
         }
+
+        // Add some interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for order book
+            document.querySelectorAll('.order-book-row').forEach(row => {
+                row.addEventListener('click', function() {
+                    const price = this.querySelector('.order-book-price').textContent.replace('$', '');
+                    document.getElementById('buyPrice').value = price;
+                    document.getElementById('sellPrice').value = price;
+                });
+            });
+
+            // Add click handlers for recent trades
+            document.querySelectorAll('.trade-row').forEach(row => {
+                row.addEventListener('click', function() {
+                    const price = this.querySelector('.trade-price').textContent.replace('$', '');
+                    document.getElementById('buyPrice').value = price;
+                    document.getElementById('sellPrice').value = price;
+                });
+            });
+        });
     </script>
 
 </body>

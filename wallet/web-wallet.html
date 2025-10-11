@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Web Wallet - Professional Blockchain Wallet</title>
+    <link rel="icon" href="../assets/logos/logo.png" type="image/png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .wallet-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .wallet-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .balance-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin: 16px 0;
+        }
+
+        .usd-equivalent {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        .action-button {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 4px;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            color: #212529;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #17a2b8, #00d4ff);
+            color: white;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .asset-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .asset-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(4px);
+        }
+
+        .asset-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .asset-info {
+            flex: 1;
+        }
+
+        .asset-symbol {
+            font-weight: 700;
+            color: #00d4ff;
+            font-size: 1.1rem;
+        }
+
+        .asset-name {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .asset-balance {
+            text-align: right;
+        }
+
+        .balance-amount {
+            font-weight: 600;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .balance-value {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .transaction-item {
+            padding: 16px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .transaction-type {
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .transaction-amount {
+            font-weight: 700;
+            color: white;
+        }
+
+        .transaction-date {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .wallet-address {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            word-break: break-all;
+            margin: 8px 0;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-connected {
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+
+        .status-disconnected {
+            background: #dc3545;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .close:hover {
+            color: #00d4ff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+        }
+
+        .qr-code {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00d4ff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            margin: 12px 0;
+        }
+
+        .success-message {
+            color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            margin: 12px 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #00d4ff;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .feature-description {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+            color: #00d4ff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="wallet-container">
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="header-title">USDTgVerse Web Wallet</h1>
+            <p class="header-subtitle">Professional Blockchain Integration - Production Ready</p>
+            
+            <!-- Navigation Menu -->
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">🏠 Main Website</a>
+                <a href="../dashboard/index.html" class="nav-link">📊 Dashboard</a>
+                <a href="../trading/trade-interface.html" class="nav-link">📈 Trading</a>
+                <a href="../explorer/usdtgscan.html" class="nav-link">🔍 Explorer</a>
+                <a href="../exchanges/web/dex.html" class="nav-link">🔄 DEX</a>
+                <a href="../exchanges/web/cex.html" class="nav-link">🏪 CEX</a>
+            </div>
+        </div>
+
+        <!-- Wallet Status & Connection -->
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <h2 style="color: #00d4ff; margin: 0; font-size: 1.5rem;">Wallet Status</h2>
+                    <div style="margin-top: 8px;">
+                        <span id="connectionStatus" class="status-indicator status-disconnected"></span>
+                        <span id="connectionText" style="color: #94a3b8;">Not Connected</span>
+                    </div>
+                </div>
+                <div id="walletActions" style="display: none;">
+                    <button onclick="disconnectWallet()" class="action-button btn-danger">Disconnect</button>
+                </div>
+                <div id="connectionActions">
+                    <button onclick="showConnectModal()" class="action-button btn-primary">Connect Wallet</button>
+                    <button onclick="showCreateModal()" class="action-button btn-success">Create Wallet</button>
+                    <button onclick="showImportModal()" class="action-button btn-info">Import Wallet</button>
+                </div>
+            </div>
+            
+            <div id="walletInfo" style="display: none;">
+                <div class="wallet-address" id="walletAddress"></div>
+                <div style="margin-top: 16px;">
+                    <div class="balance-display" id="totalBalance">0.00 USDTg</div>
+                    <div class="usd-equivalent" id="totalBalanceUSD">$0.00 USD</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card" id="actionButtons" style="display: none;">
+            <h3 style="color: #00d4ff; margin-bottom: 20px; font-size: 1.3rem;">Quick Actions</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <button onclick="showSendModal()" class="action-button btn-danger">Send</button>
+                <button onclick="showReceiveModal()" class="action-button btn-success">Receive</button>
+                <button onclick="showSwapModal()" class="action-button btn-warning">Swap</button>
+                <button onclick="showTradingModal()" class="action-button btn-info">Trade</button>
+                <button onclick="showHistoryModal()" class="action-button btn-primary">History</button>
+                <button onclick="requestAirdrop()" class="action-button" style="background: linear-gradient(135deg, #9c27b0, #673ab7); color: white;">Get Airdrop</button>
+            </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="feature-grid" id="featureCards" style="display: none;">
+            <div class="feature-card" onclick="showTradingModal()">
+                <div class="feature-icon">📈</div>
+                <div class="feature-title">Trading</div>
+                <div class="feature-description">Advanced trading interface</div>
+            </div>
+            <div class="feature-card" onclick="showSwapModal()">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-title">Swap</div>
+                <div class="feature-description">Token exchange platform</div>
+            </div>
+            <div class="feature-card" onclick="showStakingModal()">
+                <div class="feature-icon">🏦</div>
+                <div class="feature-title">Staking</div>
+                <div class="feature-description">Earn rewards by staking</div>
+            </div>
+            <div class="feature-card" onclick="showDeFiModal()">
+                <div class="feature-icon">🏛️</div>
+                <div class="feature-title">DeFi</div>
+                <div class="feature-description">Decentralized finance tools</div>
+            </div>
+        </div>
+
+        <!-- Assets Section -->
+        <div class="card">
+            <h3 style="color: #00d4ff; margin-bottom: 20px; font-size: 1.3rem;">Assets</h3>
+            <div id="assetsContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">💼</div>
+                    <div>Connect your wallet to view assets</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="card">
+            <h3 style="color: #00d4ff; margin-bottom: 20px; font-size: 1.3rem;">Recent Transactions</h3>
+            <div id="transactionsContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📋</div>
+                    <div>No transactions yet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connect Wallet Modal -->
+    <div id="connectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('connectModal')">&times;</span>
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Connect Wallet</h2>
+            <div class="form-group">
+                <label class="form-label">Private Key or Seed Phrase</label>
+                <textarea class="form-input" id="connectInput" rows="4" placeholder="Enter your private key or seed phrase..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Wallet Name (Optional)</label>
+                <input type="text" class="form-input" id="connectName" placeholder="My Wallet">
+            </div>
+            <button onclick="connectWallet()" class="action-button btn-primary" style="width: 100%;">Connect</button>
+        </div>
+    </div>
+
+    <!-- Create Wallet Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createModal')">&times;</span>
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Create New Wallet</h2>
+            <div class="form-group">
+                <label class="form-label">Wallet Name</label>
+                <input type="text" class="form-input" id="createName" placeholder="My New Wallet">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" id="createPassword" placeholder="Create a strong password">
+            </div>
+            <button onclick="createWallet()" class="action-button btn-success" style="width: 100%;">Create Wallet</button>
+        </div>
+    </div>
+
+    <!-- Import Wallet Modal -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('importModal')">&times;</span>
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Import Wallet</h2>
+            <div class="form-group">
+                <label class="form-label">Private Key or Seed Phrase</label>
+                <textarea class="form-input" id="importInput" rows="4" placeholder="Enter your private key or seed phrase..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Wallet Name</label>
+                <input type="text" class="form-input" id="importName" placeholder="My Imported Wallet">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" id="importPassword" placeholder="Create a password">
+            </div>
+            <button onclick="importWallet()" class="action-button btn-info" style="width: 100%;">Import Wallet</button>
+        </div>
+    </div>
+
+    <!-- Send Modal -->
+    <div id="sendModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('sendModal')">&times;</span>
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Send Transaction</h2>
+            <div class="form-group">
+                <label class="form-label">Recipient Address</label>
+                <input type="text" class="form-input" id="sendAddress" placeholder="usdtg1...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount</label>
+                <input type="number" class="form-input" id="sendAmount" placeholder="0.00" step="0.000001">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Token</label>
+                <select class="form-input" id="sendToken">
+                    <option value="USDTg">USDTg</option>
+                    <option value="RGLS">RGLS</option>
+                    <option value="USDTgV">USDTgV</option>
+                    <option value="USDTgG">USDTgG</option>
+                </select>
+            </div>
+            <button onclick="sendTransaction()" class="action-button btn-danger" style="width: 100%;">Send</button>
+        </div>
+    </div>
+
+    <!-- Receive Modal -->
+    <div id="receiveModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('receiveModal')">&times;</span>
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Receive Funds</h2>
+            <div class="wallet-address" id="receiveAddress"></div>
+            <div class="qr-code" id="qrCode">
+                <div style="color: #666; padding: 40px;">QR Code will appear here</div>
+            </div>
+            <button onclick="copyAddress()" class="action-button btn-success" style="width: 100%;">Copy Address</button>
+        </div>
+    </div>
+
+    <!-- Swap Modal -->
+    <div id="swapModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('swapModal')">&times;</span>
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Token Swap</h2>
+            <div class="form-group">
+                <label class="form-label">From</label>
+                <select class="form-input" id="swapFrom">
+                    <option value="USDTg">USDTg</option>
+                    <option value="RGLS">RGLS</option>
+                    <option value="USDTgV">USDTgV</option>
+                    <option value="USDTgG">USDTgG</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">To</label>
+                <select class="form-input" id="swapTo">
+                    <option value="RGLS">RGLS</option>
+                    <option value="USDTg">USDTg</option>
+                    <option value="USDTgV">USDTgV</option>
+                    <option value="USDTgG">USDTgG</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount</label>
+                <input type="number" class="form-input" id="swapAmount" placeholder="0.00" step="0.000001">
+            </div>
+            <button onclick="performSwap()" class="action-button btn-warning" style="width: 100%;">Swap</button>
+        </div>
+    </div>
+
+    <script>
+        class USDTgVerseWebWallet {
+            constructor() {
+                this.walletAddress = null;
+                this.isConnected = false;
+                this.assets = [];
+                this.transactions = [];
+                this.apiBase = 'https://api.usdtgverse.com/api/v1';
+                this.init();
+            }
+
+            init() {
+                this.loadSavedWallet();
+                this.checkConnection();
+            }
+
+            loadSavedWallet() {
+                const saved = localStorage.getItem('usdtgverse_wallet');
+                if (saved) {
+                    try {
+                        const wallet = JSON.parse(saved);
+                        this.walletAddress = wallet.address;
+                        this.isConnected = true;
+                        this.updateUI();
+                        this.loadWalletData();
+                    } catch (e) {
+                        console.error('Failed to load saved wallet:', e);
+                    }
+                }
+            }
+
+            checkConnection() {
+                if (this.isConnected) {
+                    this.updateConnectionStatus(true);
+                } else {
+                    this.updateConnectionStatus(false);
+                }
+            }
+
+            updateConnectionStatus(connected) {
+                const status = document.getElementById('connectionStatus');
+                const text = document.getElementById('connectionText');
+                const walletActions = document.getElementById('walletActions');
+                const connectionActions = document.getElementById('connectionActions');
+                const walletInfo = document.getElementById('walletInfo');
+                const actionButtons = document.getElementById('actionButtons');
+                const featureCards = document.getElementById('featureCards');
+
+                if (connected) {
+                    status.className = 'status-indicator status-connected';
+                    text.textContent = 'Connected';
+                    walletActions.style.display = 'block';
+                    connectionActions.style.display = 'none';
+                    walletInfo.style.display = 'block';
+                    actionButtons.style.display = 'block';
+                    featureCards.style.display = 'grid';
+                } else {
+                    status.className = 'status-indicator status-disconnected';
+                    text.textContent = 'Not Connected';
+                    walletActions.style.display = 'none';
+                    connectionActions.style.display = 'block';
+                    walletInfo.style.display = 'none';
+                    actionButtons.style.display = 'none';
+                    featureCards.style.display = 'none';
+                }
+            }
+
+            generateNewWallet() {
+                const timestamp = Date.now().toString();
+                const random = Math.random().toString(36).substring(2, 15);
+                return 'usdtg1' + timestamp.slice(-8) + random.slice(0, 8);
+            }
+
+            async connectWallet() {
+                const input = document.getElementById('connectInput').value.trim();
+                const name = document.getElementById('connectName').value.trim() || 'My Wallet';
+                
+                if (!input) {
+                    this.showError('Please enter a private key or seed phrase');
+                    return;
+                }
+
+                try {
+                    // For demo purposes, accept any input as valid
+                    this.walletAddress = this.generateNewWallet();
+                    this.isConnected = true;
+                    
+                    const wallet = {
+                        address: this.walletAddress,
+                        name: name,
+                        connected: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('usdtgverse_wallet', JSON.stringify(wallet));
+                    
+                    this.updateUI();
+                    this.loadWalletData();
+                    this.closeModal('connectModal');
+                    this.showSuccess('Wallet connected successfully!');
+                } catch (error) {
+                    this.showError('Failed to connect wallet: ' + error.message);
+                }
+            }
+
+            async createWallet() {
+                const name = document.getElementById('createName').value.trim();
+                const password = document.getElementById('createPassword').value;
+                
+                if (!name || !password) {
+                    this.showError('Please fill in all fields');
+                    return;
+                }
+
+                try {
+                    this.walletAddress = this.generateNewWallet();
+                    this.isConnected = true;
+                    
+                    const wallet = {
+                        address: this.walletAddress,
+                        name: name,
+                        password: password,
+                        created: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('usdtgverse_wallet', JSON.stringify(wallet));
+                    
+                    // Request welcome airdrop
+                    await this.requestWelcomeAirdrop();
+                    
+                    this.updateUI();
+                    this.loadWalletData();
+                    this.closeModal('createModal');
+                    this.showSuccess('Wallet created successfully! Welcome airdrop requested.');
+                } catch (error) {
+                    this.showError('Failed to create wallet: ' + error.message);
+                }
+            }
+
+            async importWallet() {
+                const input = document.getElementById('importInput').value.trim();
+                const name = document.getElementById('importName').value.trim();
+                const password = document.getElementById('importPassword').value;
+                
+                if (!input || !name || !password) {
+                    this.showError('Please fill in all fields');
+                    return;
+                }
+
+                try {
+                    // For demo purposes, accept any input as valid
+                    this.walletAddress = this.generateNewWallet();
+                    this.isConnected = true;
+                    
+                    const wallet = {
+                        address: this.walletAddress,
+                        name: name,
+                        password: password,
+                        imported: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('usdtgverse_wallet', JSON.stringify(wallet));
+                    
+                    this.updateUI();
+                    this.loadWalletData();
+                    this.closeModal('importModal');
+                    this.showSuccess('Wallet imported successfully!');
+                } catch (error) {
+                    this.showError('Failed to import wallet: ' + error.message);
+                }
+            }
+
+            disconnectWallet() {
+                localStorage.removeItem('usdtgverse_wallet');
+                this.walletAddress = null;
+                this.isConnected = false;
+                this.assets = [];
+                this.transactions = [];
+                this.updateUI();
+                this.showSuccess('Wallet disconnected');
+            }
+
+            async loadWalletData() {
+                if (!this.isConnected) return;
+                
+                try {
+                    await Promise.all([
+                        this.loadBalance(),
+                        this.loadAssets(),
+                        this.loadTransactions()
+                    ]);
+                } catch (error) {
+                    console.error('Failed to load wallet data:', error);
+                }
+            }
+
+            async loadBalance() {
+                try {
+                    const response = await fetch(`${this.apiBase}/balance/${this.walletAddress}/usdtg`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        const balance = data.balance || 0;
+                        document.getElementById('totalBalance').textContent = `${balance.toFixed(6)} USDTg`;
+                        document.getElementById('totalBalanceUSD').textContent = `$${(balance * 1.0).toFixed(2)} USD`;
+                    }
+                } catch (error) {
+                    console.error('Failed to load balance:', error);
+                }
+            }
+
+            async loadAssets() {
+                try {
+                    const response = await fetch(`${this.apiBase}/assets/${this.walletAddress}`);
+                    const data = await response.json();
+                    
+                    if (data.success && data.assets) {
+                        this.assets = data.assets;
+                        this.renderAssets();
+                    } else {
+                        // Show default assets if API fails
+                        this.showDefaultAssets();
+                    }
+                } catch (error) {
+                    console.error('Failed to load assets:', error);
+                    this.showDefaultAssets();
+                }
+            }
+
+            showDefaultAssets() {
+                this.assets = [
+                    { symbol: 'USDTg', name: 'USDTgVerse Token', balance: 0, price: 1.0, logo: '../assets/logos/logo.png' },
+                    { symbol: 'RGLS', name: 'Regilis', balance: 0, price: 1.0, logo: '../assets/logos/regilis.png' },
+                    { symbol: 'USDTgV', name: 'USDTgVerse Voting', balance: 0, price: 0.8, logo: '../assets/logos/USDTgV-logo.png' },
+                    { symbol: 'USDTgG', name: 'USDTgVerse Governance', balance: 0, price: 1.2, logo: '../assets/logos/USDTgG-logo.png' }
+                ];
+                this.renderAssets();
+            }
+
+            renderAssets() {
+                const container = document.getElementById('assetsContainer');
+                
+                if (this.assets.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">💼</div>
+                            <div>No assets found</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = this.assets.map(asset => `
+                    <div class="asset-item">
+                        <div class="asset-logo">
+                            <img src="${asset.logo}" alt="${asset.symbol}" style="width: 40px; height: 40px; border-radius: 50%;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div style="display: none; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); align-items: center; justify-content: center; font-weight: bold; color: white;">${asset.symbol}</div>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-symbol">${asset.symbol}</div>
+                            <div class="asset-name">${asset.name}</div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="balance-amount">${asset.balance.toFixed(6)}</div>
+                            <div class="balance-value">$${(asset.balance * asset.price).toFixed(2)}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            async loadTransactions() {
+                try {
+                    const response = await fetch(`${this.apiBase}/transactions/${this.walletAddress}`);
+                    const data = await response.json();
+                    
+                    if (data.success && data.transactions) {
+                        this.transactions = data.transactions;
+                    } else {
+                        this.transactions = [];
+                    }
+                    this.renderTransactions();
+                } catch (error) {
+                    console.error('Failed to load transactions:', error);
+                    this.renderTransactions();
+                }
+            }
+
+            renderTransactions() {
+                const container = document.getElementById('transactionsContainer');
+                
+                if (this.transactions.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📋</div>
+                            <div>No transactions yet</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = this.transactions.map(tx => `
+                    <div class="transaction-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="transaction-type">${tx.type}</div>
+                                <div class="transaction-date">${new Date(tx.timestamp).toLocaleString()}</div>
+                            </div>
+                            <div class="transaction-amount">${tx.amount} ${tx.token}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            async requestWelcomeAirdrop() {
+                try {
+                    const response = await fetch(`${this.apiBase}/airdrop/welcome`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            address: this.walletAddress,
+                            type: 'welcome'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        this.showSuccess('Welcome airdrop requested!');
+                    }
+                } catch (error) {
+                    console.error('Failed to request airdrop:', error);
+                }
+            }
+
+            updateUI() {
+                this.updateConnectionStatus(this.isConnected);
+                
+                if (this.isConnected && this.walletAddress) {
+                    document.getElementById('walletAddress').textContent = this.walletAddress;
+                    document.getElementById('receiveAddress').textContent = this.walletAddress;
+                }
+            }
+
+            showError(message) {
+                // Create a temporary error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+                document.body.insertBefore(errorDiv, document.body.firstChild);
+                
+                setTimeout(() => {
+                    if (errorDiv.parentNode) {
+                        errorDiv.parentNode.removeChild(errorDiv);
+                    }
+                }, 5000);
+            }
+
+            showSuccess(message) {
+                // Create a temporary success message
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+                document.body.insertBefore(successDiv, document.body.firstChild);
+                
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        successDiv.parentNode.removeChild(successDiv);
+                    }
+                }, 5000);
+            }
+        }
+
+        // Initialize wallet
+        const wallet = new USDTgVerseWebWallet();
+
+        // Modal functions
+        function showConnectModal() {
+            document.getElementById('connectModal').style.display = 'block';
+        }
+
+        function showCreateModal() {
+            document.getElementById('createModal').style.display = 'block';
+        }
+
+        function showImportModal() {
+            document.getElementById('importModal').style.display = 'block';
+        }
+
+        function showSendModal() {
+            if (!wallet.isConnected) {
+                wallet.showError('Please connect your wallet first');
+                return;
+            }
+            document.getElementById('sendModal').style.display = 'block';
+        }
+
+        function showReceiveModal() {
+            if (!wallet.isConnected) {
+                wallet.showError('Please connect your wallet first');
+                return;
+            }
+            document.getElementById('receiveModal').style.display = 'block';
+        }
+
+        function showSwapModal() {
+            if (!wallet.isConnected) {
+                wallet.showError('Please connect your wallet first');
+                return;
+            }
+            document.getElementById('swapModal').style.display = 'block';
+        }
+
+        function showTradingModal() {
+            if (!wallet.isConnected) {
+                wallet.showError('Please connect your wallet first');
+                return;
+            }
+            window.open('/trading/trade-interface.html', '_blank');
+        }
+
+        function showHistoryModal() {
+            if (!wallet.isConnected) {
+                wallet.showError('Please connect your wallet first');
+                return;
+            }
+            wallet.loadTransactions();
+        }
+
+        function showStakingModal() {
+            wallet.showError('Staking feature coming soon!');
+        }
+
+        function showDeFiModal() {
+            wallet.showError('DeFi features coming soon!');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Wallet action functions
+        function connectWallet() {
+            wallet.connectWallet();
+        }
+
+        function createWallet() {
+            wallet.createWallet();
+        }
+
+        function importWallet() {
+            wallet.importWallet();
+        }
+
+        function disconnectWallet() {
+            wallet.disconnectWallet();
+        }
+
+        function sendTransaction() {
+            const address = document.getElementById('sendAddress').value;
+            const amount = document.getElementById('sendAmount').value;
+            const token = document.getElementById('sendToken').value;
+            
+            if (!address || !amount) {
+                wallet.showError('Please fill in all fields');
+                return;
+            }
+            
+            wallet.showSuccess(`Transaction sent: ${amount} ${token} to ${address}`);
+            closeModal('sendModal');
+        }
+
+        function copyAddress() {
+            const address = document.getElementById('receiveAddress').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                wallet.showSuccess('Address copied to clipboard!');
+            });
+        }
+
+        function performSwap() {
+            const from = document.getElementById('swapFrom').value;
+            const to = document.getElementById('swapTo').value;
+            const amount = document.getElementById('swapAmount').value;
+            
+            if (!amount) {
+                wallet.showError('Please enter an amount');
+                return;
+            }
+            
+            wallet.showSuccess(`Swap initiated: ${amount} ${from} → ${to}`);
+            closeModal('swapModal');
+        }
+
+        function requestAirdrop() {
+            if (!wallet.isConnected) {
+                wallet.showError('Please connect your wallet first');
+                return;
+            }
+            wallet.requestWelcomeAirdrop();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

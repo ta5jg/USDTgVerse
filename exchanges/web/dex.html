@@ -53,6 +53,18 @@
             box-sizing: border-box;
         }
 
+        /* Container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 20px;
+        }
+
         /* DEX Statistics Styling */
         .stats-section {
             display: grid;
@@ -190,6 +202,7 @@
                             <option>USDTg</option>
                             <option>USDTgV</option>
                             <option>USDTgG</option>
+                            <option>RGLS</option>
                             <option>USDT</option>
                             <option>USDC</option>
                         </select>
@@ -215,6 +228,7 @@
                             <option>USDTgV</option>
                             <option>USDTg</option>
                             <option>USDTgG</option>
+                            <option>RGLS</option>
                             <option>USDT</option>
                             <option>USDC</option>
                         </select>
@@ -241,6 +255,7 @@
                             <option>USDTg</option>
                             <option>USDTgV</option>
                             <option>USDTgG</option>
+                            <option>RGLS</option>
                         </select>
                     </div>
                     <input type="number" placeholder="0.0" class="w-full bg-transparent text-2xl text-white placeholder-gray-400 border-none outline-none">
@@ -254,6 +269,7 @@
                             <option>USDTgV</option>
                             <option>USDTg</option>
                             <option>USDTgG</option>
+                            <option>RGLS</option>
                         </select>
                     </div>
                     <input type="number" placeholder="0.0" class="w-full bg-transparent text-2xl text-white placeholder-gray-400 border-none outline-none">
@@ -362,6 +378,30 @@
                         Add Liquidity
                     </button>
                 </div>
+
+                <div class="flex justify-between items-center p-4 bg-black/30 rounded-2xl border border-white/20">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">U</div>
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">R</div>
+                        </div>
+                        <div>
+                            <div class="font-semibold">USDTg/RGLS</div>
+                            <div class="text-sm text-gray-400">0.3% fee</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-semibold">$125,400</div>
+                        <div class="text-sm text-gray-400">Liquidity</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-semibold">22.3%</div>
+                        <div class="text-sm text-gray-400">APY</div>
+                    </div>
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors">
+                        Add Liquidity
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -397,9 +437,10 @@
             
             // Simulate rate calculation
             const rates = {
-                'USDTg': { 'USDTgV': 1.05, 'USDTgG': 0.95, 'USDT': 1.00, 'USDC': 1.00 },
-                'USDTgV': { 'USDTg': 0.95, 'USDTgG': 0.90, 'USDT': 0.95, 'USDC': 0.95 },
-                'USDTgG': { 'USDTg': 1.05, 'USDTgV': 1.11, 'USDT': 1.05, 'USDC': 1.05 }
+                'USDTg': { 'USDTgV': 1.05, 'USDTgG': 0.95, 'RGLS': 1.00, 'USDT': 1.00, 'USDC': 1.00 },
+                'USDTgV': { 'USDTg': 0.95, 'USDTgG': 0.90, 'RGLS': 0.95, 'USDT': 0.95, 'USDC': 0.95 },
+                'USDTgG': { 'USDTg': 1.05, 'USDTgV': 1.11, 'RGLS': 1.05, 'USDT': 1.05, 'USDC': 1.05 },
+                'RGLS': { 'USDTg': 1.00, 'USDTgV': 1.05, 'USDTgG': 0.95, 'USDT': 1.00, 'USDC': 1.00 }
             };
             
             const rate = rates[fromToken]?.[toToken] || 1.00;
@@ -444,7 +485,7 @@
                     return;
                 }
                 
-                const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG', 'USDT', 'USDC']);
+                const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG', 'RGLS', 'USDT', 'USDC']);
                 
                 // Update DEX statistics with real data
                 updateDEXStats(prices);

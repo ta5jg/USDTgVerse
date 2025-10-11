@@ -11,11 +11,15 @@ import CoreImage.CIFilterBuiltins
 
 // MARK: - Wallet Asset Model (Inline)
 struct WalletAsset: Identifiable, Codable {
-    let id = UUID()
+    var id = UUID()
     let symbol: String
     let name: String
     let balance: Double
     let price: Double
+    let logoURL: String
+    let change24h: Double
+    let chain: String
+    let isNativeImage: Bool // For assets.xcassets images vs URLs
     
     var totalValue: Double {
         return balance * price
@@ -55,7 +59,7 @@ struct WalletAsset: Identifiable, Codable {
 }
 
 struct WalletView: View {
-    @EnvironmentObject var walletManager: WalletManager
+    @StateObject private var nativeWalletManager = NativeWalletManager()
     @EnvironmentObject var networkManager: NetworkManager
     @State private var showingSendView = false
     @State private var showingReceiveView = false
@@ -64,6 +68,11 @@ struct WalletView: View {
     @State private var showingNetworkSelector = false
     @State private var showingUSDTgVersePay = false
     @State private var showingMembership = false
+    
+    // Real-time portfolio value from NativeWalletManager
+    private var totalPortfolioValue: Double {
+        return nativeWalletManager.balance.totalPortfolioValue
+    }
     @State private var showingMarginTrading = false
     @State private var showingCopyTrading = false
     @State private var showingCustody = false
@@ -71,9 +80,6 @@ struct WalletView: View {
     @State private var currentNetwork = "USDTgVerse"
     @State private var currentWalletAssets: [WalletAsset] = []
     
-    var totalPortfolioValue: Double {
-        return currentWalletAssets.reduce(0) { $0 + $1.totalValue }
-    }
     
     // MARK: - Number Formatting
     private func formatCurrency(_ amount: Double) -> String {
@@ -130,6 +136,12 @@ struct WalletView: View {
              }
              .navigationBarHidden(true)
             .onAppear {
+                // Load existing wallet or create new one with airdrop
+                Task {
+                    if !nativeWalletManager.hasWallets {
+                        await nativeWalletManager.createWallet(name: "My Quantum Wallet")
+                    }
+                }
                 loadCurrentWallet()
             }
             .background(
@@ -239,41 +251,68 @@ struct WalletView: View {
     }
     
     private func loadAssetsForNetwork(_ network: String) {
-        // Load real assets from blockchain - NO DEMO DATA
+        // Load real balance from NativeWalletManager - NO DEMO DATA!
         switch network {
         case "USDTgVerse":
-            // Load real wallet balance from blockchain
-            let usdtgBalance = loadRealWalletBalance(for: currentWalletName, asset: "USDTg")
+            // Fetch REAL balance from backend using NativeWalletManager
+            Task {
+                await nativeWalletManager.fetchBalance(for: currentWalletName)
+                print("✅ Real balance fetched: \(nativeWalletManager.balance.usdtg)")
+            }
+            
             currentWalletAssets = [
-                WalletAsset(symbol: "USDTg", name: "USDTgVerse Token", balance: usdtgBalance, price: 1.0),
-                WalletAsset(symbol: "USTD", name: "Tether USD", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0)
+                WalletAsset(symbol: "USDTg", name: "USDTgVerse Token", balance: nativeWalletManager.balance.usdtg, 
+                           price: nativeWalletManager.getOraclePrice(for: "USDTg"),  // Real Oracle price
+                           logoURL: "usdtg_logo", change24h: nativeWalletManager.getOracleChange24h(for: "USDTg"), chain: "USDTgVerse", isNativeImage: true),
+                WalletAsset(symbol: "RGLS", name: "Regilis", balance: nativeWalletManager.balance.rgls ?? 0.0, 
+                           price: nativeWalletManager.getOraclePrice(for: "RGLS"),  // Real Oracle price
+                           logoURL: "regilis", change24h: nativeWalletManager.getOracleChange24h(for: "RGLS"), chain: "USDTgVerse", isNativeImage: true),
+                WalletAsset(symbol: "USDTgV", name: "USDTgVerse Voting", balance: nativeWalletManager.balance.usdtgv, 
+                           price: nativeWalletManager.getOraclePrice(for: "USDTgV"),  // Real Oracle price
+                           logoURL: "USDTgV-logo", change24h: nativeWalletManager.getOracleChange24h(for: "USDTgV"), chain: "USDTgVerse", isNativeImage: true),
+                WalletAsset(symbol: "USDTgG", name: "USDTgVerse Governance", balance: nativeWalletManager.balance.usdtgg, 
+                           price: nativeWalletManager.getOraclePrice(for: "USDTgG"),  // Real Oracle price
+                           logoURL: "USDTgG-logo", change24h: nativeWalletManager.getOracleChange24h(for: "USDTgG"), chain: "USDTgVerse", isNativeImage: true),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: nativeWalletManager.balance.usdt, price: 1.0, 
+                           logoURL: "https://assets.coingecko.com/coins/images/325/large/Tether.png", change24h: 0.1, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: nativeWalletManager.balance.usdc, price: 1.0,
+                           logoURL: "https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png", change24h: 0.0, chain: "Ethereum", isNativeImage: false)
             ]
             
         case "Ethereum":
             currentWalletAssets = [
-                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0)
+                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85,
+                           logoURL: "https://cryptologos.cc/logos/ethereum-eth-logo.svg", change24h: -1.2, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0,
+                           logoURL: "https://cryptologos.cc/logos/tether-usdt-logo.svg", change24h: 0.1, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "USDC", name: "USDC Coin", balance: 0.0, price: 1.0,
+                           logoURL: "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg", change24h: 0.0, chain: "Ethereum", isNativeImage: false)
             ]
             
         case "BNB Chain":
             currentWalletAssets = [
-                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "BUSD", name: "Binance USD", balance: 0.0, price: 1.0)
+                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5,
+                           logoURL: "https://cryptologos.cc/logos/bnb-bnb-logo.svg", change24h: 3.4, chain: "BNB Chain", isNativeImage: false),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0,
+                           logoURL: "https://cryptologos.cc/logos/tether-usdt-logo.svg", change24h: 0.1, chain: "BNB Chain", isNativeImage: false),
+                WalletAsset(symbol: "BUSD", name: "Binance USD", balance: 0.0, price: 1.0,
+                           logoURL: "https://cryptologos.cc/logos/bnb-bnb-logo.svg", change24h: 0.0, chain: "BNB Chain", isNativeImage: false)
             ]
             
         case "TRON":
             currentWalletAssets = [
-                WalletAsset(symbol: "TRX", name: "TRON", balance: 0.0, price: 0.091),
-                WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 0.0, price: 1.0)
+                WalletAsset(symbol: "TRX", name: "TRON", balance: 0.0, price: 0.091,
+                           logoURL: "https://cryptologos.cc/logos/tron-trx-logo.svg", change24h: -2.1, chain: "TRON", isNativeImage: false),
+                WalletAsset(symbol: "USDT", name: "Tether USD (TRC20)", balance: 0.0, price: 1.0,
+                           logoURL: "https://cryptologos.cc/logos/tether-usdt-logo.svg", change24h: 0.1, chain: "TRON", isNativeImage: false)
             ]
             
         case "Solana":
             currentWalletAssets = [
-                WalletAsset(symbol: "SOL", name: "Solana", balance: 0.0, price: 145.75),
-                WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 0.0, price: 1.0)
+                WalletAsset(symbol: "SOL", name: "Solana", balance: 0.0, price: 145.75,
+                           logoURL: "https://cryptologos.cc/logos/solana-sol-logo.svg", change24h: 4.8, chain: "Solana", isNativeImage: false),
+                WalletAsset(symbol: "USDT", name: "Tether USD (SPL)", balance: 0.0, price: 1.0,
+                           logoURL: "https://cryptologos.cc/logos/tether-usdt-logo.svg", change24h: 0.1, chain: "Solana", isNativeImage: false)
             ]
             
         default:
@@ -355,6 +394,20 @@ struct WalletView: View {
         }
     }
     
+    private func networkImageURL(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "usdtg_logo"  // Native asset
+        case "Ethereum": return "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
+        case "BNB Chain": return "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png"
+        case "TRON": return "https://assets.coingecko.com/coins/images/1094/large/tron-logo.png"
+        case "Solana": return "https://assets.coingecko.com/coins/images/4128/large/solana.png"
+        case "Polygon": return "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png"
+        case "Arbitrum": return "https://assets.coingecko.com/coins/images/16547/large/LPApeTCM.png"
+        case "Avalanche": return "https://assets.coingecko.com/coins/images/12559/large/Avalanche_Circle_RedWhite_Trans.png"
+        default: return "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+        }
+    }
+    
     private func networkIcon(for network: String) -> String {
         switch network {
         case "USDTgVerse": return "💰"
@@ -422,7 +475,7 @@ struct WalletView: View {
                  .foregroundColor(.white)
              
              HStack {
-                 Text("USDTg: \(formatBalance(loadRealWalletBalance(for: currentWalletName, asset: "USDTg")))")
+                 Text("USDTg: \(formatBalance(nativeWalletManager.currentWalletBalance))")
                      .font(.subheadline)
                      .foregroundColor(Color(red: 0.3, green: 0.7, blue: 0.3))
                 
@@ -640,16 +693,34 @@ struct AssetRowView: View {
     
     var body: some View {
         HStack {
-            // Asset icon
-            Circle()
-                .fill(Color(red: 0.3, green: 0.7, blue: 0.3))
-                .frame(width: 40, height: 40)
-                .overlay(
-                    Text(String(asset.symbol.prefix(2)))
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                )
+            // Asset icon - Native image or fallback
+            Group {
+                if asset.isNativeImage {
+                    Image(asset.logoURL) // Assets.xcassets image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                } else {
+                    AsyncImage(url: URL(string: asset.logoURL)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        Circle()
+                            .fill(Color(red: 0.3, green: 0.7, blue: 0.3))
+                            .frame(width: 40, height: 40)
+                            .overlay(
+                                Text(String(asset.symbol.prefix(2)))
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                            )
+                    }
+                }
+            }
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(asset.symbol)
@@ -1105,13 +1176,29 @@ struct NetworkSelectorSheet: View {
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack(spacing: 16) {
-                                Circle()
-                                    .fill(networkColor(for: network))
+                                // Network Logo: Native for USDTgVerse, Remote for others
+                                if network == "USDTgVerse" {
+                                    Image("usdtg_logo")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+                                } else {
+                                    AsyncImage(url: URL(string: networkImageURL(for: network))) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    } placeholder: {
+                                        Circle()
+                                            .fill(networkColor(for: network))
+                                            .overlay(
+                                                Text(networkIcon(for: network))
+                                                    .font(.headline)
+                                            )
+                                    }
                                     .frame(width: 40, height: 40)
-                                    .overlay(
-                                        Text(networkIcon(for: network))
-                                            .font(.headline)
-                                    )
+                                    .clipShape(Circle())
+                                }
                                 
                                 VStack(alignment: .leading, spacing: 4) {
                                     HStack {
@@ -1182,6 +1269,20 @@ struct NetworkSelectorSheet: View {
         }
     }
     
+    private func networkImageURL(for network: String) -> String {
+        switch network {
+        case "USDTgVerse": return "usdtg_logo"  // Native asset
+        case "Ethereum": return "https://assets.coingecko.com/coins/images/279/large/ethereum.png"
+        case "BNB Chain": return "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png"
+        case "TRON": return "https://assets.coingecko.com/coins/images/1094/large/tron-logo.png"
+        case "Solana": return "https://assets.coingecko.com/coins/images/4128/large/solana.png"
+        case "Polygon": return "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png"
+        case "Arbitrum": return "https://assets.coingecko.com/coins/images/16547/large/LPApeTCM.png"
+        case "Avalanche": return "https://assets.coingecko.com/coins/images/12559/large/Avalanche_Circle_RedWhite_Trans.png"
+        default: return "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+        }
+    }
+    
     private func networkIcon(for network: String) -> String {
         switch network {
         case "USDTgVerse": return "💰"
@@ -1213,6 +1314,5 @@ struct NetworkSelectorSheet: View {
 
 #Preview {
     WalletView()
-        .environmentObject(WalletManager())
         .environmentObject(NetworkManager())
 }

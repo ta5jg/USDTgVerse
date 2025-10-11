@@ -96,24 +96,36 @@
             color: white !important;
             text-decoration: none;
         }
-        
-        .main-max-w-7xl mx-auto px-4 {
-            text-align: center;
+
+        /* Container styles */
+        .container {
             max-width: 1200px;
-            margin: 500px auto 0;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .main-max-w-7xl {
+            text-align: center !important;
+            max-width: 1200px;
+            margin: 120px auto 0;
             padding: 40px;
         }
         
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .main-max-w-7xl mx-auto px-4 {
-                margin: 550px auto 0;
+            .main-max-w-7xl {
+                margin: 120px auto 0;
             }
         }
         
         @media (max-width: 768px) {
-            .main-max-w-7xl mx-auto px-4 {
-                margin: 600px auto 0;
+            .main-max-w-7xl {
+                margin: 120px auto 0;
                 padding: 20px;
             }
             
@@ -130,8 +142,8 @@
         }
         
         @media (max-width: 480px) {
-            .main-max-w-7xl mx-auto px-4 {
-                margin: 650px auto 0;
+            .main-max-w-7xl {
+                margin: 120px auto 0;
                 padding: 15px;
             }
             
@@ -417,8 +429,95 @@
         
         .status-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+            align-items: center;
+        }
+        
+        .token-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .token-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .token-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .token-logo {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .token-logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .token-logo-img:hover {
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .token-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .token-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+        
+        .token-desc {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .status-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .token-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .token-cards-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .status-item {
@@ -445,182 +544,213 @@
                 grid-template-columns: 1fr;
             }
             
-            .main-max-w-7xl mx-auto px-4 {
+            .main-max-w-7xl {
+                margin: 120px auto 0;
                 padding: 20px;
             }
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans m-0 p-0">
+<body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans m-0 p-0 pt-20 text-center">
     <!-- Navigation will be added dynamically by JavaScript -->
+       <div class="bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold">
+           🚀 <strong>MAJOR RELEASE:</strong> Four Tokens Live! USDTg ($1.00), USDTgV ($0.50), USDTgG ($5.00), RGLS ($1.00) - All trading pairs active! 
+           <a href="dashboard/index.html" class="text-white underline hover:text-yellow-300 transition-colors duration-300">📊 Trade Now →</a>
+       </div>
+       
+       <!-- Include Navigation -->
+       <div id="navigation-placeholder"></div>
+        <div class="main-max-w-7xl">
+           <div class="logo">
+               <img src="assets/logos/logo.png" alt="USDTgVerse Logo" style="width: 120px; height: 120px; margin-right: 20px;">
+               <div>USDTgVerse</div>
+           </div>
+           <div class="subtitle">A Stable Universe, Decentralized for All.</div>
+           <div class="description">
+               The world's first truly independent blockchain with native USDTg stablecoin.<br>
+               Ultra-high performance, enterprise security, zero dependencies.<br>
+               <strong>🎉 NEW:</strong> USDTgV Utility Token ($0.50), USDTgG Governance Token ($5.00) & Regilis (RGLS) ($1.00) now live!
+           </div>
+           
+           <!-- Network Status Card -->
+           <div class="status-bar">
+               <div class="status-grid">
+                   <div class="status-item">
+                       <div class="status-value" style="color: #28a745;">LIVE</div>
+                       <div class="status-label">Mainnet Status</div>
+                   </div>
+                   <div class="status-item">
+                       <div class="status-value">100%</div>
+                       <div class="status-label">Security Score</div>
+                   </div>
+                   <div class="status-item">
+                       <div class="status-value">1.6B</div>
+                       <div class="status-label">Total Supply</div>
+                   </div>
+               </div>
+           </div>
 
-    <div class="bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold">
-        🚀 <strong>MAJOR RELEASE:</strong> Three Tokens Live! USDTg ($1.00), USDTgV ($0.50), USDTgG ($5.00) - All trading pairs active! 
-        <a href="dashboard/index.html" class="text-white underline hover:text-yellow-300 transition-colors duration-300">📊 Trade Now →</a>
-    </div>
-    
-    <!-- Include Navigation -->
-    <div id="navigation-placeholder"></div>
-    <div class="main-max-w-7xl mx-auto px-4">
-        <div class="logo">
-            <img src="assets/logos/logo.png" alt="USDTgVerse Logo" style="width: 120px; height: 120px; margin-right: 20px;">
-            <div>USDTgVerse</div>
-        </div>
-        <div class="subtitle">A Stable Universe, Decentralized for All.</div>
-        <div class="description">
-            The world's first truly independent blockchain with native USDTg stablecoin.<br>
-            Ultra-high performance, enterprise security, zero dependencies.<br>
-            <strong>🎉 NEW:</strong> USDTgV Utility Token ($0.50) & USDTgG Governance Token ($5.00) now live!
-        </div>
-        
-        <div class="status-bar">
-            <div class="status-grid">
-                <div class="status-item">
-                    <div class="status-value" style="color: #28a745;">LIVE</div>
-                    <div class="status-label">Mainnet Status</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-value">100%</div>
-                    <div class="status-label">Security Score</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-value" id="usdtg-price">$1.00</div>
-                    <div class="status-label">USDTg Price</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-value" id="usdtgv-price">$0.50</div>
-                    <div class="status-label">USDTgV Price</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-value" id="usdtgg-price">$5.00</div>
-                    <div class="status-label">USDTgG Price</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-value">1.6B</div>
-                    <div class="status-label">Total Supply</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Quantum-Safe Security Section -->
-        <div class="quantum-section">
-            <div class="quantum-content">
-                <div class="quantum-logo-large">⚛️</div>
-                <div class="quantum-info">
-                    <h2 class="quantum-title">Quantum-Safe Revolution</h2>
-                    <p class="quantum-slogan">World's First Quantum-Resistant Blockchain</p>
-                    <p class="quantum-description">
-                        USDTgVerse pioneers post-quantum cryptography with CRYSTALS-Dilithium and CRYSTALS-Kyber algorithms, 
-                        providing 256-bit quantum security - equivalent to AES-1024 classical encryption. 
-                        Future-proof your digital assets for the next 50 years.
-                    </p>
-                    <a href="website/quantum-safe.html" class="quantum-cta">
-                        🚀 Explore Quantum Technology
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="app-grid">
-            <div class="app-card">
-                <div class="app-icon">🔧</div>
-                <div class="app-title">USDTgScript IDE</div>
-                <div class="app-description">Native smart contract development with quantum-safe grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20</div>
-                <a href="native-ide/web/index.html" class="app-link">Launch IDE</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🏭</div>
-                <div class="app-title">Universal Factory</div>
-                <div class="app-description">Deploy contracts to all major blockchains from one interface</div>
-                <a href="universal-factory/deploy.html" class="app-link">Deploy Contracts</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🔮</div>
-                <div class="app-title">Oracle Network</div>
-                <div class="app-description">Independent price feeds free from external dependencies</div>
-                <a href="oracle-network/dashboard.html" class="app-link">View Oracles</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🌉</div>
-                <div class="app-title">Bootstrap Bridge</div>
-                <div class="app-description">Bridge USDT/USDC/BNB to USDTgVerse for initial liquidity</div>
-                <a href="bootstrap-system/bridge.html" class="app-link">Bridge Assets</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🌟</div>
-                <div class="app-title">Main Website</div>
-                <div class="app-description">Professional landing page with grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 and documentation</div>
-                <a href="website/index.html" class="app-link">Visit Website</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">📊</div>
-                <div class="app-title">Live Dashboard</div>
-                <div class="app-description">Real-time trading dashboard with all three tokens</div>
-                <a href="dashboard/index.html" class="app-link">Open Dashboard</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🔍</div>
-                <div class="app-title">USDTgScan</div>
-                <div class="app-description">Real-time blockchain explorer and transaction tracker</div>
-                <a href="explorer/usdtgscan.html" class="app-link">Launch Explorer</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">💳</div>
-                <div class="app-title">Transfer dApp</div>
-                <div class="app-description">Instant USDTg transfers with real-time confirmation</div>
-                <a href="dapps/usdtg-transfer/index.html" class="app-link">Open dApp</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🔒</div>
-                <div class="app-title">Security Audit</div>
-                <div class="app-description">100% security score - enterprise audit report</div>
-                <a href="audit/USDTgVerse_Security_Audit_Report_FIXED.html" class="app-link">View Report</a>
-            </div>
-            
-            
-            <div class="app-card">
-                <div class="app-icon">🔄</div>
-                <div class="app-title">USDTgDEX</div>
-                <div class="app-description">Decentralized exchange with automated market maker</div>
-                <a href="dashboard/index.html#dex" class="app-link">Launch DEX</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🏪</div>
-                <div class="app-title">USDTgCEX</div>
-                <div class="app-description">High-frequency centralized trading platform</div>
-                <a href="dashboard/index.html#cex" class="app-link">Launch CEX</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">💳</div>
-                <div class="app-title">USDTgWallet</div>
-                <div class="app-description">Digital wallet with OdixPay++ payment system</div>
-                <a href="wallet/demo/wallet.html" class="app-link">Open Wallet</a>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">🌉</div>
-                <div class="app-title">Multi-Chain Bridges</div>
-                <div class="app-description">Cross-chain transfers with ETH, TRON, and Solana</div>
-                <a href="bridges/web/bridge.html" class="app-link">Launch Bridges</a>
-            </div>
-        </div>
-        
-        <div style="opacity: 0.8; font-size: 0.9em;">
-            🚀 USDTgVerse: Ready for Enterprise Production<br>
-            Pure C Backend + Professional Frontend
-        </div>
-    </div>
-    
+           <!-- Token Cards Grid -->
+           <div class="token-cards-grid">
+               <div class="token-card">
+                   <div class="token-logo">
+                       <img src="assets/logos/logo.png" alt="USDTg" class="token-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                       <div class="token-logo-fallback" style="display: none; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #28a745, #20c997); align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2em;">USDTg</div>
+                   </div>
+                   <div class="token-name">USDTg</div>
+                   <div class="token-price" id="usdtg-price">$1.00</div>
+                   <div class="token-desc">Stablecoin</div>
+               </div>
+               
+               <div class="token-card">
+                   <div class="token-logo">
+                       <img src="assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                       <div class="token-logo-fallback" style="display: none; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #ffc107, #fd7e14); align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2em;">USDTgV</div>
+                   </div>
+                   <div class="token-name">USDTgV</div>
+                   <div class="token-price" id="usdtgv-price">$0.50</div>
+                   <div class="token-desc">Utility Token</div>
+               </div>
+               
+               <div class="token-card">
+                   <div class="token-logo">
+                       <img src="assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                       <div class="token-logo-fallback" style="display: none; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #007bff, #6f42c1); align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2em;">USDTgG</div>
+                   </div>
+                   <div class="token-name">USDTgG</div>
+                   <div class="token-price" id="usdtgg-price">$5.00</div>
+                   <div class="token-desc">Governance</div>
+               </div>
+               
+               <div class="token-card">
+                   <div class="token-logo">
+                       <img src="assets/logos/regilis.png" alt="RGLS" class="token-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                       <div class="token-logo-fallback" style="display: none; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #6f42c1, #e83e8c); align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2em;">RGLS</div>
+                   </div>
+                   <div class="token-name">RGLS</div>
+                   <div class="token-price" id="rgls-price">$0.49</div>
+                   <div class="token-desc">Royalty Token</div>
+               </div>
+           </div>
+           
+           <!-- Quantum-Safe Security Section -->
+           <div class="quantum-section">
+               <div class="quantum-content">
+                   <div class="quantum-logo-large">⚛️</div>
+                   <div class="quantum-info">
+                       <h2 class="quantum-title">Quantum-Safe Revolution</h2>
+                       <p class="quantum-slogan">World's First Quantum-Resistant Blockchain</p>
+                       <p class="quantum-description">
+                           USDTgVerse pioneers post-quantum cryptography with CRYSTALS-Dilithium and CRYSTALS-Kyber algorithms, 
+                           providing 256-bit quantum security - equivalent to AES-1024 classical encryption. 
+                           Future-proof your digital assets for the next 50 years.
+                       </p>
+                       <a href="website/quantum-safe.html" class="quantum-cta">
+                           🚀 Explore Quantum Technology
+                       </a>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="app-grid">
+               <div class="app-card">
+                   <div class="app-icon">🔧</div>
+                   <div class="app-title">USDTgScript IDE</div>
+                   <div class="app-description">Native smart contract development with quantum-safe grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20</div>
+                   <a href="dev-tools/USDTgIDE-Real.html" class="app-link">Launch IDE</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🏭</div>
+                   <div class="app-title">Universal Factory</div>
+                   <div class="app-description">Deploy contracts to all major blockchains from one interface</div>
+                   <a href="universal-factory/deploy.html" class="app-link">Deploy Contracts</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🔮</div>
+                   <div class="app-title">Oracle Network</div>
+                   <div class="app-description">Independent price feeds free from external dependencies</div>
+                   <a href="oracle-network/dashboard.html" class="app-link">View Oracles</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🌉</div>
+                   <div class="app-title">Bootstrap Bridge</div>
+                   <div class="app-description">Bridge USDT/USDC/BNB to USDTgVerse for initial liquidity</div>
+                   <a href="bootstrap-system/bridge.html" class="app-link">Bridge Assets</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🌟</div>
+                   <div class="app-title">Main Website</div>
+                   <div class="app-description">Professional landing page with grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-20 and documentation</div>
+                   <a href="website/index.html" class="app-link">Visit Website</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">📊</div>
+                   <div class="app-title">Live Dashboard</div>
+                   <div class="app-description">Real-time trading dashboard with all three tokens</div>
+                   <a href="dashboard/index.html" class="app-link">Open Dashboard</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🔍</div>
+                   <div class="app-title">USDTgScan</div>
+                   <div class="app-description">Real-time blockchain explorer and transaction tracker</div>
+                   <a href="explorer/usdtgscan.html" class="app-link">Launch Explorer</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">💳</div>
+                   <div class="app-title">Transfer dApp</div>
+                   <div class="app-description">Instant USDTg transfers with real-time confirmation</div>
+                   <a href="dapps/usdtg-transfer/index.html" class="app-link">Open dApp</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🔒</div>
+                   <div class="app-title">Security Audit</div>
+                   <div class="app-description">100% security score - enterprise audit report</div>
+                   <a href="audit/USDTgVerse_Security_Audit_Report_FIXED.html" class="app-link">View Report</a>
+               </div>
+               
+               
+               <div class="app-card">
+                   <div class="app-icon">🔄</div>
+                   <div class="app-title">USDTgDEX</div>
+                   <div class="app-description">Decentralized exchange with automated market maker</div>
+                   <a href="dashboard/index.html#dex" class="app-link">Launch DEX</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🏪</div>
+                   <div class="app-title">USDTgCEX</div>
+                   <div class="app-description">High-frequency centralized trading platform</div>
+                   <a href="dashboard/index.html#cex" class="app-link">Launch CEX</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">💳</div>
+                   <div class="app-title">USDTgWallet</div>
+                   <div class="app-description">Digital wallet with OdixPay++ payment system</div>
+                   <a href="wallet/demo/wallet.html" class="app-link">Open Wallet</a>
+               </div>
+               
+               <div class="app-card">
+                   <div class="app-icon">🌉</div>
+                   <div class="app-title">Multi-Chain Bridges</div>
+                   <div class="app-description">Cross-chain transfers with ETH, TRON, and Solana</div>
+                   <a href="bridges/web/bridge.html" class="app-link">Launch Bridges</a>
+               </div>
+           </div>
+           
+           <div style="opacity: 0.8; font-size: 0.9em;">
+               🚀 USDTgVerse: Ready for Enterprise Production<br>
+               Pure C Backend + Professional Frontend
+           </div>
+       </div>
     <script>
         // MEGA MENU Navigation
         // MEGA MENU Navigation
@@ -783,7 +913,9 @@
                                 <a href="dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📊 Live Dashboard</a>
                                 <a href="explorer/usdtgscan.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔍 Explorer</a>
                                 <a href="dapps/usdtg-transfer/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📱 dApp</a>
-                                <a href="wallet/demo/wallet.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Wallet</a>
+                                <a href="wallet/wallet.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Wallet</a>
+                                <a href="dev-tools/USDTgIDE-Real.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(102, 126, 234, 0.1); font-weight: 600;">💻 IDE</a>
+                                <a href="docs/comprehensive-guide.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(102, 126, 234, 0.1); font-weight: 600;">📚 Guide</a>
                             </div>
                         </div>
                         
@@ -1256,6 +1388,12 @@
                 const usdtggElement = document.getElementById('usdtgg-price');
                 if (usdtggElement && prices.USDTgG) {
                     usdtggElement.textContent = `$${prices.USDTgG.price.toFixed(2)}`;
+                }
+                
+                // Update RGLS price
+                const rglsElement = document.getElementById('rgls-price');
+                if (rglsElement && prices.RGLS) {
+                    rglsElement.textContent = `$${prices.RGLS.price.toFixed(2)}`;
                 }
             } catch (error) {
                 console.error('Error updating prices:', error);
