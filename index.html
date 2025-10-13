@@ -45,7 +45,24 @@
             }
         }
     </script>
-    <script src="api/price-service.js"></script>
+    <!-- Pure C Price Service API -->
+    <script>
+        const PRICE_API_URL = 'http://localhost:8084';
+        
+        // Pure C Price Service Integration
+        async function fetchPricesFromPureC() {
+            try {
+                const response = await fetch(`${PRICE_API_URL}/api/price/native`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.native_tokens;
+                }
+            } catch (error) {
+                console.warn('Pure C Price API unavailable, using fallback');
+            }
+            return null;
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -554,8 +571,8 @@
 <body class="min-h-screen bg-gradient-to-br from-usdtg-primary to-usdtg-secondary text-white font-sans m-0 p-0 pt-20 text-center">
     <!-- Navigation will be added dynamically by JavaScript -->
        <div class="bg-gradient-to-r from-teal-500 to-blue-500 text-white p-4 text-center font-semibold">
-           🚀 <strong>MAJOR RELEASE:</strong> Four Tokens Live! USDTg ($1.00), USDTgV ($0.50), USDTgG ($5.00), RGLS ($1.00) - All trading pairs active! 
-           <a href="dashboard/index.html" class="text-white underline hover:text-yellow-300 transition-colors duration-300">📊 Trade Now →</a>
+           🎁 <strong>AIRDROP LIVE:</strong> New Wallet → Get 10 USDTg FREE! (Locked for fees) + 💎 BONUS PROGRAM: Buy 10,000 USDTg → Get +10 USDTg FREE! VIP Tiers: Bronze 🥉 Silver 🥈 Gold 🥇 Platinum 💎 Diamond 💠 
+           <a href="bonus-program.html" class="text-white underline hover:text-yellow-300 transition-colors duration-300">🎁 Start Earning →</a>
        </div>
        
        <!-- Include Navigation -->
@@ -709,12 +726,12 @@
                    <a href="dapps/usdtg-transfer/index.html" class="app-link">Open dApp</a>
                </div>
                
-               <div class="app-card">
-                   <div class="app-icon">🔒</div>
-                   <div class="app-title">Security Audit</div>
-                   <div class="app-description">100% security score - enterprise audit report</div>
-                   <a href="audit/USDTgVerse_Security_Audit_Report_FIXED.html" class="app-link">View Report</a>
-               </div>
+                <div class="app-card">
+                    <div class="app-icon">🔒</div>
+                    <div class="app-title">Security Audit</div>
+                    <div class="app-description">100% security score - comprehensive audit reports</div>
+                    <a href="audit/dashboard.html" class="app-link">🔍 Audit Dashboard</a>
+                </div>
                
                
                <div class="app-card">
@@ -845,6 +862,10 @@
                                             <div style="font-weight: bold; margin-bottom: 4px;">🏪 CEX</div>
                                             <div style="font-size: 12px; color: #666;">Centralized exchange platform</div>
                                         </a>
+                                        <a href="bridges/web/bridge.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(102, 126, 234, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🌉 Bridge</div>
+                                            <div style="font-size: 12px; color: #666;">Multi-chain token bridge</div>
+                                        </a>
                                     </div>
                                     
                                     <!-- Column 2: Development Tools -->
@@ -861,6 +882,10 @@
                                         <a href="sdk/documentation.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
                                             <div style="font-weight: bold; margin-bottom: 4px;">📚 SDK Docs</div>
                                             <div style="font-size: 12px; color: #666;">API documentation</div>
+                                        </a>
+                                        <a href="audit/dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(118, 75, 162, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔍 Audit Report</div>
+                                            <div style="font-size: 12px; color: #666;">Security audit dashboard</div>
                                         </a>
                                     </div>
                                     
@@ -930,7 +955,7 @@
                                 left: 0;
                                 background: rgba(255, 255, 255, 0.95);
                                 backdrop-filter: blur(20px);
-                                min-width: 600px;
+                                min-width: 800px;
                                 border-radius: 12px;
                                 padding: 20px;
                                 opacity: 0;
@@ -941,13 +966,17 @@
                                 z-index: 10000;
                                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
                             ">
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                                    <!-- Column 1: Payment Systems -->
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                                    <!-- Column 1: Traditional Payments -->
                                     <div>
-                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #28a745; padding-bottom: 5px;">💳 Payment Systems</h3>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #28a745; padding-bottom: 5px;">🏦 Traditional Payments</h3>
                                         <a href="payment-system/interfaces/payment_interface.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
                                             <div style="font-weight: bold; margin-bottom: 4px;">💳 Payment System</div>
                                             <div style="font-size: 12px; color: #666;">Core payment infrastructure</div>
+                                        </a>
+                                        <a href="payment-system/interfaces/functional_payment_interface.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🚀 Process Payment</div>
+                                            <div style="font-size: 12px; color: #666;">Functional payment processing</div>
                                         </a>
                                         <a href="payment-system/interfaces/payment_interface.html#bank-wire" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
                                             <div style="font-weight: bold; margin-bottom: 4px;">🏦 Bank Wire</div>
@@ -970,36 +999,69 @@
                                             <div style="font-size: 12px; color: #666;">Crypto payment gateway</div>
                                         </a>
                                     </div>
-                                    <!-- Column 2: H2H Systems -->
+                                    <!-- Column 2: Modern & Instant Payments -->
                                     <div>
-                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #dc3545; padding-bottom: 5px;">🏦 H2H Systems</h3>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">🏦 H2H System</div>
-                                            <div style="font-size: 12px; color: #666;">Host-to-host infrastructure</div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #007bff; padding-bottom: 5px;">⚡ Modern & Instant</h3>
+                                        <a href="payment-system/interfaces/payment_interface.html#openpayd" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🌐 OpenPayd</div>
+                                            <div style="font-size: 11px; color: #666;">Global payment platform</div>
                                         </a>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('swift')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">📋 SWIFT Protocol</div>
-                                            <div style="font-size: 12px; color: #666;">International wire transfers</div>
+                                        <a href="payment-system/interfaces/payment_interface.html#fednow" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">⚡ FedNow Instant</div>
+                                            <div style="font-size: 11px; color: #666;">US Federal Reserve instant</div>
                                         </a>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('iso20022')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">📋 ISO 20022</div>
-                                            <div style="font-size: 12px; color: #666;">Financial messaging standard</div>
+                                        <a href="payment-system/interfaces/payment_interface.html#mobile-money" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">📱 Mobile Money</div>
+                                            <div style="font-size: 11px; color: #666;">M-Pesa, Airtel Money</div>
                                         </a>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fix')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">⚡ FIX Protocol</div>
-                                            <div style="font-size: 12px; color: #666;">Trading protocol</div>
+                                        <a href="payment-system/interfaces/payment_interface.html#ai-payments" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🤖 AI Payments</div>
+                                            <div style="font-size: 11px; color: #666;">AI-powered processing</div>
                                         </a>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('ach')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">🔄 ACH Network</div>
-                                            <div style="font-size: 12px; color: #666;">Automated clearing house</div>
+                                        <a href="payment-system/interfaces/payment_interface.html#quantum-safe" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🔐 Quantum-Safe</div>
+                                            <div style="font-size: 11px; color: #666;">Quantum-resistant security</div>
                                         </a>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('sepa')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">🇪🇺 SEPA</div>
-                                            <div style="font-size: 12px; color: #666;">Single Euro Payments Area</div>
+                                        <a href="payment-system/interfaces/payment_interface.html#cross-border" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🌍 Cross-border</div>
+                                            <div style="font-size: 11px; color: #666;">International payments</div>
                                         </a>
-                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fedwire')" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(220, 53, 69, 0.1);">
-                                            <div style="font-weight: bold; margin-bottom: 4px;">🏛️ Fedwire</div>
-                                            <div style="font-size: 12px; color: #666;">Federal Reserve wire service</div>
+                                        <a href="payment-system/interfaces/payment_interface.html#odix-pay" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">💎 ODIX PAY</div>
+                                            <div style="font-size: 11px; color: #666;">Advanced payment system</div>
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- Column 3: H2H & Banking Systems -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #dc3545; padding-bottom: 5px;">🏦 H2H & Banking</h3>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🏦 H2H System</div>
+                                            <div style="font-size: 11px; color: #666;">Host-to-host infrastructure</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('swift')" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">📋 SWIFT Protocol</div>
+                                            <div style="font-size: 11px; color: #666;">International wire transfers</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('iso20022')" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">📋 ISO 20022</div>
+                                            <div style="font-size: 11px; color: #666;">Financial messaging standard</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fix')" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">⚡ FIX Protocol</div>
+                                            <div style="font-size: 11px; color: #666;">Trading protocol</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('ach')" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🔄 ACH Network</div>
+                                            <div style="font-size: 11px; color: #666;">Automated clearing house</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('sepa')" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🌍 SEPA</div>
+                                            <div style="font-size: 11px; color: #666;">Single Euro Payments Area</div>
+                                        </a>
+                                        <a href="host-to-host-system/interfaces/h2h_interface.html" onclick="selectH2HProtocol('fedwire')" style="display: block; color: #333; text-decoration: none; padding: 10px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 6px; background: rgba(220, 53, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 2px; font-size: 13px;">🏛️ Fedwire</div>
+                                            <div style="font-size: 11px; color: #666;">Federal Reserve wire service</div>
                                         </a>
                                     </div>
                                 </div>
@@ -1367,36 +1429,28 @@
         // Real-time price updates
         async function updatePrices() {
             try {
-                const priceService = window.USDTgVersePriceService;
-                if (!priceService) return;
-                
-                const prices = await priceService.getPrices(['USDTg', 'USDTgV', 'USDTgG']);
-                
-                // Update USDTg price
-                const usdtgElement = document.getElementById('usdtg-price');
-                if (usdtgElement && prices.USDTg) {
-                    usdtgElement.textContent = `$${prices.USDTg.price.toFixed(2)}`;
+                const pureCPrices = await fetchPricesFromPureC();
+                if (!pureCPrices || pureCPrices.length === 0) {
+                    // Use fallback prices
+                    updateTokenPrice('USDTg', 1.00, 0.0);
+                    updateTokenPrice('USDTgV', 0.50, 2.5);
+                    updateTokenPrice('USDTgG', 5.00, -1.2);
+                    updateTokenPrice('RGLS', 0.49, 12.5);
+                    return;
                 }
                 
-                // Update USDTgV price
-                const usdtgvElement = document.getElementById('usdtgv-price');
-                if (usdtgvElement && prices.USDTgV) {
-                    usdtgvElement.textContent = `$${prices.USDTgV.price.toFixed(2)}`;
-                }
+                // Update from Pure C API
+                pureCPrices.forEach(token => {
+                    updateTokenPrice(token.symbol, token.price, token.change_24h);
+                });
+                return;
                 
-                // Update USDTgG price
-                const usdtggElement = document.getElementById('usdtgg-price');
-                if (usdtggElement && prices.USDTgG) {
-                    usdtggElement.textContent = `$${prices.USDTgG.price.toFixed(2)}`;
-                }
-                
-                // Update RGLS price
-                const rglsElement = document.getElementById('rgls-price');
-                if (rglsElement && prices.RGLS) {
-                    rglsElement.textContent = `$${prices.RGLS.price.toFixed(2)}`;
-                }
-            } catch (error) {
-                console.error('Error updating prices:', error);
+        }
+        
+        function updateTokenPrice(symbol, price, change) {
+            const priceElement = document.getElementById(`${symbol.toLowerCase()}-price`);
+            if (priceElement) {
+                priceElement.textContent = `$${price.toFixed(2)}`;
             }
         }
         
