@@ -30,8 +30,8 @@
 
 // Stripe API Configuration
 #define STRIPE_API_URL "https://api.stripe.com/v1"
-#define STRIPE_PUBLISHABLE_KEY "pk_live_51RxY4DCngXVThrvW9A2UhPbXgLQoYVFIWZQpb36ju3TnPiZp6pa4qo56qEn7Tivd5Pf7WwSa05mpaa7cLn53iPgY00HLehXqah"
-#define STRIPE_SECRET_KEY "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"
+#define STRIPE_PUBLISHABLE_KEY "YOUR_STRIPE_PUBLISHABLE_KEY_HERE"  // Get from stripe.com/dashboard
+#define STRIPE_SECRET_KEY "YOUR_STRIPE_SECRET_KEY_HERE"  // Get from stripe.com/dashboard
 
 // Stripe Payment Structure
 typedef struct {

@@ -35,7 +35,7 @@
 #define PLAID_API_URL "https://sandbox.plaid.com"
 
 // API Keys
-#define STRIPE_SECRET_KEY "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"
+#define STRIPE_SECRET_KEY "YOUR_STRIPE_SECRET_KEY_HERE"  // Get from stripe.com/dashboard
 #define PLAID_CLIENT_ID "68ed4d61981663001de481bb"
 #define PLAID_SECRET_KEY "3ee96c9e1d5f3a5dade4fccafac70e"
 
