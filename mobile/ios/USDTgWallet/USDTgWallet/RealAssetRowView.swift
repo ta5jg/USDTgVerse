@@ -211,25 +211,37 @@ struct EnhancedAssetRowView: View {
 struct RealAssetRowView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 8) {
-            RealAssetRowView(asset: WalletAsset(
+            AssetRowView(asset: WalletAsset(
                 symbol: "USDTg",
                 name: "USDTgVerse Native Coin",
                 balance: 1000.0,
-                price: 1.00
+                price: 1.00,
+                logoURL: "usdtg_logo",
+                change24h: 2.5,
+                chain: "USDTgVerse",
+                isNativeImage: true
             ))
             
-            RealAssetRowView(asset: WalletAsset(
+            AssetRowView(asset: WalletAsset(
                 symbol: "USDTgV",
                 name: "USDTgVerse Utility Token",
                 balance: 500.0,
-                price: 0.50
+                price: 0.50,
+                logoURL: "usdt_logo",
+                change24h: 1.8,
+                chain: "USDTgVerse",
+                isNativeImage: true
             ))
             
-            RealAssetRowView(asset: WalletAsset(
+            AssetRowView(asset: WalletAsset(
                 symbol: "BTC",
                 name: "Bitcoin",
                 balance: 0.025,
-                price: 45000.0
+                price: 45000.0,
+                logoURL: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+                change24h: -1.2,
+                chain: "Bitcoin",
+                isNativeImage: false
             ))
         }
         .padding()

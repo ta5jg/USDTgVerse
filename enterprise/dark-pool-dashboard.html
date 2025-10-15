@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Pool Trading - USDTgVerse Institutional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .order-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .order-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-lg border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        🏢 Dark Pool Trading
+                    </h1>
+                    <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">
+                        ✅ Institutional Grade
+                    </span>
+                </div>
+                <nav class="space-x-6">
+                    <a href="../index.html" class="hover:text-purple-400 transition">Home</a>
+                    <a href="../dashboard/index.html" class="hover:text-purple-400 transition">Dashboard</a>
+                    <a href="../exchanges/web/cex.html" class="hover:text-purple-400 transition">CEX</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-12">
+        <!-- Overview Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div class="stat-card p-6 rounded-xl">
+                <div class="text-gray-400 text-sm mb-2">Total Dark Volume (24h)</div>
+                <div class="text-3xl font-bold">$2.4B</div>
+                <div class="text-green-400 text-sm mt-2">+12.5% from yesterday</div>
+            </div>
+            <div class="stat-card p-6 rounded-xl">
+                <div class="text-gray-400 text-sm mb-2">Active Institutional Clients</div>
+                <div class="text-3xl font-bold">47</div>
+                <div class="text-blue-400 text-sm mt-2">Hedge Funds, Family Offices</div>
+            </div>
+            <div class="stat-card p-6 rounded-xl">
+                <div class="text-gray-400 text-sm mb-2">Dark Pool Executions</div>
+                <div class="text-3xl font-bold">1,234</div>
+                <div class="text-purple-400 text-sm mt-2">Average: $1.9M per trade</div>
+            </div>
+            <div class="stat-card p-6 rounded-xl">
+                <div class="text-gray-400 text-sm mb-2">Market Impact</div>
+                <div class="text-3xl font-bold">0.00%</div>
+                <div class="text-green-400 text-sm mt-2">✅ Zero slippage</div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white/5 p-8 rounded-xl border border-white/10">
+                <div class="text-4xl mb-4">🔒</div>
+                <h3 class="text-xl font-bold mb-3">Anonymous Execution</h3>
+                <p class="text-gray-400">
+                    Complete anonymity for all dark pool trades. Your orders are hidden from the public order book, preventing market impact and front-running.
+                </p>
+                <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                    <li>✅ Hidden order books</li>
+                    <li>✅ Zero market impact</li>
+                    <li>✅ No front-running</li>
+                    <li>✅ Quantum-safe security</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-xl border border-white/10">
+                <div class="text-4xl mb-4">📊</div>
+                <h3 class="text-xl font-bold mb-3">Algorithmic Trading</h3>
+                <p class="text-gray-400">
+                    Advanced execution algorithms minimize market impact for large block trades using TWAP, VWAP, and POV strategies.
+                </p>
+                <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                    <li>✅ TWAP (Time-Weighted Average Price)</li>
+                    <li>✅ VWAP (Volume-Weighted Average Price)</li>
+                    <li>✅ POV (Percentage of Volume)</li>
+                    <li>✅ Smart order routing</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-xl border border-white/10">
+                <div class="text-4xl mb-4">🏢</div>
+                <h3 class="text-xl font-bold mb-3">Prime Brokerage</h3>
+                <p class="text-gray-400">
+                    Institutional-grade custody, compliance, and reporting services for hedge funds, family offices, and asset managers.
+                </p>
+                <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                    <li>✅ Institutional custody</li>
+                    <li>✅ KYC/AML compliance</li>
+                    <li>✅ Regulatory reporting</li>
+                    <li>✅ Multi-tier access</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Active Orders -->
+        <div class="bg-black/30 p-8 rounded-xl border border-white/10 mb-12">
+            <h2 class="text-2xl font-bold mb-6">🔒 Active Dark Pool Orders</h2>
+            <div class="space-y-4">
+                <div class="order-card p-6 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-lg font-bold">BTC/USDTg</div>
+                            <div class="text-gray-400 text-sm">Institutional Buy Order</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-green-400">$15.2M</div>
+                            <div class="text-gray-400 text-sm">Hedge Fund • TWAP</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-4 gap-4 text-sm">
+                        <div>
+                            <div class="text-gray-400">Size</div>
+                            <div class="font-semibold">226.5 BTC</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400">Filled</div>
+                            <div class="font-semibold text-yellow-400">45%</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400">Avg Price</div>
+                            <div class="font-semibold">$67,124</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400">Status</div>
+                            <div class="font-semibold text-green-400">Active</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-card p-6 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-lg font-bold">ETH/USDTg</div>
+                            <div class="text-gray-400 text-sm">Institutional Sell Order</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-red-400">$8.7M</div>
+                            <div class="text-gray-400 text-sm">Family Office • VWAP</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-4 gap-4 text-sm">
+                        <div>
+                            <div class="text-gray-400">Size</div>
+                            <div class="font-semibold">3,420 ETH</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400">Filled</div>
+                            <div class="font-semibold text-yellow-400">78%</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400">Avg Price</div>
+                            <div class="font-semibold">$2,545</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400">Status</div>
+                            <div class="font-semibold text-green-400">Active</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements -->
+        <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-8 rounded-xl border border-purple-500/30">
+            <h2 class="text-2xl font-bold mb-6">💼 Institutional Access Requirements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold mb-3 text-purple-400">✅ Minimum Requirements:</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>• KYC/AML verification</li>
+                        <li>• Minimum trade size: 100,000 USDTg</li>
+                        <li>• Institutional account verification</li>
+                        <li>• Quantum-safe wallet address</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3 text-pink-400">🏢 Eligible Institutions:</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>• Hedge Funds</li>
+                        <li>• Investment Banks</li>
+                        <li>• Family Offices</li>
+                        <li>• Asset Managers</li>
+                        <li>• Proprietary Trading Firms</li>
+                        <li>• Sovereign Wealth Funds</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <button class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    📝 Apply for Institutional Access
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur-lg border-t border-white/10 py-8 mt-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>🌌 USDTgVerse Dark Pool Trading - Enterprise-Grade Institutional Liquidity</p>
+            <p class="mt-2 text-sm">💎 Zero Market Impact • Anonymous Execution • Quantum-Safe Security</p>
+        </div>
+    </footer>
+</body>
+</html>
+

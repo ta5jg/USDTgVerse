@@ -416,6 +416,325 @@
                 }
             });
         });
+
+        // Membership Portal Functions
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Navigation buttons
+            const loginBtn = document.querySelector('nav button:first-of-type');
+            const getStartedBtn = document.querySelector('nav button:last-of-type');
+            
+            // Hero section buttons
+            const startApplicationBtn = document.querySelector('.bg-yellow-400');
+            const viewTiersBtn = document.querySelector('.border-2.border-white');
+            
+            // Tier buttons
+            const tierButtons = document.querySelectorAll('#tiers button');
+            
+            // Login functionality
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function() {
+                    showLoginModal();
+                });
+            }
+            
+            // Get Started functionality
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', function() {
+                    scrollToElement('tiers');
+                    highlightTier('professional');
+                });
+            }
+            
+            // Start Application functionality
+            if (startApplicationBtn) {
+                startApplicationBtn.addEventListener('click', function() {
+                    startApplicationProcess();
+                });
+            }
+            
+            // View Tiers functionality
+            if (viewTiersBtn) {
+                viewTiersBtn.addEventListener('click', function() {
+                    scrollToElement('tiers');
+                    animateTiers();
+                });
+            }
+            
+            // Tier selection functionality
+            tierButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tierCard = this.closest('.bg-white, [class*="gradient"]');
+                    const tierName = tierCard.querySelector('h5').textContent.toLowerCase();
+                    selectTier(tierName);
+                });
+            });
+
+            // Contact form submission
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    submitContactForm(this);
+                });
+            }
+        });
+
+        // Function definitions
+        function showLoginModal() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">Member Login</h3>
+                    <form>
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="your@email.com">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                            <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="••••••••">
+                        </div>
+                        <div class="flex gap-3">
+                            <button type="button" onclick="this.closest('.fixed').remove()" class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all">Cancel</button>
+                            <button type="submit" class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">Login</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        function scrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function startApplicationProcess() {
+            // Get user email prompt
+            const email = prompt('Please enter your email address to start the application process:');
+            if (!email || email.length < 5) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg p-8 max-w-lg w-full mx-4">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">📋 Application Started!</h3>
+                    <div class="space-y-4">
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center">✓</div>
+                                <div>
+                                    <h4 class="font-semibold text-green-800">Step 1: Account Created</h4>
+                                    <p class="text-sm text-green-600">Your membership account setup has begun</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-800">Step 2: Verification</h4>
+                                    <p class="text-sm text-blue-600">KYC process will begin automatically</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-purple-800">Step 3: Tier Assignment</h4>
+                                    <p class="text-sm text-purple-600">We'll recommend the best tier for your needs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button onclick="registerAccount('${email}'); this.closest('.fixed').remove()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">Complete Registration</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function registerAccount(email) {
+            fetch('/api/v1/membership/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    tier_requested: 'Individual'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Registration response:', data);
+                
+                if (data.message && data.message.includes('successfully')) {
+                    // Successful registration
+                    scrollToElement('tiers');
+                    highlightTier('individual');
+                    
+                    // Show success message
+                    const successDiv = document.createElement('div');
+                    successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50';
+                    successDiv.innerHTML = `<div class="flex items-center gap-3"><span>✓</span><span><strong>Account Created!</strong> ${data.message}</span></div>`;
+                    document.body.appendChild(successDiv);
+                    
+                    setTimeout(() => {
+                        successDiv.remove();
+                    }, 5000);
+                } else {
+                    alert('Registration failed:', data.message || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                console.error('Registration error:', error);
+                alert('Registration failed. Please try again.');
+            });
+        }
+
+        function selectTier(tierName) {
+            const tierCard = document.querySelector(`#tiers .bg-white:has(h5:contains("${tierName}")), #tiers [class*="gradient"]:has(h5:contains("${tierName}"))`) || 
+                           Array.from(document.querySelectorAll('#tiers .bg-white, #tiers [class*="gradient"]')).find(card => 
+                               card.querySelector('h5').textContent.toLowerCase().includes(tierName));
+            
+            if (tierCard) {
+                // Visual feedback
+                tierCard.style.transform = 'scale(1.05)';
+                tierCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                
+                setTimeout(() => {
+                    tierCard.style.transform = '';
+                    tierCard.style.boxShadow = '';
+                }, 300);
+
+                // Show tier selection modal
+                showTierSelectionModal(tierName, tierCard);
+            }
+        }
+
+        function showTierSelectionModal(tierName, tierElement) {
+            const tierPrice = tierElement.querySelector('h3').textContent;
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">🎯 Selected: ${tierName.charAt(0).toUpperCase() + tierName.slice(1)} Tier</h3>
+                    <div class="text-center mb-6">
+                        <div class="text-4xl font-bold text-blue-600 mb-2">${tierPrice}</div>
+                        <p class="text-gray-600">Ready to proceed with this membership tier?</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <p class="text-sm text-blue-800">✨ You'll get instant access to:</p>
+                        <ul class="mt-2 text-sm text-blue-700 space-y-1">
+                            ${tierElement.querySelectorAll('li').length > 0 ? 
+                                Array.from(tierElement.querySelectorAll('li')).map(li => 
+                                    `<li class="flex items-center gap-2"><span>•</span> ${li.textContent}</li>`
+                                ).join('') : 
+                                '<li>• All tier benefits included</li>'}
+                        </ul>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="this.closest('.fixed').remove()" class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all">Back</button>
+                        <button onclick="proceedWithTier('${tierName}'); this.closest('.fixed').remove()" class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">Proceed</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function proceedWithTier(tierName) {
+            // Simulate tier selection process
+            const successModal = document.createElement('div');
+            successModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            successModal.innerHTML = `
+                <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">✓</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Tier Selected!</h3>
+                        <p class="text-gray-600 mb-6">You've selected the <strong>${tierName.charAt(0).toUpperCase() + tierName.slice(1)}</strong> membership tier. Our team will contact you shortly.</p>
+                        <button onclick="this.closest('.fixed').remove()" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all">Awesome!</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(successModal);
+        }
+
+        function animateTiers() {
+            const tiers = document.querySelectorAll('#tiers .bg-white, #tiers [class*="gradient"]');
+            tiers.forEach((tier, index) => {
+                setTimeout(() => {
+                    tier.style.opacity = '0';
+                    tier.style.transform = 'translateY(50px)';
+                    tier.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        tier.style.opacity = '1';
+                        tier.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 150);
+            });
+        }
+
+        function highlightTier(tierName) {
+            setTimeout(() => {
+                const tierElement = Array.from(document.querySelectorAll('#tiers .bg-white, #tiers [class*="gradient"]')).find(el => 
+                    el.querySelector('h5').textContent.toLowerCase().includes(tierName));
+                
+                if (tierElement) {
+                    const originalBorder = tierElement.style.borderWidth;
+                    tierElement.style.borderWidth = '4px';
+                    tierElement.style.borderColor = '#fbbf24';
+                    
+                    setTimeout(() => {
+                        tierElement.style.borderWidth = originalBorder;
+                        tierElement.style.borderColor = '';
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        function submitContactForm(form) {
+            const formData = new FormData(form);
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const message = form.querySelector('textarea').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate form submission
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = '<div class="flex items-center gap-3"><span>✓</span><span><strong>Message sent!</strong> We\'ll get back to you within 24 hours.</span></div>';
+            document.body.appendChild(successDiv);
+            
+            // Clear form
+            form.reset();
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
     </script>
 </body>
 </html>

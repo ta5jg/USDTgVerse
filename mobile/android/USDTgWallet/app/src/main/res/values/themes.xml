@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.USDTgWallet" parent="Theme.AppCompat.DayNight">
+        <!-- Basic theme without custom colors to avoid resource linking issues -->
+    </style>
+</resources>

@@ -1,67 +1,42 @@
 {
-  "_comment": "==============================================\n File:        manifest.json\n Author:      Irfan Gedik\n Created:     27.09.2025\n Last Update: 27.09.2025\n Version:     1.0\n\n Description:\n   USDTgWallet - Quantum-Safe Web3 Wallet for Safari\n   World's first quantum-safe Web3 wallet with 256-bit security\n   \n   Safari extension manifest configuration including:\n   - Extension metadata and permissions\n   - Content scripts and background services\n   - Web3 wallet functionality\n   - Quantum-safe security features\n\n License:\n   MIT License\n==============================================",
-  "manifest_version": 2,
-  "name": "USDTgWallet - Quantum-Safe Web3 Wallet for Safari",
-  "version": "1.0.0",
-  "description": "🔐 World's first quantum-safe Web3 wallet with 256-bit security and multi-chain support for Safari",
-  
-  "permissions": [
-    "storage",
-    "activeTab",
-    "tabs",
-    "clipboardWrite",
-    "https://*.usdtgverse.com/*",
-    "https://*.ethereum.org/*",
-    "https://*.binance.org/*",
-    "https://*.trongrid.io/*",
-    "https://*.solana.com/*",
-    "https://*.polygon.technology/*",
-    "https://*.arbitrum.io/*",
-    "https://*.avax.network/*"
-  ],
-  
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_start"
-    }
-  ],
-  
-  "browser_action": {
-    "default_popup": "popup.html",
-    "default_title": "USDTgWallet - Quantum-Safe Wallet",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "32": "icons/icon32.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
-  },
-  
-  "icons": {
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  
-  "web_accessible_resources": [
-    "inject.js",
-    "quantum-crypto.js",
-    "icons/*"
-  ],
-  
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  
-  "browser_specific_settings": {
-    "safari": {
-      "strict_min_version": "14.0"
-    }
-  }
+    "manifest_version": 2,
+    "name": "USDTgVerse Wallet",
+    "version": "1.0.0",
+    "description": "USDTgVerse Safari Extension Wallet - Real Blockchain Integration",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "https://api.usdtgverse.com/*"
+    ],
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_title": "USDTgVerse Wallet",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        "popup.html",
+        "icons/*"
+    ]
 }

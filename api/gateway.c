@@ -35,6 +35,48 @@
 #include <arpa/inet.h>
 #include <time.h>
 #include <errno.h>
+#include <sys/stat.h>
+
+// ==========================================
+// DATABASE LOGGING INTEGRATION
+// ==========================================
+
+#define DATA_DIR "/opt/usdtgverse/data"
+#define API_LOGS_DB DATA_DIR "/api_logs.db"
+#define BALANCE_DB DATA_DIR "/balance_cache.db"
+#define TRANSACTION_LOG_DB DATA_DIR "/transaction_log.db"
+
+void log_api_request(const char* endpoint, const char* method, int status_code, double response_time) {
+    FILE* logs_file = fopen(API_LOGS_DB, "a");
+    if (logs_file) {
+        fprintf(logs_file, "%ld|%s|%s|%d|%.3f|%ld\n", 
+                time(NULL), endpoint, method, status_code, response_time, time(NULL));
+        fclose(logs_file);
+        printf("🔗 API Logged: %s %s -> %d (%.3fs)\n", method, endpoint, status_code, response_time);
+    }
+}
+
+void log_balance_request(const char* address, double balance) {
+    FILE* balance_file = fopen(BALANCE_DB, "a");
+    if (balance_file) {
+        fprintf(balance_file, "%s|%.8f|USDTg|%ld\n", address, balance, time(NULL));
+        fclose(balance_file);
+        printf("💰 Balance Cached: %s = %.8f USDTg\n", address, balance);
+    }
+}
+
+void log_transaction_query(const char* address, int tx_count) {
+    FILE* tx_file = fopen(TRANSACTION_LOG_DB, "a");
+    if (tx_file) {
+        fprintf(tx_file, "%s|%d|query|%ld\n", address, tx_count, time(NULL));
+        fclose(tx_file);
+        printf("📊 Transaction Query: %s -> %d transactions\n", address, tx_count);
+    }
+}
+
+void ensure_data_directory() {
+    system("mkdir -p /opt/usdtgverse/data");
+}
 
 // ============================================================================
 // API GATEWAY TYPES
@@ -141,6 +183,7 @@ static void handle_get_status(int client_fd) {
 }
 
 static void handle_get_balance(int client_fd, const char* address) {
+    time_t start_time = time(NULL);
     char response[512];
     
     // Simulate balance lookup
@@ -156,6 +199,11 @@ static void handle_get_balance(int client_fd, const char* address) {
         "}",
         address, balance, rand() % 100, time(NULL)
     );
+    
+    // DATABASE LOGGING INTEGRATION
+    log_balance_request(address, balance);
+    double response_time = difftime(time(NULL), start_time);
+    log_api_request("/api/balance", "GET", 200, response_time);
     
     send_json_response(client_fd, response);
     g_gateway.successful_responses++;
@@ -195,6 +243,11 @@ static void handle_get_transactions(int client_fd, const char* address) {
         address, address, now - 3600, (unsigned long long)(now % 1000000),
         address, now - 7200, (unsigned long long)(now % 1000000) - 1
     );
+    
+    // DATABASE LOGGING INTEGRATION
+    log_transaction_query(address, 2);
+    double response_time = difftime(time(NULL), now);
+    log_api_request("/api/transactions", "GET", 200, response_time);
     
     send_json_response(client_fd, response);
     g_gateway.successful_responses++;

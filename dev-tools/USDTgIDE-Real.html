@@ -622,8 +622,8 @@
     </style>
 </head>
 <body class="h-screen overflow-hidden bg-gray-900 text-gray-100 font-mono">
-    <!-- Loading Screen -->
-    <div class="fixed inset-0 bg-gray-900 flex flex-col items-center justify-center z-50" id="loadingScreen">
+    <!-- Loading Screen - Hidden by default -->
+    <div class="fixed inset-0 bg-gray-900 flex flex-col items-center justify-center z-50 hidden" id="loadingScreen">
         <div class="text-6xl mb-4">⚛️</div>
         <div class="text-xl mb-8">Initializing USDTgScript IDE...</div>
         <div class="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -649,7 +649,7 @@
     </div>
 
     <!-- Main IDE Container -->
-    <div class="flex flex-col h-screen" id="ideContainer" style="display: none;">
+    <div class="flex flex-col h-screen" id="ideContainer" style="display: flex;">
         <!-- Top Menu Bar -->
         <div class="menu-bar">
             <div class="menu-left">
@@ -793,26 +793,8 @@
         
         // Initialize the IDE
         function initializeIDE() {
-            // Simulate loading with realistic progress
-            let progress = 0;
-            const steps = [
-                { progress: 20, text: 'Loading Monaco Editor...' },
-                { progress: 40, text: 'Initializing USDTgScript Language...' },
-                { progress: 60, text: 'Setting up Quantum Security...' },
-                { progress: 80, text: 'Connecting to USDTgVerse Network...' },
-                { progress: 100, text: 'Ready!' }
-            ];
-            
-            let stepIndex = 0;
-            const loadingInterval = setInterval(() => {
-                if (stepIndex < steps.length) {
-                    const step = steps[stepIndex];
-                    document.getElementById('loadingProgress').style.width = step.progress + '%';
-                    document.querySelector('.text-xl mb-8').textContent = step.text;
-                    stepIndex++;
-                } else {
-                    clearInterval(loadingInterval);
-                    setTimeout(startIDE, 500);
+            // Start IDE immediately without loading screen
+            startIDE();
                 }
             }, 800);
         }

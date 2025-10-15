@@ -1,9 +1,9 @@
 /*
 ==============================================
  File:        MEVProtection.cpp
- Author:      Irfan Gedik
- Created:     21.09.2025
- Last Update: 27.09.2025
+ Author:      USDTG GROUP TECHNOLOGY LLC
+ Created:     2025-09-21
+ Last Update: 2025-10-05
  Version:     1.0
 
  Description:

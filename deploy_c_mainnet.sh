@@ -1,10 +1,20 @@
 #!/bin/bash
-
-# USDTgVerse C-Based Mainnet Deployment
-# ====================================
-# 
-# This script deploys all three tokens to USDTgVerse mainnet
-# using our native C-based blockchain infrastructure.
+# ==============================================
+# File:        deploy_c_mainnet.sh
+# Author:      USDTG GROUP TECHNOLOGY LLC
+# Created:     2025-10-05
+# Last Update: 2025-10-05
+# Version:     1.0
+#
+# Description:
+#   USDTgVerse C-Based Mainnet Deployment
+#   
+#   This script deploys all three tokens to USDTgVerse mainnet
+#   using our native C-based blockchain infrastructure
+#
+# License:
+#   MIT License
+# ==============================================
 
 set -e
 

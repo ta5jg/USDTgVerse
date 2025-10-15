@@ -38,6 +38,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: auto;
 }
 
 /* Header */
@@ -377,6 +379,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
+    overflow: visible;
 }
 
 .pair-item {
@@ -384,6 +388,9 @@ body {
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-width: 300px;
+    overflow: visible;
 }
 
 .pair-info {
@@ -866,6 +873,203 @@ body {
     line-height: 1.6;
 }
 
+/* DEX Section Styles */
+.dex-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dex-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.dex-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.dex-feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dex-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dex-feature-card .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.dex-feature-card h3 {
+    color: #00d4ff;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.dex-feature-card p {
+    color: #e2e8f0;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.feature-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.feature-stats .stat {
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.dex-trading-pairs {
+    margin-bottom: 60px;
+}
+
+.dex-trading-pairs h3 {
+    text-align: center;
+    color: #00d4ff;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.pairs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.pair-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pair-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.pair-info {
+    margin-bottom: 20px;
+}
+
+.pair-tokens {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pair-tokens .token {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.pair-tokens .separator {
+    color: #00d4ff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.pair-price {
+    text-align: center;
+    color: #4ade80;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.pair-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    overflow: visible;
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric .label {
+    display: block;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.metric .value {
+    display: block;
+    color: #00d4ff;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.dex-cta {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.dex-cta h3 {
+    color: #00d4ff;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.dex-cta p {
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .mega-menu-container {
@@ -913,5 +1117,26 @@ body {
     
     .features-grid {
         grid-template-columns: 1fr;
+    }
+    
+    /* DEX Responsive */
+    .dex-features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .pairs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
     }
 }

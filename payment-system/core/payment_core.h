@@ -39,16 +39,40 @@ typedef enum {
     PAYMENT_METHOD_PAYPAL = 4,
     PAYMENT_METHOD_USDTGVERSE_PAY = 5,
     PAYMENT_METHOD_DIRECT_IP = 6,
+    // Modern Instant Payment Systems
+    PAYMENT_METHOD_FEDNOW = 7,         // US Federal Reserve FedNow
+    PAYMENT_METHOD_RTP = 8,            // US Real-Time Payments
+    PAYMENT_METHOD_PIX = 9,            // Brazil PIX
+    PAYMENT_METHOD_UPI = 10,           // India UPI
+    PAYMENT_METHOD_FASTER_PAYMENTS = 11, // UK Faster Payments
+    PAYMENT_METHOD_SEPA_INSTANT = 12,  // EU SEPA Instant
+    PAYMENT_METHOD_PAYNOW = 13,        // Singapore PayNow
+    PAYMENT_METHOD_PROMPTPAY = 14,     // Thailand PromptPay
+    PAYMENT_METHOD_FAST = 15,          // Australia FAST
+    PAYMENT_METHOD_BIZUM = 16,         // Spain Bizum
     // Cryptocurrency payment methods
-    PAYMENT_METHOD_USDT = 7,           // Tether
-    PAYMENT_METHOD_ETH = 8,            // Ethereum
-    PAYMENT_METHOD_BNB = 9,            // Binance Coin
-    PAYMENT_METHOD_TRX = 10,           // TRON
-    PAYMENT_METHOD_BTC = 11,           // Bitcoin
-    PAYMENT_METHOD_USDC = 12,          // USD Coin
-    PAYMENT_METHOD_USDTG = 13,         // USDTgVerse Native
-    PAYMENT_METHOD_USDTGV = 14,        // USDTgVerse Utility
-    PAYMENT_METHOD_USDTGG = 15         // USDTgVerse Governance
+    PAYMENT_METHOD_USDT = 17,          // Tether
+    PAYMENT_METHOD_ETH = 18,           // Ethereum
+    PAYMENT_METHOD_BNB = 19,           // Binance Coin
+    PAYMENT_METHOD_TRX = 20,           // TRON
+    PAYMENT_METHOD_BTC = 21,           // Bitcoin
+    PAYMENT_METHOD_USDC = 22,          // USD Coin
+    PAYMENT_METHOD_USDTG = 23,         // USDTgVerse Native
+    PAYMENT_METHOD_USDTGV = 24,        // USDTgVerse Utility
+    PAYMENT_METHOD_USDTGG = 25,        // USDTgVerse Governance
+    // Advanced Banking Systems 2025
+    PAYMENT_METHOD_FEDNOW_INSTANT = 26, // US FedNow Instant
+    PAYMENT_METHOD_CROSS_BORDER = 27,   // Cross-border payments
+    PAYMENT_METHOD_CENTRAL_BANK = 28,   // Central Bank Digital Currency
+    PAYMENT_METHOD_MOBILE_MONEY = 29,   // Mobile Money (M-Pesa, etc.)
+    PAYMENT_METHOD_BNPL = 30,           // Buy Now Pay Later
+    PAYMENT_METHOD_CRYPTO_FIAT = 31,    // Crypto-Fiat Bridge
+    PAYMENT_METHOD_AI_PAYMENTS = 32,    // AI-Powered Payments
+    PAYMENT_METHOD_QUANTUM_SAFE = 33,   // Quantum-Safe Payments
+    PAYMENT_METHOD_OPEN_BANKING = 34,   // Open Banking API
+    PAYMENT_METHOD_NEURAL_PAY = 35,     // Neural Network Payments
+    PAYMENT_METHOD_OPENPAYD = 36,       // OpenPayd Global Payment Platform
+    PAYMENT_METHOD_ODIX_PAY = 37        // ODIX PAY Advanced Payment System
 } payment_method_t;
 
 // Payment Status

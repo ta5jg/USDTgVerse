@@ -26,32 +26,71 @@ struct SimpleWallet: Codable, Identifiable {
     }
     
     var balance: Double {
-        if isDemo {
-            return 48904.26 // Demo wallet balance
-        } else {
-            return 10.0 // New wallets get 10 USDTg
-        }
+        // Real balance from blockchain - no demo data
+        return fetchRealBalanceFromBlockchain()
+    }
+    
+    private func fetchRealBalanceFromBlockchain() -> Double {
+        // Fetch real balance from USDTgVerse blockchain
+        let semaphore = DispatchSemaphore(value: 0)
+        var balance: Double = 0.0
+        
+        let apiURL = "https://api.usdtgverse.com/api/v1/balance/\(address)/usdtg"
+        
+        guard let url = URL(string: apiURL) else { return 0.0 }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            defer { semaphore.signal() }
+            
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let fetchedBalance = json["balance"] as? Double else {
+                return
+            }
+            
+            balance = fetchedBalance
+        }.resume()
+        
+        semaphore.wait()
+        return balance
     }
     
     var assets: [WalletAsset] {
         if isDemo {
             return [
-                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10000.0, price: 1.0),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.1, price: 1.0),
-                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.0),
-                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2337.85),
-                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 245.5),
-                WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 145.75),
-                WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.091),
-                WalletAsset(symbol: "MATIC", name: "Polygon", balance: 8750.0, price: 0.89)
+                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10000.0, price: 1.0,
+                           logoURL: "usdtg_logo", change24h: 2.5, chain: "USDTgVerse", isNativeImage: true),
+                WalletAsset(symbol: "RGLS", name: "Regilis", balance: 5000.0, price: 1.0,
+                           logoURL: "regilis", change24h: 0.0, chain: "USDTgVerse", isNativeImage: true),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 5432.1, price: 1.0,
+                           logoURL: "https://assets.coingecko.com/coins/images/325/large/Tether.png", change24h: 0.1, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 2156.78, price: 1.0,
+                           logoURL: "https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png", change24h: 0.0, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 2.5, price: 2337.85,
+                           logoURL: "https://assets.coingecko.com/coins/images/279/large/ethereum.png", change24h: -1.2, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 15.8, price: 245.5,
+                           logoURL: "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png", change24h: 3.4, chain: "BNB Chain", isNativeImage: false),
+                WalletAsset(symbol: "SOL", name: "Solana", balance: 45.2, price: 145.75,
+                           logoURL: "https://assets.coingecko.com/coins/images/4128/large/solana.png", change24h: 4.8, chain: "Solana", isNativeImage: false),
+                WalletAsset(symbol: "TRX", name: "TRON", balance: 12500.0, price: 0.091,
+                           logoURL: "https://assets.coingecko.com/coins/images/1094/large/tron-logo.png", change24h: -2.1, chain: "TRON", isNativeImage: false),
+                WalletAsset(symbol: "MATIC", name: "Polygon", balance: 8750.0, price: 0.89,
+                           logoURL: "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png", change24h: -0.5, chain: "Polygon", isNativeImage: false)
             ]
         } else {
             return [
-                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10.0, price: 1.0),
-                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0),
-                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85),
-                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5)
+                WalletAsset(symbol: "USDTg", name: "USDTg Native", balance: 10.0, price: 1.0,
+                           logoURL: "https://usdtgverse.com/assets/logos/USDTg-official.png", change24h: 2.5, chain: "USDTgVerse"),
+                WalletAsset(symbol: "RGLS", name: "Regilis", balance: 0.0, price: 1.0,
+                           logoURL: "https://usdtgverse.com/assets/logos/regilis.png", change24h: 0.0, chain: "USDTgVerse"),
+                WalletAsset(symbol: "USDT", name: "Tether USD", balance: 0.0, price: 1.0,
+                           logoURL: "https://assets.coingecko.com/coins/images/325/large/Tether.png", change24h: 0.1, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "USDC", name: "USD Coin", balance: 0.0, price: 1.0,
+                           logoURL: "https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png", change24h: 0.0, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "ETH", name: "Ethereum", balance: 0.0, price: 2337.85,
+                           logoURL: "https://assets.coingecko.com/coins/images/279/large/ethereum.png", change24h: -1.2, chain: "Ethereum", isNativeImage: false),
+                WalletAsset(symbol: "BNB", name: "BNB Chain", balance: 0.0, price: 245.5,
+                           logoURL: "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png", change24h: 3.4, chain: "BNB Chain", isNativeImage: false)
             ]
         }
     }

@@ -1,0 +1,1327 @@
+<!--
+==============================================
+ File:        index.html
+ Author:      Irfan Gedik
+ Created:     27.09.2025
+ Last Update: 27.09.2025
+ Version:     1.0
+
+ Description:
+   USDTgVerse Dashboard - Interactive Trading Interface
+   
+   Professional dashboard for the USDTgVerse ecosystem featuring:
+   - Real-time token prices and charts
+   - Trading interface (DEX/CEX)
+   - Portfolio management
+   - Market analytics
+   - Professional UI/UX design
+
+ License:
+   MIT License
+==============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Pure C Backend Charts - No JavaScript -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'usdtg-primary': '#667eea',
+                        'usdtg-secondary': '#764ba2',
+                        'usdtg-accent': '#00d4ff',
+                        'usdtg-success': '#28a745',
+                        'usdtg-warning': '#ffc107',
+                        'usdtg-danger': '#dc3545'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="icon" type="image/png" href="../assets/logos/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js removed - Using Pure C backend -->
+    <script src="../api/price-service.js"></script>
+</head>
+<body>
+    <!-- Include Navigation -->
+    <div id="navigation-placeholder"></div>
+    
+    <div class="dashboard-container" style="margin-top: 20px;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="https://www.usdtgverse.com" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <img src="../assets/logos/logo.png" alt="USDTgVerse" class="logo">
+                    <h2>USDTgVerse</h2>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#overview" class="nav-link active" onclick="showSection('overview')">📊 Overview</a></li>
+                    <li><a href="#tokens" class="nav-link" onclick="showSection('tokens')">🪙 Tokens</a></li>
+                    <li><a href="#dex" class="nav-link" onclick="showSection('dex')">🔄 DEX</a></li>
+                    <li><a href="#cex" class="nav-link" onclick="showSection('cex')">🏦 CEX</a></li>
+                    <li><a href="#staking" class="nav-link" onclick="showSection('staking')">💎 Staking</a></li>
+                    <li><a href="#governance" class="nav-link" onclick="showSection('governance')">🏛️ Governance</a></li>
+                    <li><a href="#analytics" class="nav-link" onclick="showSection('analytics')">📈 Analytics</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>USDTgVerse Dashboard</h1>
+                <div class="header-actions">
+                    <div class="network-status">
+                        <span class="status-dot online"></span>
+                        <span>Mainnet Online</span>
+                    </div>
+                    <button class="btn btn-primary">Connect Wallet</button>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Overview</h2>
+                        <div class="section-actions">
+                            <button class="btn btn-secondary">Refresh</button>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-content">
+                            <h3>Total Value Locked</h3>
+                            <div class="metric-value">$6.4M</div>
+                            <div class="metric-change positive">+12.5%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🔄</div>
+                        <div class="metric-content">
+                            <h3>24h Volume</h3>
+                            <div class="metric-value">$890,000</div>
+                            <div class="metric-change positive">+8.3%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-content">
+                            <h3>Active Users</h3>
+                            <div class="metric-value">2,847</div>
+                            <div class="metric-change positive">+15.2%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⛓️</div>
+                        <div class="metric-content">
+                            <h3>Block Height</h3>
+                            <div class="metric-value">1,247,892</div>
+                            <div class="metric-change">+1,247</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Price Chart</h3>
+                        <div id="priceChart" style="height: 200px; background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(102,126,234,0.05)); border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; position: relative;">
+                            <div style="position: absolute; top: 10px; left: 10px; color: #00d4ff; font-size: 12px; font-weight: bold;">USDTg Price</div>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Volume Chart</h3>
+                        <div id="volumeChart" style="height: 200px; background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05)); border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; position: relative;">
+                            <div style="position: absolute; top: 10px; left: 10px; color: #667eea; font-size: 12px; font-weight: bold;">24h Volume</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="transactions-card">
+                    <h3>Recent Transactions</h3>
+                    <div class="transactions-list">
+                        <div class="transaction-item">
+                            <div class="tx-icon">🔄</div>
+                            <div class="tx-details">
+                                <div class="tx-type">Swap</div>
+                                <div class="tx-amount">1,000 USDTg → 2,000 USDTgV</div>
+                                <div class="tx-time">2 minutes ago</div>
+                            </div>
+                            <div class="tx-status success">Success</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="tx-icon">💎</div>
+                            <div class="tx-details">
+                                <div class="tx-type">Stake</div>
+                                <div class="tx-amount">500 USDTgV staked</div>
+                                <div class="tx-time">5 minutes ago</div>
+                            </div>
+                            <div class="tx-status success">Success</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="tx-icon">🏛️</div>
+                            <div class="tx-details">
+                                <div class="tx-type">Vote</div>
+                                <div class="tx-amount">Proposal #42</div>
+                                <div class="tx-time">10 minutes ago</div>
+                            </div>
+                            <div class="tx-status success">Success</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <!-- Tokens Section -->
+            <section id="tokens" class="dashboard-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Tokens</h2>
+                    </div>
+                    <div class="tokens-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Price</th>
+                                <th>24h Change</th>
+                                <th>Market Cap</th>
+                                <th>Supply</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <div>
+                                            <div class="token-name">USDTg</div>
+                                            <div class="token-symbol">USDTgVerse Native</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$1.00</td>
+                                <td class="change stable">0.00%</td>
+                                <td class="market-cap">$1,000,000,000</td>
+                                <td class="supply">1,000,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/regilis.png" alt="RGLS" class="token-logo">
+                                        <div>
+                                            <div class="token-name">RGLS</div>
+                                            <div class="token-symbol">Regilis</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$0.49</td>
+                                <td class="change stable">0.00%</td>
+                                <td class="market-cap">$500,000,000</td>
+                                <td class="supply">500,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo">
+                                        <div>
+                                            <div class="token-name">USDTgV</div>
+                                            <div class="token-symbol">Utility Token</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$0.50</td>
+                                <td class="change positive">+2.5%</td>
+                                <td class="market-cap">$250,000,000</td>
+                                <td class="supply">500,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="token-info">
+                                        <img src="../assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo">
+                                        <div>
+                                            <div class="token-name">USDTgG</div>
+                                            <div class="token-symbol">Governance Token</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">$5.00</td>
+                                <td class="change positive">+1.8%</td>
+                                <td class="market-cap">$500,000,000</td>
+                                <td class="supply">100,000,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Trade</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- DEX Section -->
+            <section id="dex" class="dashboard-section">
+                <div class="section-header">
+                    <h2>DEX Trading</h2>
+                </div>
+                <div class="dex-content">
+                    <div class="trading-pairs">
+                        <h3>Trading Pairs</h3>
+                        <div class="pairs-grid">
+                            <div class="pair-card">
+                                <div class="pair-header">
+                                    <div class="pair-tokens">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <img src="../assets/logos/regilis.png" alt="RGLS" class="token-logo">
+                                    </div>
+                                    <div class="pair-name">USDTg/RGLS</div>
+                                </div>
+                                <div class="pair-price">1.0 RGLS</div>
+                                <div class="pair-liquidity">$2,500,000</div>
+                                <div class="pair-volume">$320,000</div>
+                                <button class="btn btn-primary">Trade</button>
+                            </div>
+                            <div class="pair-card">
+                                <div class="pair-header">
+                                    <div class="pair-tokens">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo">
+                                    </div>
+                                    <div class="pair-name">USDTg/USDTgV</div>
+                                </div>
+                                <div class="pair-price">0.5 USDTgV</div>
+                                <div class="pair-liquidity">$3,000,000</div>
+                                <div class="pair-volume">$450,000</div>
+                                <button class="btn btn-primary">Trade</button>
+                            </div>
+                            <div class="pair-card">
+                                <div class="pair-header">
+                                    <div class="pair-tokens">
+                                        <img src="../assets/logos/logo.png" alt="USDTg" class="token-logo">
+                                        <img src="../assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo">
+                                    </div>
+                                    <div class="pair-name">USDTg/USDTgG</div>
+                                </div>
+                                <div class="pair-price">5.0 USDTgG</div>
+                                <div class="pair-liquidity">$1,200,000</div>
+                                <div class="pair-volume">$180,000</div>
+                                <button class="btn btn-primary">Trade</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CEX Section -->
+            <section id="cex" class="dashboard-section">
+                <div class="section-header">
+                    <h2>CEX Trading</h2>
+                </div>
+                <div class="cex-content">
+                    <div class="exchange-pairs">
+                        <h3>Exchange Pairs</h3>
+                        <div class="exchange-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Pair</th>
+                                        <th>Price</th>
+                                        <th>24h Change</th>
+                                        <th>Volume</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>USDTg/USDT</td>
+                                        <td class="price">$1.00</td>
+                                        <td class="change stable">0.00%</td>
+                                        <td class="volume">$50,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>RGLS/USDT</td>
+                                        <td class="price">$0.49</td>
+                                        <td class="change stable">0.00%</td>
+                                        <td class="volume">$35,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>USDTgV/USDT</td>
+                                        <td class="price">$0.50</td>
+                                        <td class="change positive">+2.5%</td>
+                                        <td class="volume">$25,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>USDTgG/USDT</td>
+                                        <td class="price">$5.00</td>
+                                        <td class="change positive">+1.8%</td>
+                                        <td class="volume">$15,000</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Trade</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Staking Section -->
+            <section id="staking" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Staking</h2>
+                </div>
+                <div class="staking-content">
+                    <div class="staking-pools">
+                        <h3>Staking Pools</h3>
+                        <div class="pools-grid">
+                            <div class="pool-card">
+                                <div class="pool-header">
+                                    <img src="../assets/logos/regilis.png" alt="RGLS" class="token-logo">
+                                    <div class="pool-name">RGLS Staking</div>
+                                </div>
+                                <div class="pool-apy">8% APY</div>
+                                <div class="pool-tvl">$1,200,000</div>
+                                <button class="btn btn-primary">Stake</button>
+                            </div>
+                            <div class="pool-card">
+                                <div class="pool-header">
+                                    <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" class="token-logo">
+                                    <div class="pool-name">USDTgV Staking</div>
+                                </div>
+                                <div class="pool-apy">10% APY</div>
+                                <div class="pool-tvl">$2,500,000</div>
+                                <button class="btn btn-primary">Stake</button>
+                            </div>
+                            <div class="pool-card">
+                                <div class="pool-header">
+                                    <img src="../assets/logos/USDTgG-logo.png" alt="USDTgG" class="token-logo">
+                                    <div class="pool-name">USDTgG Staking</div>
+                                </div>
+                                <div class="pool-apy">15% APY</div>
+                                <div class="pool-tvl">$1,800,000</div>
+                                <button class="btn btn-primary">Stake</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Governance Section -->
+            <section id="governance" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Governance</h2>
+                </div>
+                <div class="governance-content">
+                    <div class="proposals">
+                        <h3>Active Proposals</h3>
+                        <div class="proposals-list">
+                            <div class="proposal-card">
+                                <div class="proposal-header">
+                                    <div class="proposal-title">Increase USDTgV Staking Rewards</div>
+                                    <div class="proposal-status active">Active</div>
+                                </div>
+                                <div class="proposal-description">
+                                    Proposal to increase USDTgV staking rewards from 10% to 12% APY
+                                </div>
+                                <div class="proposal-votes">
+                                    <div class="vote-bar">
+                                        <div class="vote-for" style="width: 65%"></div>
+                                    </div>
+                                    <div class="vote-counts">
+                                        <span class="for">65% For</span>
+                                        <span class="against">35% Against</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary">Vote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Analytics</h2>
+                </div>
+                <div class="analytics-content">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Network Health</h3>
+                            <div class="health-metrics">
+                                <div class="health-item">
+                                    <span class="health-label">Uptime</span>
+                                    <span class="health-value">99.9%</span>
+                                </div>
+                                <div class="health-item">
+                                    <span class="health-label">Block Time</span>
+                                    <span class="health-value">1.2s</span>
+                                </div>
+                                <div class="health-item">
+                                    <span class="health-label">Finality</span>
+                                    <span class="health-value">3.0s</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Security Status</h3>
+                            <div class="security-metrics">
+                                <div class="security-item">
+                                    <span class="security-label">Quantum-Safe</span>
+                                    <span class="security-status active">✅ Active</span>
+                                </div>
+                                <div class="security-item">
+                                    <span class="security-label">MEV Protection</span>
+                                    <span class="security-status active">✅ Active</span>
+                                </div>
+                                <div class="security-item">
+                                    <span class="security-label">Anti-Fraud</span>
+                                    <span class="security-status active">✅ Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Dashboard API Integration (Pure C Backend)
+        async function fetchDashboardMetrics() {
+            try {
+                const response = await fetch('http://localhost:8080/api/dashboard');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.metrics;
+            } catch (error) {
+                console.warn('Dashboard API unavailable, using fallback data:', error);
+                // Fallback data if backend is unavailable
+                return {
+                    total_tvl: 6400000,
+                    daily_volume: 2130000,
+                    active_users: 2847,
+                    block_height: 1247892,
+                    changes: {
+                        tvl_change: 12.5,
+                        volume_change: 8.3,
+                        user_change: 15.2,
+                        block_change: 1247
+                    }
+                };
+            }
+        }
+        
+        // Update all dashboard metrics from backend
+        async function updateDashboardMetrics() {
+            const metrics = await fetchDashboardMetrics();
+            
+            // Update TVL
+            const tvlElement = document.querySelector('.metric-card:nth-child(1) .metric-value');
+            if (tvlElement) {
+                tvlElement.textContent = `$${(metrics.total_tvl / 1000000).toFixed(1)}M`;
+            }
+            
+            // Update 24h Volume
+            const volumeElement = document.querySelector('.metric-card:nth-child(2) .metric-value');
+            if (volumeElement) {
+                volumeElement.textContent = `$${(metrics.daily_volume / 1000000).toFixed(1)}M`;
+            }
+            
+            // Update Active Users
+            const usersElement = document.querySelector('.metric-card:nth-child(3) .metric-value');
+            if (usersElement) {
+                usersElement.textContent = metrics.active_users.toLocaleString();
+            }
+            
+            // Update Block Height
+            const blockElement = document.querySelector('.metric-card:nth-child(4) .metric-value');
+            if (blockElement) {
+                blockElement.textContent = metrics.block_height.toLocaleString();
+            }
+            
+            // Update change indicators
+            const changeElements = document.querySelectorAll('.metric-change');
+            if (changeElements.length >= 4) {
+                changeElements[0].textContent = `+${metrics.changes.tvl_change.toFixed(1)}%`;
+                changeElements[1].textContent = `+${metrics.changes.volume_change.toFixed(1)}%`;
+                changeElements[2].textContent = `+${metrics.changes.user_change.toFixed(1)}%`;
+                changeElements[3].textContent = `+${metrics.changes.block_change}`;
+            }
+        }
+        
+        // Pure C Backend Chart Integration
+        function loadChartData() {
+            // Fetch chart data from Pure C backend
+            fetch('http://localhost:8081/api/charts')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.charts) {
+                        renderCharts(data.charts);
+                    }
+                })
+                .catch(error => {
+                    console.warn('Pure C Charts API unavailable, using fallback data:', error);
+                    renderFallbackCharts();
+                });
+        }
+        
+        // Safari-compatible chart rendering
+        function createSafariCompatibleChart(containerId, chartType, data) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            // Clear existing content
+            container.innerHTML = '';
+            
+            // Detect Safari
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            
+            if (isSafari) {
+                // Use Canvas for Safari compatibility
+                const canvas = document.createElement('canvas');
+                canvas.width = container.offsetWidth;
+                canvas.height = 200;
+                canvas.style.width = '100%';
+                canvas.style.height = '200px';
+                container.appendChild(canvas);
+                
+                const ctx = canvas.getContext('2d');
+                
+                if (chartType === 'price') {
+                    drawPriceChartCanvas(ctx, canvas.width, canvas.height, data);
+                } else if (chartType === 'volume') {
+                    drawVolumeChartCanvas(ctx, canvas.width, canvas.height, data);
+                }
+            } else {
+                // Use SVG for other browsers
+                if (chartType === 'price') {
+                    container.innerHTML = createPriceChartSVG(data, data[data.length - 1]);
+                } else if (chartType === 'volume') {
+                    container.innerHTML = createVolumeChartSVG(data);
+                }
+            }
+        }
+        
+        // Canvas-based price chart for Safari
+        function drawPriceChartCanvas(ctx, width, height, data) {
+            const margin = 40;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Background
+            ctx.fillStyle = 'rgba(0,212,255,0.05)';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Find min/max prices
+            const prices = data.map(d => d.price);
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+            const priceRange = maxPrice - minPrice;
+            
+            // Draw grid lines
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) {
+                const y = margin + (i * chartHeight / 4);
+                ctx.beginPath();
+                ctx.moveTo(margin, y);
+                ctx.lineTo(width - margin, y);
+                ctx.stroke();
+            }
+            
+            // Draw price line
+            ctx.strokeStyle = '#00d4ff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            data.forEach((point, index) => {
+                const x = margin + (index / (data.length - 1)) * chartWidth;
+                const y = margin + ((maxPrice - point.price) / priceRange) * chartHeight;
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+            
+            // Draw price points
+            ctx.fillStyle = '#00d4ff';
+            data.forEach((point, index) => {
+                if (index % 4 === 0) {
+                    const x = margin + (index / (data.length - 1)) * chartWidth;
+                    const y = margin + ((maxPrice - point.price) / priceRange) * chartHeight;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+            });
+            
+            // Draw current price
+            const latestPrice = data[data.length - 1];
+            ctx.fillStyle = '#00d4ff';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText(`$${latestPrice.price.toFixed(4)}`, width - 80, 25);
+            ctx.fillStyle = '#28a745';
+            ctx.font = '12px Arial';
+            ctx.fillText('+0.5% (24h)', width - 80, 45);
+        }
+        
+        // Canvas-based volume chart for Safari
+        function drawVolumeChartCanvas(ctx, width, height, data) {
+            const margin = 40;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Background
+            ctx.fillStyle = 'rgba(102,126,234,0.05)';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Find max volume
+            const volumes = data.map(d => d.volume);
+            const maxVolume = Math.max(...volumes);
+            const barWidth = chartWidth / data.length;
+            
+            // Draw grid lines
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) {
+                const y = margin + (i * chartHeight / 4);
+                ctx.beginPath();
+                ctx.moveTo(margin, y);
+                ctx.lineTo(width - margin, y);
+                ctx.stroke();
+            }
+            
+            // Draw bars
+            data.forEach((point, index) => {
+                const barHeight = (point.volume / maxVolume) * chartHeight;
+                const x = margin + index * barWidth;
+                const y = margin + chartHeight - barHeight;
+                
+                const opacity = 0.6 + (point.volume / maxVolume) * 0.4;
+                ctx.fillStyle = `rgba(102,126,234,${opacity})`;
+                ctx.fillRect(x + 2, y, barWidth - 4, barHeight);
+            });
+            
+            // Draw volume display
+            const totalVolume = volumes.reduce((sum, vol) => sum + vol, 0);
+            ctx.fillStyle = '#667eea';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText(`Vol: $${(totalVolume/1000).toFixed(1)}K`, width - 100, 25);
+            ctx.fillStyle = '#28a745';
+            ctx.font = '12px Arial';
+            ctx.fillText('+8.3% (24h)', width - 100, 45);
+        }
+        
+        // Simple chart data update with real graphics
+        function updateChartDisplay() {
+            fetch('http://localhost:8081/api/charts')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.charts && data.charts.USDTg) {
+                        const usdtgData = data.charts.USDTg.data;
+                        const latestPrice = usdtgData[usdtgData.length - 1];
+                        const totalVolume = usdtgData.reduce((sum, item) => sum + item.volume, 0);
+                        
+                        // Create Price Chart with SVG
+                        const priceContainer = document.getElementById('priceChart');
+                        if (priceContainer) {
+                            priceContainer.innerHTML = createPriceChartSVG(usdtgData, latestPrice);
+                        }
+                        
+                        // Create Volume Chart with SVG
+                        const volumeContainer = document.getElementById('volumeChart');
+                        if (volumeContainer) {
+                            volumeContainer.innerHTML = createVolumeChartSVG(usdtgData, totalVolume);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log('Chart update failed:', error);
+                    renderFallbackCharts();
+                });
+        }
+        
+        // Create SVG Price Chart
+        function createPriceChartSVG(data, latestPrice) {
+            const width = 400;
+            const height = 200;
+            const margin = 40;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin;
+            
+            // Find min/max prices
+            const prices = data.map(d => d.price);
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+            const priceRange = maxPrice - minPrice;
+            
+            // Create SVG
+            let svg = `<svg width="${width}" height="${height}" style="background: transparent;">
+                <defs>
+                    <linearGradient id="priceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(0,212,255,0.3);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(0,212,255,0.05);stop-opacity:1" />
+                    </linearGradient>
+                </defs>`;
+            
+            // Add grid lines
+            for (let i = 0; i <= 4; i++) {
+                const y = margin + (i * chartHeight / 4);
+                svg += `<line x1="${margin}" y1="${y}" x2="${width - margin}" y2="${y}" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>`;
+            }
+            
+            for (let i = 0; i <= 6; i++) {
+                const x = margin + (i * chartWidth / 6);
+                svg += `<line x1="${x}" y1="${margin}" x2="${x}" y2="${height - margin}" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>`;
+            }
+            
+            // Create price line path
+            let pathData = '';
+            data.forEach((point, index) => {
+                const x = margin + (index / (data.length - 1)) * chartWidth;
+                const y = margin + ((maxPrice - point.price) / priceRange) * chartHeight;
+                if (index === 0) {
+                    pathData += `M ${x} ${y}`;
+                } else {
+                    pathData += ` L ${x} ${y}`;
+                }
+            });
+            
+            // Add area under curve
+            const firstPoint = data[0];
+            const lastPoint = data[data.length - 1];
+            const firstX = margin + (0 / (data.length - 1)) * chartWidth;
+            const lastX = margin + ((data.length - 1) / (data.length - 1)) * chartWidth;
+            const firstY = margin + ((maxPrice - firstPoint.price) / priceRange) * chartHeight;
+            const lastY = margin + ((maxPrice - lastPoint.price) / priceRange) * chartHeight;
+            
+            let areaPath = `M ${firstX} ${height - margin} L ${firstX} ${firstY} ${pathData.substring(2)} L ${lastX} ${height - margin} Z`;
+            
+            svg += `<path d="${areaPath}" fill="url(#priceGradient)"/>`;
+            svg += `<path d="${pathData}" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>`;
+            
+            // Add price points
+            data.forEach((point, index) => {
+                const x = margin + (index / (data.length - 1)) * chartWidth;
+                const y = margin + ((maxPrice - point.price) / priceRange) * chartHeight;
+                if (index % 4 === 0) { // Show every 4th point
+                    svg += `<circle cx="${x}" cy="${y}" r="3" fill="#00d4ff" stroke="white" stroke-width="1"/>`;
+                }
+            });
+            
+            // Add current price display
+            svg += `<text x="${width - 80}" y="25" fill="#00d4ff" font-size="14" font-weight="bold">$${latestPrice.price.toFixed(4)}</text>`;
+            svg += `<text x="${width - 80}" y="45" fill="#28a745" font-size="12">+0.5% (24h)</text>`;
+            
+            svg += '</svg>';
+            return svg;
+        }
+        
+        // Create SVG Volume Chart
+        function createVolumeChartSVG(data, totalVolume) {
+            const width = 400;
+            const height = 200;
+            const margin = 40;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin;
+            
+            // Find max volume
+            const volumes = data.map(d => d.volume);
+            const maxVolume = Math.max(...volumes);
+            const barWidth = chartWidth / data.length;
+            
+            // Calculate total volume if not provided
+            if (!totalVolume) {
+                totalVolume = volumes.reduce((sum, vol) => sum + vol, 0);
+            }
+            
+            let svg = `<svg width="${width}" height="${height}" style="background: transparent;">`;
+            
+            // Add grid lines
+            for (let i = 0; i <= 4; i++) {
+                const y = margin + (i * chartHeight / 4);
+                svg += `<line x1="${margin}" y1="${y}" x2="${width - margin}" y2="${y}" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>`;
+            }
+            
+            // Create bars
+            data.forEach((point, index) => {
+                const barHeight = (point.volume / maxVolume) * chartHeight;
+                const x = margin + index * barWidth;
+                const y = margin + chartHeight - barHeight;
+                
+                const opacity = 0.6 + (point.volume / maxVolume) * 0.4;
+                svg += `<rect x="${x + 2}" y="${y}" width="${barWidth - 4}" height="${barHeight}" fill="#667eea" opacity="${opacity}"/>`;
+            });
+            
+            // Add volume display
+            svg += `<text x="${width - 100}" y="25" fill="#667eea" font-size="14" font-weight="bold">Vol: $${(totalVolume/1000).toFixed(1)}K</text>`;
+            svg += `<text x="${width - 100}" y="45" fill="#28a745" font-size="12">+8.3% (24h)</text>`;
+            
+            svg += '</svg>';
+            return svg;
+        }
+        
+        function renderCharts(charts) {
+            // Render USDTg Price Chart with Safari compatibility
+            if (charts.USDTg && charts.USDTg.data) {
+                createSafariCompatibleChart('priceChart', 'price', charts.USDTg.data);
+            }
+            // Render Volume Chart with Safari compatibility
+            if (charts.USDTg && charts.USDTg.data) {
+                createSafariCompatibleChart('volumeChart', 'volume', charts.USDTg.data);
+            }
+        }
+        
+        function renderPriceChart(usdtgData) {
+            const chartContainer = document.getElementById('priceChart');
+            if (!chartContainer || !usdtgData) return;
+            
+            // Create simple SVG chart
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '200');
+            svg.style.background = 'transparent';
+            
+            // Calculate chart dimensions
+            const width = 400;
+            const height = 180;
+            const margin = 20;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin;
+            
+            // Find min/max values
+            const prices = usdtgData.data.map(d => d.price);
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+            const priceRange = maxPrice - minPrice;
+            
+            // Create price line
+            const points = usdtgData.data.map((d, i) => {
+                const x = margin + (i / (usdtgData.data.length - 1)) * chartWidth;
+                const y = margin + ((maxPrice - d.price) / priceRange) * chartHeight;
+                return `${x},${y}`;
+            }).join(' ');
+            
+            // Add grid lines
+            for (let i = 0; i <= 4; i++) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', margin);
+                line.setAttribute('x2', width - margin);
+                line.setAttribute('y1', margin + (i * chartHeight / 4));
+                line.setAttribute('y2', margin + (i * chartHeight / 4));
+                line.setAttribute('stroke', 'rgba(255,255,255,0.1)');
+                line.setAttribute('stroke-width', '1');
+                svg.appendChild(line);
+            }
+            
+            // Add price line
+            const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+            polyline.setAttribute('points', points);
+            polyline.setAttribute('fill', 'none');
+            polyline.setAttribute('stroke', '#00d4ff');
+            polyline.setAttribute('stroke-width', '2');
+            svg.appendChild(polyline);
+            
+            // Add current price text
+            const currentPrice = usdtgData.data[usdtgData.data.length - 1].price;
+            const priceText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            priceText.setAttribute('x', width - 60);
+            priceText.setAttribute('y', 30);
+            priceText.setAttribute('fill', '#00d4ff');
+            priceText.setAttribute('font-size', '14');
+            priceText.setAttribute('font-weight', 'bold');
+            priceText.textContent = `$${currentPrice.toFixed(4)}`;
+            svg.appendChild(priceText);
+            
+            chartContainer.innerHTML = '';
+            chartContainer.appendChild(svg);
+        }
+        
+        function renderVolumeChart(charts) {
+            const chartContainer = document.getElementById('volumeChart');
+            if (!chartContainer) return;
+            
+            // Create simple SVG bar chart
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '200');
+            svg.style.background = 'transparent';
+            
+            // Calculate chart dimensions
+            const width = 400;
+            const height = 180;
+            const margin = 20;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin;
+            
+            // Get USDTg volume data
+            const volumes = charts.USDTg.data.map(d => d.volume);
+            const maxVolume = Math.max(...volumes);
+            const barWidth = chartWidth / volumes.length;
+            
+            // Create bars
+            volumes.forEach((volume, i) => {
+                const barHeight = (volume / maxVolume) * chartHeight;
+                const x = margin + i * barWidth;
+                const y = margin + chartHeight - barHeight;
+                
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', x);
+                rect.setAttribute('y', y);
+                rect.setAttribute('width', barWidth - 2);
+                rect.setAttribute('height', barHeight);
+                rect.setAttribute('fill', '#667eea');
+                rect.setAttribute('opacity', '0.8');
+                svg.appendChild(rect);
+            });
+            
+            // Add volume text
+            const totalVolume = volumes.reduce((sum, vol) => sum + vol, 0);
+            const volumeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            volumeText.setAttribute('x', width - 80);
+            volumeText.setAttribute('y', 30);
+            volumeText.setAttribute('fill', '#667eea');
+            volumeText.setAttribute('font-size', '14');
+            volumeText.setAttribute('font-weight', 'bold');
+            volumeText.textContent = `Vol: ${(totalVolume/1000).toFixed(0)}K`;
+            svg.appendChild(volumeText);
+            
+            chartContainer.innerHTML = '';
+            chartContainer.appendChild(svg);
+        }
+        
+        function renderFallbackCharts() {
+            // Fallback static charts if Pure C backend is unavailable
+            const priceContainer = document.getElementById('priceChart');
+            const volumeContainer = document.getElementById('volumeChart');
+            
+            // Sample data for fallback charts
+            const sampleData = [
+                { price: 0.98, volume: 1200 },
+                { price: 0.99, volume: 1500 },
+                { price: 1.00, volume: 1800 },
+                { price: 1.01, volume: 1600 },
+                { price: 1.00, volume: 1400 },
+                { price: 1.02, volume: 2000 },
+                { price: 1.01, volume: 1700 },
+                { price: 1.00, volume: 1300 }
+            ];
+            
+            if (priceContainer) {
+                createSafariCompatibleChart('priceChart', 'price', sampleData);
+            }
+            
+            if (volumeContainer) {
+                createSafariCompatibleChart('volumeChart', 'volume', sampleData);
+            }
+        }
+        
+        // Section Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Load section-specific data
+            if (sectionId === 'overview') {
+                updateChartDisplay();
+            }
+        }
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboardMetrics();
+            updateChartDisplay(); // Load real chart data from Pure C backend
+            showSection('overview'); // Show overview by default
+            
+            // Update every 30 seconds
+            setInterval(updateDashboardMetrics, 30000);
+            setInterval(updateChartDisplay, 10000); // Update charts every 10 seconds
+        });
+    </script>
+    
+    <script>
+        // Dashboard Navigation
+        document.getElementById('navigation-placeholder').innerHTML = `
+            <nav style="
+                background: rgba(0, 0, 0, 0.9) !important;
+                backdrop-filter: blur(10px);
+                padding: 10px 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+                transition: background 0.3s ease;
+            ">
+                <div style="
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                ">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <a href="../index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                            <img src="../assets/logos/logo.png" alt="USDTgVerse Logo" style="
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                border: 2px solid rgba(255, 255, 255, 0.2);
+                                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                                transition: all 0.3s ease;
+                            ">
+                            <h2 style="
+                                font-size: 20px;
+                                font-weight: bold;
+                                color: white;
+                                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                                transition: all 0.3s ease;
+                            ">USDTgVerse Dashboard</h2>
+                        </a>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <a href="../index.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🏠 Home
+                        </a>
+                        <a href="index.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px; background: rgba(255,255,255,0.1);">
+                            📊 Dashboard
+                        </a>
+                        <a href="../exchanges/web/dex.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🔄 DEX
+                        </a>
+                        <a href="../exchanges/web/cex.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🏪 CEX
+                        </a>
+                        <a href="../bridges/web/bridge.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            🌉 Bridge
+                        </a>
+                        <a href="../wallet/wallet.html" style="color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 14px;">
+                            💳 Wallet
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        `;
+    </script>
+
+    <!-- Additional Sections -->
+    <!-- Staking Section -->
+    <section id="staking" style="display: none;">
+        <div class="container">
+            <h2>💎 Staking Pools</h2>
+            <div class="staking-grid">
+                <div class="staking-card">
+                    <div class="staking-header">
+                        <img src="../assets/logos/logo.png" alt="USDTg" style="width: 40px; height: 40px; border-radius: 50%;">
+                        <h3>USDTg Staking</h3>
+                    </div>
+                    <div class="staking-info">
+                        <div class="apy">10% APY</div>
+                        <div class="tvl">$2.5M TVL</div>
+                        <div class="stakers">1,247 Stakers</div>
+                    </div>
+                    <button class="stake-btn">Stake USDTg</button>
+                </div>
+                
+                <div class="staking-card">
+                    <div class="staking-header">
+                        <img src="../assets/logos/regilis.png" alt="RGLS" style="width: 40px; height: 40px; border-radius: 50%;">
+                        <h3>RGLS Staking</h3>
+                    </div>
+                    <div class="staking-info">
+                        <div class="apy">12% APY</div>
+                        <div class="tvl">$1.2M TVL</div>
+                        <div class="stakers">320 Stakers</div>
+                    </div>
+                    <button class="stake-btn">Stake RGLS</button>
+                </div>
+                
+                <div class="staking-card">
+                    <div class="staking-header">
+                        <img src="../assets/logos/USDTgV-logo.png" alt="USDTgV" style="width: 40px; height: 40px; border-radius: 50%;">
+                        <h3>USDTgV Staking</h3>
+                    </div>
+                    <div class="staking-info">
+                        <div class="apy">15% APY</div>
+                        <div class="tvl">$1.8M TVL</div>
+                        <div class="stakers">890 Stakers</div>
+                    </div>
+                    <button class="stake-btn">Stake USDTgV</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Governance Section -->
+    <section id="governance" style="display: none;">
+        <div class="container">
+            <h2>🏛️ Governance</h2>
+            <div class="governance-grid">
+                <div class="proposal-card">
+                    <h3>Proposal #001</h3>
+                    <p>Increase USDTg staking rewards from 10% to 12%</p>
+                    <div class="vote-stats">
+                        <div class="vote-for">✅ For: 67%</div>
+                        <div class="vote-against">❌ Against: 33%</div>
+                    </div>
+                    <button class="vote-btn">Vote Now</button>
+                </div>
+                
+                <div class="proposal-card">
+                    <h3>Proposal #002</h3>
+                    <p>Add new DEX trading pairs for RGLS</p>
+                    <div class="vote-stats">
+                        <div class="vote-for">✅ For: 89%</div>
+                        <div class="vote-against">❌ Against: 11%</div>
+                    </div>
+                    <button class="vote-btn">Vote Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" style="display: none;">
+        <div class="container">
+            <h2>📈 Analytics</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Token Performance</h3>
+                    <div class="token-performance">
+                        <div class="token-row">
+                            <span>USDTg</span>
+                            <span class="positive">+0.5%</span>
+                        </div>
+                        <div class="token-row">
+                            <span>RGLS</span>
+                            <span class="positive">+12.5%</span>
+                        </div>
+                        <div class="token-row">
+                            <span>USDTgV</span>
+                            <span class="positive">+2.3%</span>
+                        </div>
+                        <div class="token-row">
+                            <span>USDTgG</span>
+                            <span class="negative">-1.1%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Network Stats</h3>
+                    <div class="network-stats">
+                        <div class="stat-row">
+                            <span>Total Transactions</span>
+                            <span>1,247,892</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Active Wallets</span>
+                            <span>2,847</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Block Time</span>
+                            <span>2.3s</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Network Hash</span>
+                            <span>15.2 TH/s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initialize Dashboard -->
+    <script>
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Dashboard initializing...');
+            
+            // Load chart data from Pure C API
+            loadChartData();
+            
+            // Update chart display
+            updateChartDisplay();
+            
+            // Refresh charts every 30 seconds
+            setInterval(() => {
+                updateChartDisplay();
+            }, 30000);
+            
+            console.log('✅ Dashboard initialized successfully!');
+        });
+    </script>
+</body>
+</html>

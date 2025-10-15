@@ -1,0 +1,61 @@
+# USDTgVerse Social Media Bot Environment Variables
+# Bu dosyayı güvenli tutun ve git'e commit etmeyin!
+
+# Twitter API Keys (https://developer.twitter.com/)
+TWITTER_API_KEY=your_twitter_api_key_here
+TWITTER_API_SECRET=your_twitter_api_secret_here
+TWITTER_ACCESS_TOKEN=your_twitter_access_token_here
+TWITTER_ACCESS_SECRET=your_twitter_access_secret_here
+TWITTER_BEARER_TOKEN=your_twitter_bearer_token_here
+
+# LinkedIn Credentials
+LINKEDIN_EMAIL=info@usdtgverse.com
+LINKEDIN_PASSWORD=your_linkedin_password_here
+
+# Instagram Credentials
+INSTAGRAM_USERNAME=usdtgverse
+INSTAGRAM_PASSWORD=your_instagram_password_here
+
+# YouTube API
+YOUTUBE_API_KEY=your_youtube_api_key_here
+YOUTUBE_CHANNEL_ID=your_youtube_channel_id_here
+
+# Discord Bot
+DISCORD_BOT_TOKEN=your_discord_bot_token_here
+DISCORD_GUILD_ID=your_discord_guild_id_here
+
+# TikTok API
+TIKTOK_USERNAME=usdtgverse
+TIKTOK_PASSWORD=your_tiktok_password_here
+
+# Twitch API
+TWITCH_CLIENT_ID=your_twitch_client_id_here
+TWITCH_CLIENT_SECRET=your_twitch_client_secret_here
+
+# Medium API
+MEDIUM_INTEGRATION_TOKEN=your_medium_integration_token_here
+
+# Reddit API
+REDDIT_CLIENT_ID=your_reddit_client_id_here
+REDDIT_CLIENT_SECRET=your_reddit_client_secret_here
+
+# Telegram Bot
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+
+# Bot Settings
+MIN_POST_INTERVAL=7200
+MAX_POST_INTERVAL=28800
+ENABLE_ANALYTICS=true
+ENABLE_ENGAGEMENT_BOT=true
+
+# Platform Settings
+ENABLE_TWITTER=true
+ENABLE_LINKEDIN=true
+ENABLE_INSTAGRAM=true
+ENABLE_YOUTUBE=false
+ENABLE_DISCORD=false
+ENABLE_TIKTOK=false
+ENABLE_TWITCH=false
+ENABLE_MEDIUM=false
+ENABLE_REDDIT=false
+ENABLE_TELEGRAM=false

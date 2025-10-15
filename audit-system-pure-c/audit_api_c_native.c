@@ -1,11 +1,9 @@
 /*
 ==============================================
-==============================================
-==============================================
  File:        audit_api_c_native.c
- Author:      Irfan Gedik
- Created:     October 2, 2025
- Last Update: October 2, 2025
+ Author:      USDTG GROUP TECHNOLOGY LLC
+ Created:     2025-10-02
+ Last Update: 2025-10-05
  Version:     3.0.0 Pure C Native
 
  Description:

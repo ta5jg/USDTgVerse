@@ -29,6 +29,9 @@
 #include <thread>
 #include <chrono>
 #include <random>
+#include <fstream>
+#include <ctime>
+#include <sys/stat.h>
 
 extern "C" {
     #include "../src/core/blockchain_core.h"
@@ -36,6 +39,52 @@ extern "C" {
 }
 
 namespace usdtgverse::api {
+
+// ============================================================================
+// DATABASE LOGGING INTEGRATION
+// ============================================================================
+
+#define DATA_DIR "/opt/usdtgverse/data"
+#define BLOCKCHAIN_LOG_DB DATA_DIR "/blockchain_api_logs.db"
+#define TRANSACTION_LOG_DB DATA_DIR "/blockhash_transactions.db"
+#define BLOCK_DATA_DB DATA_DIR "/block_data_cache.db"
+
+void log_blockchain_api_request(const std::string& endpoint, const std::string& method, 
+                                int status_code, double response_time) {
+    std::ofstream log_file(BLOCKCHAIN_LOG_DB, std::ios::app);
+    if (log_file.is_open()) {
+        log_file << time(nullptr) << "|" << endpoint << "|" << method 
+                 << "|" << status_code << "|" << response_time << "|" << time(nullptr) << std::endl;
+        log_file.close();
+        std::cout << "🔗 Blockchain API Logged: " << method << " " << endpoint 
+                  << " -> " << status_code << " (" << response_time << "s)" << std::endl;
+    }
+}
+
+void log_transaction_to_database(const TransactionInfo& tx) {
+    std::ofstream tx_file(TRANSACTION_LOG_DB, std::ios::app);
+    if (tx_file.is_open()) {
+        tx_file << tx.hash << "|" << tx.from << "|" << tx.to << "|" << tx.amount 
+                << "|" << tx.fee << "|" << tx.memo << "|" << tx.timestamp << "|" << tx.status << std::endl;
+        tx_file.close();
+        std::cout << "📊 Transaction Logged: " << tx.hash << " (" << tx.from << " -> " << tx.to << ")" << std::endl;
+    }
+}
+
+void log_block_to_database(const BlockInfo& block) {
+    std::ofstream block_file(BLOCK_DATA_DB, std::ios::app);
+    if (block_file.is_open()) {
+        block_file << block.height << "|" << block.hash << "|" << block.prev_hash 
+                   << "|" << block.proposer << "|" << block.tx_count << "|" << block.timestamp << std::endl;
+        block_file.close();
+        std::cout << "📦 Block Logged: Height " << block.height << " Hash " << block.hash << std::endl;
+    }
+}
+
+void ensure_data_directory() {
+    system("mkdir -p /opt/usdtgverse/data");
+    std::cout << "📂 Blockchain data directory ensured: " << DATA_DIR << std::endl;
+}
 
 // ============================================================================
 // API TYPES

@@ -1,3 +1,20 @@
+# ==============================================
+# File:        CMakeLists.txt
+# Author:      USDTG GROUP TECHNOLOGY LLC
+# Created:     2025-10-05
+# Last Update: 2025-10-05
+# Version:     1.0
+#
+# Description:
+#   USDTgVerse - Professional Enterprise Blockchain
+#   
+#   Ultra-Fast Native C++ Blockchain with USDTg Stablecoin
+#   Enterprise Grade build configuration
+#
+# License:
+#   MIT License
+# ==============================================
+
 cmake_minimum_required(VERSION 3.20)
 project(USDTgVerse LANGUAGES C CXX)
 

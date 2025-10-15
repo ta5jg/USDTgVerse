@@ -1,3 +1,22 @@
+<!--
+==============================================
+ File:        README.md
+ Author:      USDTG GROUP TECHNOLOGY LLC
+ Created:     2025-09-28
+ Last Update: 2025-10-05
+ Version:     1.0
+
+ Description:
+   USDTgVerse Native IDE - README
+   
+   Quantum-Safe Development Environment for USDTgScript
+   Professional-grade Integrated Development Environment
+
+ License:
+   MIT License
+==============================================
+-->
+
 # USDTgVerse Native IDE
 
 **Quantum-Safe Development Environment for USDTgScript**

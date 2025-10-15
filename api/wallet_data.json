@@ -1,0 +1,28 @@
+{
+  "timestamp": 1760384171,
+  "wallet_id": "wallet_001",
+  "user_id": "user_001",
+  "balances": {
+    "USDTg": {
+      "amount": 1000.00,
+      "value_usd": 1000.00,
+      "logo": "assets/logos/USDTg-logo.png"
+    },
+    "USDTgV": {
+      "amount": 500.00,
+      "value_usd": 500.00,
+      "logo": "assets/logos/USDTgV-logo.png"
+    },
+    "USDTgG": {
+      "amount": 250.00,
+      "value_usd": 250.00,
+      "logo": "assets/logos/USDTgG-logo.png"
+    },
+    "RGLS": {
+      "amount": 100.00,
+      "value_usd": 10000.00,
+      "logo": "assets/logos/RGLS-logo.png"
+    }
+  },
+  "total_value_usd": 1850.00
+}

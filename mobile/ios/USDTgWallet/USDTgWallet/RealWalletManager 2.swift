@@ -211,14 +211,72 @@ class RealWalletManager: ObservableObject {
         realAssets.append(contentsOf: externalAssets)
     }
     
-    private func loadDemoData() {
-        // Demo data for development/offline mode
-        realAssets = [
-            RealAsset(id: "usdtg", symbol: "USDTg", name: "USDTg", network: "USDTgVerse", balance: 10.0, price: 1.00, isNative: true, contractAddress: nil),
-            RealAsset(id: "eth", symbol: "ETH", name: "Ethereum", network: "Ethereum", balance: 0.0, price: 2337.85, isNative: false, contractAddress: nil),
-            RealAsset(id: "usdt", symbol: "USDT", name: "Tether USD", network: "Ethereum", balance: 0.0, price: 1.00, isNative: false, contractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7")
-        ]
+    private func loadRealData() {
+        // Real data from blockchain - no demo data
+        realAssets = []
+        isLoading = true
+        
+        // Load real USDTgVerse assets
+        loadRealUSDTgVerseAssets()
+        
+        // Load real external chain assets
+        loadRealExternalAssets()
+        
         isLoading = false
+    }
+    
+    private func loadRealUSDTgVerseAssets() {
+        // Load real USDTgVerse assets from blockchain
+        guard !walletAddress.isEmpty else { return }
+        
+        let apiURL = "https://api.usdtgverse.com/api/v1/assets/\(walletAddress)"
+        
+        guard let url = URL(string: apiURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let assets = json["assets"] as? [[String: Any]] else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                for assetData in assets {
+                    if let id = assetData["id"] as? String,
+                       let symbol = assetData["symbol"] as? String,
+                       let name = assetData["name"] as? String,
+                       let balance = assetData["balance"] as? Double,
+                       let price = assetData["price"] as? Double {
+                        
+                        let asset = RealAsset(
+                            id: id,
+                            symbol: symbol,
+                            name: name,
+                            network: "USDTgVerse",
+                            balance: balance,
+                            price: price,
+                            isNative: true,
+                            contractAddress: nil
+                        )
+                        
+                        self.realAssets.append(asset)
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    private func loadRealExternalAssets() {
+        // Load real external chain assets (0 balance for new users)
+        let externalAssets = [
+            RealAsset(id: "eth", symbol: "ETH", name: "Ethereum", network: "Ethereum", balance: 0.0, price: 2337.85, isNative: false, contractAddress: nil),
+            RealAsset(id: "usdt", symbol: "USDT", name: "Tether USD", network: "Ethereum", balance: 0.0, price: 1.00, isNative: false, contractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7"),
+            RealAsset(id: "usdc", symbol: "USDC", name: "USD Coin", network: "Ethereum", balance: 0.0, price: 1.00, isNative: false, contractAddress: "0xA0b86a33E6441b8435b662c8c6C1d4c7B6F2e0C6"),
+            RealAsset(id: "bnb", symbol: "BNB", name: "BNB", network: "BNB Chain", balance: 0.0, price: 245.50, isNative: false, contractAddress: nil),
+            RealAsset(id: "trx", symbol: "TRX", name: "TRON", network: "TRON", balance: 0.0, price: 0.091, isNative: false, contractAddress: nil)
+        ]
+        
+        realAssets.append(contentsOf: externalAssets)
     }
     
     // MARK: - AirDrop System

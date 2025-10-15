@@ -306,9 +306,10 @@ class RealWalletManager: ObservableObject {
     
     // MARK: - AirDrop System (Production)
     private func requestWelcomeAirDrop(address: String) {
-        guard let url = URL(string: "\(productionAPI)/api/v1/bonus/welcome") else {
+        // Request 10 USDTg airdrop (LOCKED - Fee only until purchase)
+        guard let url = URL(string: "http://localhost:3006/api/airdrop/create") else {
             DispatchQueue.main.async {
-                self.errorMessage = "Invalid API endpoint for welcome bonus"
+                self.errorMessage = "Invalid airdrop API endpoint"
             }
             return
         }
@@ -316,13 +317,15 @@ class RealWalletManager: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(generateAPIToken())", forHTTPHeaderField: "Authorization")
+        
+        // Get device fingerprint
+        let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? "unknown"
         
         let body = [
-            "address": address,
-            "amount": 10.0,
-            "type": "welcome_bonus",
-            "timestamp": Date().timeIntervalSince1970
+            "wallet_address": address,
+            "user_id": "USER_\(Int(Date().timeIntervalSince1970))",
+            "device_fingerprint": deviceID,
+            "ip_address": "0.0.0.0" // Will be set by server
         ] as [String : Any]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
@@ -332,22 +335,185 @@ class RealWalletManager: ObservableObject {
                 guard let data = data,
                       let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                       let success = json["success"] as? Bool,
-                      success,
-                      let balance = json["balance"] as? Double else {
-                    self?.errorMessage = "Failed to request welcome bonus"
+                      success else {
+                    self?.errorMessage = "Failed to request airdrop"
                     return
                 }
                 
-                // Bonus successful
-                self?.userBalance = balance
-                self?.updateUSDTgAsset(balance: balance)
+                // Airdrop successful - 10 USDTg (LOCKED)
+                let airdropID = json["airdrop_id"] as? String ?? "unknown"
+                let amount = json["amount"] as? Double ?? 10.0
+                let message = json["message"] as? String ?? "Airdrop received"
+                
+                print("✅ Airdrop received: \(airdropID)")
+                print("💰 Amount: \(amount) USDTg (LOCKED - Fee only)")
+                print("📝 \(message)")
+                
+                // Update balance with locked airdrop
+                self?.userBalance = amount
+                self?.updateUSDTgAsset(balance: amount)
+                
+                // Show notification to user
+                self?.showAirdropNotification(amount: amount, message: message)
             }
         }.resume()
+    }
+    
+    private func showAirdropNotification(amount: Double, message: String) {
+        // Show in-app notification about locked airdrop
+        print("🎉 Welcome! You received \(amount) USDTg")
+        print("🔒 Locked for fees only")
+        print("🔓 Purchase 50+ USDTg to unlock for all transactions")
     }
     
     private func generateAPIToken() -> String {
         // In production, implement secure API token generation
         return "prod_token_\(UUID().uuidString)"
+    }
+    
+    // MARK: - Bonus System Integration
+    func checkPurchaseBonus(purchaseAmount: Double) {
+        // Check if purchase qualifies for bonus (10,000+ USDTg)
+        guard purchaseAmount >= 10000.0 else {
+            return
+        }
+        
+        guard let url = URL(string: "http://localhost:3007/api/bonus/create") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = [
+            "wallet_address": walletAddress,
+            "user_id": "USER_\(Int(Date().timeIntervalSince1970))",
+            "purchase_amount": purchaseAmount
+        ] as [String : Any]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data,
+                      let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                      let success = json["success"] as? Bool,
+                      success else {
+                    return
+                }
+                
+                let bonusAmount = json["bonus_amount"] as? Double ?? 0.0
+                let tier = json["tier"] as? String ?? "Bronze"
+                let message = json["message"] as? String ?? ""
+                
+                print("🎁 BONUS EARNED!")
+                print("💰 Amount: \(bonusAmount) USDTg")
+                print("🏆 Tier: \(tier)")
+                print("📝 \(message)")
+                
+                // Show bonus notification
+                self?.showBonusNotification(amount: bonusAmount, tier: tier, message: message)
+                
+                // Update balance with bonus
+                self?.userBalance += bonusAmount
+            }
+        }.resume()
+    }
+    
+    private func showBonusNotification(amount: Double, tier: String, message: String) {
+        // Show in-app notification about bonus
+        print("🎉 Congratulations!")
+        print("💎 You earned \(amount) USDTg bonus (\(tier) tier)")
+        print("🏆 Keep purchasing to unlock higher tiers!")
+    }
+    
+    // MARK: - Purchase Verification & Airdrop Unlock
+    func verifyPurchaseAndUnlockAirdrop(purchaseAmount: Double) {
+        // Check for purchase bonus first
+        checkPurchaseBonus(purchaseAmount: purchaseAmount)
+        
+        // Then verify for airdrop unlock
+        guard let url = URL(string: "http://localhost:3006/api/airdrop/verify-purchase") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = [
+            "wallet_address": walletAddress,
+            "purchase_amount": purchaseAmount
+        ] as [String : Any]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data,
+                      let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                      let success = json["success"] as? Bool,
+                      success else {
+                    return
+                }
+                
+                let unlocked = json["unlocked"] as? Bool ?? false
+                let message = json["message"] as? String ?? ""
+                
+                if unlocked {
+                    print("🔓 AIRDROP UNLOCKED!")
+                    print("💰 10 USDTg now available for all transactions")
+                    self?.showUnlockNotification()
+                } else {
+                    let remaining = json["remaining_to_unlock"] as? Double ?? 0.0
+                    print("💰 Purchase recorded. Need \(remaining) more USDTg to unlock")
+                }
+            }
+        }.resume()
+    }
+    
+    private func showUnlockNotification() {
+        // Show in-app notification about unlocked airdrop
+        print("🎉 Congratulations! Your airdrop is now unlocked!")
+        print("💎 You can now use all 10 USDTg for any transaction")
+    }
+    
+    // MARK: - Fee Payment with Airdrop
+    func payFeeWithAirdrop(feeAmount: Double, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "http://localhost:3006/api/airdrop/use-fee") else {
+            completion(false)
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = [
+            "wallet_address": walletAddress,
+            "fee_amount": feeAmount
+        ] as [String : Any]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data,
+                      let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                      let success = json["success"] as? Bool,
+                      success else {
+                    completion(false)
+                    return
+                }
+                
+                let remaining = json["remaining"] as? Double ?? 0.0
+                print("✅ Fee paid from airdrop: \(feeAmount) USDTg")
+                print("💰 Remaining locked: \(remaining) USDTg")
+                
+                completion(true)
+            }
+        }.resume()
     }
     
     // MARK: - Transaction Handling (Production)

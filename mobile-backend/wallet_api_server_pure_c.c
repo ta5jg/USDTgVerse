@@ -64,7 +64,7 @@
 #define PORT 3001
 #define MAX_CONNECTIONS 1000
 #define MAX_BUFFER_SIZE 8192
-#define DATA_DIR "/opt/usdtgverse/data"
+#define DATA_DIR "/Users/irfangedik/usdtgverse-data/data"
 
 // Database files
 #define WALLETS_DB DATA_DIR "/wallets.db"

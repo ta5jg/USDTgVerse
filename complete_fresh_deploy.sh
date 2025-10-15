@@ -1,8 +1,20 @@
 #!/bin/bash
-
-# USDTgVerse Complete Fresh Deployment Script
-# Author: Irfan Gedik
-# Complete system redeployment from local files
+# ==============================================
+# File:        complete_fresh_deploy.sh
+# Author:      USDTG GROUP TECHNOLOGY LLC
+# Created:     2025-10-05
+# Last Update: 2025-10-05
+# Version:     1.0
+#
+# Description:
+#   USDTgVerse Complete Fresh Deployment Script
+#   
+#   Complete system redeployment from local files
+#   Professional deployment automation
+#
+# License:
+#   MIT License
+# ==============================================
 
 set -e
 

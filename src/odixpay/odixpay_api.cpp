@@ -10,12 +10,50 @@
 #include <unordered_map>
 #include <chrono>
 #include <iomanip>
+#include <fstream>
+#include <ctime>
+#include <sys/stat.h>
 
 extern "C" {
     #include "../core/blockchain_core.c"  // Include C core
 }
 
 namespace usdtgverse::odixpay {
+
+// ============================================================================
+// DATABASE LOGGING INTEGRATION FOR ODIXPAY
+// ============================================================================
+
+#define DATA_DIR "/opt/usdtgverse/data"
+#define ODIXPAY_LOG_DB DATA_DIR "/odixpay_payments.db"
+#define ODIXPAY_MERCHANT_DB DATA_DIR "/merchant_transactions.db"
+
+void log_payment_to_database(const std::string& payment_id, const std::string& merchant_id, 
+                             double amount, const std::string& status) {
+    std::ofstream payment_file(ODIXPAY_LOG_DB, std::ios::app);
+    if (payment_file.is_open()) {
+        payment_file << payment_id << "|" << merchant_id << "|" << amount 
+                   << "|" << status << "|" << time(nullptr) << std::endl;
+        payment_file.close();
+        std::cout << "💳 Payment Logged: " << payment_id << " ($" << amount << ") " << status << std::endl;
+    }
+}
+
+void log_merchant_transaction(const std::string& merchant_id, const std::string& customer_id,
+                             double amount, const std::string& tx_hash) {
+    std::ofstream merchant_file(ODIXPAY_MERCHANT_DB, std::ios::app);
+    if (merchant_file.is_open()) {
+        merchant_file << merchant_id << "|" << customer_id << "|" << amount 
+                    << "|" << tx_hash << "|" << time(nullptr) << std::endl;
+        merchant_file.close();
+        std::cout << "🏪 Merchant Tx Logged: " << merchant_id << " -> Customer " << customer_id << std::endl;
+    }
+}
+
+void ensure_odixpay_data_directory() {
+    system("mkdir -p /opt/usdtgverse/data");
+    std::cout << "📂 OdixPay++ data directory ensured: " << DATA_DIR << std::endl;
+}
 
 // ============================================================================
 // HIGH-LEVEL C++ WRAPPER CLASSES

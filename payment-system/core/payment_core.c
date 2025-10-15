@@ -324,6 +324,118 @@ static int payment_process_payment(payment_transaction_t *transaction) {
             result = 0; // Placeholder
             break;
             
+        // Modern Instant Payment Systems
+        case PAYMENT_METHOD_FEDNOW:
+            // FedNow instant payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_RTP:
+            // RTP instant payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_PIX:
+            // PIX instant payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_UPI:
+            // UPI instant payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_FASTER_PAYMENTS:
+            // Faster Payments processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_SEPA_INSTANT:
+            // SEPA Instant processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_PAYNOW:
+            // PayNow processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_PROMPTPAY:
+            // PromptPay processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_FAST:
+            // FAST processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_BIZUM:
+            // Bizum processing
+            result = 0; // Placeholder
+            break;
+            
+        // Advanced Banking Systems 2025
+        case PAYMENT_METHOD_FEDNOW_INSTANT:
+            // FedNow Instant processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_CROSS_BORDER:
+            // Cross-border payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_CENTRAL_BANK:
+            // Central Bank Digital Currency processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_MOBILE_MONEY:
+            // Mobile Money processing (M-Pesa, etc.)
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_BNPL:
+            // Buy Now Pay Later processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_CRYPTO_FIAT:
+            // Crypto-Fiat Bridge processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_AI_PAYMENTS:
+            // AI-Powered payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_QUANTUM_SAFE:
+            // Quantum-Safe payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_OPEN_BANKING:
+            // Open Banking API processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_NEURAL_PAY:
+            // Neural Network payment processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_OPENPAYD:
+            // OpenPayd Global Payment Platform processing
+            result = 0; // Placeholder
+            break;
+            
+        case PAYMENT_METHOD_ODIX_PAY:
+            // ODIX PAY Advanced Payment System processing
+            result = 0; // Placeholder
+            break;
+            
         default:
             snprintf(g_last_error, sizeof(g_last_error), "Unsupported payment method: %d", transaction->payment_method);
             g_last_error_code = -1;
@@ -456,7 +568,28 @@ const char *payment_method_to_string(payment_method_t method) {
         case PAYMENT_METHOD_PAYPAL: return "PayPal";
         case PAYMENT_METHOD_USDTGVERSE_PAY: return "USDTgVerse PAY";
         case PAYMENT_METHOD_DIRECT_IP: return "Direct IP";
-        case PAYMENT_METHOD_CRYPTO: return "Cryptocurrency";
+        case PAYMENT_METHOD_FEDNOW: return "FedNow";
+        case PAYMENT_METHOD_RTP: return "RTP";
+        case PAYMENT_METHOD_PIX: return "PIX";
+        case PAYMENT_METHOD_UPI: return "UPI";
+        case PAYMENT_METHOD_FASTER_PAYMENTS: return "Faster Payments";
+        case PAYMENT_METHOD_SEPA_INSTANT: return "SEPA Instant";
+        case PAYMENT_METHOD_PAYNOW: return "PayNow";
+        case PAYMENT_METHOD_PROMPTPAY: return "PromptPay";
+        case PAYMENT_METHOD_FAST: return "FAST";
+        case PAYMENT_METHOD_BIZUM: return "Bizum";
+        case PAYMENT_METHOD_FEDNOW_INSTANT: return "FedNow Instant";
+        case PAYMENT_METHOD_CROSS_BORDER: return "Cross-border";
+        case PAYMENT_METHOD_CENTRAL_BANK: return "CBDC";
+        case PAYMENT_METHOD_MOBILE_MONEY: return "Mobile Money";
+        case PAYMENT_METHOD_BNPL: return "BNPL";
+        case PAYMENT_METHOD_CRYPTO_FIAT: return "Crypto-Fiat";
+        case PAYMENT_METHOD_AI_PAYMENTS: return "AI Payments";
+        case PAYMENT_METHOD_QUANTUM_SAFE: return "Quantum-Safe";
+        case PAYMENT_METHOD_OPEN_BANKING: return "Open Banking";
+        case PAYMENT_METHOD_NEURAL_PAY: return "Neural Pay";
+        case PAYMENT_METHOD_OPENPAYD: return "OpenPayd";
+        case PAYMENT_METHOD_ODIX_PAY: return "ODIX PAY";
         default: return "Unknown";
     }
 }

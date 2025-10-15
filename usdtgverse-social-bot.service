@@ -1,0 +1,31 @@
+# ==============================================
+# File:        usdtgverse-social-bot.service
+# Author:      USDTG GROUP TECHNOLOGY LLC
+# Created:     2025-10-05
+# Last Update: 2025-10-05
+# Version:     1.0
+#
+# Description:
+#   USDTgVerse Social Media Bot - Systemd Service
+#   
+#   Professional systemd service configuration
+#   Automated social media management system
+#
+# License:
+#   MIT License
+# ==============================================
+
+[Unit]
+Description=USDTgVerse Social Media Bot
+After=network.target
+
+[Service]
+Type=simple
+User=usdtgverse
+WorkingDirectory=/opt/usdtgverse/social-bot
+ExecStart=/usr/bin/python3 automated_social_media_system.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

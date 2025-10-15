@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDTgVerse Firefox Extension</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            width: 360px;
+            min-height: 550px;
+        }
+
+        .extension-header {
+            background: linear-gradient(135deg, #00D4AA 0%, #0099FF 100%);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .extension-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .extension-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .wallet-content {
+            padding: 20px;
+        }
+
+        .balance-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00D4AA;
+            margin-bottom: 5px;
+        }
+
+        .balance-usd {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .wallet-address {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #ccc;
+            word-break: break-all;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .action-button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
+            color: white;
+        }
+
+        .receive-button {
+            background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
+            color: white;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .assets-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-bottom: 15px;
+        }
+
+        .asset-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .asset-symbol {
+            font-weight: 600;
+            color: #00D4AA;
+        }
+
+        .asset-balance {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .asset-value {
+            text-align: right;
+        }
+
+        .asset-price {
+            font-weight: 600;
+            color: #00D4AA;
+            font-size: 0.9rem;
+        }
+
+        .asset-change {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .transactions-section {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+
+        .transaction-type {
+            font-weight: 600;
+            color: #00D4AA;
+            font-size: 0.9rem;
+        }
+
+        .transaction-amount {
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        .transaction-time {
+            font-size: 0.7rem;
+            color: #666;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00D4AA;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+            border-radius: 6px;
+            padding: 10px;
+            color: #dc3545;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid rgba(40, 167, 69, 0.5);
+            border-radius: 6px;
+            padding: 10px;
+            color: #28a745;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="extension-header">
+        <div class="extension-title">USDTgVerse</div>
+        <div class="extension-subtitle">Firefox Extension Wallet</div>
+    </div>
+
+    <div class="wallet-content">
+        <div class="balance-card">
+            <div class="balance-amount" id="balanceAmount">0.00 USDTg</div>
+            <div class="balance-usd" id="balanceUsd">$0.00 USD</div>
+            <div class="wallet-address" id="walletAddress">
+                Loading wallet address...
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-button send-button" onclick="showSendModal()">
+                Send
+            </button>
+            <button class="action-button receive-button" onclick="showReceiveModal()">
+                Receive
+            </button>
+        </div>
+
+        <div class="assets-section">
+            <div class="section-title">Assets</div>
+            <div id="assetsList">
+                <div class="loading-spinner"></div>
+                <span style="margin-left: 8px; font-size: 0.8rem;">Loading assets...</span>
+            </div>
+        </div>
+
+        <div class="transactions-section">
+            <div class="section-title">Recent Transactions</div>
+            <div id="transactionsList">
+                <div class="loading-spinner"></div>
+                <span style="margin-left: 8px; font-size: 0.8rem;">Loading transactions...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // USDTgVerse Firefox Extension - Real Blockchain Integration
+        class USDTgVerseFirefoxExtension {
+            constructor() {
+                this.walletAddress = '';
+                this.balance = 0.0;
+                this.assets = [];
+                this.transactions = [];
+                this.apiBase = 'https://api.usdtgverse.com/api/v1';
+                this.init();
+            }
+
+            async init() {
+                await this.loadWallet();
+                await this.loadBalance();
+                await this.loadAssets();
+                await this.loadTransactions();
+            }
+
+            async loadWallet() {
+                // Check if wallet exists in Firefox extension storage
+                const result = await browser.storage.local.get(['walletAddress']);
+                this.walletAddress = result.walletAddress || '';
+                
+                if (!this.walletAddress) {
+                    // Generate new wallet
+                    await this.generateNewWallet();
+                }
+                
+                document.getElementById('walletAddress').textContent = this.walletAddress;
+            }
+
+            async generateNewWallet() {
+                try {
+                    const response = await fetch(`${this.apiBase}/wallet/generate`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    const data = await response.json();
+                    this.walletAddress = data.address;
+                    
+                    // Save to Firefox extension storage
+                    await browser.storage.local.set({ walletAddress: this.walletAddress });
+                    
+                    // Request welcome airdrop
+                    await this.requestWelcomeAirDrop();
+                    
+                } catch (error) {
+                    console.error('Error generating wallet:', error);
+                    this.showError('Failed to generate wallet');
+                }
+            }
+
+            async requestWelcomeAirDrop() {
+                try {
+                    const response = await fetch(`${this.apiBase}/airdrop/welcome`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            address: this.walletAddress,
+                            type: 'welcome'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        this.showSuccess('Welcome airdrop requested!');
+                    }
+                } catch (error) {
+                    console.error('Error requesting airdrop:', error);
+                }
+            }
+
+            async loadBalance() {
+                try {
+                    const response = await fetch(`${this.apiBase}/balance/${this.walletAddress}/usdtg`);
+                    const data = await response.json();
+                    
+                    this.balance = data.balance || 0.0;
+                    const usdValue = data.usd_value || 0.0;
+                    
+                    document.getElementById('balanceAmount').textContent = `${this.balance.toFixed(2)} USDTg`;
+                    document.getElementById('balanceUsd').textContent = `$${usdValue.toFixed(2)} USD`;
+                    
+                } catch (error) {
+                    console.error('Error loading balance:', error);
+                    document.getElementById('balanceAmount').textContent = '0.00 USDTg';
+                    document.getElementById('balanceUsd').textContent = '$0.00 USD';
+                }
+            }
+
+            async loadAssets() {
+                try {
+                    const response = await fetch(`${this.apiBase}/assets/${this.walletAddress}`);
+                    const data = await response.json();
+                    
+                    this.assets = data.assets || [];
+                    this.renderAssets();
+                    
+                } catch (error) {
+                    console.error('Error loading assets:', error);
+                    document.getElementById('assetsList').innerHTML = '<div class="error-message">Failed to load assets</div>';
+                }
+            }
+
+            renderAssets() {
+                const assetsList = document.getElementById('assetsList');
+                
+                if (this.assets.length === 0) {
+                    assetsList.innerHTML = '<div style="color: #666; font-size: 0.8rem;">No assets found</div>';
+                    return;
+                }
+                
+                const assetsHTML = this.assets.map(asset => `
+                    <div class="asset-item">
+                        <div>
+                            <div class="asset-symbol">${asset.symbol}</div>
+                            <div class="asset-balance">${asset.balance.toFixed(2)}</div>
+                        </div>
+                        <div class="asset-value">
+                            <div class="asset-price">$${(asset.balance * asset.price).toFixed(2)}</div>
+                            <div class="asset-change">${asset.change_24h >= 0 ? '+' : ''}${asset.change_24h.toFixed(2)}%</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                assetsList.innerHTML = assetsHTML;
+            }
+
+            async loadTransactions() {
+                try {
+                    const response = await fetch(`${this.apiBase}/transactions/${this.walletAddress}`);
+                    const data = await response.json();
+                    
+                    this.transactions = data.transactions || [];
+                    this.renderTransactions();
+                    
+                } catch (error) {
+                    console.error('Error loading transactions:', error);
+                    document.getElementById('transactionsList').innerHTML = '<div class="error-message">Failed to load transactions</div>';
+                }
+            }
+
+            renderTransactions() {
+                const transactionsList = document.getElementById('transactionsList');
+                
+                if (this.transactions.length === 0) {
+                    transactionsList.innerHTML = '<div style="color: #666; font-size: 0.8rem;">No transactions found</div>';
+                    return;
+                }
+                
+                const transactionsHTML = this.transactions.slice(0, 5).map(tx => `
+                    <div class="transaction-item">
+                        <div>
+                            <div class="transaction-type">${tx.type}</div>
+                            <div class="transaction-amount">${tx.amount}</div>
+                            <div class="transaction-time">${tx.timestamp}</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                transactionsList.innerHTML = transactionsHTML;
+            }
+
+            showSendModal() {
+                // Open send modal in new window
+                const sendWindow = window.open('', 'sendModal', 'width=400,height=300');
+                sendWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Send USDTg</title>
+                            <style>
+                                body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; background: #1a1a2e; color: white; }
+                                .form-group { margin-bottom: 15px; }
+                                label { display: block; margin-bottom: 5px; font-weight: 600; }
+                                input { width: 100%; padding: 10px; border: 1px solid #333; border-radius: 6px; background: #0f0f23; color: white; }
+                                button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
+                                .send-btn { background: #FF6B6B; color: white; }
+                                .cancel-btn { background: #666; color: white; }
+                            </style>
+                        </head>
+                        <body>
+                            <h3>Send USDTg</h3>
+                            <div class="form-group">
+                                <label>Recipient Address</label>
+                                <input type="text" id="recipientAddress" placeholder="Enter recipient address">
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" id="sendAmount" placeholder="0.00">
+                            </div>
+                            <div>
+                                <button class="cancel-btn" onclick="window.close()">Cancel</button>
+                                <button class="send-btn" onclick="sendTransaction()">Send</button>
+                            </div>
+                            <script>
+                                function sendTransaction() {
+                                    const recipientAddress = document.getElementById('recipientAddress').value;
+                                    const amount = parseFloat(document.getElementById('sendAmount').value);
+                                    
+                                    if (!recipientAddress || !amount || amount <= 0) {
+                                        alert('Please enter valid recipient address and amount');
+                                        return;
+                                    }
+                                    
+                                    // Send transaction via parent window
+                                    window.opener.wallet.sendTransaction(recipientAddress, amount);
+                                    window.close();
+                                }
+                            </script>
+                        </body>
+                    </html>
+                `);
+            }
+
+            showReceiveModal() {
+                // Open receive modal in new window
+                const receiveWindow = window.open('', 'receiveModal', 'width=400,height=300');
+                receiveWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Receive USDTg</title>
+                            <style>
+                                body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; background: #1a1a2e; color: white; text-align: center; }
+                                .address { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; font-family: monospace; word-break: break-all; margin: 20px 0; }
+                                button { padding: 10px 20px; border: none; border-radius: 6px; background: #666; color: white; cursor: pointer; }
+                            </style>
+                        </head>
+                        <body>
+                            <h3>Receive USDTg</h3>
+                            <div class="address">${this.walletAddress}</div>
+                            <button onclick="window.close()">Close</button>
+                        </body>
+                    </html>
+                `);
+            }
+
+            async sendTransaction(recipientAddress, amount) {
+                if (amount > this.balance) {
+                    this.showError('Insufficient balance');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${this.apiBase}/transaction/send`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            from: this.walletAddress,
+                            to: recipientAddress,
+                            amount: amount,
+                            asset: 'usdtg'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.showSuccess('Transaction sent successfully!');
+                        await this.loadBalance();
+                        await this.loadTransactions();
+                    } else {
+                        this.showError(data.error || 'Transaction failed');
+                    }
+                    
+                } catch (error) {
+                    console.error('Error sending transaction:', error);
+                    this.showError('Failed to send transaction');
+                }
+            }
+
+            showError(message) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+                document.querySelector('.wallet-content').insertBefore(errorDiv, document.querySelector('.wallet-content').firstChild);
+                
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 5000);
+            }
+
+            showSuccess(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+                document.querySelector('.wallet-content').insertBefore(successDiv, document.querySelector('.wallet-content').firstChild);
+                
+                setTimeout(() => {
+                    successDiv.remove();
+                }, 5000);
+            }
+        }
+
+        // Initialize extension when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.wallet = new USDTgVerseFirefoxExtension();
+        });
+
+        // Global functions for modal handling
+        function showSendModal() {
+            window.wallet.showSendModal();
+        }
+
+        function showReceiveModal() {
+            window.wallet.showReceiveModal();
+        }
+    </script>
+</body>
+</html>

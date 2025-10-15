@@ -25,7 +25,7 @@ int main() {
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(AUDIT_PORT);
     
-    bind(server_fd, (struct sockaddr*)&address<｜tool▁call▁begin｜> sizeof(address));
+    bind(server_fd, (struct sockaddr*)&address, sizeof(address));
     listen(server_fd, 10);
     
     printf("✅ Real Production Audit System listening\n");

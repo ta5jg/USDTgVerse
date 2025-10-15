@@ -4,8 +4,6 @@
 /Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtgwallet.dir
 /Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtg-keytool.dir
 /Users/irfangedik/USDTgVerse/build/CMakeFiles/usdtg-genesis.dir
-/Users/irfangedik/USDTgVerse/build/CMakeFiles/package.dir
-/Users/irfangedik/USDTgVerse/build/CMakeFiles/package_source.dir
 /Users/irfangedik/USDTgVerse/build/CMakeFiles/edit_cache.dir
 /Users/irfangedik/USDTgVerse/build/CMakeFiles/rebuild_cache.dir
 /Users/irfangedik/USDTgVerse/build/CMakeFiles/list_install_components.dir

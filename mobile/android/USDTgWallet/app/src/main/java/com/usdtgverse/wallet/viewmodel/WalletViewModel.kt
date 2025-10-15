@@ -44,27 +44,117 @@ class WalletViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             
-            // Simulate loading wallet data
-            val mockTokens = listOf(
-                TokenData("USDTg", "1,250.00", "$1,250.00", "+2.5%"),
-                TokenData("USDTgV", "500.00", "$498.50", "-1.2%"),
-                
-                TokenData("USDTgG", "750.00", "$752.25", "+1.8%"),
-                TokenData("OZBC", "100.00", "$256.00", "+3.4%")
-            )
+            // Real blockchain integration - no demo data
+            val walletAddress = getWalletAddress()
             
-            val mockTransactions = listOf(
-                TransactionData("tx001", "Receive", "+500.00 USDTg", "2 hours ago", "Confirmed"),
-                TransactionData("tx002", "Send", "-100.00 USDTgV", "1 day ago", "Confirmed"),
-                TransactionData("tx003", "Swap", "100 USDTg → USDTgG", "3 days ago", "Confirmed")
-            )
+            if (walletAddress.isEmpty()) {
+                _uiState.value = _uiState.value.copy(
+                    balance = "0.00",
+                    tokens = emptyList(),
+                    transactions = emptyList(),
+                    isLoading = false
+                )
+                return@launch
+            }
+            
+            // Fetch real data from blockchain
+            val realTokens = fetchRealTokensFromBlockchain(walletAddress)
+            val realTransactions = fetchRealTransactionsFromBlockchain(walletAddress)
+            val realBalance = calculateTotalBalance(realTokens)
             
             _uiState.value = _uiState.value.copy(
-                balance = "2,756.75",
-                tokens = mockTokens,
-                transactions = mockTransactions,
+                balance = realBalance,
+                tokens = realTokens,
+                transactions = realTransactions,
                 isLoading = false
             )
+        }
+    }
+    
+    private fun getWalletAddress(): String {
+        // Get wallet address from SharedPreferences
+        val context = android.app.Activity()
+        val sharedPref = context.getSharedPreferences("wallet_prefs", android.content.Context.MODE_PRIVATE)
+        return sharedPref.getString("wallet_address", "") ?: ""
+    }
+    
+    private suspend fun fetchRealTokensFromBlockchain(walletAddress: String): List<TokenData> {
+        return try {
+            val apiURL = "https://api.usdtgverse.com/api/v1/assets/$walletAddress"
+            val response = ktorClient.get(apiURL)
+            val jsonResponse = response.body<String>()
+            val jsonObject = org.json.JSONObject(jsonResponse)
+            val assetsArray = jsonObject.getJSONArray("assets")
+            
+            val tokens = mutableListOf<TokenData>()
+            for (i in 0 until assetsArray.length()) {
+                val asset = assetsArray.getJSONObject(i)
+                val symbol = asset.getString("symbol")
+                val balance = asset.getDouble("balance")
+                val price = asset.getDouble("price")
+                val change24h = asset.getDouble("change_24h")
+                
+                tokens.add(
+                    TokenData(
+                        symbol = symbol,
+                        balance = String.format("%.2f", balance),
+                        value = String.format("$%.2f", balance * price),
+                        change24h = String.format("%+.1f%%", change24h)
+                    )
+                )
+            }
+            tokens
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+    
+    private suspend fun fetchRealTransactionsFromBlockchain(walletAddress: String): List<TransactionData> {
+        return try {
+            val apiURL = "https://api.usdtgverse.com/api/v1/transactions/$walletAddress"
+            val response = ktorClient.get(apiURL)
+            val jsonResponse = response.body<String>()
+            val jsonObject = org.json.JSONObject(jsonResponse)
+            val transactionsArray = jsonObject.getJSONArray("transactions")
+            
+            val transactions = mutableListOf<TransactionData>()
+            for (i in 0 until transactionsArray.length()) {
+                val tx = transactionsArray.getJSONObject(i)
+                val id = tx.getString("id")
+                val type = tx.getString("type")
+                val amount = tx.getString("amount")
+                val timestamp = tx.getString("timestamp")
+                val status = tx.getString("status")
+                
+                transactions.add(
+                    TransactionData(
+                        id = id,
+                        type = type,
+                        amount = amount,
+                        timestamp = timestamp,
+                        status = status
+                    )
+                )
+            }
+            transactions
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+    
+    private fun calculateTotalBalance(tokens: List<TokenData>): String {
+        var totalBalance = 0.0
+        for (token in tokens) {
+            val value = token.value.replace("$", "").replace(",", "").toDoubleOrNull() ?: 0.0
+            totalBalance += value
+        }
+        return String.format("%.2f", totalBalance)
+    }
+    
+    // Add ktor client for network requests
+    private val ktorClient = io.ktor.client.HttpClient {
+        install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
+            io.ktor.serialization.kotlinx.json.json()
         }
     }
 

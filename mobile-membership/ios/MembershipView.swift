@@ -1,9 +1,9 @@
 /*
 ==============================================
  File:        MembershipView.swift
- Author:      Irfan Gedik
- Created:     DD.MM.YYYY
- Last Update: 28.09.2025
+ Author:      USDTG GROUP TECHNOLOGY LLC
+ Created:     2025-09-28
+ Last Update: 2025-10-05
  Version:     1.0
 
  Description:

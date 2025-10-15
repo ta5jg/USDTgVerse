@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Voting - USDTgVerse Governance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .proposal-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .proposal-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        .vote-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-lg border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                        🗳️ Quadratic Voting & DAO
+                    </h1>
+                    <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">
+                        ✅ Fair Governance
+                    </span>
+                </div>
+                <nav class="space-x-6">
+                    <a href="../index.html" class="hover:text-green-400 transition">Home</a>
+                    <a href="../dashboard/index.html" class="hover:text-green-400 transition">Dashboard</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Quadratic Voting System</h2>
+            <p class="text-xl text-gray-400 mb-6">Fair governance that prevents plutocracy</p>
+            <div class="flex justify-center gap-8 text-sm">
+                <div>
+                    <div class="text-gray-400">Total Proposals</div>
+                    <div class="text-2xl font-bold">127</div>
+                </div>
+                <div>
+                    <div class="text-gray-400">Verified Voters</div>
+                    <div class="text-2xl font-bold">12,450</div>
+                </div>
+                <div>
+                    <div class="text-gray-400">Total Votes Cast</div>
+                    <div class="text-2xl font-bold">45,678</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="bg-gradient-to-r from-green-500/10 to-blue-500/10 p-8 rounded-xl border border-green-500/30 mb-12">
+            <h3 class="text-2xl font-bold mb-6">💡 How Quadratic Voting Works</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-bold mb-3 text-green-400">Cost Function:</h4>
+                    <p class="text-gray-300 mb-4">Vote cost = votes² × 1 USDTg</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between bg-black/30 p-3 rounded">
+                            <span>1 vote</span>
+                            <span class="font-bold">1² = 1 USDTg</span>
+                        </div>
+                        <div class="flex justify-between bg-black/30 p-3 rounded">
+                            <span>10 votes</span>
+                            <span class="font-bold">10² = 100 USDTg</span>
+                        </div>
+                        <div class="flex justify-between bg-black/30 p-3 rounded">
+                            <span>100 votes</span>
+                            <span class="font-bold">100² = 10,000 USDTg</span>
+                        </div>
+                        <div class="flex justify-between bg-black/30 p-3 rounded">
+                            <span>1000 votes</span>
+                            <span class="font-bold text-yellow-400">1000² = 1,000,000 USDTg</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3 text-blue-400">Benefits:</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="mr-2">✅</span>
+                            <span><strong>Prevents Plutocracy:</strong> Rich whales can't dominate governance through sheer wealth</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✅</span>
+                            <span><strong>Fair Representation:</strong> Every voice matters, not just the richest</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✅</span>
+                            <span><strong>Sybil Resistant:</strong> Identity verification prevents multiple accounts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✅</span>
+                            <span><strong>Democratic:</strong> One person = √(tokens), not one token = one vote</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Proposals -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">📋 Active Proposals</h2>
+            <div class="space-y-4">
+                <!-- Proposal 1 -->
+                <div class="proposal-card p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Increase Validator Rewards by 15%</h3>
+                            <p class="text-gray-400 text-sm">Proposed by: Community Validator Group</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-400">Ends in</div>
+                            <div class="text-lg font-bold text-green-400">4d 12h</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Support: <strong class="text-green-400">+2,450 votes</strong></span>
+                            <span>Oppose: <strong class="text-red-400">-340 votes</strong></span>
+                            <span>Net: <strong class="text-green-400">+2,110 votes</strong></span>
+                        </div>
+                        <div class="vote-bar"></div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-400">
+                            💰 Total Cost Paid: <strong>12,450,000 USDTg</strong>
+                        </div>
+                        <button class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg font-bold transition">
+                            Vote Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proposal 2 -->
+                <div class="proposal-card p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Add Solana Bridge Support</h3>
+                            <p class="text-gray-400 text-sm">Proposed by: Bridge Development Team</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-400">Ends in</div>
+                            <div class="text-lg font-bold text-yellow-400">2d 8h</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Support: <strong class="text-green-400">+1,890 votes</strong></span>
+                            <span>Oppose: <strong class="text-red-400">-120 votes</strong></span>
+                            <span>Net: <strong class="text-green-400">+1,770 votes</strong></span>
+                        </div>
+                        <div class="vote-bar"></div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-400">
+                            💰 Total Cost Paid: <strong>7,890,000 USDTg</strong>
+                        </div>
+                        <button class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg font-bold transition">
+                            Vote Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vote Calculator -->
+        <div class="bg-black/30 p-8 rounded-xl border border-white/10">
+            <h2 class="text-2xl font-bold mb-6">🧮 Vote Cost Calculator</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Number of Votes:</label>
+                    <input type="number" id="voteInput" placeholder="Enter votes..." 
+                           class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+                           oninput="calculateCost()">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Total Cost:</label>
+                    <div id="costOutput" class="w-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg px-4 py-3 text-2xl font-bold">
+                        0 USDTg
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur-lg border-t border-white/10 py-8 mt-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>🌌 USDTgVerse Quadratic Voting - Fair & Democratic Governance</p>
+            <p class="mt-2 text-sm">🗳️ Prevents Plutocracy • Sybil Resistant • Quantum-Safe</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateCost() {
+            const votes = parseInt(document.getElementById('voteInput').value) || 0;
+            const cost = votes * votes;
+            document.getElementById('costOutput').textContent = cost.toLocaleString() + ' USDTg';
+        }
+    </script>
+</body>
+</html>
+
