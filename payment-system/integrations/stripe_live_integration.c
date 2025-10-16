@@ -36,7 +36,7 @@
 // Stripe API Configuration
 #define STRIPE_API_URL "https://api.stripe.com/v1"
 #define STRIPE_PUBLISHABLE_KEY "pk_live_51..." // Replace with your live key
-#define STRIPE_SECRET_KEY "sk_live_51...PLACEHOLDER" // Replace with your live key
+#define STRIPE_SECRET_KEY "sk_live_PLACEHOLDER_REMOVED" // Replace with your live key
 
 // Stripe Payment Structure
 typedef struct {
