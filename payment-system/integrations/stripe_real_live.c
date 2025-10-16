@@ -208,7 +208,7 @@ int main() {
     
     printf("⚠️  IMPORTANT: Replace API keys with real ones!\n");
     printf("   - STRIPE_PUBLISHABLE_KEY: pk_live_...\n");
-    printf("   - STRIPE_SECRET_KEY: sk_live_...\n");
+    printf("   - STRIPE_SECRET_KEY: YOUR_STRIPE_SECRET_KEY_HERE...\n");
     printf("   - Get keys from: https://dashboard.stripe.com/apikeys\n");
     
     // Test payment processing
