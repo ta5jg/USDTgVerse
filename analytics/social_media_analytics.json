@@ -1,0 +1,32 @@
+{
+  "total_posts": 5,
+  "total_reach": 2881,
+  "total_engagement": 288,
+  "platform_stats": {},
+  "daily_stats": {
+    "2025-10-04": {
+      "twitter": {
+        "posts": 1,
+        "reach": 497,
+        "engagement": 90
+      }
+    },
+    "2025-10-05": {
+      "instagram": {
+        "posts": 1,
+        "reach": 704,
+        "engagement": 56
+      },
+      "linkedin": {
+        "posts": 2,
+        "reach": 1420,
+        "engagement": 58
+      },
+      "twitter": {
+        "posts": 1,
+        "reach": 260,
+        "engagement": 84
+      }
+    }
+  }
+}

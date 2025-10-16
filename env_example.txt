@@ -1,0 +1,53 @@
+# USDTgVerse Social Media Bot Environment Variables
+# Bu dosyayı güvenli tutun ve git'e commit etmeyin!
+
+# Twitter API Keys (https://developer.twitter.com/)
+TWITTER_API_KEY=your_twitter_api_key_here
+TWITTER_API_SECRET=your_twitter_api_secret_here
+TWITTER_ACCESS_TOKEN=your_twitter_access_token_here
+TWITTER_ACCESS_SECRET=your_twitter_access_secret_here
+TWITTER_BEARER_TOKEN=your_twitter_bearer_token_here
+
+# LinkedIn Credentials
+LINKEDIN_EMAIL=your_email@usdtgverse.com
+LINKEDIN_PASSWORD=your_linkedin_password_here
+
+# Instagram Credentials
+INSTAGRAM_USERNAME=usdtgverse
+INSTAGRAM_PASSWORD=your_instagram_password_here
+
+# Bot Settings
+MIN_POST_INTERVAL=7200
+MAX_POST_INTERVAL=28800
+ENABLE_ANALYTICS=true
+ENABLE_ENGAGEMENT_BOT=true
+
+# Platform Settings
+ENABLE_TWITTER=true
+ENABLE_LINKEDIN=true
+ENABLE_INSTAGRAM=true
+
+# Content Settings
+MAX_HASHTAGS=4
+MIN_HASHTAGS=2
+ENABLE_TRENDING_TOPICS=true
+
+# Analytics Settings
+ANALYTICS_FILE=analytics/social_media_analytics.json
+DAILY_REPORT_TIME=09:00
+REPORT_TIMEZONE=UTC
+
+# Error Handling
+ERROR_RETRY_ATTEMPTS=3
+ERROR_RETRY_DELAY=300
+LOG_LEVEL=INFO
+
+# Backup Settings
+BACKUP_ENABLED=true
+BACKUP_FREQUENCY=daily
+BACKUP_LOCATION=./backups/
+
+# Monitoring Settings
+HEALTH_CHECK_INTERVAL=3600
+ALERT_EMAIL=alerts@usdtgverse.com
+ALERT_THRESHOLD=5

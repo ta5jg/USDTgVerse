@@ -1,0 +1,47 @@
+# USDTgVerse Social Media Bot Requirements
+# Otomatik sosyal medya yönetim sistemi için gerekli kütüphaneler
+
+# Core Dependencies
+tweepy>=4.14.0
+linkedin-api>=2.2.0
+instagrapi>=2.0.0
+schedule>=1.2.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+pytz>=2023.3
+pillow>=10.0.0
+
+# Analytics & Monitoring
+matplotlib>=3.7.0
+seaborn>=0.12.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Image Processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Data Storage
+sqlite3
+json5>=0.9.0
+
+# Utilities
+colorama>=0.4.6
+tqdm>=4.65.0
+click>=8.1.0
+
+# Security
+cryptography>=41.0.0
+keyring>=24.0.0
+
+# Logging
+loguru>=0.7.0
+
+# Testing (Optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development (Optional)
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0

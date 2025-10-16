@@ -1,71 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">USDTgVerse Wallet</string>
-    <string name="app_description">Secure, fast, and user-friendly cryptocurrency wallet for the USDTgVerse ecosystem. Send, receive, and manage USDTg, RGLS, USDTgV, and USDTgG tokens with advanced features like staking, trading, and DeFi integration.</string>
-    
-    <!-- Main Features -->
-    <string name="feature_secure">Secure & Private</string>
+    <string name="feature_secure">Secure &amp; Private</string>
     <string name="feature_fast">Lightning Fast</string>
-    <string name="feature_multi_token">Multi-Token Support</string>
-    <string name="feature_staking">Staking Rewards</string>
-    <string name="feature_trading">Built-in Trading</string>
-    <string name="feature_defi">DeFi Integration</string>
-    
-    <!-- Navigation -->
-    <string name="nav_wallet">Wallet</string>
-    <string name="nav_trading">Trading</string>
-    <string name="nav_staking">Staking</string>
-    <string name="nav_bridge">Bridge</string>
-    <string name="nav_settings">Settings</string>
-    
-    <!-- Wallet -->
-    <string name="wallet_balance">Balance</string>
-    <string name="wallet_send">Send</string>
-    <string name="wallet_receive">Receive</string>
-    <string name="wallet_swap">Swap</string>
-    <string name="wallet_history">History</string>
-    
-    <!-- Trading -->
-    <string name="trading_buy">Buy</string>
-    <string name="trading_sell">Sell</string>
-    <string name="trading_orders">Orders</string>
-    <string name="trading_portfolio">Portfolio</string>
-    
-    <!-- Staking -->
-    <string name="staking_stake">Stake</string>
-    <string name="staking_unstake">Unstake</string>
-    <string name="staking_rewards">Rewards</string>
-    <string name="staking_pools">Pools</string>
-    
-    <!-- Bridge -->
-    <string name="bridge_cross_chain">Cross-Chain</string>
-    <string name="bridge_ethereum">Ethereum</string>
-    <string name="bridge_tron">TRON</string>
-    <string name="bridge_bsc">BSC</string>
-    
-    <!-- Settings -->
-    <string name="settings_security">Security</string>
-    <string name="settings_biometric">Biometric</string>
-    <string name="settings_backup">Backup</string>
-    <string name="settings_about">About</string>
-    
-    <!-- Errors -->
-    <string name="error_network">Network Error</string>
-    <string name="error_insufficient_funds">Insufficient Funds</string>
-    <string name="error_invalid_address">Invalid Address</string>
-    <string name="error_transaction_failed">Transaction Failed</string>
-    
-    <!-- Success -->
-    <string name="success_transaction">Transaction Successful</string>
-    <string name="success_backup">Backup Created</string>
-    <string name="success_restore">Wallet Restored</string>
-    
-    <!-- Privacy Policy -->
-    <string name="privacy_policy_url">https://www.usdtgverse.com/privacy-policy.html</string>
-    <string name="terms_of_service_url">https://www.usdtgverse.com/terms-of-service.html</string>
-    <string name="support_url">https://www.usdtgverse.com/support</string>
-    
-    <!-- Store Description -->
-    <string name="store_short_description">Secure USDTgVerse ecosystem wallet with advanced features</string>
-    <string name="store_keywords">cryptocurrency,wallet,blockchain,USDTg,RGLS,staking,trading,DeFi</string>
+    <string name="feature_quantum">Quantum-Safe</string>
+
+    <!-- Trading Strings -->
+    <string name="margin_trading">Margin Trading</string>
+    <string name="copy_trading">Copy Trading</string>
+
+    <!-- Wallet Strings -->
+    <string name="balance">Balance</string>
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+
+    <!-- Navigation Strings -->
+    <string name="title_wallet">Wallet</string>
+    <string name="title_trading">Trading</string>
+    <string name="title_pay">Pay</string>
 </resources>

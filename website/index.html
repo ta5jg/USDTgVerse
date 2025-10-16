@@ -899,9 +899,9 @@
                                 left: 0;
                                 background: rgba(255, 255, 255, 0.95);
                                 backdrop-filter: blur(20px);
-                                min-width: 250px;
+                                min-width: 600px;
                                 border-radius: 12px;
-                                padding: 15px;
+                                padding: 20px;
                                 opacity: 0;
                                 visibility: hidden;
                                 transform: translateY(-10px);
@@ -910,13 +910,62 @@
                                 z-index: 10000;
                                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
                             ">
-                                <a href="index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🌐 Main Website</a>
-                                <a href="../dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📊 Live Dashboard</a>
-                                <a href="../explorer/usdtgscan.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">🔍 Explorer</a>
-                                <a href="../dapps/usdtg-transfer/index.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">📱 dApp</a>
-                                <a href="../wallet/wallet.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(0, 0, 0, 0.05);">💳 Wallet</a>
-                                <a href="../dev-tools/USDTgIDE-Real.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(102, 126, 234, 0.1); font-weight: 600;">💻 IDE</a>
-                                <a href="../docs/comprehensive-guide.html" style="display: block; color: #333; text-decoration: none; padding: 10px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 5px; background: rgba(102, 126, 234, 0.1); font-weight: 600;">📚 Guide</a>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                                    <!-- Column 1: Core Platform -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #007bff; padding-bottom: 5px;">🌟 Core Platform</h3>
+                                        <a href="../index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🌐 Main Website</div>
+                                            <div style="font-size: 12px; color: #666;">Home page and overview</div>
+                                        </a>
+                                        <a href="../dashboard/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📊 Live Dashboard</div>
+                                            <div style="font-size: 12px; color: #666;">Real-time analytics and trading</div>
+                                        </a>
+                                        <a href="../explorer/usdtgscan.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">🔍 Explorer</div>
+                                            <div style="font-size: 12px; color: #666;">Blockchain explorer and transactions</div>
+                                        </a>
+                                        <a href="../dapps/usdtg-transfer/index.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📱 dApp</div>
+                                            <div style="font-size: 12px; color: #666;">Decentralized applications</div>
+                                        </a>
+                                        <a href="../wallet/wallet.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(0, 123, 255, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💳 Wallet</div>
+                                            <div style="font-size: 12px; color: #666;">Digital wallet and asset management</div>
+                                        </a>
+                                    </div>
+                                    <!-- Column 2: Development & Enterprise -->
+                                    <div>
+                                        <h3 style="color: #333; font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #28a745; padding-bottom: 5px;">🔧 Development & Enterprise</h3>
+                                        <a href="../dev-tools/USDTgIDE-Real.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">💻 IDE</div>
+                                            <div style="font-size: 12px; color: #666;">Smart contract development</div>
+                                        </a>
+                                        <a href="../docs/comprehensive-guide.html" style="display: block; color: #333; text-decoration: none; padding: 12px 15px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 8px; background: rgba(40, 167, 69, 0.1);">
+                                            <div style="font-weight: bold; margin-bottom: 4px;">📚 Guide</div>
+                                            <div style="font-size: 12px; color: #666;">Documentation and tutorials</div>
+                                        </a>
+                                        <div style="border-top: 1px solid rgba(0,0,0,0.1); margin: 15px 0; padding-top: 15px;">
+                                            <div style="font-weight: bold; color: #333; margin-bottom: 10px; font-size: 14px;">🏢 Enterprise Dashboards</div>
+                                            <a href="../formal-verification/verification-dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 4px; background: rgba(0, 255, 136, 0.1); font-size: 13px;">
+                                                🔬 Formal Verification
+                                            </a>
+                                            <a href="../enterprise/dark-pool-dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 4px; background: rgba(0, 102, 255, 0.1); font-size: 13px;">
+                                                🏢 Dark Pool Trading
+                                            </a>
+                                            <a href="../governance/quadratic-voting-dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 4px; background: rgba(255, 193, 7, 0.1); font-size: 13px;">
+                                                🗳️ Quadratic Voting
+                                            </a>
+                                            <a href="../layer2/layer2-dashboard.html" style="display: block; color: #333; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.2s ease; margin-bottom: 4px; background: rgba(220, 53, 69, 0.1); font-size: 13px;">
+                                                ⚡ Layer 2 Scaling
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                                    <a href="../dashboard/index.html" style="background: linear-gradient(45deg, #007bff, #28a745); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block;">View All Platform Tools →</a>
+                                </div>
                             </div>
                         </div>
                         <!-- Payments & H2H Mega Menu -->

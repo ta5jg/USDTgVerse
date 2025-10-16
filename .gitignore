@@ -1,53 +1,42 @@
-# USDTgVerse .gitignore
+# USDTgVerse Security .gitignore
 # Author: Irfan Gedik
-# Created: 2025-10-04
 # Version: 1.0
 
-# Social Media Bot Files (Python)
-*.py
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+# API Keys and Secrets
+*.key
+*.pem
+*.crt
+*.p12
+*.keystore
+*.jks
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.production
+.env.staging
+config.ini
+secrets.json
 
-# Social Media Bot Files (Pure C + Bash)
-social_media_bot.c
-social_media_bot.sh
-cex_integration.sh
-automated_social_media_system.py
-config.py
-setup_social_bot.py
-test_social_bot.py
-extended_social_bot.py
-start_social_bot.py
-env_example.txt
-requirements.txt
+# Database
+*.db
+*.sqlite
+*.sqlite3
+database/
+db/
 
-# Analytics and Logs
-analytics/
-cex_integration/
-logs/
+# Logs
 *.log
-social_media_analytics.json
-bot.log
+logs/
+log/
 
-# Build directories
+# Build artifacts
 build/
 dist/
 *.o
-*.so
 *.a
+*.so
+*.dylib
+*.exe
+*.dll
 
 # IDE files
 .vscode/
@@ -68,56 +57,76 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
-*.bak
-*.backup
+temp/
+tmp/
 
-# API Keys and Secrets
-*.key
-*.secret
-*.pem
-*.p12
-*.pfx
-api_keys.txt
-secrets.txt
+# Cache
+.cache/
+cache/
+*.cache
 
-# Node.js (if any)
+# Node modules
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
 # Android
 *.apk
 *.aab
-.gradle/
+*.keystore
 local.properties
-*.iml
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
 
 # iOS
 *.ipa
 *.dSYM.zip
 *.dSYM
 DerivedData/
-*.xcworkspace/xcuserdata/
+*.hmap
+*.ipa
 *.xcuserstate
+project.xcworkspace/
 
-# Database files
-*.db
-*.sqlite
-*.sqlite3
+# Backup files
+*.bak
+*.backup
+backup/
+backups/
 
-# Configuration files with sensitive data
-config.json
-settings.json
-credentials.json
+# Test files
+test_*.cpp
+test_*.c
+test_*.py
+test_*.js
 
-# Android Gradle large files
-mobile/android/USDTgWallet/wrapper/dists/
-mobile/android/USDTgWallet/caches/
-mobile/android/USDTgWallet/*.hprof
-mobile/android/USDTgWallet/build/
-mobile/android/USDTgWallet/app/build/
-*.jar
+# Documentation drafts
+draft/
+drafts/
+*.draft
 
-# Cache
-.cache/
+# Deployment
+deploy/
+deployment/
+*.deploy
+
+# Security
+private/
+secrets/
+confidential/

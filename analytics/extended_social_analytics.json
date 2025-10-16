@@ -1,0 +1,22 @@
+{
+  "total_posts": 3,
+  "total_reach": 1914,
+  "total_engagement": 129,
+  "platform_stats": {},
+  "daily_stats": {
+    "2025-10-04": {
+      "instagram": {
+        "posts": 1,
+        "reach": 999,
+        "engagement": 21
+      }
+    },
+    "2025-10-05": {
+      "instagram": {
+        "posts": 2,
+        "reach": 915,
+        "engagement": 108
+      }
+    }
+  }
+}

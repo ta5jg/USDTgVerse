@@ -16,9 +16,9 @@
             backdrop-filter: blur(10px);
         }
         .performance-bar {
-            height: 24px;
+            height: 8px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
+            border-radius: 4px;
             transition: width 0.5s ease;
         }
     </style>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="mt-6">
                     <div class="text-xs text-gray-400 mb-2">Current Usage:</div>
-                    <div class="bg-black/30 rounded-full h-2">
+                    <div class="bg-black/30 rounded-full h-2 p-0.5">
                         <div class="performance-bar" style="width: 67%;"></div>
                     </div>
                     <div class="text-xs text-gray-400 mt-1">670,000 TPS (67% capacity)</div>
@@ -177,7 +177,7 @@
                 </div>
                 <div class="mt-6">
                     <div class="text-xs text-gray-400 mb-2">Active Channels:</div>
-                    <div class="bg-black/30 rounded-full h-2">
+                    <div class="bg-black/30 rounded-full h-2 p-0.5">
                         <div class="performance-bar" style="width: 42%;"></div>
                     </div>
                     <div class="text-xs text-gray-400 mt-1">4,250 active channels</div>
