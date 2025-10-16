@@ -60,7 +60,7 @@ create_template() {
 
 # Stripe API Keys (from https://dashboard.stripe.com/apikeys)
 STRIPE_PUBLISHABLE_KEY="pk_live_51..."
-STRIPE_SECRET_KEY="sk_live_51..."
+STRIPE_SECRET_KEY="sk_live_51...PLACEHOLDER"
 
 # Plaid API Keys (from https://dashboard.plaid.com/team/keys)
 PLAID_CLIENT_ID="your_client_id"
@@ -92,7 +92,7 @@ update_api_keys() {
     PLAID_SECRET_KEY=$(grep "PLAID_SECRET_KEY=" api_keys_template.txt | cut -d'"' -f2)
     
     # Check if keys are still placeholders
-    if [[ $STRIPE_PUBLISHABLE_KEY == "pk_live_51..." ]] || [[ $STRIPE_SECRET_KEY == "sk_live_51..." ]]; then
+    if [[ $STRIPE_PUBLISHABLE_KEY == "pk_live_51..." ]] || [[ $STRIPE_SECRET_KEY == "sk_live_51...PLACEHOLDER" ]]; then
         print_warning "Stripe API keys are still placeholders. Please update api_keys_template.txt"
         return
     fi
@@ -105,7 +105,7 @@ update_api_keys() {
     # Update Stripe C file
     if [ -f "stripe_real_live.c" ]; then
         sed -i.bak "s/#define STRIPE_PUBLISHABLE_KEY \"pk_live_51...\"/#define STRIPE_PUBLISHABLE_KEY \"$STRIPE_PUBLISHABLE_KEY\"/" stripe_real_live.c
-        sed -i.bak "s/#define STRIPE_SECRET_KEY \"sk_live_51...\"/#define STRIPE_SECRET_KEY \"$STRIPE_SECRET_KEY\"/" stripe_real_live.c
+        sed -i.bak "s/#define STRIPE_SECRET_KEY \"sk_live_51...PLACEHOLDER"/#define STRIPE_SECRET_KEY \"$STRIPE_SECRET_KEY\"/" stripe_real_live.c
         print_status "Stripe API keys updated in stripe_real_live.c"
     fi
     

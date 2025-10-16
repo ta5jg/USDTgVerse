@@ -19,7 +19,7 @@
 3. **Update Code**
    ```c
    #define STRIPE_PUBLISHABLE_KEY "pk_live_51..." // Your real key
-   #define STRIPE_SECRET_KEY "sk_live_51..." // Your real key
+   #define STRIPE_SECRET_KEY "sk_live_51...PLACEHOLDER" // Your real key
    ```
 
 4. **Test Live Payment**

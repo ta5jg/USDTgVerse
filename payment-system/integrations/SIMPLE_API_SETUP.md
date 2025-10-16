@@ -14,7 +14,7 @@
 
 **Anahtarlar:**
 - Publishable key: `pk_live_51...`
-- Secret key: `sk_live_51...`
+- Secret key: `sk_live_51...PLACEHOLDER
 
 ### 2. Plaid API Anahtarları (Banka Verisi)
 
@@ -41,7 +41,7 @@ nano stripe_real_live.c
 Bu satırları bul ve değiştir:
 ```c
 #define STRIPE_PUBLISHABLE_KEY "pk_live_51..." // Gerçek anahtarın
-#define STRIPE_SECRET_KEY "sk_live_51..." // Gerçek anahtarın
+#define STRIPE_SECRET_KEY "sk_live_51...PLACEHOLDER" // Gerçek anahtarın
 ```
 
 **Plaid için:**

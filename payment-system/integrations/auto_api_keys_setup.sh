@@ -69,7 +69,7 @@ setup_stripe() {
     if [[ $STRIPE_PUBLISHABLE_KEY == pk_live_* ]] && [[ $STRIPE_SECRET_KEY == sk_live_* ]]; then
         # Update the C file with real API keys
         sed -i.bak "s/#define STRIPE_PUBLISHABLE_KEY \"pk_live_51...\"/#define STRIPE_PUBLISHABLE_KEY \"$STRIPE_PUBLISHABLE_KEY\"/" stripe_real_live.c
-        sed -i.bak "s/#define STRIPE_SECRET_KEY \"sk_live_51...\"/#define STRIPE_SECRET_KEY \"$STRIPE_SECRET_KEY\"/" stripe_real_live.c
+        sed -i.bak "s/#define STRIPE_SECRET_KEY \"sk_live_51...PLACEHOLDER"/#define STRIPE_SECRET_KEY \"$STRIPE_SECRET_KEY\"/" stripe_real_live.c
         
         print_status "Stripe API keys updated successfully!"
         
