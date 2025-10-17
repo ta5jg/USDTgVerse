@@ -212,22 +212,9 @@ uint64_t usdtgverse_get_timestamp(void) {
 }
 
 void usdtgverse_generate_hash(const void* data, size_t len, usdtg_hash_t result) {
-    // Simple but fast hash for demo
-    memset(result, 0, 32);
-    const uint8_t* bytes = (const uint8_t*)data;
-    
-    for (size_t i = 0; i < len; i++) {
-        result[i % 32] ^= bytes[i];
-        result[(i + 1) % 32] ^= bytes[i] >> 4;
-    }
-    
-    // Additional mixing
-    for (int round = 0; round < 3; round++) {
-        for (int i = 0; i < 32; i++) {
-            result[i] ^= result[(i + 7) % 32];
-            result[i] = (result[i] << 3) | (result[i] >> 5);
-        }
-    }
+    // Use real BLAKE3 hash function
+    #include "../crypto/blake3/usdtg_blake3_wrapper.h"
+    usdtg_blake3_hash((const uint8_t*)data, len, result);
 }
 
 int usdtgverse_init(usdtgverse_node_t* node, const char* chain_id, uint16_t port, uint8_t is_validator) {

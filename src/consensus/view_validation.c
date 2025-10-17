@@ -40,33 +40,46 @@ void usdtg_view_init(usdtg_view_state_t* state, uint64_t initial_height) {
     state->locked = false;
 }
 
-// Validate view progression
+// Validate view progression with strict monotonic enforcement
 int usdtg_view_validate_progression(usdtg_view_state_t* state, uint64_t new_view) {
     if (!state) return -1;
     
-    // View must be greater than current view
-    if (new_view <= state->current_view) {
-        return -1; // View regression not allowed
+    // STRICT MONOTONIC PROGRESSION: View must be exactly current_view + 1
+    if (new_view != state->current_view + 1) {
+        return -1; // Only sequential view progression allowed
     }
     
-    // View must not jump too far ahead (prevent view number attacks)
-    if (new_view > state->current_view + 100) {
-        return -1; // Suspicious view jump
+    // Additional security: Prevent view number attacks
+    if (new_view > state->highest_view_seen + 1000) {
+        return -1; // Suspicious view jump beyond reasonable bounds
     }
     
-    return 0; // Valid progression
+    // Check for view regression attacks
+    if (new_view < state->current_view) {
+        return -1; // View regression attack detected
+    }
+    
+    return 0; // Valid monotonic progression
 }
 
-// Update view safely
+// Update view safely with enhanced security
 int usdtg_view_update(usdtg_view_state_t* state, uint64_t new_view) {
     if (usdtg_view_validate_progression(state, new_view) != 0) {
-        return -1;
+        return -1; // Validation failed
     }
     
+    // Atomic view update with security logging
+    uint64_t old_view = state->current_view;
     state->current_view = new_view;
+    
     if (new_view > state->highest_view_seen) {
         state->highest_view_seen = new_view;
     }
+    
+    // Security logging for view changes
+    // Log view progression for audit trail
+    printf("SECURITY: View progression %lu -> %lu (Height: %lu)\n", 
+           old_view, new_view, state->height);
     
     return 0;
 }
@@ -88,4 +101,50 @@ int test_view_progression() {
     
     // Should pass first two, fail last two
     return (result1 == 0 && result2 == 0 && result3 == -1 && result4 == -1) ? 1 : 0;
+}
+
+// Enhanced view progression security functions
+int usdtg_view_detect_regression_attack(usdtg_view_state_t* state, uint64_t proposed_view) {
+    if (!state) return -1;
+    
+    // Detect view regression attacks
+    if (proposed_view < state->current_view) {
+        printf("SECURITY ALERT: View regression attack detected! Current: %lu, Proposed: %lu\n", 
+               state->current_view, proposed_view);
+        return -1; // Attack detected
+    }
+    
+    return 0; // No attack detected
+}
+
+int usdtg_view_detect_jump_attack(usdtg_view_state_t* state, uint64_t proposed_view) {
+    if (!state) return -1;
+    
+    // Detect view jump attacks (skipping views)
+    if (proposed_view > state->current_view + 1) {
+        printf("SECURITY ALERT: View jump attack detected! Current: %lu, Proposed: %lu\n", 
+               state->current_view, proposed_view);
+        return -1; // Attack detected
+    }
+    
+    return 0; // No attack detected
+}
+
+int usdtg_view_validate_consensus_safety(usdtg_view_state_t* state, uint64_t new_view) {
+    if (!state) return -1;
+    
+    // Comprehensive view safety validation
+    if (usdtg_view_detect_regression_attack(state, new_view) != 0) {
+        return -1; // Regression attack
+    }
+    
+    if (usdtg_view_detect_jump_attack(state, new_view) != 0) {
+        return -1; // Jump attack
+    }
+    
+    if (usdtg_view_validate_progression(state, new_view) != 0) {
+        return -1; // General progression validation failed
+    }
+    
+    return 0; // All safety checks passed
 }

@@ -10,22 +10,27 @@
 namespace usdtgverse::crypto {
 
 // ============================================================================
-// BLAKE3 IMPLEMENTATION (Simplified for now)
+// BLAKE3 IMPLEMENTATION (Real BLAKE3 Library Integration)
 // ============================================================================
 
+#include "blake3/usdtg_blake3_wrapper.h"
+
 struct Blake3Hasher::Blake3Context {
-    // For now, use SHA-256 as fallback until we integrate BLAKE3 library
-    SHA256_CTX sha_ctx;
+    blake3_hasher hasher;
+    bool initialized;
 };
 
 Blake3Hasher::Blake3Hasher() : ctx_(std::make_unique<Blake3Context>()) {
-    SHA256_Init(&ctx_->sha_ctx);
+    usdtg_blake3_init(&ctx_->hasher);
+    ctx_->initialized = true;
 }
 
 Blake3Hasher::~Blake3Hasher() = default;
 
 void Blake3Hasher::update(const void* data, size_t length) {
-    SHA256_Update(&ctx_->sha_ctx, data, length);
+    if (ctx_->initialized) {
+        usdtg_blake3_update(&ctx_->hasher, (const uint8_t*)data, length);
+    }
 }
 
 void Blake3Hasher::update(const Bytes& data) {
@@ -42,18 +47,21 @@ void Blake3Hasher::update(const std::string& data) {
 
 ::usdtgverse::Hash Blake3Hasher::finalize() {
     ::usdtgverse::Hash result;
-    SHA256_Final(result.data(), &ctx_->sha_ctx);
+    if (ctx_->initialized) {
+        usdtg_blake3_finalize(&ctx_->hasher, result.data());
+    }
     return result;
 }
 
 void Blake3Hasher::finalize(uint8_t* output, size_t length) {
-    if (length >= 32) {
-        SHA256_Final(output, &ctx_->sha_ctx);
+    if (ctx_->initialized && length >= 32) {
+        usdtg_blake3_finalize(&ctx_->hasher, output);
     }
 }
 
 void Blake3Hasher::reset() {
-    SHA256_Init(&ctx_->sha_ctx);
+    usdtg_blake3_init(&ctx_->hasher);
+    ctx_->initialized = true;
 }
 
 ::usdtgverse::Hash Blake3Hasher::hash(const void* data, size_t length) {

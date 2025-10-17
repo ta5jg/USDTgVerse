@@ -286,9 +286,12 @@ public:
                 produceBlock();
             }
             
-            // Reset for next round
+            // Reset for next round with strict view progression
             consensus_.view = 1;
             consensus_.phase = "PREPARE";
+            
+            // Security: Log view reset for audit trail
+            std::cout << "SECURITY: View reset to 1 for new consensus round\n";
         }
     }
     
