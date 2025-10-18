@@ -1,11 +1,11 @@
-# RGLS Oracle Server Makefile
+# USDTgVerse Oracle Server Makefile (Simplified)
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -O2 -g
-LDFLAGS = -lssl -lcrypto -lpthread -lcurl
+LDFLAGS = -lpthread
 
 # Source files
-SOURCES = rgls_oracle_server.c
-TARGET = rgls_oracle_server
+SOURCES = usdtgverse_oracle_server_simple.c
+TARGET = usdtgverse_oracle_server
 
 # Default target
 all: $(TARGET)
@@ -22,21 +22,12 @@ clean:
 test: $(TARGET)
 	./$(TARGET)
 
-# Install dependencies
-install-deps:
-	@echo "Installing dependencies..."
-	@echo "Please install required libraries:"
-	@echo "  Ubuntu/Debian: sudo apt-get install libssl-dev libcurl4-openssl-dev"
-	@echo "  CentOS/RHEL: sudo yum install openssl-devel libcurl-devel"
-	@echo "  macOS: brew install openssl curl"
-
 # Help
 help:
 	@echo "Available targets:"
-	@echo "  all          - Build the RGLS oracle server"
+	@echo "  all          - Build the USDTgVerse oracle server"
 	@echo "  clean        - Remove build artifacts"
-	@echo "  test         - Run the RGLS oracle server test"
-	@echo "  install-deps - Show dependency installation instructions"
+	@echo "  test         - Run the USDTgVerse oracle server test"
 	@echo "  help         - Show this help message"
 
-.PHONY: all clean test install-deps help
+.PHONY: all clean test help
